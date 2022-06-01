@@ -20,7 +20,7 @@ FLAGS = -Wall -Werror -Wextra
 
 LIBS = -L ./libft -lft
 
-INCLUDES = -I ./
+INCLUDES = -I ./libft/includes/
 
 all: $(NAME)
 

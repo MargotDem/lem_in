@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "libft/includes/libft.h"
+# include "libft.h"
 
 void	handle_error(void);
 
