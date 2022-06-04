@@ -189,7 +189,77 @@ void	make_graph(t_graph **graph)
 
 void	make_graph2(t_graph **graph)
 {
-	*graph = NULL;
+	t_graph	*start;
+	t_graph	*A;
+	t_graph	*B;
+	t_graph	*end;
+	
+	start = create_node("start");
+	A = create_node("2");
+	B = create_node("3");
+	end = create_node("end");
+
+	start->nb_links = 1;
+	start->links = (t_graph **)malloc(sizeof(t_graph *) * 1);
+	start->links[0] = A;
+
+	A->nb_links = 2;
+	A->links = (t_graph **)malloc(sizeof(t_graph *) * 2);
+	A->links[0] = start;
+	A->links[1] = B;
+
+	B->nb_links = 2;
+	B->links = (t_graph **)malloc(sizeof(t_graph *) * 2);
+	B->links[0] = A;
+	B->links[1] = end;
+
+	end->nb_links = 1;
+	end->links = (t_graph **)malloc(sizeof(t_graph *) * 1);
+	end->links[0] = B;
+
+	*graph = start;
+}
+
+void	make_graph3(t_graph **graph)
+{
+	t_graph	*start;
+	t_graph	*A;
+	t_graph	*B;
+	t_graph	*C;
+	t_graph	*end;
+	
+	start = create_node("start");
+	A = create_node("1");
+	B = create_node("3");
+	C = create_node("2");
+	end = create_node("end");
+
+	start->nb_links = 2;
+	start->links = (t_graph **)malloc(sizeof(t_graph *) * 2);
+	start->links[0] = A;
+	start->links[1] = C;
+
+	A->nb_links = 2;
+	A->links = (t_graph **)malloc(sizeof(t_graph *) * 2);
+	A->links[0] = start;
+	A->links[1] = end;
+
+	B->nb_links = 2;
+	B->links = (t_graph **)malloc(sizeof(t_graph *) * 2);
+	B->links[0] = C;
+	B->links[1] = end;
+
+	C->nb_links = 2;
+	C->links = (t_graph **)malloc(sizeof(t_graph *) * 2);
+	C->links[0] = start;
+	C->links[1] = B;
+
+	end->nb_links = 2;
+	end->links = (t_graph **)malloc(sizeof(t_graph *) * 1);
+	end->links[0] = A;
+	end->links[1] = B;
+
+	*graph = start;
 }
 
 void	paths_list_add_back(t_paths *list, t_paths *new)
@@ -459,7 +529,7 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 		next = paths->next;
 		next->nb_ants = 0;
 		next->nb_turns = 0;
-		while (paths->nb_turns > next->nb_turns + 1)
+		while (paths->nb_ants - 1 + paths->path_size - 2 >= next->nb_ants + 1 +next->path_size - 2)
 		{
 			(paths->nb_ants)--;
 			(next->nb_ants)++;
@@ -543,12 +613,8 @@ void	solve(t_graph *graph, size_t nb_ants)
 	// find abs shortest path
 	find_shortest_path(graph, &paths);
 
-	printf("\n\nSMALLEST PATHS ARE:\n");
+	printf("\n\nSMALLEST PATHS ARE:\n\n");
 	set_paths_size(paths);
-	
-	print_paths(paths);
-
-
 	// decide how many ants go where
 	distribute_ants(paths, nb_ants);
 	print_paths(paths);
@@ -566,7 +632,7 @@ void graph_array(void)
 	
 	reset_history(history);
 
-	make_graph(&graph);
+	make_graph3(&graph);
 	
 	printf("***** the tree***** \n");
 	print_graph(graph, history);
@@ -583,7 +649,7 @@ void graph_array(void)
 		printf("not found\n");
 	*/
 
-	nb_ants = 10;
+	nb_ants = 3;
 	solve(graph, nb_ants);
 
 	
