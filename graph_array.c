@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "lem_in.h"
 
 typedef struct s_graph
@@ -31,6 +30,10 @@ typedef struct s_paths
 	struct s_paths *next;
 	t_path *path;
 	size_t	path_size;
+	size_t	nb_ants;
+	size_t	nb_turns;
+	int		*ants;
+	size_t	first_ant_nb;
 }				t_paths;
 
 t_graph	*create_node(char *name);
@@ -246,7 +249,7 @@ void	print_paths(t_paths *paths)
 {
 	while (paths)
 	{
-		printf("path size is %zu, ", paths->path_size);
+		printf("path size is %zu, nb of ants is %zu, ", paths->path_size, paths->nb_ants);
 		print_path(paths->path);
 		paths = paths->next;
 	}
@@ -439,6 +442,98 @@ void	set_paths_size(t_paths *paths)
 	}
 }
 
+
+int	get_nb_turns(t_paths *path)
+{
+	return (path->nb_ants + path->path_size - 2);
+}
+
+void	distribute_ants(t_paths *paths, size_t nb_ants)
+{
+	t_paths	*next;
+
+	paths->nb_ants = nb_ants;
+	paths->nb_turns = get_nb_turns(paths);
+	while (paths->next)
+	{
+		next = paths->next;
+		next->nb_ants = 0;
+		next->nb_turns = 0;
+		while (paths->nb_turns > next->nb_turns + 1)
+		{
+			(paths->nb_ants)--;
+			(next->nb_ants)++;
+			paths->nb_turns = get_nb_turns(paths);
+			next->nb_turns = get_nb_turns(next);
+		}
+		paths = next;
+	}
+}
+
+char	*get_room_name(t_paths *path_ptr, int room_nb)
+{
+	int	i;
+	t_path	*path;
+
+	i = 0;
+	path = path_ptr->path;
+	while (i < room_nb)
+	{
+		path = path->next;
+		i++;
+	}
+	return (path->node->name);
+}
+
+void	display_result(t_paths *paths)
+{
+	t_paths	*paths_ptr;
+	size_t	i;
+	size_t	movement;
+	size_t	first_ant_nb;
+
+	paths_ptr = paths;
+	first_ant_nb = 0;
+	while (paths_ptr)
+	{
+		paths_ptr->ants = (int *)malloc(sizeof(int) * paths_ptr->nb_ants);
+		i = 0;
+		while (i < paths_ptr->nb_ants)
+		{
+			(paths_ptr->ants)[i] = -i;
+			i++;
+		}
+		paths_ptr->first_ant_nb = first_ant_nb;
+		first_ant_nb += paths_ptr->nb_ants;
+		paths_ptr = paths_ptr->next;
+	}
+
+	while (1)
+	{
+		movement = 0;
+		paths_ptr = paths;
+		while (paths_ptr)
+		{
+			i = 0;
+			while (i < paths_ptr->nb_ants)
+			{
+				(paths_ptr->ants)[i]++;
+				if ((paths_ptr->ants)[i] > 0 && (paths_ptr->ants)[i] < (int)paths_ptr->path_size)
+				{
+					movement = 1;
+					printf("L%zu-%s", i + 1 + paths_ptr->first_ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i]));
+					printf(" ");
+				}
+				i++;
+			}
+			paths_ptr = paths_ptr->next;
+		}
+		printf("\n");
+		if (!movement)
+			break ;
+	}
+}
+
 void	solve(t_graph *graph, size_t nb_ants)
 {
 	t_paths	*paths;
@@ -455,10 +550,11 @@ void	solve(t_graph *graph, size_t nb_ants)
 
 
 	// decide how many ants go where
-
+	distribute_ants(paths, nb_ants);
+	print_paths(paths);
 	// display the solution
 
-	(void)nb_ants;
+	display_result(paths);
 }
 
 void graph_array(void)
