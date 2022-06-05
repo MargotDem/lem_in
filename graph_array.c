@@ -25,16 +25,24 @@ typedef struct s_path
 	t_graph *node;
 }				t_path;
 
+typedef struct s_ant
+{
+	size_t	ant_nb;
+	int	room_nb;
+}				t_ant;
+
 typedef struct s_paths
 {
 	struct s_paths *next;
 	t_path *path;
 	size_t	path_size;
 	size_t	nb_ants;
+	size_t	nb_ants2;
 	size_t	nb_turns;
-	int		*ants;
+	t_ant	*ants;
 	size_t	first_ant_nb;
 }				t_paths;
+
 
 t_graph	*create_node(char *name);
 int	not_in_history(t_graph *node, t_graph **history);
@@ -523,18 +531,14 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 	t_paths	*next;
 
 	paths->nb_ants = nb_ants;
-	paths->nb_turns = get_nb_turns(paths);
 	while (paths->next)
 	{
 		next = paths->next;
 		next->nb_ants = 0;
-		next->nb_turns = 0;
-		while (paths->nb_ants - 1 + paths->path_size - 2 >= next->nb_ants + 1 +next->path_size - 2)
+		while (paths->nb_ants - 1 + paths->path_size >= next->nb_ants + 1 + next->path_size)
 		{
 			(paths->nb_ants)--;
 			(next->nb_ants)++;
-			paths->nb_turns = get_nb_turns(paths);
-			next->nb_turns = get_nb_turns(next);
 		}
 		paths = next;
 	}
@@ -555,7 +559,7 @@ char	*get_room_name(t_paths *path_ptr, int room_nb)
 	return (path->node->name);
 }
 
-void	display_result(t_paths *paths)
+void	display_result(t_paths *paths, size_t nb_ants)
 {
 	t_paths	*paths_ptr;
 	size_t	i;
@@ -566,16 +570,34 @@ void	display_result(t_paths *paths)
 	first_ant_nb = 0;
 	while (paths_ptr)
 	{
-		paths_ptr->ants = (int *)malloc(sizeof(int) * paths_ptr->nb_ants);
+		paths_ptr->nb_ants2 = 0;
+		paths_ptr->ants = (t_ant *)malloc(sizeof(t_ant) * paths_ptr->nb_ants);
 		i = 0;
 		while (i < paths_ptr->nb_ants)
 		{
-			(paths_ptr->ants)[i] = -i;
+			(paths_ptr->ants)[i].room_nb = -i;
+			(paths_ptr->ants)[i].ant_nb = i + 1 + first_ant_nb;
 			i++;
 		}
 		paths_ptr->first_ant_nb = first_ant_nb;
 		first_ant_nb += paths_ptr->nb_ants;
 		paths_ptr = paths_ptr->next;
+	}
+
+	// set ants' names
+	i = 0;
+	paths_ptr = paths;
+	while (i < nb_ants)
+	{
+		if (paths_ptr->nb_ants2 < paths_ptr->nb_ants)
+		{
+			(paths_ptr->ants)[paths_ptr->nb_ants2].ant_nb = i + 1;
+			paths_ptr->nb_ants2++;
+		}
+		paths_ptr = paths_ptr->next;
+		if (!paths_ptr)
+			paths_ptr = paths;
+		i++;
 	}
 
 	while (1)
@@ -587,11 +609,11 @@ void	display_result(t_paths *paths)
 			i = 0;
 			while (i < paths_ptr->nb_ants)
 			{
-				(paths_ptr->ants)[i]++;
-				if ((paths_ptr->ants)[i] > 0 && (paths_ptr->ants)[i] < (int)paths_ptr->path_size)
+				(paths_ptr->ants)[i].room_nb++;
+				if ((paths_ptr->ants)[i].room_nb > 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size)
 				{
 					movement = 1;
-					printf("L%zu-%s", i + 1 + paths_ptr->first_ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i]));
+					printf("L%zu-%s", (paths_ptr->ants)[i].ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
 					printf(" ");
 				}
 				i++;
@@ -620,7 +642,7 @@ void	solve(t_graph *graph, size_t nb_ants)
 	print_paths(paths);
 	// display the solution
 
-	display_result(paths);
+	display_result(paths, nb_ants);
 }
 
 void graph_array(void)
@@ -632,7 +654,7 @@ void graph_array(void)
 	
 	reset_history(history);
 
-	make_graph3(&graph);
+	make_graph(&graph);
 	
 	printf("***** the tree***** \n");
 	print_graph(graph, history);
@@ -649,7 +671,7 @@ void graph_array(void)
 		printf("not found\n");
 	*/
 
-	nb_ants = 3;
+	nb_ants = 10;
 	solve(graph, nb_ants);
 
 	
