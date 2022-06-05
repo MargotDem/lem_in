@@ -12,7 +12,10 @@
 
 NAME = lem-in
 
-SRCS = main.c handle_error.c graph_linked_list.c graph_array.c b_tree.c
+SRCS = main.c handle_error.c graph_array.c graph_functions.c \
+	history_functions.c make_graph.c display_result.c \
+	list_functions.c paths_functions1.c paths_functions2.c \
+	helpers.c
 
 OBJS = $(SRCS:.c=.o)
 

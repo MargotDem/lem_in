@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_create_node.c                                :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/02 11:18:31 by mde-maul          #+#    #+#             */
-/*   Updated: 2021/09/03 14:05:06 by mde-maul         ###   ########.fr       */
+/*   Created: 2022/06/05 18:50:58 by mde-maul          #+#    #+#             */
+/*   Updated: 2022/06/05 18:51:01 by mde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-t_btree	*btree_create_node(void *item)
+size_t	strings_match(char *str1, char *str2)
 {
-	t_btree	*new;
-
-	new = (t_btree *)malloc(sizeof(t_btree));
-	if (new)
-	{
-		new->left = 0;
-		new->right = 0;
-		new->item = item;
-	}
-	return (new);
+	if (ft_strcmp(str1, str2) == 0)
+		return (1);
+	return (0);
 }

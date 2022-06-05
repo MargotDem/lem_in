@@ -12,6 +12,7 @@
 
 #include "lem_in.h"
 
+
 typedef struct s_links_list
 {
 	struct s_graph	*graph_ptr;
@@ -25,43 +26,9 @@ typedef struct s_graph
 	size_t	nb_links;
 }				t_graph;
 
-t_graph	*create_node(char *name)
-{
-	t_graph	*new;
 
-	new = (t_graph *)malloc(sizeof(t_graph));
-	if (new)
-	{
-		new->links = NULL;
-		new->name = name;
-		new->nb_links = 0;
-	}
-	return (new);
-}
 
-int	not_in_history(t_graph *node, t_graph **history)
-{
-	int	i;
 
-	i = 0;
-	while (history[i])
-	{
-		if (node->name == (history[i])->name)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	push_history(t_graph **history, t_graph *node)
-{
-	int	i;
-
-	i = 0;
-	while (history[i])
-		i++;
-	history[i] = node;
-}
 
 static void print_graph(t_graph *node, t_graph **history)
 {
@@ -99,7 +66,7 @@ static void	find_node(t_graph *node, t_graph **history, char *name, t_graph **no
 
 	if (*node_to_find)
 		return ;
-	if (ft_strcmp(node->name, name) == 0)
+	if (strings_match(node->name, name))
 	{
 		*node_to_find = node;
 		return ;
@@ -140,17 +107,7 @@ void	links_list_add_back(t_links_list **list, t_links_list *new)
 	}
 }
 
-void	reset_history(t_graph **history)
-{
-	int	i;
 
-	i = 0;
-	while (i < 100)
-	{
-		history[i] = NULL;
-		i++;
-	}
-}
 
 void	create_graph(t_graph **graph)
 {
