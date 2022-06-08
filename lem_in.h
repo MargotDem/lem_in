@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:37:29 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/01 15:37:31 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:57:41 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,12 @@ typedef struct s_map {
 }	t_map;
 
 void	handle_error(void);
+
+typedef struct s_room {
+	char *name;
+	struct s_room *left;
+	struct s_room *right;
+	struct s_room *parent;
+} t_room;
 
 #endif

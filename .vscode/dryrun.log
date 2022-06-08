@@ -1,0 +1,8 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/briffard/Desktop/Lem-in'
+make -C ./libft
+gcc -Wall -Werror -Wextra -I ./ -c main.c handle_error.c
+gcc -Wall -Werror -Wextra -I ./ -o lem-in main.o handle_error.o -L ./libft -lft
+ 
+make: Leaving directory `/Users/briffard/Desktop/Lem-in'
+ 
