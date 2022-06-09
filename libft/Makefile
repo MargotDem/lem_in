@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+         #
+#    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 19:52:47 by mde-maul          #+#    #+#              #
-#    Updated: 2022/03/23 19:52:51 by mde-maul         ###   ########.fr        #
+#    Updated: 2022/06/09 10:54:12 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,14 +43,19 @@ O_FILES = $(FILES:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -c -I ./ $(FILES)
-	ar rc $(NAME) $(O_FILES)
+	@echo "Compiling ..."
+	@$(CC) $(CFLAGS) -c -I ./ $(FILES)
+	@ar rc $(NAME) $(O_FILES)
+	@ranlib $(NAME)
+	@echo "Libft.a created"
 
 clean:
-	/bin/rm -f *.o
+	@/bin/rm -f *.o
+	@echo "Object files from libft has been deleted"
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
+	@echo "$(NAME) has been deleted"
 
 re: fclean all clean
 

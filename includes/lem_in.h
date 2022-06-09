@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:37:29 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/08 15:57:41 by briffard         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:57:50 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 typedef struct s_links_list {
 	char				*name;
@@ -40,11 +40,11 @@ typedef struct s_map {
 
 void	handle_error(void);
 
-typedef struct s_room {
-	char *name;
-	struct s_room *left;
-	struct s_room *right;
-	struct s_room *parent;
-} t_room;
+// typedef struct s_room {
+// 	char *name;
+// 	struct s_room *left;
+// 	struct s_room *right;
+// 	struct s_room *parent;
+// } t_room;
 
 #endif

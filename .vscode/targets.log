@@ -6,25 +6,23 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Wed Jun  8 14:42:12 2022
+# Make data base, printed on Thu Jun  9 15:31:57 2022
 
 # Variables
- 
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
+# makefile (from `Makefile', line 61)
+RM_DIR = rm -rf
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
 NVM_INC = /Users/briffard/.nvm/versions/node/v18.0.0/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
-# makefile (from `Makefile', line 23)
-INCLUDES = -I ./
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
@@ -33,22 +31,26 @@ INCLUDES = -I ./
 CURDIR := /Users/briffard/Desktop/Lem-in
 # makefile
 SHELL = /bin/sh
+# makefile (from `Makefile', line 62)
+RM = rm	-f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
+# makefile (from `Makefile', line 69)
+OBJ_DIR = ./objectFiles/
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from `Makefile', line 17)
-OBJS = $(SRCS:.c=.o)
+# makefile (from `Makefile', line 70)
+OBJS = $(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000l580004s_/T/vscode-ipc-cb0a3b36-997e-4a2f-8d09-2d78550c062d.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000l580004s_/T/vscode-ipc-e52f0154-44eb-4fb2-a1df-4154afbf7f3d.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.LDJ9hiiath/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.FMWLqbOJbG/Render
 # environment
 PATH = /Users/briffard/.nvm/versions/node/v18.0.0/bin:/Users/briffard/.brew/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
@@ -59,10 +61,12 @@ NVM_BIN = /Users/briffard/.nvm/versions/node/v18.0.0/bin
 VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
+# makefile (from `Makefile', line 58)
+LIB = -L ./libft/ -lft
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.sNkvQD5Qu8/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.DxQQUSafMh/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -97,22 +101,26 @@ XPC_FLAGS = 0x0
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from `Makefile', line 15)
-SRCS = main.c handle_error.c
 # environment
 SHLVL = 1
+# makefile (from `Makefile', line 50)
+CC = gcc
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = briffard
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from `Makefile', line 13)
-NAME = lem-in
+# makefile (from `Makefile', line 51)
+CCFLAGS = -Werror -Wextra -Wall
+# makefile (from `Makefile', line 47)
+NAME = parsing
 # environment
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# makefile (from `Makefile', line 54)
+INCL_LFT = -I ./libft/
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # default
@@ -132,7 +140,7 @@ MFLAGS = -Rrqp
 # environment
 NVM_DIR = /Users/briffard/.nvm
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000004.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000018.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -143,22 +151,22 @@ __CF_USER_TEXT_ENCODING = 0x132A:0x0:0x0
 COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
+# makefile (from `Makefile', line 65)
+SRC_DIR = ./srcs/
 # automatic
 <F = $(notdir $<)
+# makefile (from `Makefile', line 55)
+INCL_PARS = -I ./includes/
 # environment
 PAGER = less
 # environment
 LC_ALL = C
-# makefile (from `Makefile', line 21)
-LIBS = -L ./libft -lft
 # environment
-SECURITYSESSIONID = 186a7
+SECURITYSESSIONID = 18728
 # automatic
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
-# makefile (from `Makefile', line 19)
-FLAGS = -Wall -Werror -Wextra
 # default
 .INCLUDE_DIRS = /usr/local/include
 # environment
@@ -166,9 +174,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 71666
+VSCODE_PID = 20079
+# makefile (from `Makefile', line 66)
+FILES = parsing.c
 # variable set hash-table stats:
-# Load=77/1024=8%, Rehash=0, Collisions=3/114=3%
+# Load=83/1024=8%, Rehash=0, Collisions=6/124=5%
 
 # Pattern-specific Variable Values
 
@@ -176,24 +186,38 @@ VSCODE_PID = 71666
 
 # Directories
 
-# . (device 16777227, inode 3107351): 11 files, no impossibilities.
+# . (device 16777227, inode 3107351): 13 files, no impossibilities.
+# ./srcs (device 16777227, inode 3114524): 4 files, no impossibilities so far.
+# srcs (device 16777227, inode 3114524): 4 files, no impossibilities so far.
 
-# 11 files, no impossibilities in 1 directories.
+# 21 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
-# No implicit rules.
+objectFiles/%.o: ./srcs/%.c
+#  commands to execute (from `Makefile', line 78):
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $<
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
 
 # Files
 
-all: lem-in
+all: parsing
+#  Phony target (prerequisite of .PHONY).
 #  Command-line target.
-#  Implicit rule search has been done.
+#  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/11=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+
+.PHONY: all re clean fclean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -204,29 +228,74 @@ all: lem-in
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-08 14:40:15
+#  Last modified 2022-06-09 11:00:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-fclean: clean
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 37):
-	make -C ./libft fclean
-	rm -f $(NAME)
+# Not a target:
+srcs/parsing.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-09 12:54:32
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+objectFiles/parsing.o: srcs/parsing.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `parsing'
+#  Last modified 2022-06-09 10:59:43
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := objectFiles/parsing.o
+# automatic
+# % := 
+# automatic
+# * := parsing
+# automatic
+# + := srcs/parsing.c
+# automatic
+# | := 
+# automatic
+# < := srcs/parsing.c
+# automatic
+# ^ := srcs/parsing.c
+# automatic
+# ? := srcs/parsing.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/17=6%
+#  commands to execute (from `Makefile', line 78):
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $<
 	
 
-dev:
+lft:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 43):
-	gcc $(FLAGS) $(INCLUDES) -c $(SRCS)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
-	make clean
+#  commands to execute (from `Makefile', line 84):
+	@make -sC ./libft/ all
+	
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 100):
+	@$(RM) $(NAME)
+	@echo "Parsing file has been deleted"
+	
+
+lft_reboot:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 87):
+	@make -sC ./libft/ re
 	
 
 # Not a target:
@@ -236,51 +305,51 @@ dev:
 #  File has not been updated.
 
 re: fclean all
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
 
 clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 96):
+	@$(RM_DIR) $(OBJ_DIR)
+ 
+	@echo "Object Files have been deleted"
+	
+
+lft_fclean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 33):
-	make -C ./libft clean
-	rm -f $(OBJS)
+#  commands to execute (from `Makefile', line 93):
+	@make -sC ./libft/ fclean
 	
 
-lem-in:
+lft_clean:
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
-#  File does not exist.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 90):
+	@make -sC ./libft/ clean
+	
+
+parsing: objectFiles/parsing.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-09 10:59:43
 #  File has been updated.
 #  Needs to be updated (-q is set).
-# automatic
-# @ := lem-in
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := 
-# automatic
-# | := 
-# automatic
-# < := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/19=11%
-#  commands to execute (from `Makefile', line 28):
-	make -C ./libft
-	gcc $(FLAGS) $(INCLUDES) -c $(SRCS)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+#  commands to execute (from `Makefile', line 75):
+	@$(CC) $(FLAGS) -o $(NAME) $< $(LIB)
 	
 
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/27=0%
+# Load=15/1024=1%, Rehash=0, Collisions=0/40=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -292,6 +361,6 @@ lem-in:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Jun  8 14:42:12 2022
+# Finished Make data base on Thu Jun  9 15:31:57 2022
 
  
