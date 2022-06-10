@@ -78,7 +78,8 @@ void	set_paths_size(t_paths *paths);
 
 // Path functions 2
 void	find_potential_paths(t_graph *node, t_paths **potential_paths, t_graph **history, t_paths **paths);
-void	find_shortest_paths(t_graph *graph, t_paths **paths);
+void	find_optimal_paths(t_graph *graph, t_paths **paths, size_t nb_ants);
+void	select_optimal_paths(t_paths *all_paths, t_paths **paths, size_t nb_ants);
 
 // Display result
 void	display_result(t_paths *paths, size_t nb_ants);
@@ -92,5 +93,8 @@ void	make_graph2(t_graph **graph);
 void	make_graph3(t_graph **graph);
 void	make_graph4(t_graph **graph);
 void	make_graph5(t_graph **graph);
+
+//
+void	distribute_ants(t_paths *paths, size_t nb_ants);
 
 #endif

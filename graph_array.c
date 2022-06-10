@@ -44,7 +44,7 @@ void	solve(t_graph *graph, size_t nb_ants)
 
 	// find all possible disctinct paths from shortest to longest
 	paths = NULL;
-	find_shortest_paths(graph, &paths);
+	find_optimal_paths(graph, &paths, nb_ants);
 	printf("\n\nSMALLEST PATHS ARE:\n\n");
 	
 	// decide how many ants will take each path
@@ -60,7 +60,7 @@ void graph_array(void)
 	size_t	nb_ants;
 	t_graph	*history[100];
 	
-	make_graph3(&graph);
+	make_graph5(&graph);
 	printf("***** the tree ***** \n");
 	reset_history(history);
 	print_graph(graph, history);
@@ -76,6 +76,6 @@ void graph_array(void)
 		printf("not found\n");
 	*/
 
-	nb_ants = 3;
+	nb_ants = 20;
 	solve(graph, nb_ants);
 }

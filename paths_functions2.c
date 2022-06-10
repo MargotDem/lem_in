@@ -91,6 +91,86 @@ int		paths_intersect(t_path *path1, t_path *path2)
 	return (0);
 }
 
+t_paths	*copy_paths_node(t_paths *node)
+{
+	t_paths	*new;
+
+	new = (t_paths *)malloc(sizeof(t_paths));
+	// if null
+
+	new->next = NULL;
+	new->path = node->path;
+	new->path_size = node->path_size;
+	new->nb_ants = node->nb_ants;
+	new->nb_ants2 = node->nb_ants2;
+
+	return (new);
+}
+
+int	shortest_optimal(t_paths *all_paths, t_paths *shortest, size_t nb_ants)
+{
+	size_t	nb_turns_shortest;
+	size_t	nb_turns_alternative;
+	t_paths	*intersecting_paths;
+	t_paths	*alternative_paths;
+	t_paths	*new;
+	size_t	nb_intersecting;
+
+	nb_intersecting = 0;
+	intersecting_paths = NULL;
+	(void)new;
+	(void)alternative_paths;
+	alternative_paths = NULL;
+	nb_turns_shortest = get_path_size(shortest->path) + nb_ants - 2;
+	printf("nb turns shortest is %zu\n", nb_turns_shortest);
+
+	// find out all the paths that intersect with shortest, create a linked list with them: intersecting_paths
+	// of course, skip shortest in all_paths
+	while (all_paths)
+	{
+		//printf("here\n");
+		if (shortest != all_paths && paths_intersect(shortest->path, all_paths->path))
+		{
+			nb_intersecting++;
+			new = copy_paths_node(all_paths);
+			if (!intersecting_paths)
+				intersecting_paths = new;
+			else
+				lst_add_back((t_void_list *)intersecting_paths, (t_void_list *)new);
+		}
+		all_paths = all_paths->next;
+	}
+
+	if (nb_intersecting < 2)
+	{
+		printf("less than 2 intersecting: %zu\n", nb_intersecting);
+		printf("\n");
+		return (1);
+	}
+	printf("\n");
+	
+	// 
+	select_optimal_paths(intersecting_paths, &alternative_paths, nb_ants);
+	distribute_ants(alternative_paths, nb_ants);
+	printf("HEREEEE\n");
+	print_paths(alternative_paths);
+	printf("HEREEEE\n");
+	nb_turns_alternative = alternative_paths->path_size + alternative_paths->nb_ants - 2;
+
+	printf("nb turns shortest is %zu, and alternative is %zu\n", nb_turns_shortest, nb_turns_alternative);
+	printf("intersecting path path size is  %zu, and intersectin path nb ants is %zu\n", alternative_paths->path_size, alternative_paths->nb_ants);
+	if (nb_turns_shortest <= nb_turns_alternative)
+	{
+		
+		return (1);
+	}
+	printf("so NOPEEE\n");
+	return (0);
+	//return (0) en theorie mais lets see;
+
+	// FREE EVERYTHINGGGG
+}
+
 void	update_all_paths(t_paths **all_paths, t_paths *shortest)
 {
 	t_paths	*prev;
@@ -125,22 +205,13 @@ void	update_all_paths(t_paths **all_paths, t_paths *shortest)
 	}
 }
 
-void	find_shortest_paths(t_graph *graph, t_paths **paths)
+void	select_optimal_paths(t_paths *all_paths, t_paths **paths, size_t nb_ants)
 {
-	t_paths	*potential_paths;
-	t_paths	*all_paths;
 	t_paths	*t_paths_ptr;
-	t_graph	*history[100];
 	t_paths	*shortest;
 	t_paths	*shortest_prev;
 	t_paths	*prev;
 	size_t	shortest_size;
-
-	reset_history(history);
-	push_history(history, graph);
-	potential_paths = NULL;
-	find_potential_paths(graph, &potential_paths, history, paths);
-	all_paths = potential_paths;
 
 	while (all_paths)
 	{
@@ -161,11 +232,24 @@ void	find_shortest_paths(t_graph *graph, t_paths **paths)
 			t_paths_ptr = t_paths_ptr->next;
 		}
 
+		// if shortest is not optimal, yeet it out of the list and start again
+		// else, do the following
+		if (!shortest_optimal(all_paths, shortest, nb_ants))
+		{
+			// take shortest out of the all_paths list
+			if (!shortest_prev)
+				all_paths = shortest->next;
+			else
+				shortest_prev->next = shortest->next;
+			continue ;
+		}
+
 		// take shortest out of the all_paths list
 		if (!shortest_prev)
 			all_paths = shortest->next;
 		else
 			shortest_prev->next = shortest->next;
+		
 		shortest->next = NULL;
 		shortest->nb_ants = 0; // this is necessary. don't ask why
 
@@ -175,7 +259,8 @@ void	find_shortest_paths(t_graph *graph, t_paths **paths)
 		else
 			lst_add_back((t_void_list *)*paths, (t_void_list *)shortest);
 
-		// take the paths that intersect with shortest out of the all paths list
+		// take the paths that intersect with shortest out of the all paths list.
+		// this is what ultimately breaks us out of the while loop
 		update_all_paths(&all_paths, shortest);
 	}
 
@@ -214,4 +299,19 @@ void	find_shortest_paths(t_graph *graph, t_paths **paths)
 			lst_add_back((t_void_list *)*paths, (t_void_list *)shortest);
 	}
 */
+}
+
+void	find_optimal_paths(t_graph *graph, t_paths **paths, size_t nb_ants)
+{
+	t_paths	*potential_paths;
+	t_paths	*all_paths;
+	t_graph	*history[100];
+
+	reset_history(history);
+	push_history(history, graph);
+	potential_paths = NULL;
+	find_potential_paths(graph, &potential_paths, history, paths);
+	all_paths = potential_paths;
+
+	select_optimal_paths(all_paths, paths, nb_ants);
 }
