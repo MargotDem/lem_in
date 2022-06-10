@@ -73,14 +73,115 @@ void	find_potential_paths(t_graph *node, t_paths **potential_paths, t_graph **hi
 	}
 }
 
+int		paths_intersect(t_path *path1, t_path *path2)
+{
+	t_path	*path;
+
+	while (path1)
+	{
+		path = path2;
+		while (path)
+		{
+			if (strings_match(path->node->name, path1->node->name) && (!strings_match(path->node->name, "start") && (!strings_match(path->node->name, "end"))))
+				return (1);
+			path = path->next;
+		}
+		path1 = path1->next;
+	}
+	return (0);
+}
+
+void	update_all_paths(t_paths **all_paths, t_paths *shortest)
+{
+	t_paths	*prev;
+	t_paths	*cur;
+	t_paths	*next;
+	
+//	t_path	*shortest_path;
+
+	prev = NULL;
+	cur = *all_paths;
+	next = NULL;
+	while (cur)
+	{
+		if (paths_intersect(cur->path, shortest->path))
+		{
+			// remove cur from all_paths
+			if (!prev)
+			{
+				*all_paths = cur->next;
+			}
+			else
+			{
+				prev->next = cur->next;
+			}
+		}
+		else
+		{
+			prev = cur;
+			//next = cur->next;
+		}
+		cur = cur->next;
+	}
+}
+
 void	find_shortest_paths(t_graph *graph, t_paths **paths)
 {
 	t_paths	*potential_paths;
+	t_paths	*all_paths;
 	t_paths	*t_paths_ptr;
 	t_graph	*history[100];
 	t_paths	*shortest;
+	t_paths	*shortest_prev;
+	t_paths	*prev;
 	size_t	shortest_size;
 
+	reset_history(history);
+	push_history(history, graph);
+	potential_paths = NULL;
+	find_potential_paths(graph, &potential_paths, history, paths);
+	all_paths = potential_paths;
+
+	while (all_paths)
+	{
+		t_paths_ptr = all_paths;
+		// !!!! if nulll
+		shortest = t_paths_ptr;
+		shortest_prev = NULL;
+		prev = NULL;
+		shortest_size = get_path_size(shortest->path);
+		while (t_paths_ptr)
+		{
+			if (get_path_size(t_paths_ptr->path) < shortest_size)
+			{
+				shortest = t_paths_ptr;
+				shortest_prev = prev;
+			}
+			prev = t_paths_ptr;
+			t_paths_ptr = t_paths_ptr->next;
+		}
+
+		// take shortest out of the all_paths list
+		if (!shortest_prev)
+			all_paths = shortest->next;
+		else
+			shortest_prev->next = shortest->next;
+		shortest->next = NULL;
+		shortest->nb_ants = 0; // this is necessary. don't ask why
+
+		// add shortest to shortest paths list
+		if (!(*paths))
+			*paths = shortest;
+		else
+			lst_add_back((t_void_list *)*paths, (t_void_list *)shortest);
+
+		// take the paths that intersect with shortest out of the all paths list
+		update_all_paths(&all_paths, shortest);
+	}
+
+	/* by the grace of God the previous code seems to work but i dont actually trust it, so keeping this here just in case
+	yes its bad practice
+	no i wont stop doing it
 	while (1)
 	{
 		// search shortest
@@ -101,7 +202,7 @@ void	find_shortest_paths(t_graph *graph, t_paths **paths)
 			t_paths_ptr = t_paths_ptr->next;
 		}
 
-		//copy_path(shortest, &shortest_copy);
+		// copy_path(shortest, &shortest_copy);
 		// instead of doing this, dont forget to free the other ones from potential paths ie up until shortest and after shortest
 		shortest->next = NULL;
 		shortest->nb_ants = 0;
@@ -112,4 +213,5 @@ void	find_shortest_paths(t_graph *graph, t_paths **paths)
 		else
 			lst_add_back((t_void_list *)*paths, (t_void_list *)shortest);
 	}
+*/
 }

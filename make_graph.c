@@ -172,6 +172,7 @@ void	make_graph3(t_graph **graph)
 
 void	make_graph4(t_graph **graph)
 {
+	// 3 = middle path. 4 = left and right path
 	t_graph	*start;
 	t_graph	*A;
 	t_graph	*B;

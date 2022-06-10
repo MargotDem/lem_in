@@ -20,7 +20,6 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 	set_paths_size(paths);
 	paths->nb_ants = nb_ants;
 	paths_ptr = paths;
-	//while (paths_ptr->next)
 	while (1)
 	{
 		if (!paths_ptr->next)
@@ -61,7 +60,7 @@ void graph_array(void)
 	size_t	nb_ants;
 	t_graph	*history[100];
 	
-	make_graph2(&graph);
+	make_graph3(&graph);
 	printf("***** the tree ***** \n");
 	reset_history(history);
 	print_graph(graph, history);
@@ -77,9 +76,6 @@ void graph_array(void)
 		printf("not found\n");
 	*/
 
-	nb_ants = 50;
+	nb_ants = 3;
 	solve(graph, nb_ants);
-
-	// TODO bug when makegraph and nb_ants = 2: second ant is called L0 instead of L2
-	// also happens with makegraph and nb_ants = 6, the last one L0
 }
