@@ -104,6 +104,7 @@ void	find_shortest_paths(t_graph *graph, t_paths **paths)
 		//copy_path(shortest, &shortest_copy);
 		// instead of doing this, dont forget to free the other ones from potential paths ie up until shortest and after shortest
 		shortest->next = NULL;
+		shortest->nb_ants = 0;
 
 		// from all the potential paths, find the shortest one and add it to paths linked list
 		if (!(*paths))

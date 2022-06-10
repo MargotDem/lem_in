@@ -35,7 +35,7 @@ void	initialize_ants_positions(t_paths *paths)
 	paths_ptr = paths;
 	while (paths_ptr)
 	{
-		paths_ptr->nb_ants2 = 0;
+		paths_ptr->nb_ants2 = 0; // initialiazing this, is this really the place
 		paths_ptr->ants = (t_ant *)malloc(sizeof(t_ant) * paths_ptr->nb_ants);
 		i = 0;
 		while (i < paths_ptr->nb_ants)
@@ -60,11 +60,11 @@ void	initialize_ants_numbers(t_paths *paths, size_t nb_ants)
 		{
 			(paths_ptr->ants)[paths_ptr->nb_ants2].ant_nb = i + 1;
 			paths_ptr->nb_ants2++;
+			i++;
 		}
 		paths_ptr = paths_ptr->next;
 		if (!paths_ptr)
 			paths_ptr = paths;
-		i++;
 	}
 }
 

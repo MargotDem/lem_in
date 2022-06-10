@@ -15,19 +15,27 @@
 void	distribute_ants(t_paths *paths, size_t nb_ants)
 {
 	t_paths	*next;
+	t_paths	*paths_ptr;
 
 	set_paths_size(paths);
 	paths->nb_ants = nb_ants;
-	while (paths->next)
+	paths_ptr = paths;
+	//while (paths_ptr->next)
+	while (1)
 	{
-		next = paths->next;
-		next->nb_ants = 0;
-		while (paths->nb_ants + paths->path_size - 1 >= next->nb_ants + next->path_size + 1)
+		if (!paths_ptr->next)
+			paths_ptr = paths;
+		if (!paths_ptr->next) // if this is still the case it means there's only one path
+			break ;
+		next = paths_ptr->next;
+		if (paths_ptr->nb_ants + paths_ptr->path_size - 1 < next->nb_ants + next->path_size + 1)
+			break ;
+		while (paths_ptr->nb_ants + paths_ptr->path_size - 1 >= next->nb_ants + next->path_size + 1)
 		{
-			(paths->nb_ants)--;
+			(paths_ptr->nb_ants)--;
 			(next->nb_ants)++;
 		}
-		paths = next;
+		paths_ptr = next;
 	}
 }
 
@@ -53,7 +61,7 @@ void graph_array(void)
 	size_t	nb_ants;
 	t_graph	*history[100];
 	
-	make_graph(&graph);
+	make_graph2(&graph);
 	printf("***** the tree ***** \n");
 	reset_history(history);
 	print_graph(graph, history);
@@ -69,7 +77,7 @@ void graph_array(void)
 		printf("not found\n");
 	*/
 
-	nb_ants = 5;
+	nb_ants = 50;
 	solve(graph, nb_ants);
 
 	// TODO bug when makegraph and nb_ants = 2: second ant is called L0 instead of L2

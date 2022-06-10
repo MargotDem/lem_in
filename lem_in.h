@@ -90,5 +90,7 @@ size_t	strings_match(char *str1, char *str2);
 void	make_graph(t_graph **graph);
 void	make_graph2(t_graph **graph);
 void	make_graph3(t_graph **graph);
+void	make_graph4(t_graph **graph);
+void	make_graph5(t_graph **graph);
 
 #endif
