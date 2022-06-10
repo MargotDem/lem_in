@@ -15,6 +15,46 @@
 
 // }
 
+/*remove an element from the beginning of the list*/
+t_lst_room	*pop_front_list(t_lst_room *li)
+{
+	t_lst_room		*element;
+
+	element = (t_lst_room *)ft_memalloc(sizeof(*element));
+	if (!element)
+	{
+		ft_putendl_fd("Error: allocation memory", 2);
+		return (NULL);
+	}
+	if (!li)
+		return (li);
+	element = li->next;
+	ft_memdel((void **)&li);
+	return (element);
+}
+
+/*clear all the list*/
+t_lst_room	*clear_list(t_lst_room *li)
+{
+	if (!li)
+		return  (li);
+	while (li->next != NULL)
+		li = pop_front_list(li);
+    free(li);
+    li = NULL;
+	return(li);
+}
+
+/*PRINT a LIST*/
+void print_lst(t_lst_room *li)
+{
+    while (li != NULL)
+    {
+        printf("%s\n", li->name);
+        li = li->next;
+    }
+}
+
 t_room *insert(t_room *element,t_room *tr)
 {
     t_room *temp;
@@ -139,7 +179,7 @@ t_room     *new_tree(char *line)
     tr->left = NULL;
     tr->right = NULL;
     tr->parent = NULL;
-    printf("Creation de %s\n", tr->name);
+    printf("Creation de %s avec les valeurs line = %d && row = %d\n", tr->name, tr->line, tr->row);
     return (tr);
 }
 
@@ -163,9 +203,9 @@ t_room     *new_tree(char *line)
 t_room *insert_node(t_room *tr, char *line)
 {
     t_room *element = new_tree(line);
-
     if (tr == NULL)
         return (element);
+    printf("-->%d\n",ft_strcmp(element->name,tr->name));
     if (ft_strcmp(element->name,tr->name) < 0) // check if room est plus grand ou plus en ASCII plus petit va vers la gauche plsu vers la droite
         insert(element, tr->left);
     else
@@ -173,14 +213,100 @@ t_room *insert_node(t_room *tr, char *line)
     return (tr);    
 }
 
+/*INSERT un element dans list puis le place a la fin*/
+t_lst_room *push_back(t_lst_room *li, char *name)
+{
+    t_lst_room *element;
+    t_lst_room *temp;
+
+
+    element = malloc(sizeof(*element));
+    element->name = ft_strdup(name);
+    element->next = NULL;
+    if (li == NULL)
+        return (element);
+    temp = li;
+    while (temp->next != NULL)
+        temp = temp->next;
+    temp->next = element;
+
+    return (li);
+}
+
+/*Tri la liste selon ascii table*/
+t_lst_room *sort_list(t_lst_room *li)
+{
+    t_lst_room *head;
+    char *swap;
+    head = li;
+    while (li->next != NULL)
+    {
+        if (ft_strcmp(li->name, li->next->name) >= 0)
+        {
+            swap = li->name;
+            li->name = li->next->name;
+            li->next->name = swap;
+            li = head;
+        }
+        else
+            li = li->next;
+    }
+    return (head);
+}
+
+/*SET DATA SIZE ET MEDIAN VALUE DE  LA LIST*/
+t_data_lst_room *set_data(t_lst_room *li, t_data_lst_room *data)
+{
+    t_lst_room *head;
+
+    head = li;
+    data->size = 0;
+    while (li != NULL)
+    {
+        data->size += 1;
+        li = li->next;
+    }
+    data->median = (data->size / 2);
+    return (data);
+}
+
+/*Cherche la valeur a un index donee*/
+char *look_in_lst(int index, t_lst_room *li)
+{
+    int i;
+
+    i = 0;
+    t_lst_room *temp;
+
+    temp = li;
+    while(i != index)
+    {
+        temp = temp->next;
+        i++;
+    }
+    return (temp->name);
+}
+
+
 /* Lis depuis le fd = 0 et check chaque ligne */
 t_room *mapreader(int fd, t_room *room_tree)
 {
     char *line;
+    char *name;
+    int value;
+    int x = 0;
+    t_lst_room *lst_room = NULL;
+    t_data_lst_room *data_room;
+
+    data_room = malloc(sizeof(*data_room));
     while (get_next_line(fd, &line))// checker sur fd lire 
     {
         if (is_room(line))
-            insert_node(room_tree, line);
+        {   
+            name = extract_name(line);
+            lst_room = push_back(lst_room, name);
+            lst_room = sort_list(lst_room); // le pousser directement u bonne endroit ???
+        }
         // else if (is_comment(line))
         //     pass_line();
         // else if (is_modif(line))
@@ -188,6 +314,29 @@ t_room *mapreader(int fd, t_room *room_tree)
         // else if (is_connection(line))
         //     counter_connection(line, room_tree);
     }
+    data_room = set_data(lst_room, data_room);
+    value = data_room->median;
+    printf("MEDIAN = %d && SIZE %d\n", data_room->median, data_room->size);
+    while ( value   < data_room->size)
+    {
+        printf("MEDIAN = %d && SIZE %d && value %d\n", data_room->median, data_room->size, value);
+        printf("VALUE TO INSERT = %s\n", look_in_lst(value , lst_room));
+        if (value == data_room->size - 2)
+            break;
+        if (value <= 2)
+        {
+            x = 1;
+            value = data_room->median;
+        }
+        if (value <= data_room->median && x == 0)
+            value /= 2;
+        else
+            value = ((data_room->size - value) / 2 )+ data_room->median;
+    }
+    // room_tree = insert_node(room_tree, line);
+    print_lst(lst_room);
+    free(name);
+    lst_room = clear_list(lst_room);
     free(line);
     return(room_tree);
 }
