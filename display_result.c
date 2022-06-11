@@ -15,7 +15,7 @@
 char	*get_room_name(t_paths *path_ptr, int room_nb)
 {
 	int	i;
-	t_path	*path;
+	t_path_node	*path;
 
 	i = 0;
 	path = path_ptr->path;
@@ -35,7 +35,6 @@ void	initialize_ants_positions(t_paths *paths)
 	paths_ptr = paths;
 	while (paths_ptr)
 	{
-		paths_ptr->nb_ants2 = 0; // initialiazing this, is this really the place
 		paths_ptr->ants = (t_ant *)malloc(sizeof(t_ant) * paths_ptr->nb_ants);
 		i = 0;
 		while (i < paths_ptr->nb_ants)

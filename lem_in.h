@@ -25,11 +25,11 @@ typedef struct	s_graph
 	size_t	nb_links;
 }				t_graph;
 
-typedef struct s_path
+typedef struct s_path_node
 {
-	struct s_path	*next;
+	struct s_path_node	*next;
 	t_graph			*node;
-}				t_path;
+}				t_path_node;
 
 typedef struct s_ant
 {
@@ -40,7 +40,7 @@ typedef struct s_ant
 typedef struct s_paths
 {
 	struct s_paths *next;
-	t_path *path;
+	t_path_node *path;
 	size_t	path_size;
 	size_t	nb_ants;
 	size_t	nb_ants2;
@@ -69,15 +69,15 @@ void	reset_history(t_graph **history);
 void	print_history(t_graph **history);
 
 // Path functions 1
-void	print_path(t_path *path);
+void	print_path_node(t_path_node *path);
 void	print_paths(t_paths *paths);
 int		not_in_paths(t_graph *node, t_paths **paths);
 void	copy_path(t_paths *original, t_paths **copy);
-size_t	get_path_size(t_path *path);
+size_t	get_path_node_size(t_path_node *path);
 void	set_paths_size(t_paths *paths);
 
 // Path functions 2
-void	find_potential_paths(t_graph *node, t_paths **potential_paths, t_graph **history, t_paths **paths);
+void	find_all_paths(t_graph *node, t_paths **potential_paths, t_graph **history);
 void	find_optimal_paths(t_graph *graph, t_paths **paths, size_t nb_ants);
 void	select_optimal_paths(t_paths *all_paths, t_paths **paths, size_t nb_ants);
 

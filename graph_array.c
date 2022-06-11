@@ -40,18 +40,14 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 
 void	solve(t_graph *graph, size_t nb_ants)
 {
-	t_paths	*paths;
+	t_paths	*optimal_paths;
 
-	// find all possible disctinct paths from shortest to longest
-	paths = NULL;
-	find_optimal_paths(graph, &paths, nb_ants);
-	printf("\n\nSMALLEST PATHS ARE:\n\n");
-	
-	// decide how many ants will take each path
-	distribute_ants(paths, nb_ants);
-	print_paths(paths);
-
-	display_result(paths, nb_ants);
+	optimal_paths = NULL;
+	find_optimal_paths(graph, &optimal_paths, nb_ants);
+	distribute_ants(optimal_paths, nb_ants);
+	printf("\n\nTHE PATHS ARE:\n\n");
+	print_paths(optimal_paths);
+	display_result(optimal_paths, nb_ants);
 }
 
 void graph_array(void)
@@ -59,23 +55,23 @@ void graph_array(void)
 	t_graph	*graph;
 	size_t	nb_ants;
 	t_graph	*history[100];
-	
-	make_graph5(&graph);
+
+	make_graph(&graph);
 	printf("***** the tree ***** \n");
 	reset_history(history);
 	print_graph(graph, history);
 	printf("******\n\n\n");
 
-	/*
-	t_graph *node_to_find = NULL;
-	find_node(graph, history, "I", &node_to_find);
-	reset_history(history);
-	if (node_to_find)
-		printf("thats the nodeee '%s'\n", node_to_find->name);
-	else
-		printf("not found\n");
-	*/
-
-	nb_ants = 20;
+	nb_ants = 3;
 	solve(graph, nb_ants);
 }
+
+/*
+t_graph *node_to_find = NULL;
+find_node(graph, history, "I", &node_to_find);
+reset_history(history);
+if (node_to_find)
+	printf("thats the nodeee '%s'\n", node_to_find->name);
+else
+	printf("not found\n");
+*/

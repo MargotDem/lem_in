@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void	print_path(t_path *path)
+void	print_path_node(t_path_node *path)
 {
 	printf("the path:\n");
 	while (path)
@@ -28,7 +28,7 @@ void	print_paths(t_paths *paths)
 	while (paths)
 	{
 		printf("path size is %zu, nb of ants is %zu, ", paths->path_size, paths->nb_ants);
-		print_path(paths->path);
+		print_path_node(paths->path);
 		paths = paths->next;
 	}
 	printf("\n\n");
@@ -36,7 +36,7 @@ void	print_paths(t_paths *paths)
 
 int	not_in_paths(t_graph *node, t_paths **paths)
 {
-	t_path  *path;
+	t_path_node  *path;
 	t_paths  *paths_ptr;
 	paths_ptr = *paths;
    while (paths_ptr)
@@ -54,7 +54,7 @@ int	not_in_paths(t_graph *node, t_paths **paths)
    return (1);
 }
 
-size_t	get_path_size(t_path *path)
+size_t	get_path_node_size(t_path_node *path)
 {
 	size_t	i;
 
@@ -71,7 +71,7 @@ void	set_paths_size(t_paths *paths)
 {
 	while (paths)
 	{
-		paths->path_size = get_path_size(paths->path);
+		paths->path_size = get_path_node_size(paths->path);
 		paths = paths->next;
 	}
 }
