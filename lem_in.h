@@ -17,12 +17,15 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "libft.h"
+# include "mlx.h"
 
 typedef struct	s_graph
 {
 	struct	s_graph **links;
 	char	*name;
 	size_t	nb_links;
+	size_t	x;
+	size_t	y;
 }				t_graph;
 
 typedef struct s_path_node
@@ -51,7 +54,30 @@ typedef struct s_void_list {
 	struct s_void_list	*next;
 }	t_void_list;
 
+typedef struct s_coords {
+	int	x;
+	int	y;
+	int	color;
+}	t_coords;
+
+typedef struct s_mlx_win {
+	void		*mlx_ptr;
+	void		*window;
+	size_t		window_width;
+	size_t		window_length;
+	t_graph	*graph;
+	size_t	nb_ants;
+	t_paths	*optimal_paths;
+	size_t	turn_nb;
+	size_t	max_turns;
+	size_t	scale;
+	size_t	margin;
+	int	room_color;
+}	t_mlx_win;
+
+// Handle errors
 void	handle_error(void);
+void	*handle_null(void *param);
 
 // Graph functions
 t_graph	*create_node(char *name);
@@ -96,5 +122,10 @@ void	make_graph5(t_graph **graph);
 
 //
 void	distribute_ants(t_paths *paths, size_t nb_ants);
+
+// Visualizer
+void	visualizer(t_graph *graph, size_t nb_ants, t_paths *optimal_paths);
+
+char	*get_room_name(t_paths *path_ptr, int room_nb);
 
 #endif

@@ -59,6 +59,8 @@ void	find_node(t_graph *node, t_graph **history, char *name, t_graph **node_to_f
 
 	if (*node_to_find)
 		return ;
+	if (!node)
+		return ;
 	if (strings_match(node->name, name))
 	{
 		*node_to_find = node;

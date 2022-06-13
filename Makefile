@@ -15,22 +15,24 @@ NAME = lem-in
 SRCS = main.c handle_error.c graph_array.c graph_functions.c \
 	history_functions.c make_graph.c display_result.c \
 	list_functions.c paths_functions1.c paths_functions2.c \
-	helpers.c
+	helpers.c visualizer.c
 
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Wall -Werror -Wextra
 
-LIBS = -L ./libft -lft
+LIBS = -L ./libft -lft -L /usr/local/lib -lmlx
 
-INCLUDES = -I ./libft/includes/
+INCLUDES = -I ./libft/includes/ -I/usr/local/include
+
+FRAMEWORKS = -framework OpenGL -framework Appkit
 
 all: $(NAME)
 
 $(NAME):
 	make -C ./libft
 	gcc $(FLAGS) $(INCLUDES) -c $(SRCS)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
+	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS) $(FRAMEWORKS)
 
 clean:
 	make -C ./libft clean
@@ -44,5 +46,5 @@ re: fclean all
 
 dev:
 	gcc $(FLAGS) $(INCLUDES) -c $(SRCS)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
+	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS) $(FRAMEWORKS)
 	make clean

@@ -18,3 +18,9 @@ void	handle_error(void)
 	exit(1);
 }
 
+void	*handle_null(void *param)
+{
+	if (!param)
+		handle_error();
+	return (param);
+}

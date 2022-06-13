@@ -48,6 +48,7 @@ void	solve(t_graph *graph, size_t nb_ants)
 	printf("\n\nTHE PATHS ARE:\n\n");
 	print_paths(optimal_paths);
 	display_result(optimal_paths, nb_ants);
+	visualizer(graph, nb_ants, optimal_paths);
 }
 
 void graph_array(void)
@@ -63,15 +64,18 @@ void graph_array(void)
 	printf("******\n\n\n");
 
 	nb_ants = 3;
+	
+	t_graph *node_to_find = NULL;
+	reset_history(history);
+	find_node(graph, history, "I", &node_to_find);
+	reset_history(history);
+	if (node_to_find)
+		printf("thats the nodeee '%s'\n", node_to_find->name);
+	else
+		printf("not found\n");
+	
 	solve(graph, nb_ants);
 }
 
 /*
-t_graph *node_to_find = NULL;
-find_node(graph, history, "I", &node_to_find);
-reset_history(history);
-if (node_to_find)
-	printf("thats the nodeee '%s'\n", node_to_find->name);
-else
-	printf("not found\n");
 */

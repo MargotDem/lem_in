@@ -26,10 +26,6 @@ typedef struct s_graph
 	size_t	nb_links;
 }				t_graph;
 
-
-
-
-
 static void print_graph(t_graph *node, t_graph **history)
 {
 	size_t	nb_links;
