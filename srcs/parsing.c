@@ -50,9 +50,10 @@ void print_lst(t_lst_room *li)
 {
     while (li != NULL)
     {
-        printf("%s\n", li->name);
+        printf("%s - ", li->name);
         li = li->next;
     }
+    printf("\n");
 }
 
 t_room *insert(t_room *element,t_room *tr)
@@ -183,23 +184,6 @@ t_room     *new_tree(char *line)
     return (tr);
 }
 
-
-// /*Creer un struct room avec le nome de la room*/
-// t_room *add_room(char *line,t_room *room)
-// {
-//     char *roomname;
-//     t_room *element;
-
-//     element = (t_room*)malloc(sizeof(t_room));
-//     element->name = extract_name(line);
-//     element->line = extract_line(line);
-//     element->row  = extact_row(line);
-//     //room = insert_node(roomname);//line doit renvoyer le nom de la room
-//     //add coordonee en meme temps;
-//     return (room);
-// }
-
-
 t_room *insert_node(t_room *tr, char *line)
 {
     t_room *element = new_tree(line);
@@ -226,32 +210,26 @@ t_lst_room *push_back(t_lst_room *li, char *name)
     if (li == NULL)
         return (element);
     temp = li;
-    while (temp->next != NULL)
-        temp = temp->next;
-    temp->next = element;
-
-    return (li);
-}
-
-/*Tri la liste selon ascii table*/
-t_lst_room *sort_list(t_lst_room *li)
-{
-    t_lst_room *head;
-    char *swap;
-    head = li;
-    while (li->next != NULL)
+    if(ft_strcmp(temp->name, element->name) > 0)
     {
-        if (ft_strcmp(li->name, li->next->name) >= 0)
-        {
-            swap = li->name;
-            li->name = li->next->name;
-            li->next->name = swap;
-            li = head;
-        }
-        else
-            li = li->next;
+        element->next = temp;
+        li = element;
+        return (li);
     }
-    return (head);
+    while (temp->next != NULL)
+    {
+        if (ft_strcmp(temp->name, element->name) <  0 && ft_strcmp(element->name, temp->next->name) < 0)
+            break;
+        temp = temp->next;
+    }
+    if (temp->next == NULL)
+        temp->next = element;
+    else
+    {
+        element->next = temp->next;
+        temp->next = element;
+    }
+    return (li);
 }
 
 /*SET DATA SIZE ET MEDIAN VALUE DE  LA LIST*/
@@ -287,52 +265,96 @@ char *look_in_lst(int index, t_lst_room *li)
     return (temp->name);
 }
 
+/*Verifie si la line ant correspond au critere*/
+int is_not_valid_ant_line(char *line)
+{
+    int i;
+
+    i = 0;
+    while (line[i] != '\0')
+    {
+        if (line[i] > 57 && line[i] < 48)
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
+/*Check line pour trouver le nombre de fourmis*/
+int get_ant_number(char *line)
+{
+    int ants;
+
+    ants = 0;
+    ants = ft_atoi(line);
+    if(is_not_valid_ant_line(line) || ants == 0)
+    {
+        ft_putendl_fd("ERROR\n", 2);
+        exit(EXIT_FAILURE);
+    }
+    return(ants);
+}
+
+/*Recupere les room et les stores dans une liste chainee dans ordre alphabetique*/
+t_lst_room *get_room_and_connection(char *line, int fd)
+{
+
+    while(get_next_line(fd, &line))
+    {
+        /*si ce nest pas une room*/
+            /*verifie si cest une connection*/
+                /*si connextion store connections dans la room*/
+                /*si la prochaine ligne est different de connextion*/
+                    /*le parsing stop*/
+                /*si non arrete le parsin*/     
+    }
+    
+}
+
 
 /* Lis depuis le fd = 0 et check chaque ligne */
 t_room *mapreader(int fd, t_room *room_tree)
 {
     char *line;
     char *name;
-    int value;
-    int x = 0;
+    int total_ants;
     t_lst_room *lst_room = NULL;
-    t_data_lst_room *data_room;
 
-    data_room = malloc(sizeof(*data_room));
-    while (get_next_line(fd, &line))// checker sur fd lire 
-    {
-        if (is_room(line))
-        {   
-            name = extract_name(line);
-            lst_room = push_back(lst_room, name);
-            lst_room = sort_list(lst_room); // le pousser directement u bonne endroit ???
-        }
+    get_next_line(0, &line);
+    total_ants = get_ant_number(line); //ERROR GERER DANS IS_NOT_ANT
+
+    lst_room = get_room_and_connection(line, fd);
+    // while (get_next_line(fd, &line))// checker sur fd lire 
+    // {
+
+    //     if (is_room(line))
+    //     {   
+    //         name = extract_name(line);
+    //         lst_room = push_back(lst_room, name);
+    //     }
         // else if (is_comment(line))
         //     pass_line();
         // else if (is_modif(line))
         //     to_modif(line, room_tree);
         // else if (is_connection(line))
         //     counter_connection(line, room_tree);
-    }
-    data_room = set_data(lst_room, data_room);
-    value = data_room->median;
-    printf("MEDIAN = %d && SIZE %d\n", data_room->median, data_room->size);
-    while ( value   < data_room->size)
-    {
-        printf("MEDIAN = %d && SIZE %d && value %d\n", data_room->median, data_room->size, value);
-        printf("VALUE TO INSERT = %s\n", look_in_lst(value , lst_room));
-        if (value == data_room->size - 2)
-            break;
-        if (value <= 2)
-        {
-            x = 1;
-            value = data_room->median;
-        }
-        if (value <= data_room->median && x == 0)
-            value /= 2;
-        else
-            value = ((data_room->size - value) / 2 )+ data_room->median;
-    }
+    // }
+    // data_room = set_data(lst_room, data_room);
+    // value = data_room->median;
+    // while ( value   < data_room->size)
+    // {
+    //     if (value == data_room->size - 2)
+    //         break;
+    //     if (value <= 2)
+    //     {
+    //         x = 1;
+    //         value = data_room->median;
+    //     }
+    //     if (value <= data_room->median && x == 0)
+    //         value /= 2;
+    //     else
+    //         value = ((data_room->size - value) / 2 )+ data_room->median;
+    // }
     // room_tree = insert_node(room_tree, line);
     print_lst(lst_room);
     free(name);
@@ -384,3 +406,80 @@ int main(void)
 
     return (0);
 }
+
+/*Tri la liste selon ascii table
+t_lst_room *sort_list(t_lst_room *li)
+{
+    t_lst_room *head;
+    char *swap;
+    head = li;
+    while (li->next != NULL)
+    {
+        if (ft_strcmp(li->name, li->next->name) >= 0)
+        {
+            swap = li->name;
+            li->name = li->next->name;
+            li->next->name = swap;
+            li = head;
+        }
+        else
+            li = li->next;
+    }
+    return (head);
+}
+*/
+
+// /*Creer un struct room avec le nome de la room*/
+// t_room *add_room(char *line,t_room *room)
+// {
+//     char *roomname;
+//     t_room *element;
+
+//     element = (t_room*)malloc(sizeof(t_room));
+//     element->name = extract_name(line);
+//     element->line = extract_line(line);
+//     element->row  = extact_row(line);
+//     //room = insert_node(roomname);//line doit renvoyer le nom de la room
+//     //add coordonee en meme temps;
+//     return (room);
+// }
+
+
+
+/* 
+is valid line
+*/
+
+/*get number ant*/
+/*  1er ligne 
+    doit etre un chiffre et rien d autre
+    pas despace en 1er
+    pas de caractere apres le chiffre
+*/
+/*getroom*/
+/* pas desapce avant le nom de la room
+    1 espace entre les mots
+    pas d espace apres le derniers
+    doit etre composer de 3 mots
+    1er : Nom de la room (peut etre n importe quoi)
+    2eme : un nombre
+    3eme : un chiffre
+    ne peut pas avoir de connection au milieu des rooms
+    ne peut pas commencer par L ou #
+*/
+/*getignore line*/
+/* commence par #
+/*getmodifououcomment*/
+/*commence par un ##
+pas d espace avant pas despace a la fin
+modifie ligne suivante (pouvons faire un GNL independant de tout loop)
+
+/*getconnection*/
+/* est toujours compose de deux noms de rooms avec un tiret entre les deux
+pas despace avant et apres
+ne peut pas avoir de room au milieu de connextion
+*/
+
+/*toutes empty line ou not valide line stop le parsing eet si il ny as assez de data retourner ERROR*/
+  /*Besoins d un depart, dune arrive, de fourmis et d un chemin*/
+
