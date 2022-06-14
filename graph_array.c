@@ -65,15 +65,6 @@ void graph_array(void)
 
 	nb_ants = 3;
 	
-	t_graph *node_to_find = NULL;
-	reset_history(history);
-	find_node(graph, history, "I", &node_to_find);
-	reset_history(history);
-	if (node_to_find)
-		printf("thats the nodeee '%s'\n", node_to_find->name);
-	else
-		printf("not found\n");
-	
 	solve(graph, nb_ants);
 }
 

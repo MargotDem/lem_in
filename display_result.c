@@ -22,6 +22,8 @@ char	*get_room_name(t_paths *path_ptr, int room_nb)
 	while (i < room_nb)
 	{
 		path = path->next;
+		if (!path)
+			return (NULL);
 		i++;
 	}
 	return (path->node->name);

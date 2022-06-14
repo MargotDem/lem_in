@@ -22,7 +22,7 @@ void	draw_room(t_mlx_win *mlx_win, t_graph *node, size_t scale, size_t margin)
 
 	x = node->x * scale + margin;
 	y = node->y * scale + margin;
-	color = 0xdbc4ff;
+	color = mlx_win->room_color;
 	/*if (strings_match(node->name, "start"))
 		color = 0x693dad; // violet fonce
 	if (strings_match(node->name, "end"))
@@ -58,7 +58,7 @@ void	draw_steep_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
 	int	tmp_y;
 	int	color;
 
-	color = 0xdbc4ff;
+	color = mlx_win->room_color;
 	if (y_b <= y_a)
 	{
 		tmp_x = x_a;
@@ -88,7 +88,7 @@ void	draw_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
 
 	x = x_a;
 	y = y_a;
-	color = 0xdbc4ff;
+	color = mlx_win->room_color;
 	//printf("here\n");
 	if (x_b - x_a >= abs(y_b - y_a))
 	{
@@ -143,11 +143,11 @@ void	escape(t_mlx_win *mlx_win)
 
 void	draw_ant(size_t ant_nb, char *room_name, t_mlx_win *mlx_win, int erase)
 {
-	(void)ant_nb;
 	int	x;
 	int	y;
 	int	i;
 	int	j;
+	int	ant_size;
 	size_t	scale;
 	size_t	margin;
 	int	color;
@@ -162,24 +162,25 @@ void	draw_ant(size_t ant_nb, char *room_name, t_mlx_win *mlx_win, int erase)
 		color = 0xeb02c4;
 	else
 		color = 0x0244eb;
+	ant_size = 8;
 	reset_history(history);
 	find_node(mlx_win->graph, history, room_name, &node_to_find);
 	if (node_to_find)
 	{
 		x = node_to_find->x * scale + margin;
 		y = node_to_find->y * scale + margin;
-		if (strings_match(room_name, "start"))
+		if (strings_match(room_name, "start") || strings_match(room_name, "end"))
 		{
-			y -= scale;
-			x += ant_nb * margin;
+			ant_size = 3;
+			x += ant_nb * ant_size * 3 - 15;
 		}
 				
-		printf("thats the nodeee '%s'\n", node_to_find->name);
-		i = y - 8;
-		while (i < y + 8)
+		//printf("thats the nodeee '%s'\n", node_to_find->name);
+		i = y - ant_size;
+		while (i < y + ant_size)
 		{
-			j = x - 8;
-			while (j < x + 8)
+			j = x - ant_size;
+			while (j < x + ant_size)
 			{
 				if (erase)
 					mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, j, i, mlx_win->room_color);
@@ -219,13 +220,23 @@ int	handle_key(int key, void *param)
 			while (i < paths_ptr->nb_ants)
 			{
 				(paths_ptr->ants)[i].room_nb--;
-				if ((paths_ptr->ants)[i].room_nb > 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size)
+				if ((paths_ptr->ants)[i].room_nb >= 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size - 1)
+				{
+					ant_nb = (paths_ptr->ants)[i].ant_nb;
+					printf("annt nb is %zu, room name is %s\n", ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1));
+					draw_ant(ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1), mlx_win, 1);
+				}
+				i++;
+			}
+			i = 0;
+			while (i < paths_ptr->nb_ants)
+			{
+				if ((paths_ptr->ants)[i].room_nb >= 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size)
 				{
 					ant_nb = (paths_ptr->ants)[i].ant_nb;
 					room_name = get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb);
-					//draw_ant(ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1), mlx_win, 1);
 					draw_ant(ant_nb, room_name, mlx_win, 0);
-					printf("L%zu-%s ", (paths_ptr->ants)[i].ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
+					//printf("L%zu-%s ", (paths_ptr->ants)[i].ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
 				}
 				i++;
 			}
@@ -246,10 +257,19 @@ int	handle_key(int key, void *param)
 				if ((paths_ptr->ants)[i].room_nb > 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size)
 				{
 					ant_nb = (paths_ptr->ants)[i].ant_nb;
-					room_name = get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb);
 					draw_ant(ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb - 1), mlx_win, 1);
+				}
+				i++;
+			}
+			i = 0;
+			while (i < paths_ptr->nb_ants)
+			{
+				if ((paths_ptr->ants)[i].room_nb > 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size)
+				{
+					ant_nb = (paths_ptr->ants)[i].ant_nb;
+					room_name = get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb);
 					draw_ant(ant_nb, room_name, mlx_win, 0);
-					printf("L%zu-%s ", (paths_ptr->ants)[i].ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
+					//printf("L%zu-%s ", (paths_ptr->ants)[i].ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
 				}
 				i++;
 			}
@@ -321,7 +341,7 @@ void	visualizer(t_graph *graph, size_t nb_ants, t_paths *optimal_paths)
 	mlx_win->max_turns = optimal_paths->nb_ants + optimal_paths->path_size - 2;
 	mlx_win->scale = 40;
 	mlx_win->margin = 40;
-	mlx_win->room_color = 0xdbc4ff;
+	mlx_win->room_color = 0xd1c4ff;
 	printf("nb of turns is %zu\n", mlx_win->max_turns);
 	color_background(mlx_win);
 	reset_history(history);
