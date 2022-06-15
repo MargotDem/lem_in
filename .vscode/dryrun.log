@@ -3,6 +3,5 @@ make: Entering directory `/Users/briffard/Desktop/Lem-in'
 mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -o objectFiles/parsing.o -c srcs/parsing.c
 gcc  -o parsing objectFiles/parsing.o -L ./libft/ -lft
- 
 make: Leaving directory `/Users/briffard/Desktop/Lem-in'
  

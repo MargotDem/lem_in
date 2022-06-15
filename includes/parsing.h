@@ -1,32 +1,37 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-/*include*/
-# include <stdio.h>
-# include "libft.h"
+/*STRUCTURE*/
+typedef struct s_room{
+	char *room_name;
+	
+	/*POINTER LINK LIST*/
+	struct s_room *next;
+}	t_room;
 
-/*STRUCT*/
-typedef struct s_room {
-	char *name;
-	int	line;
-	int row;
-	struct s_room *left;
-	struct s_room *right;
-	struct s_room *parent;
-} t_room;
+typedef struct s_data {
 
-/*UTILISER POUR LE PARSING*/
-typedef struct lst_room {
-	char *name;
-	struct lst_room *next;
-} t_lst_room;
+    int room_part;
+    int connexion_part;
+    int room_start;
+    int room_end;
 
- typedef struct data_lst_room {
-	 int size;
-	 int median;
- } t_data_lst_room;
+}t_data;
 
-/*PROTOTYPE*/
-t_room *mapreader(int fd, t_room *room_tree);
+/*ARRAY POINTER FUNCTION*/
+void get_comment(t_room *li, t_room *data);
+void get_room(t_room *li, t_room *data);
+void get_connexion(t_room *li, t_room *data);
+void get_out(t_room *li, t_room *data);
+void get_command(t_room *li, t_room *data);
+
+typedef void    (*dispatcher)(t_room *li, t_room *data);
+static const    dispatcher line_dispatch[5] = {
+    get_comment,
+    get_room,
+    get_connexion,
+    get_command,
+    get_out,
+};
 
 #endif
