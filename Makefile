@@ -6,43 +6,9 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/06/09 11:00:41 by briffard         ###   ########.fr        #
+#    Updated: 2022/06/17 15:50:40 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# NAME = lem-in
-
-# SRCS = main.c handle_error.c
-
-# OBJS = $(SRCS:.c=.o)
-
-# FLAGS = -Wall -Werror -Wextra
-
-# LIBS = -L ./libft -lft
-
-# INCLUDES = -I ./
-
-# all: $(NAME)
-
-# $(NAME):
-# 	make -C ./libft
-# 	gcc $(FLAGS) $(INCLUDES) -c $(SRCS)
-# 	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
-
-# clean:
-# 	make -C ./libft clean
-# 	rm -f $(OBJS)
-
-# fclean: clean
-# 	make -C ./libft fclean
-# 	rm -f $(NAME)
-
-# re: fclean all
-
-# dev:
-# 	gcc $(FLAGS) $(INCLUDES) -c $(SRCS)
-# 	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
-# 	make clean
 
 NAME	=	parsing
 
@@ -63,7 +29,8 @@ RM		=	rm	-f
 
 #SOURCE FILES
 SRC_DIR	=	./srcs/
-FILES	= parsing.c
+FILES	= 	parsing.c
+		
 
 #OBJECT FILES
 OBJ_DIR			=	./objectFiles/
@@ -71,8 +38,8 @@ OBJS			=	$(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 
 all: $(NAME) $(LIBFT)
 
-$(NAME): $(TEST) $(OBJS)
-	@$(CC) $(FLAGS) -o $(NAME) $< $(LIB)
+$(NAME): $(OBJS)
+	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB)
 	
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
