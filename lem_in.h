@@ -119,6 +119,7 @@ void	make_graph2(t_graph **graph);
 void	make_graph3(t_graph **graph);
 void	make_graph4(t_graph **graph);
 void	make_graph5(t_graph **graph);
+void	make_graph6(t_graph **graph);
 
 //
 void	distribute_ants(t_paths *paths, size_t nb_ants);

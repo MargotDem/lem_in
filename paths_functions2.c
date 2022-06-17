@@ -147,6 +147,40 @@ int	shortest_is_optimal(t_paths *all_paths, t_paths *shortest, size_t nb_ants)
 	}
 	if (nb_intersecting < 2)
 		return (1);
+
+	// so here.
+	/*
+		SoooO. vad nu
+		simulation 1: without the shortest:
+		select_optimal_paths(all_paths, &optimal_paths, nb_ants);
+		distribute_ants(optimal_paths, nb_ants);
+
+		simulation 2: with the shortest:
+		add shortest to optimal paths
+		update_all_paths(&all_paths, shortest);
+		select_optimal_paths(all_paths, &optimal_paths, nb_ants);
+		distribute_ants(optimal_paths, nb_ants);
+
+		compare the two simulations
+		pick the right one
+		vad fan
+		what does this all even mean? how do you pick the right one. should it be recursive or i keep the current while loop
+		nothing makes anything sense anymore
+		no it should definitely be recursive duh
+
+		what in gods name
+		so
+		I CANT FUCKING THINK omg
+		so you compare these two simulations or whatever
+		then in order to pick the right one, you assign... what?
+		assign optimal paths. to the right one...? or rather if the first one is the one, do nothing.
+		else, do *optimal_paths = the other optimal_paths
+		
+		 does this work?? 
+		
+
+	*/
+	
 	select_optimal_paths(intersecting_paths, &alternative_paths, nb_ants);
 	distribute_ants(alternative_paths, nb_ants);
 	nb_turns_alternative = alternative_paths->path_size + alternative_paths->nb_ants - 2;
@@ -206,39 +240,130 @@ void	get_shortest(t_paths *all_paths, t_paths **shortest_and_prev)
 	shortest_and_prev[1] = shortest_prev;
 }
 
+int	paths_intersect_with_shortest(t_paths *all_paths, t_paths *shortest)
+{
+	size_t	nb_intersecting;
+
+	nb_intersecting = 0;
+
+	// find out all the paths that intersect with shortest, create a linked list with them: intersecting_paths
+	while (all_paths)
+	{
+		//printf("here\n");
+		if (paths_intersect(shortest->path, all_paths->path))
+			nb_intersecting++;
+		all_paths = all_paths->next;
+	}
+	if (nb_intersecting < 2)
+		return (0);
+	return (1);
+	//return (1);
+}
+
 void	select_optimal_paths(t_paths *all_paths, t_paths **optimal_paths, size_t nb_ants)
 {
 	t_paths	*shortest;
 	t_paths	*shortest_prev;
 	t_paths	*shortest_and_prev[2];
+	t_paths *all_paths_copy;
+	t_paths *optimal_paths_copy;
+	t_paths *ptr;
 
-	while (all_paths)
-	{
-		get_shortest(all_paths, shortest_and_prev);
-		shortest = shortest_and_prev[0];
-		shortest_prev = shortest_and_prev[1];
+	all_paths_copy = NULL;
+	optimal_paths_copy = NULL;
+	if (!all_paths)
+		return ;
+	get_shortest(all_paths, shortest_and_prev);
+	shortest = shortest_and_prev[0];
+	shortest_prev = shortest_and_prev[1];
 
-		// take shortest out of the all_paths list
-		if (!shortest_prev)
-			all_paths = shortest->next;
+	// take shortest out of the all_paths list
+	if (!shortest_prev)
+		all_paths = shortest->next;
+	else
+		shortest_prev->next = shortest->next;
+	shortest->next = NULL;
+
+/*
+		//copy all paths and optimal paths
+		
+		// jävla omöjligt att fokusera här
+		// simulation one
+		select_optimal_paths(all_paths, &optimal_paths, nb_ants);
+		distribute_ants(optimal_paths, nb_ants);
+
+		// simulation of the alternative
+		// add shortest to optimal paths copy
+		if (!optimal_paths_copy)
+			optimal_paths_copy = shortest;
 		else
-			shortest_prev->next = shortest->next;
-		shortest->next = NULL;
+			lst_add_back((t_void_list *)optimal_paths_copy, (t_void_list *)shortest);
+
+		update_all_paths(&all_paths_copy, shortest);
+		select_optimal_paths(all_paths_copy, &optimal_paths_copy, nb_ants);
+		distribute_ants(optimal_paths_copy, nb_ants);
 
 		// if shortest is not optimal, start again, to find the next shortest
 		if (!shortest_is_optimal(all_paths, shortest, nb_ants))
 			continue ;
 
-		// otherwise, add shortest to shortest paths list
-		if (!(*optimal_paths))
-			*optimal_paths = shortest;
-		else
-			lst_add_back((t_void_list *)*optimal_paths, (t_void_list *)shortest);
+*/
 
-		// take the paths that intersect with shortest out of the all paths list.
-		// this is what ultimately breaks us out of the while loop
-		update_all_paths(&all_paths, shortest);
-	}
+		if (paths_intersect_with_shortest(all_paths, shortest))
+		{
+			//copy all paths and optimal paths
+			copy_path(all_paths, &all_paths_copy);
+			copy_path(*optimal_paths, &optimal_paths_copy);
+			
+			// simulation one
+			select_optimal_paths(all_paths, optimal_paths, nb_ants);
+			distribute_ants(*optimal_paths, nb_ants);
+
+			// simulation of the alternative
+			// add shortest to optimal paths copy
+			if (!optimal_paths_copy)
+				optimal_paths_copy = shortest;
+			else
+				lst_add_back((t_void_list *)optimal_paths_copy, (t_void_list *)shortest);
+			
+			update_all_paths(&all_paths_copy, shortest);
+			select_optimal_paths(all_paths_copy, &optimal_paths_copy, nb_ants);
+			distribute_ants(optimal_paths_copy, nb_ants);
+
+			printf("optimal_paths_copy->nb_ants is %zu, optimal_paths->nb_ants is %zu\n", optimal_paths_copy->nb_ants, (*optimal_paths)->nb_ants);
+			if (optimal_paths_copy->path_size + optimal_paths_copy->nb_ants - 2 <= (*optimal_paths)->path_size + (*optimal_paths)->nb_ants - 2)
+			{
+				// free optimal paths 
+				printf("HERE\n");
+				*optimal_paths = optimal_paths_copy;
+			}			
+			// reset nb ants
+			ptr = *optimal_paths;
+			while (ptr)
+			{
+				ptr->nb_ants = 0;
+				ptr = ptr->next;
+			}
+		}
+		else
+		{
+
+			// otherwise, add shortest to shortest paths list
+			if (!(*optimal_paths))
+				*optimal_paths = shortest;
+			else
+				lst_add_back((t_void_list *)*optimal_paths, (t_void_list *)shortest);
+
+			// take the paths that intersect with shortest out of the all paths list.
+			// this is what ultimately breaks us out of the while loop
+			update_all_paths(&all_paths, shortest);
+
+			select_optimal_paths(all_paths, optimal_paths, nb_ants);
+		}
+
+
+		(void)optimal_paths_copy;
+		(void)all_paths_copy;
 }
 	/* by the grace of God the previous code seems to work but i dont actually trust it, so keeping this here just in case
 	yes its bad practice

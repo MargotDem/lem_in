@@ -160,6 +160,14 @@ void	draw_ant(size_t ant_nb, char *room_name, t_mlx_win *mlx_win, int erase)
 		color = 0x02ebd7;
 	else if (ant_nb == 2)
 		color = 0xeb02c4;
+	else if (ant_nb == 3)
+		color = 0x28e053;
+	else if (ant_nb == 4)
+		color = 0xe1e81a;
+	else if (ant_nb == 5)
+		color = 0xffa200;
+	else if (ant_nb == 6)
+		color = 0xff1e00;
 	else
 		color = 0x0244eb;
 	ant_size = 8;
@@ -330,8 +338,8 @@ void	visualizer(t_graph *graph, size_t nb_ants, t_paths *optimal_paths)
 	if (!mlx_win)
 		handle_error();
 	mlx_win->mlx_ptr = handle_null(mlx_init());
-	mlx_win->window_width = 1000;
-	mlx_win->window_length = 800;
+	mlx_win->window_width = 1500;
+	mlx_win->window_length = 1100;
 	mlx_win->window = handle_null(mlx_new_window(mlx_win->mlx_ptr, mlx_win->window_width, \
 		mlx_win->window_length, "Lem in"));
 	mlx_win->graph = graph;
@@ -339,7 +347,7 @@ void	visualizer(t_graph *graph, size_t nb_ants, t_paths *optimal_paths)
 	mlx_win->optimal_paths = optimal_paths;
 	mlx_win->turn_nb = 0;
 	mlx_win->max_turns = optimal_paths->nb_ants + optimal_paths->path_size - 2;
-	mlx_win->scale = 40;
+	mlx_win->scale = 30;
 	mlx_win->margin = 40;
 	mlx_win->room_color = 0xd1c4ff;
 	printf("nb of turns is %zu\n", mlx_win->max_turns);

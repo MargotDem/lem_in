@@ -17,6 +17,8 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 	t_paths	*next;
 	t_paths	*paths_ptr;
 
+	if (!paths)
+		return ;
 	set_paths_size(paths);
 	paths->nb_ants = nb_ants;
 	paths_ptr = paths;
@@ -57,13 +59,13 @@ void graph_array(void)
 	size_t	nb_ants;
 	t_graph	*history[100];
 
-	make_graph(&graph);
+	make_graph6(&graph);
 	printf("***** the tree ***** \n");
 	reset_history(history);
 	print_graph(graph, history);
 	printf("******\n\n\n");
 
-	nb_ants = 3;
+	nb_ants = 14;
 	
 	solve(graph, nb_ants);
 }
