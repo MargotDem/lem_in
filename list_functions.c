@@ -23,7 +23,24 @@ void	lst_add_back(t_void_list *list, t_void_list *new)
 	}
 }
 
-// is this used anywhere
+void	lst_add_back2(t_void_list **list, t_void_list *new)
+{
+	t_void_list *ptr;
+
+	if (new)
+	{
+		if (!(*list))
+			*list = new;
+		else
+		{
+			ptr = *list;
+			while (ptr->next)
+				ptr = ptr->next;
+			ptr->next = new;
+		}
+	}
+}
+
 size_t	get_list_size(t_void_list *list)
 {
 	size_t	i;
@@ -35,4 +52,12 @@ size_t	get_list_size(t_void_list *list)
 		list = list->next;
 	}
 	return (i);
+}
+
+void	remove_from_list(t_void_list **list, t_void_list *node, t_void_list *prev)
+{
+	if (!prev)
+		*list = node->next;
+	else
+		prev->next = node->next;
 }

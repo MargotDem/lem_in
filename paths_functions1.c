@@ -36,47 +36,35 @@ void	print_paths(t_paths *paths)
 
 int	not_in_paths(t_graph *node, t_paths **paths)
 {
-	t_path_node  *path;
-	t_paths  *paths_ptr;
+	t_path_node	*path;
+	t_paths		*paths_ptr;
+
 	paths_ptr = *paths;
-   while (paths_ptr)
-   {
-       path = (paths_ptr)->path;
-       while (path)
-       {
-           if (strings_match(node->name, path->node->name) && \
-		   		!strings_match(node->name, "end") && !strings_match(node->name, "start"))
-               return (0);
-           path = path->next;
-       }
-       paths_ptr = (paths_ptr)->next;
-   }
-   return (1);
-}
-
-size_t	get_path_node_size(t_path_node *path)
-{
-	size_t	i;
-
-	i = 0;
-	while (path)
+	while (paths_ptr)
 	{
-		i++;
-		path = path->next;
+		path = paths_ptr->path;
+		while (path)
+		{
+			// TODO not start and end but the actual start and end room
+			if (strings_match(node->name, path->node->name) && \
+				!strings_match(node->name, "end") && !strings_match(node->name, "start"))
+				return (0);
+			path = path->next;
+		}
+		paths_ptr = paths_ptr->next;
 	}
-	return (i);
+	return (1);
 }
 
 void	set_paths_size(t_paths *paths)
 {
 	while (paths)
 	{
-		paths->path_size = get_path_node_size(paths->path);
+		paths->path_size = get_list_size((t_void_list *)paths->path);
 		paths = paths->next;
 	}
 }
 
-// so do we use this?
 void	copy_path(t_paths *original, t_paths **copy)
 {
 	t_paths	*new;

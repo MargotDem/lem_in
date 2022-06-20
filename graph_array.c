@@ -60,15 +60,10 @@ void graph_array(void)
 	t_graph	*history[100];
 
 	make_graph6(&graph);
+	nb_ants = 6;
 	printf("***** the tree ***** \n");
 	reset_history(history);
 	print_graph(graph, history);
 	printf("******\n\n\n");
-
-	nb_ants = 14;
-	
 	solve(graph, nb_ants);
 }
-
-/*
-*/

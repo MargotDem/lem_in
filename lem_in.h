@@ -86,6 +86,9 @@ void	find_node(t_graph *node, t_graph **history, char *name, t_graph **node_to_f
 
 // List functions
 void	lst_add_back(t_void_list *list, t_void_list *new);
+void	lst_add_back2(t_void_list **list, t_void_list *new);
+size_t	get_list_size(t_void_list *list);
+void	remove_from_list(t_void_list **list, t_void_list *node, t_void_list *prev);
 
 // History functions
 int		not_in_history(t_graph *node, t_graph **history);
@@ -99,7 +102,6 @@ void	print_path_node(t_path_node *path);
 void	print_paths(t_paths *paths);
 int		not_in_paths(t_graph *node, t_paths **paths);
 void	copy_path(t_paths *original, t_paths **copy);
-size_t	get_path_node_size(t_path_node *path);
 void	set_paths_size(t_paths *paths);
 
 // Path functions 2
