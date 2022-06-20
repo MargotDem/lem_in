@@ -505,7 +505,7 @@ void print_lst(t_room *li)
     printf("There is %d nodes\n", count);
 }
 
-/*Skip space*/
+// /*Skip space*/
 int skip_space(char *line)
 {
     int i;

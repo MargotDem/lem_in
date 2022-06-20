@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/06/17 15:50:40 by briffard         ###   ########.fr        #
+#    Updated: 2022/06/20 14:37:07 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CCFLAGS	=	-Werror -Wextra -Wall
 
 #INCLUDE
 INCL_LFT	= -I ./libft/
-INCL_PARS	= -I ./includes/
+INCL_PARS	= -I ./includes/ 
 
 #LIBRAIRIE
 LIB		= -L ./libft/ -lft
@@ -29,7 +29,10 @@ RM		=	rm	-f
 
 #SOURCE FILES
 SRC_DIR	=	./srcs/
-FILES	= 	parsing.c
+FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
+			parsing_utils2.c parsing_error.c parsing_utils_list.c \
+			parsing_connexion.c parsing_mem_handling.c \
+			#parsing_tree \
 		
 
 #OBJECT FILES
