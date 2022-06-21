@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/06/20 14:37:07 by briffard         ###   ########.fr        #
+#    Updated: 2022/06/21 11:10:22 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ RM		=	rm	-f
 SRC_DIR	=	./srcs/
 FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			parsing_utils2.c parsing_error.c parsing_utils_list.c \
-			parsing_connexion.c parsing_mem_handling.c \
-			#parsing_tree \
+			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
+			 #parsing_tree \
 		
 
 #OBJECT FILES
@@ -42,11 +42,11 @@ OBJS			=	$(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 all: $(NAME) $(LIBFT)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB)
+	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) -g
 	
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $<
+	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 
 $(LIBFT):
 	@make -sC ./libft/ all

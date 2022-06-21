@@ -1,5 +1,27 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/briffard/Desktop/Lem-in'
-make: Nothing to be done for `all'.
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_main.o -c srcs/parsing_main.c -g
+ 
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_ants.o -c srcs/parsing_ants.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_rooms.o -c srcs/parsing_rooms.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_utils.o -c srcs/parsing_utils.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_utils2.o -c srcs/parsing_utils2.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_error.o -c srcs/parsing_error.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_utils_list.o -c srcs/parsing_utils_list.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_command.o -c srcs/parsing_command.c -g
+ 
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_connexion.o -c srcs/parsing_connexion.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/parsing_mem_handling.o -c srcs/parsing_mem_handling.c -g
+gcc -Werror -Wextra -Wall -o parsing ./objectFiles/parsing_main.o ./objectFiles/parsing_ants.o ./objectFiles/parsing_rooms.o ./objectFiles/parsing_utils.o ./objectFiles/parsing_utils2.o ./objectFiles/parsing_error.o ./objectFiles/parsing_utils_list.o ./objectFiles/parsing_command.o ./objectFiles/parsing_connexion.o ./objectFiles/parsing_mem_handling.o -L ./libft/ -lft -g
 make: Leaving directory `/Users/briffard/Desktop/Lem-in'
  

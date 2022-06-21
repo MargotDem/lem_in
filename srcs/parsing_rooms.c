@@ -8,7 +8,7 @@ void   get_room(t_room **li, char *line)
 {
     t_room  *element;
     
-    element = new_node(line);
+    element = new_node(line, 'n');
     if (*li == NULL)
         *li = element;
     else

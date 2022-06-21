@@ -12,9 +12,11 @@ typedef struct s_room{
 	char *room_name;
     int line;
     int row;
+    int room_start;
+    int room_end;
 	/*POINTER LINK LIST*/
 	struct s_room *next;
-    /*POOINTER TREE*/
+    /*POINTER TREE*/
     struct s_room *treehead;
     struct s_room *left;
     struct s_room *rigth;
@@ -25,8 +27,6 @@ typedef struct s_data {
 
     int room_part;
     int connexion_part;
-    int room_start;
-    int room_end;
     int size_lst;
     int ants; // ULL pour plus de possibilite
 }       t_data;
@@ -34,15 +34,13 @@ typedef struct s_data {
 /*ARRAY POINTER FUNCTION*/
 void    get_room(t_room **li, char *line);
 void    get_connexion(t_room **li, char *line);
-// void (*line_dispatch[1])(t_room **li, char *line) = {get_room};
-// t_room *get_connexion(t_room *li, t_data *data, char *line);
-// t_room *get_out(t_room *li, t_data *data, char *line);
-// t_room *get_command(t_room *li, t_data *data, char *line);
+void    get_command(t_room **li, char *line);
 
 typedef void (*t_line_dispatcher)(t_room **li, char *line);
-static t_line_dispatcher line_dispatch[2] = {
+static t_line_dispatcher line_dispatch[3] = {
     get_room,
     get_connexion,
+    get_command,
 };
 
 /*PROTOTYPE*/
@@ -55,19 +53,26 @@ int is_a_room(char *line, int  active_connextion);
 /*PARSING_CONNEXION*/
 int is_a_connexion(char *line, int active_room);
 
+/*PARSING_MAIN*/
+int      line_id(char *line, t_data *data, t_room **li);
+
+/*PARSING_COMMAND*/
+int     is_a_command(char *line);
+
 /*UTILS*/
-int	countwords(char const *s, char c);
-char	*extract_name(char *line);
-int	extract_row(char *line);
-int	extract_line(char *line);
-int	check_word(char **arr);
+int	    countwords(char const *s, char c);
+char    *extract_name(char *line);
+int	    extract_row(char *line);
+int	    extract_line(char *line);
+int	    check_word(char **arr);
 
 /*UTILS_2*/
-int skip_word(char *line);
-int skip_space(char *line);
+int     skip_word(char *line);
+int     skip_space(char *line);
+t_room  *set_startorend(t_room *element, char c);
 
 /*UTILS_LIST*/
-t_room  *new_node(char *line);
+t_room  *new_node(char *line, char c);
 t_room  *push(t_room *li, t_room *element);
 void    print_lst(t_room *li);
 

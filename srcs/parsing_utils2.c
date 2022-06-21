@@ -42,3 +42,23 @@ int check_space(char *line, int i)
     }
     return (0);
 }
+
+t_room  *set_startorend(t_room *element, char c)
+{
+    if (c == 'e')
+    {
+        element->room_end = 1;
+        element->room_start = 0;
+    }
+    else if (c == 's')
+    {
+        element->room_end = 0;
+        element->room_start = 1;
+    }
+    else
+    {
+        element->room_end = 0;
+        element->room_start = 0;
+    }
+    return (element);
+}

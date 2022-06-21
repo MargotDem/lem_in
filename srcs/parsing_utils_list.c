@@ -12,7 +12,15 @@ void    print_lst(t_room *li)
     while (li != NULL)
     {
         printf("room name: %s\n", li->room_name);
-        printf("Line: %d && Row: %d\n", li->line, li->row); 
+        printf("Line: %d && Row: %d\n", li->line, li->row);
+        if (li->room_end)
+            printf("This is the ending room\n");
+        else if (li->room_start)
+            printf("This is the starting room\n");
+        else
+            printf("This is the normal room\n");
+
+        printf("--------------------------------\n");
         li =li->next;
     }
 }
@@ -40,7 +48,7 @@ static t_room   *set_null_pointer(t_room *element)
 }
 
 
-t_room  *new_node(char *line)
+t_room  *new_node(char *line, char c)
 {
     t_room  *node;
 
@@ -50,6 +58,7 @@ t_room  *new_node(char *line)
     node->room_name = extract_name(line);
     node->line = extract_line(line);
     node->row = extract_row(line);
+    node = set_startorend(node, c);
     node = set_null_pointer(node);
     printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->room_name, node->line, node->row);
     return (node);
@@ -59,6 +68,8 @@ t_room  *push(t_room *li, t_room *element)
 {
     t_room  *head;
 
+    if (li == NULL)
+        return (element);
     head = li;
     if (ft_strcmp(li->room_name, element->room_name) > 0)
     {

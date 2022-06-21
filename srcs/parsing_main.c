@@ -1,7 +1,6 @@
 #include "parsing.h"
 
 static void     mapreader(int fd, t_room **li, t_data **data);
-static int      line_id(char *line, t_data *data, t_room **li);
 static int      is_a_comment(char *line);
 static void     set_data(t_data **data);
 
@@ -10,8 +9,6 @@ static void     set_data(t_data **data)
 {
     (*data)->room_part = 0;
     (*data)->connexion_part = 0;
-    (*data)->room_start = 0;
-    (*data)->room_end = 0;
     (*data)->ants = 0;
     (*data)->size_lst = 0;
 }
@@ -25,7 +22,7 @@ static int      is_a_comment(char *line)
 }
 
 // static int      (*line_id(char *line, t_data *data))(t_room **li, char *line)
-static int      line_id(char *line, t_data *data, t_room **li)
+int      line_id(char *line, t_data *data, t_room **li)
 {
     (void)li;
     if (is_a_room(line, data->connexion_part))
@@ -34,14 +31,16 @@ static int      line_id(char *line, t_data *data, t_room **li)
         data->size_lst += 1; 
         return (0);
     }
-    // if (is_a_connexion(line, data->room_part))
-    // {
-    //     // if(!(*li)->treehead)
-    //     //     createtree(li);
-    //     data->connexion_part = 1;
-    //     return (1);
-    // }
-    return (2);
+    else if (is_a_connexion(line, data->room_part))
+    {
+        // if(!(*li)->treehead)
+        //     createtree(li, data->size_lst);
+        data->connexion_part = 1;
+        return (1);
+    }
+    else if(is_a_command(line))
+        return (2);
+    return (3);
 }
 
 static void    mapreader(int fd, t_room **li, t_data **data)
@@ -56,14 +55,18 @@ static void    mapreader(int fd, t_room **li, t_data **data)
     {
         printf("Line -->%s\n", line);
         if (is_a_comment(line))
+        {
             get_next_line(0, &line);
+            printf("It is a comment...\n");
+            printf("Line -->%s\n", line);
+        }
         temp = line_id(line, *data, li);
-        if (temp > 0)
+        if (temp == 3)
             printf("Work in progress...\n");
         else
             line_dispatch[temp](li, line);
     }
-    free(line);
+    free(line); // remplacer par ft_cleanstr ou strdel
     line = NULL;
 }
 
