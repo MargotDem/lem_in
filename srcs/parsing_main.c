@@ -11,6 +11,7 @@ static void     set_data(t_data **data)
     (*data)->connexion_part = 0;
     (*data)->ants = 0;
     (*data)->size_lst = 0;
+    (*data)->tree = 0;
 }
 
 /*Verifie si line est un commentaire selon les criteres*/
@@ -24,7 +25,6 @@ static int      is_a_comment(char *line)
 // static int      (*line_id(char *line, t_data *data))(t_room **li, char *line)
 int      line_id(char *line, t_data *data, t_room **li)
 {
-    (void)li;
     if (is_a_room(line, data->connexion_part))
     {
         data->room_part = 1;
@@ -33,8 +33,11 @@ int      line_id(char *line, t_data *data, t_room **li)
     }
     else if (is_a_connexion(line, data->room_part))
     {
-        // if(!(*li)->treehead)
-        //     createtree(li, data->size_lst);
+        if(data->tree == 0)
+        {
+            data->tree = 1;
+            *li = createtree(li, data->size_lst);
+        }
         data->connexion_part = 1;
         return (1);
     }
@@ -46,25 +49,15 @@ int      line_id(char *line, t_data *data, t_room **li)
 static void    mapreader(int fd, t_room **li, t_data **data)
 {
     char *line;
-    int temp = 0;
 
     (*data) = (t_data *)malloc(sizeof(**data));
     set_data(data);
     (*data)->ants = get_ants();
     while (get_next_line(fd, &line))
     {
-        printf("Line -->%s\n", line);
         if (is_a_comment(line))
-        {
             get_next_line(0, &line);
-            printf("It is a comment...\n");
-            printf("Line -->%s\n", line);
-        }
-        temp = line_id(line, *data, li);
-        if (temp == 3)
-            printf("Work in progress...\n");
-        else
-            line_dispatch[temp](li, line);
+        line_dispatch[line_id(line, *data, li)](li, line);
     }
     free(line); // remplacer par ft_cleanstr ou strdel
     line = NULL;

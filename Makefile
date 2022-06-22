@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/06/21 11:10:22 by briffard         ###   ########.fr        #
+#    Updated: 2022/06/21 12:29:28 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC_DIR	=	./srcs/
 FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			parsing_utils2.c parsing_error.c parsing_utils_list.c \
 			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
-			 #parsing_tree \
+			tree_main.c \
+			#parsing_tree \
 		
 
 #OBJECT FILES

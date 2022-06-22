@@ -28,6 +28,7 @@ typedef struct s_data {
     int room_part;
     int connexion_part;
     int size_lst;
+    int tree;
     int ants; // ULL pour plus de possibilite
 }       t_data;
 
@@ -58,6 +59,9 @@ int      line_id(char *line, t_data *data, t_room **li);
 
 /*PARSING_COMMAND*/
 int     is_a_command(char *line);
+
+/*BINARY TREE*/
+t_room *createtree(t_room **li, int size_lst);
 
 /*UTILS*/
 int	    countwords(char const *s, char c);
