@@ -16,11 +16,7 @@ typedef struct s_room{
     int room_end;
 	/*POINTER LINK LIST*/
 	struct s_room *next;
-    /*POINTER TREE*/
-    struct s_room *treehead;
-    struct s_room *left;
-    struct s_room *rigth;
-    struct s_room *parent;
+    struct s_room *h_next;
 }	t_room;
 
 typedef struct s_data {
@@ -28,8 +24,9 @@ typedef struct s_data {
     int room_part;
     int connexion_part;
     int size_lst;
-    int tree;
+    int hash;
     int ants; // ULL pour plus de possibilite
+    struct s_room **hashtab;
 }       t_data;
 
 /*ARRAY POINTER FUNCTION*/
@@ -55,10 +52,13 @@ int is_a_room(char *line, int  active_connextion);
 int is_a_connexion(char *line, int active_room);
 
 /*PARSING_MAIN*/
-int      line_id(char *line, t_data *data, t_room **li);
+int      line_id(char *line, t_data **data, t_room **li);
 
 /*PARSING_COMMAND*/
 int     is_a_command(char *line);
+
+/*HASHTABLE_MAIN*/
+void	hashtable_main(t_data **data, t_room **li);
 
 /*BINARY TREE*/
 t_room *createtree(t_room **li, int size_lst);

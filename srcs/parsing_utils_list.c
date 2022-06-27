@@ -40,10 +40,10 @@ static t_room   *set_pointer(t_room *li, t_room *element)
 static t_room   *set_null_pointer(t_room *element)
 {
     element->next =  NULL;
-    element->left = NULL;
-    element->rigth = NULL;
-    element->parent = NULL;
-    element->treehead = NULL;
+    element->h_next = NULL;
+    // element->rigth = NULL;
+    // element->parent = NULL;
+    // element->treehead = NULL;
     return (element);
 }
 
