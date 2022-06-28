@@ -6,9 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Mon Jun 27 09:40:58 2022
+# Make data base, printed on Tue Jun 28 07:43:04 2022
 
 # Variables
 
@@ -32,7 +31,6 @@ NVM_INC = /Users/briffard/.nvm/versions/node/v18.0.0/include/node
 CURDIR := /Users/briffard/Desktop/Lem-in
 # makefile
 SHELL = /bin/sh
- 
 # makefile (from `Makefile', line 28)
 RM = rm	-f
 # environment
@@ -48,11 +46,11 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 41)
 OBJS = $(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000l580004s_/T/vscode-ipc-fa0d0086-77be-41ee-8722-2160f025a4bb.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000l580004s_/T/vscode-ipc-cd23e657-90b4-4fe2-898e-2c3c12773b70.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.X0RBp3WaDY/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.WMfHxb24FB/Render
 # environment
 PATH = /Users/briffard/.nvm/versions/node/v18.0.0/bin:/Users/briffard/.brew/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
@@ -68,7 +66,7 @@ LIB = -L ./libft/ -lft
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.BIK7jjmp0L/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.cJ1Y4Yf8BB/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -142,7 +140,7 @@ MFLAGS = -Rrqp
 # environment
 NVM_DIR = /Users/briffard/.nvm
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x1000005d.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000016.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -164,7 +162,7 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 1881b
+SECURITYSESSIONID = 186f9
 # automatic
 ^F = $(notdir $^)
 # default
@@ -176,7 +174,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 59007
+VSCODE_PID = 85077
 # makefile (from `Makefile', line 32)
 FILES = parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c parsing_utils2.c parsing_error.c parsing_utils_list.c parsing_command.c parsing_connexion.c parsing_mem_handling.c hashtable_main.c 
 # variable set hash-table stats:
@@ -188,11 +186,11 @@ FILES = parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c parsing_ut
 
 # Directories
 
-# . (device 16777227, inode 3107351): 14 files, no impossibilities.
+# . (device 16777227, inode 3107351): 15 files, no impossibilities.
 # ./srcs (device 16777227, inode 3114524): 13 files, no impossibilities so far.
 # srcs (device 16777227, inode 3114524): 13 files, no impossibilities so far.
 
-# 40 files, no impossibilities in 3 directories.
+# 41 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -209,7 +207,6 @@ objectFiles/%.o: ./srcs/%.c
 # Not a target:
 srcs/parsing_command.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2022-06-21 11:40:23
 #  File has been updated.
 #  Successfully updated.
@@ -219,7 +216,7 @@ srcs/parsing_command.c:
 objectFiles/parsing_utils.o: srcs/parsing_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_utils'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -232,7 +229,7 @@ objectFiles/parsing_utils.o: srcs/parsing_utils.c
 objectFiles/parsing_command.o: srcs/parsing_command.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_command'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -254,7 +251,7 @@ srcs/parsing_main.c:
 objectFiles/parsing_main.o: srcs/parsing_main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_main'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -295,12 +292,13 @@ srcs/parsing_mem_handling.c:
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
+ 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 objectFiles/parsing_ants.o: srcs/parsing_ants.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_ants'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -313,7 +311,7 @@ objectFiles/parsing_ants.o: srcs/parsing_ants.c
 objectFiles/parsing_mem_handling.o: srcs/parsing_mem_handling.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_mem_handling'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -341,7 +339,7 @@ Makefile:
 # Not a target:
 srcs/hashtable_main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-27 09:40:24
+#  Last modified 2022-06-27 13:46:43
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -350,7 +348,8 @@ srcs/hashtable_main.c:
 objectFiles/hashtable_main.o: srcs/hashtable_main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `hashtable_main'
-#  File does not exist.
+ 
+#  Last modified 2022-06-27 13:41:08
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -406,7 +405,7 @@ fclean: clean
 objectFiles/parsing_utils2.o: srcs/parsing_utils2.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_utils2'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -451,7 +450,7 @@ srcs/parsing_error.c:
 objectFiles/parsing_rooms.o: srcs/parsing_rooms.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_rooms'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -464,7 +463,7 @@ objectFiles/parsing_rooms.o: srcs/parsing_rooms.c
 objectFiles/parsing_error.o: srcs/parsing_error.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_error'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -477,7 +476,7 @@ objectFiles/parsing_error.o: srcs/parsing_error.c
 objectFiles/parsing_utils_list.o: srcs/parsing_utils_list.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_utils_list'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -488,7 +487,6 @@ objectFiles/parsing_utils_list.o: srcs/parsing_utils_list.c
 	
 
 re: fclean all
- 
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
@@ -532,7 +530,7 @@ srcs/parsing_connexion.c:
 objectFiles/parsing_connexion.o: srcs/parsing_connexion.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_connexion'
-#  Last modified 2022-06-27 09:40:41
+#  Last modified 2022-06-27 13:41:08
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -544,7 +542,7 @@ objectFiles/parsing_connexion.o: srcs/parsing_connexion.c
 
 parsing: objectFiles/parsing_main.o objectFiles/parsing_ants.o objectFiles/parsing_rooms.o objectFiles/parsing_utils.o objectFiles/parsing_utils2.o objectFiles/parsing_error.o objectFiles/parsing_utils_list.o objectFiles/parsing_command.o objectFiles/parsing_connexion.o objectFiles/parsing_mem_handling.o objectFiles/hashtable_main.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-06-27 13:41:08
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -556,7 +554,7 @@ parsing: objectFiles/parsing_main.o objectFiles/parsing_ants.o objectFiles/parsi
 # Not a target:
 srcs/parsing_utils_list.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-27 09:15:55
+#  Last modified 2022-06-27 13:26:47
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -584,6 +582,6 @@ srcs/parsing_utils.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Jun 27 09:40:58 2022
+# Finished Make data base on Tue Jun 28 07:43:04 2022
 
  
