@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Tue Jun 28 07:43:04 2022
+# Make data base, printed on Wed Jun 29 13:26:38 2022
 
 # Variables
 
@@ -39,18 +40,18 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 _ = /usr/bin/make
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# makefile (from `Makefile', line 40)
+# makefile (from `Makefile', line 41)
 OBJ_DIR = ./objectFiles/
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from `Makefile', line 41)
+# makefile (from `Makefile', line 42)
 OBJS = $(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000l580004s_/T/vscode-ipc-cd23e657-90b4-4fe2-898e-2c3c12773b70.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0000l580004s_/T/vscode-ipc-3ade788b-d5db-4443-a7d3-fb994f62d130.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.WMfHxb24FB/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.hST5BZSYTN/Render
 # environment
 PATH = /Users/briffard/.nvm/versions/node/v18.0.0/bin:/Users/briffard/.brew/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
@@ -58,6 +59,7 @@ LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
 NVM_BIN = /Users/briffard/.nvm/versions/node/v18.0.0/bin
 # environment
+ 
 VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
@@ -66,7 +68,7 @@ LIB = -L ./libft/ -lft
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.cJ1Y4Yf8BB/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.7orf18mcxT/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -140,7 +142,7 @@ MFLAGS = -Rrqp
 # environment
 NVM_DIR = /Users/briffard/.nvm
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000016.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000003.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -162,7 +164,7 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-SECURITYSESSIONID = 186f9
+SECURITYSESSIONID = 186a7
 # automatic
 ^F = $(notdir $^)
 # default
@@ -174,9 +176,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 85077
+VSCODE_PID = 715
 # makefile (from `Makefile', line 32)
-FILES = parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c parsing_utils2.c parsing_error.c parsing_utils_list.c parsing_command.c parsing_connexion.c parsing_mem_handling.c hashtable_main.c 
+FILES = parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c parsing_utils2.c parsing_error.c parsing_utils_list.c parsing_command.c parsing_connexion.c parsing_mem_handling.c parsing_connexion_handling.c hashtable_main.c 
 # variable set hash-table stats:
 # Load=83/1024=8%, Rehash=0, Collisions=6/123=5%
 
@@ -187,15 +189,15 @@ FILES = parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c parsing_ut
 # Directories
 
 # . (device 16777227, inode 3107351): 15 files, no impossibilities.
-# ./srcs (device 16777227, inode 3114524): 13 files, no impossibilities so far.
-# srcs (device 16777227, inode 3114524): 13 files, no impossibilities so far.
+# ./srcs (device 16777227, inode 3114524): 14 files, no impossibilities so far.
+# srcs (device 16777227, inode 3114524): 14 files, no impossibilities so far.
 
-# 41 files, no impossibilities in 3 directories.
+# 43 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
 objectFiles/%.o: ./srcs/%.c
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
@@ -207,7 +209,7 @@ objectFiles/%.o: ./srcs/%.c
 # Not a target:
 srcs/parsing_command.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-21 11:40:23
+#  Last modified 2022-06-29 08:41:44
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -216,12 +218,12 @@ srcs/parsing_command.c:
 objectFiles/parsing_utils.o: srcs/parsing_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_utils'
-#  Last modified 2022-06-27 13:41:07
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
@@ -229,12 +231,12 @@ objectFiles/parsing_utils.o: srcs/parsing_utils.c
 objectFiles/parsing_command.o: srcs/parsing_command.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_command'
-#  Last modified 2022-06-27 13:41:08
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
@@ -242,7 +244,7 @@ objectFiles/parsing_command.o: srcs/parsing_command.c
 # Not a target:
 srcs/parsing_main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-27 09:03:32
+#  Last modified 2022-06-29 10:06:47
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -251,12 +253,12 @@ srcs/parsing_main.c:
 objectFiles/parsing_main.o: srcs/parsing_main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_main'
-#  Last modified 2022-06-27 13:41:07
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
@@ -285,41 +287,30 @@ srcs/parsing_ants.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-# Not a target:
-srcs/parsing_mem_handling.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-20 13:28:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
- 
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
 objectFiles/parsing_ants.o: srcs/parsing_ants.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_ants'
-#  Last modified 2022-06-27 13:41:07
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
 
-objectFiles/parsing_mem_handling.o: srcs/parsing_mem_handling.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parsing_mem_handling'
-#  Last modified 2022-06-27 13:41:08
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
-	
+# Not a target:
+objectFiles/parsing_mem_handling.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/parsing_connexion_handling.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -330,50 +321,17 @@ objectFiles/parsing_mem_handling.o: srcs/parsing_mem_handling.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-27 09:40:38
+#  Last modified 2022-06-29 10:06:25
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-srcs/hashtable_main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-27 13:46:43
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/hashtable_main.o: srcs/hashtable_main.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `hashtable_main'
- 
-#  Last modified 2022-06-27 13:41:08
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := objectFiles/hashtable_main.o
-# automatic
-# % := 
-# automatic
-# * := hashtable_main
-# automatic
-# + := srcs/hashtable_main.c
-# automatic
-# | := 
-# automatic
-# < := srcs/hashtable_main.c
-# automatic
-# ^ := srcs/hashtable_main.c
-# automatic
-# ? := srcs/hashtable_main.c
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/17=6%
-#  commands to execute (from `Makefile', line 49):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
-	
+objectFiles/hashtable_main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 srcs/parsing_utils2.c:
@@ -388,7 +346,7 @@ lft:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 55):
+#  commands to execute (from `Makefile', line 56):
 	@make -sC ./libft/ all
 	
 
@@ -397,20 +355,21 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 71):
+#  commands to execute (from `Makefile', line 72):
 	@$(RM) $(NAME)
 	@echo "Parsing file has been deleted"
 	
 
+ 
 objectFiles/parsing_utils2.o: srcs/parsing_utils2.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_utils2'
-#  Last modified 2022-06-27 13:41:07
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
@@ -419,14 +378,14 @@ lft_reboot:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 58):
+#  commands to execute (from `Makefile', line 59):
 	@make -sC ./libft/ re
 	
 
 # Not a target:
 srcs/parsing_rooms.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-21 11:05:12
+#  Last modified 2022-06-29 08:38:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -450,12 +409,12 @@ srcs/parsing_error.c:
 objectFiles/parsing_rooms.o: srcs/parsing_rooms.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_rooms'
-#  Last modified 2022-06-27 13:41:07
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
@@ -463,12 +422,12 @@ objectFiles/parsing_rooms.o: srcs/parsing_rooms.c
 objectFiles/parsing_error.o: srcs/parsing_error.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_error'
-#  Last modified 2022-06-27 13:41:07
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
@@ -476,12 +435,12 @@ objectFiles/parsing_error.o: srcs/parsing_error.c
 objectFiles/parsing_utils_list.o: srcs/parsing_utils_list.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_utils_list'
-#  Last modified 2022-06-27 13:41:08
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
@@ -497,7 +456,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 67):
+#  commands to execute (from `Makefile', line 68):
 	@$(RM_DIR) $(OBJ_DIR)
 	@echo "Object Files have been deleted"
 	
@@ -506,7 +465,7 @@ lft_fclean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 64):
+#  commands to execute (from `Makefile', line 65):
 	@make -sC ./libft/ fclean
 	
 
@@ -514,14 +473,14 @@ lft_clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 61):
+#  commands to execute (from `Makefile', line 62):
 	@make -sC ./libft/ clean
 	
 
 # Not a target:
 srcs/parsing_connexion.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-21 09:53:21
+#  Last modified 2022-06-29 11:44:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -530,31 +489,47 @@ srcs/parsing_connexion.c:
 objectFiles/parsing_connexion.o: srcs/parsing_connexion.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `parsing_connexion'
-#  Last modified 2022-06-27 13:41:08
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := objectFiles/parsing_connexion.o
+# automatic
+# % := 
+# automatic
+# * := parsing_connexion
+# automatic
+# + := srcs/parsing_connexion.c
+# automatic
+# | := 
+# automatic
+# < := srcs/parsing_connexion.c
+# automatic
+# ^ := srcs/parsing_connexion.c
+# automatic
+# ? := srcs/parsing_connexion.c
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 49):
+# Load=8/32=25%, Rehash=0, Collisions=1/17=6%
+#  commands to execute (from `Makefile', line 50):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
 	
 
-parsing: objectFiles/parsing_main.o objectFiles/parsing_ants.o objectFiles/parsing_rooms.o objectFiles/parsing_utils.o objectFiles/parsing_utils2.o objectFiles/parsing_error.o objectFiles/parsing_utils_list.o objectFiles/parsing_command.o objectFiles/parsing_connexion.o objectFiles/parsing_mem_handling.o objectFiles/hashtable_main.o
+parsing: objectFiles/parsing_main.o objectFiles/parsing_ants.o objectFiles/parsing_rooms.o objectFiles/parsing_utils.o objectFiles/parsing_utils2.o objectFiles/parsing_error.o objectFiles/parsing_utils_list.o objectFiles/parsing_command.o objectFiles/parsing_connexion.o objectFiles/parsing_mem_handling.o objectFiles/parsing_connexion_handling.o objectFiles/hashtable_main.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-27 13:41:08
+#  Last modified 2022-06-29 11:38:32
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/7=0%
-#  commands to execute (from `Makefile', line 46):
+#  commands to execute (from `Makefile', line 47):
 	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) -g
 	
 
 # Not a target:
 srcs/parsing_utils_list.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-27 13:26:47
+#  Last modified 2022-06-29 08:24:36
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -570,7 +545,7 @@ srcs/parsing_utils.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=35/1024=3%, Rehash=0, Collisions=3/100=3%
+# Load=34/1024=3%, Rehash=0, Collisions=3/94=3%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -582,6 +557,6 @@ srcs/parsing_utils.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jun 28 07:43:04 2022
+# Finished Make data base on Wed Jun 29 13:26:38 2022
 
  

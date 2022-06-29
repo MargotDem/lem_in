@@ -34,9 +34,10 @@ int is_a_command(char *line)
     return(0);
 }
 
-void    get_command(t_room **li, char *line)
+void    get_command(t_room **li, char *line, t_data **data)
 {
     t_room *element;
+    
     if (check_command(&line[2], "start"))
     {
         get_next_line(0, &line);
@@ -44,6 +45,7 @@ void    get_command(t_room **li, char *line)
         {           
             element = new_node(line, 's');
             *li = push(*li, element);
+            (*data)->size_lst += 1;
         }
     }
     else if (check_command(&line[2], "end"))
@@ -53,6 +55,7 @@ void    get_command(t_room **li, char *line)
         {
             element = new_node(line, 'e');
             *li = push(*li, element);
+            (*data)->size_lst += 1;
         }
     }
 }

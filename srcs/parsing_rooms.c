@@ -4,15 +4,18 @@ static int  basic_roomcheck(char *line, int active_connextion);
 static int  shape_roomcheck(char *line);
 static int  word_roomcheck(char *line);
 
-void   get_room(t_room **li, char *line)
+void   get_room(t_room **li, char *line, t_data **data)
 {
     t_room  *element;
-    
+    printf("%s================%s========================%s\n\n", "\x1B[33m", "NODE CREATION", "\x1B[0m");
     element = new_node(line, 'n');
     if (*li == NULL)
         *li = element;
     else
         *li = push(*li, element);
+    (*data)->size_lst += 1;
+    (*data)->room_part = 1;
+    printf("\n%s================   END ========================%s\n", "\x1B[33m", "\x1B[0m");
 }
 
 static int  basic_roomcheck(char *line, int active_connextion)

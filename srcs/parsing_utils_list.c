@@ -41,6 +41,7 @@ static t_room   *set_null_pointer(t_room *element)
 {
     element->next =  NULL;
     element->h_next = NULL;
+    element->links = NULL;
     // element->rigth = NULL;
     // element->parent = NULL;
     // element->treehead = NULL;
@@ -51,7 +52,7 @@ static t_room   *set_null_pointer(t_room *element)
 t_room  *new_node(char *line, char c)
 {
     t_room  *node;
-
+    
     node = malloc(sizeof(*node));
     if (!node)
         mem_error("Node creation fail\n","parsing_utils_list.c", 7);

@@ -23,24 +23,12 @@ static int      is_a_comment(char *line)
 }
 
 // static int      (*line_id(char *line, t_data *data))(t_room **li, char *line)
-int      line_id(char *line, t_data **data, t_room **li)
+int      line_id(char *line, t_data **data/*, t_room **li*/)
 {
     if (is_a_room(line, (*data)->connexion_part))
-    {
-        (*data)->room_part = 1;
-        (*data)->size_lst += 1; 
         return (0);
-    }
     else if (is_a_connexion(line, (*data)->room_part))
-    {
-        if((*data)->hash == 0)
-        {
-            (*data)->hash = 1;
-            hashtable_main(data, li);
-        }
-        (*data)->connexion_part = 1;
         return (1);
-    }
     else if(is_a_command(line))
         return (2);
     return (3);
@@ -57,7 +45,7 @@ static void    mapreader(int fd, t_room **li, t_data **data)
     {
         if (is_a_comment(line))
             get_next_line(0, &line);
-        line_dispatch[line_id(line, data, li)](li, line);
+        line_dispatch[line_id(line, data/*, li*/)](li, line, data);
     }
     free(line); // remplacer par ft_cleanstr ou strdel
     line = NULL;
