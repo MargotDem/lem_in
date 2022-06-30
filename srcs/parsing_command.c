@@ -46,6 +46,7 @@ void    get_command(t_room **li, char *line, t_data **data)
             element = new_node(line, 's');
             *li = push(*li, element);
             (*data)->size_lst += 1;
+            (*data)->start_room = extract_name(line);
         }
     }
     else if (check_command(&line[2], "end"))

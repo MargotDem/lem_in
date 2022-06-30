@@ -61,9 +61,12 @@ int main(void)
     data = NULL;
 
     mapreader(0, &rooms, &data);
-    printf("There is %d ants\n", data->ants);
-    print_lst(rooms);
-    printf("Size list: %d\n", data->size_lst);
+    // printf("There is %d ants\n", data->ants);
+    // print_lst(rooms);
+    // printf("Size list: %d\n", data->size_lst);
+    print_connexion(&data);
+    free(data);
+    free(rooms);
     return (0);
 
 }

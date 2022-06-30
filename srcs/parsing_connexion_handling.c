@@ -1,6 +1,38 @@
 #include "parsing.h"
 
 
+void	print_connexion(t_data **data)
+{
+	int i = 0, x = 0;
+	t_room *temp = NULL;
+
+	while ( i < (*data)->size_lst)
+	{
+		temp = (*data)->hashtab[i];
+		if (temp != NULL)
+		{
+			while (temp != NULL)
+			{
+				printf("\nROOM NAME: %s || index %d\n", temp->room_name, i);
+				printf("\tConnexion: total:%d\n",temp->size_links);
+				if (temp->size_links == 0)
+					printf("\tnull");
+				else
+				{
+					x = 0;
+					while (x < temp->size_links)
+					{
+						printf("\ttemp->links[%d]->room_name: %s\n", x,temp->links[x]->room_name);
+						x++;
+					}
+				}
+				temp = temp->h_next;
+			}
+		}
+		i++;
+	}
+}
+
 t_room *search_for(char *connexion, t_data **data)
 {
 	unsigned long index;
@@ -8,7 +40,7 @@ t_room *search_for(char *connexion, t_data **data)
 
 	index = hashing(connexion,(*data)->size_lst);
 	temp = (*data)->hashtab[index];
-	while (ft_strcmp(connexion, temp->room_name) != 0)
+	while (ft_strcmp(connexion, temp->room_name) != 0 && temp != NULL)
 		temp = temp->h_next;
 	return (temp);
 }
@@ -21,11 +53,11 @@ void add_links(t_data **data, char *from, char *to)
 
 	index =  hashing(from,(*data)->size_lst);
 	temp = (*data)->hashtab[index];
+	printf("========================\n");
+	printf("CONNEXION FROM %s to %s\n", from, to);
 	while (ft_strcmp(from, temp->room_name) != 0)
 		temp = temp->h_next;
 	create_links(temp, to, data);
-	printf("%sTEMP -> %s || CONEX-> %s\n%s", "\x1B[35m", temp->room_name, from, "\x1B[0m");
-
 }
 
 int	existing_room(char *conexion, t_data **data)

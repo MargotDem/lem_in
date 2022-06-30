@@ -68,9 +68,13 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	conexion_1 = ft_strsub(line, 0 , index_of_chr(line, '-'));
 	conexion_2 = ft_strdup(&line[(index_of_chr(line, '-')) + 1]);
 	if(existing_room(conexion_1,data) && existing_room(conexion_2, data))
+	{	
 		add_links(data, conexion_1, conexion_2);
+		add_links(data, conexion_2, conexion_1);
+	}
 	else
 		printf("%sNOT OK%s\n", "\x1B[31m","\x1B[0m");
+	// printf("=======================================\n");
 	// free(conexion_1);
 	// free(conexion_2);
 	// conexion_1 = NULL;

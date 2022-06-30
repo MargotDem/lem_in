@@ -96,7 +96,7 @@ void	print_hashtab(t_data **data)
 	int i = 0;
 	t_room *temp = NULL;
 
-	while ( i <= (*data)->size_lst)
+	while ( i < (*data)->size_lst)
 	{
 		temp = (*data)->hashtab[i];
 		if (temp != NULL)

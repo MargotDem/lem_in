@@ -41,7 +41,12 @@ static t_room   *set_null_pointer(t_room *element)
 {
     element->next =  NULL;
     element->h_next = NULL;
-    element->links = NULL;
+    element->links = (t_room **)malloc(sizeof(t_room *) * 2);
+    if (!element->links)
+        mem_error("Creation links fail", "parsing_utils_list.c", 44);
+    element->links[0] =  NULL;
+    element->links[1] =  NULL;
+
     // element->rigth = NULL;
     // element->parent = NULL;
     // element->treehead = NULL;
@@ -59,6 +64,7 @@ t_room  *new_node(char *line, char c)
     node->room_name = extract_name(line);
     node->line = extract_line(line);
     node->row = extract_row(line);
+    node->size_links = 0;
     node = set_startorend(node, c);
     node = set_null_pointer(node);
     printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->room_name, node->line, node->row);

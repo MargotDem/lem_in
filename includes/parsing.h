@@ -17,6 +17,7 @@ typedef struct s_room{
 	int row;
 	int room_start;
 	int room_end;
+	int size_links;
 
 	/*POINTER LINK LIST*/
 	struct s_room *next;
@@ -32,6 +33,7 @@ typedef struct s_data {
 	int hash;
 	int ants; // ULL pour plus de possibilite
 	struct s_room **hashtab; //HASH TABLE FOR ROOMS
+	char *start_room;
 }       t_data;
 
 /*ARRAY POINTER FUNCTION*/
@@ -63,6 +65,7 @@ t_room 	*search_for(char *connexion, t_data **data);
 // int     check_if_room_exist(t_room **h_tab, char *line, int size);
 // void	add_connexion(char *line, t_data **data);
 int		index_of_chr(char *str, char c);
+void	print_connexion(t_data **data);
 
 
 /*PARSING_MAIN*/
