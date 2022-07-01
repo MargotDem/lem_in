@@ -50,6 +50,11 @@ static int shape_connexioncheck(char *line)
 
 int is_a_connexion(char *line, int active_room)
 {
+	/*
+	**checker si connexion est ( b-v-f)
+	** verifier si c est B-v to f or b to v-f et si la connexion est valide
+	** on aura besoin de la hastable pour checker l existance des connexions
+	*/
 	if (basic_connexioncheck(line, active_room))
 		return (0);
 	if (shape_connexioncheck(line))
@@ -62,11 +67,17 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	char *conexion_1;
 	char *conexion_2;
 
+	/*
+	**checker si connexion est ( b-v-f)
+	** verifier si c est B-v to f or b to v-f
+	*/
 	(*data)->connexion_part = 1;
 	if ((*data)->hash == 0)
 		hashtable_main(data, *li);
 	conexion_1 = ft_strsub(line, 0 , index_of_chr(line, '-'));
 	conexion_2 = ft_strdup(&line[(index_of_chr(line, '-')) + 1]);
+	if(!conexion_1 || !conexion_2)
+		err_handling("malloc");
 	if(existing_room(conexion_1,data) && existing_room(conexion_2, data))
 	{	
 		add_links(data, conexion_1, conexion_2);
@@ -74,8 +85,6 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	}
 	else
 		printf("%sNOT OK%s\n", "\x1B[31m","\x1B[0m");
-	free(conexion_1);
-	free(conexion_2);
-	conexion_1 = NULL;
-	conexion_2 = NULL;
+	ft_strdel(&conexion_1);
+	ft_strdel(&conexion_2);
 }

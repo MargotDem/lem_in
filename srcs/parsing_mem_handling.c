@@ -41,7 +41,7 @@ t_room **brealloc(t_room **links,t_room *to, int size_list)
 	x = 0;
 	dst = (t_room **)malloc(sizeof(t_room *) * size_list + sizeof(t_room *));
 	if (!dst)
-		mem_error("Creation dst fail", "parsing_handling.c", 13);
+		err_handling("mallloc");
 	while ( x < size_list )
 	{   
 		dst[x] = links[x];

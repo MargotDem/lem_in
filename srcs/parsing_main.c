@@ -37,10 +37,17 @@ int      line_id(char *line, t_data **data/*, t_room **li*/)
 static void    mapreader(int fd, t_room **li, t_data **data)
 {
     char *line;
+    int     id;
 
+    id = 0;
+    line = NULL;
     (*data) = (t_data *)malloc(sizeof(**data));
+    if (!(*data))
+        err_handling("malloc");
     set_data(data);
     (*data)->ants = get_ants();
+    if ((*data)->ants == 0)//pas la bonne idee !!!
+        check_data(data);
     while (get_next_line(fd, &line))
     {
         if (is_a_comment(line))
@@ -48,7 +55,13 @@ static void    mapreader(int fd, t_room **li, t_data **data)
             ft_strdel(&line);
             get_next_line(0, &line);
         }
-        line_dispatch[line_id(line, data/*, li*/)](li, line, data);
+        id = line_id(line, data/*, li*/);
+        if (id == -1)
+        {
+            ft_strdel(&line);
+            break;
+        }
+        line_dispatch[id](li, line, data);
         ft_strdel(&line);
     }
 }
@@ -64,12 +77,16 @@ int main(void)
     data = NULL;
 
     mapreader(0, &rooms, &data);
+    //On verifie si on a assez de donnee pour 
+    if (check_data(&data))
+    {
+        g_head = search_for(data->start_room, &data);
+        //envoyer vers le solveur
+    }
     // printf("There is %d ants\n", data->ants);
     // print_lst(rooms);
     // printf("Size list: %d\n", data->size_lst);
     // print_connexion(&data);
-    g_head = search_for(data->start_room, &data);
-    printf("\nROOM DE DEPART -> %s\n", g_head->room_name);
     lets_free_all(&data);
     free(rooms);
     free(data);

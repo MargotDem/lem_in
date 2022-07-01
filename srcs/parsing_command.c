@@ -57,6 +57,7 @@ void    get_command(t_room **li, char *line, t_data **data)
             element = new_node(line, 'e');
             *li = push(*li, element);
             (*data)->size_lst += 1;
+            (*data)->exit_room = extract_name(line);
         }
     }
     free(line);

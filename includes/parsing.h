@@ -4,6 +4,7 @@
 /*INCLUDES*/
 # include "libft.h"
 # include <stdio.h>
+# include <string.h>
 # include <fcntl.h>
 # include <unistd.h>
 
@@ -34,12 +35,14 @@ typedef struct s_data {
 	int ants; // ULL pour plus de possibilite
 	struct s_room **hashtab; //HASH TABLE FOR ROOMS
 	char *start_room;
+	char *exit_room;
 }       t_data;
 
 /*ARRAY POINTER FUNCTION*/
 void    get_room(t_room **li, char *line, t_data **data);
 void    get_connexion(t_room **li, char *line, t_data **data);
 void    get_command(t_room **li, char *line, t_data **data);
+
 
 typedef void (*t_line_dispatcher)(t_room **li, char *line, t_data **data);
 static t_line_dispatcher line_dispatch[3] = {
@@ -95,10 +98,13 @@ void    print_lst(t_room *li);
 
 /*ERROR*/
 void    mem_error(char *message, char *where, int line);
+void    err_handling(char *s);
+void 	err_mes(char *message);
 
 /*MEM_HANDLING*/
 void    *ft_cleanstr(char **s, size_t i);
 void 	create_links(t_room *element,char *to, t_data **data);
 void	lets_free_all(t_data **data);
+int    check_data(t_data **data);
 
 #endif

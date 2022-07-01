@@ -43,7 +43,7 @@ static t_room   *set_null_pointer(t_room *element)
     element->h_next = NULL;
     element->links = (t_room **)malloc(sizeof(t_room *) * 2);
     if (!element->links)
-        mem_error("Creation links fail", "parsing_utils_list.c", 44);
+        err_handling("malloc");
     element->links[0] =  NULL;
     element->links[1] =  NULL;
 
@@ -60,7 +60,7 @@ t_room  *new_node(char *line, char c)
     
     node = malloc(sizeof(*node));
     if (!node)
-        mem_error("Node creation fail\n","parsing_utils_list.c", 7);
+        err_handling("malloc");
     node->room_name = extract_name(line);
     node->line = extract_line(line);
     node->row = extract_row(line);

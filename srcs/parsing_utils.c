@@ -36,6 +36,8 @@ char	*extract_name(char *line)
 	while (line[i] > 32)
 		i++;
 	name = ft_strsub(line, start, i - start);
+	if(!name)
+		err_handling("malloc");
 	return (name);
 }
 

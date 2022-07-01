@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/06/29 10:06:25 by briffard         ###   ########.fr        #
+#    Updated: 2022/07/01 13:39:34 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			parsing_utils2.c parsing_error.c parsing_utils_list.c \
 			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
 			parsing_connexion_handling.c \
+			parsing_out_to_solver.c \
 			hashtable_main.c \
 			#parsing_tree \
 		

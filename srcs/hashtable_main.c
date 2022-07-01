@@ -7,7 +7,7 @@ void	create_hashtable(t_data **data)
 	i = 0;
 	(*data)->hashtab = malloc(sizeof(t_room) * ((*data)->size_lst));
 	if(!(*data)->hashtab)
-		mem_error("Creation hashtable","hastable_main.c", 39);
+		err_handling("malloc");
 	while (i < ((*data)->size_lst))
 	{
 		(*data)->hashtab[i] =  NULL;
@@ -36,7 +36,6 @@ t_room	*insert_room(t_data **data, t_room *li, int index)
 	t_room *tempo;
 	
 	tempo = NULL;
-	int i = 0;
 	temp = (*data)->hashtab[index];
 
 	if ((*data)->hashtab[index] == NULL)
@@ -48,10 +47,7 @@ t_room	*insert_room(t_data **data, t_room *li, int index)
 	{
 		tempo = temp;
 		while (temp->h_next != NULL)
-		{
 			temp = temp->h_next;
-			printf("%d\n", i++);
-		}
 		temp->h_next = li;
 		li->h_next = NULL;
 	}
@@ -98,10 +94,8 @@ void	fill_up_hashtable(t_data **data, t_room *li)
 
 void	hashtable_main(t_data **data, t_room *li)
 {
-	printf("%s================%s========================%s\n", "\x1B[33m", "HASHTABLE PART", "\x1B[0m");
 	(*data)->hash = 1;
 	create_hashtable(data);
 	fill_up_hashtable(data, li);
 	// print_hashtab(data);
-	printf("%s================   END ========================%s\n", "\x1B[33m", "\x1B[0m");
 }

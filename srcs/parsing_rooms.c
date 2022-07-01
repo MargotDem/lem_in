@@ -9,6 +9,8 @@ void   get_room(t_room **li, char *line, t_data **data)
     t_room  *element;
     printf("%s================%s========================%s\n\n", "\x1B[33m", "NODE CREATION", "\x1B[0m");
     element = new_node(line, 'n');
+    if (!element)
+        err_handling("new node");
     if (*li == NULL)
         *li = element;
     else
