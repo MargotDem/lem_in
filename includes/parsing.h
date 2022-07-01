@@ -105,5 +105,6 @@ void    mem_error(char *message, char *where, int line);
 /*MEM_HANDLING*/
 void    *ft_cleanstr(char **s, size_t i);
 void 	create_links(t_room *element,char *to, t_data **data);
+void	lets_free_all(t_data **data);
 
 #endif

@@ -44,17 +44,20 @@ static void    mapreader(int fd, t_room **li, t_data **data)
     while (get_next_line(fd, &line))
     {
         if (is_a_comment(line))
+        {
+            ft_strdel(&line);
             get_next_line(0, &line);
+        }
         line_dispatch[line_id(line, data/*, li*/)](li, line, data);
+        ft_strdel(&line);
     }
-    free(line); // remplacer par ft_cleanstr ou strdel
-    line = NULL;
 }
 
 
 int main(void)
 {
     t_room  *rooms;
+    t_room  *g_head;
     t_data  *data;
 
     rooms = NULL;
@@ -65,8 +68,14 @@ int main(void)
     // print_lst(rooms);
     // printf("Size list: %d\n", data->size_lst);
     print_connexion(&data);
-    free(data);
+    g_head = search_for(data->start_room, &data);
+    printf("\nROOM DE DEPART -> %s\n", rooms->room_name);
+    // free(data);
+    // free(rooms);
+    lets_free_all(&data);
     free(rooms);
+    free(data);
+    system ("leaks parsing");
     return (0);
 
 }

@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 19:52:47 by mde-maul          #+#    #+#              #
-#    Updated: 2022/06/09 10:54:12 by briffard         ###   ########.fr        #
+#    Updated: 2022/07/01 09:09:58 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all: $(NAME)
 
 $(NAME):
 	@echo "Compiling ..."
-	@$(CC) $(CFLAGS) -c -I ./ $(FILES)
+	@$(CC) $(CFLAGS) -c -I ./ $(FILES) -g
 	@ar rc $(NAME) $(O_FILES)
 	@ranlib $(NAME)
 	@echo "Libft.a created"

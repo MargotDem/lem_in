@@ -1,14 +1,45 @@
 #include "parsing.h"
 
+void	lets_free_all(t_data **data)
+{
+	int i;
+
+	i = 0;
+
+	while ( i < (*data)->size_lst)
+	{
+		if ((*data)->hashtab[i] != NULL)
+		{
+			while ((*data)->hashtab[i] != NULL)
+			{
+				ft_strdel(&(*data)->hashtab[i]->room_name);
+				free((*data)->hashtab[i]->links);
+				(*data)->hashtab[i] = (*data)->hashtab[i]->h_next;
+			}
+		}
+		free((*data)->hashtab[i]);
+		i++;
+	}
+	// free(rooms)
+	free((*data)->hashtab);
+	free((*data)->start_room);
+	(*data)->start_room =  NULL;
+
+	// i = 0;
+	// while (i < (*data)->size_lst)
+	// {
+	// 	free((*data)->hashtab[i]);
+	// 	i++;
+	// }
+}
+
 t_room **brealloc(t_room **links,t_room *to, int size_list)
 {
 	int x;
 	t_room **dst;
 
 	x = 0;
-	printf("VALEUR SL = %d\n", size_list);
 	dst = (t_room **)malloc(sizeof(t_room *) * size_list + sizeof(t_room *));
-	// printf("t_room ** dst created\n");
 	if (!dst)
 		mem_error("Creation dst fail", "parsing_handling.c", 13);
 	while ( x < size_list )
@@ -16,10 +47,7 @@ t_room **brealloc(t_room **links,t_room *to, int size_list)
 		dst[x] = links[x];
 		x++;
 	}
-	printf("index insert new pointer = %d\n", x);
 	dst[x] =  to;
-	dst[size_list + 1] =  NULL;
-	printf("Element added -> %s\n", dst[x]->room_name);
 	return (dst);
 }
 
@@ -53,9 +81,7 @@ void create_links(t_room *element,char *to, t_data **data)
 	}
 	else
 	{
-		printf("LinkK between %s et %s\n", element->room_name, temp->room_name);
 		element->links = brealloc(element->links, temp, element->size_links);
 		element->size_links += 1;
 	}
-	// printf("ELEMENT->links[1]-> %s\n", element->links[1]->room_name);
 }

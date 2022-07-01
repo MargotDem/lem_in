@@ -54,7 +54,7 @@ void add_links(t_data **data, char *from, char *to)
 	index =  hashing(from,(*data)->size_lst);
 	temp = (*data)->hashtab[index];
 	printf("========================\n");
-	printf("CONNEXION FROM %s to %s\n", from, to);
+	printf("CONNEXION FROM %s(%d) to %s\n", from, index, to);
 	while (ft_strcmp(from, temp->room_name) != 0)
 		temp = temp->h_next;
 	create_links(temp, to, data);

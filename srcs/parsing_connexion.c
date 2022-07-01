@@ -74,9 +74,8 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	}
 	else
 		printf("%sNOT OK%s\n", "\x1B[31m","\x1B[0m");
-	// printf("=======================================\n");
-	// free(conexion_1);
-	// free(conexion_2);
-	// conexion_1 = NULL;
-	// conexion_2 = NULL;
+	free(conexion_1);
+	free(conexion_2);
+	conexion_1 = NULL;
+	conexion_2 = NULL;
 }

@@ -59,4 +59,6 @@ void    get_command(t_room **li, char *line, t_data **data)
             (*data)->size_lst += 1;
         }
     }
+    free(line);
+    line = NULL;
 }

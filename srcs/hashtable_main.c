@@ -1,39 +1,8 @@
 #include "parsing.h"
 
-/*
-	hashs est un tableau de structure room au max size
-	chaque struct est positionnee a un index defnit par la fonction de hashage
-	si un un struct est deja presente sur l index
-	il faut l ajouter a la suite la structure deja presente 
-	mais que faire des index non utiliser
-	*/
-
-// void	print_hashtab(t_data **data)
-// {
-// 	int i = 0;
-// 	printf("HASHTABLE--------------------------\n");
-// 	while (i < (*data)->size_lst + 2)
-// 	{
-// 		printf("INDEX: %d\n", i);
-// 		printf("room name: %s\n", (*data)->hashtab[i].room_name);
-//         printf("Line: %d && Row: %d\n", (*data)->hashtab[i].line, (*data)->hashtab[i].row);
-//         if ((*data)->hashtab[i].room_end)
-//             printf("This is the ending room\n");
-//         else if ((*data)->hashtab[i].room_start)
-//             printf("This is the starting room\n");
-//         else
-//             printf("This is the normal room\n");
-
-//         printf("--------------------------------\n");
-// 		i++;
-// 	}
-// }
-
-
 void	create_hashtable(t_data **data)
 {
 	int	i;
-	// t_room hastab[size_lst];
 
 	i = 0;
 	(*data)->hashtab = malloc(sizeof(t_room) * ((*data)->size_lst));
@@ -41,7 +10,6 @@ void	create_hashtable(t_data **data)
 		mem_error("Creation hashtable","hastable_main.c", 39);
 	while (i < ((*data)->size_lst))
 	{
-		// (*data)->hashtab[i] = (t_room *) malloc(sizeof(t_room));
 		(*data)->hashtab[i] =  NULL;
 		i++;
 	}
@@ -66,6 +34,7 @@ t_room	*insert_room(t_data **data, t_room *li, int index)
 {
 	t_room *temp;
 	t_room *tempo;
+	
 	tempo = NULL;
 	int i = 0;
 	temp = (*data)->hashtab[index];
