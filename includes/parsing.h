@@ -62,8 +62,6 @@ int is_a_connexion(char *line, int active_room);
 int		existing_room(char *conexion, t_data **hashtab);
 void 	add_links(t_data **data, char *from, char *to);
 t_room 	*search_for(char *connexion, t_data **data);
-// int     check_if_room_exist(t_room **h_tab, char *line, int size);
-// void	add_connexion(char *line, t_data **data);
 int		index_of_chr(char *str, char c);
 void	print_connexion(t_data **data);
 
@@ -77,10 +75,6 @@ int     is_a_command(char *line);
 /*HASHTABLE_MAIN*/
 void				hashtable_main(t_data **data, t_room *li);
 unsigned long		hashing(char *str, unsigned int size);
-
-
-// /*BINARY TREE*/ NO NEED Decide to change for HASHTABLE
-// t_room *createtree(t_room **li, int size_lst);
 
 /*UTILS*/
 int	    countwords(char const *s, char c);

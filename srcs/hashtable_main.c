@@ -102,6 +102,6 @@ void	hashtable_main(t_data **data, t_room *li)
 	(*data)->hash = 1;
 	create_hashtable(data);
 	fill_up_hashtable(data, li);
-	print_hashtab(data);
+	// print_hashtab(data);
 	printf("%s================   END ========================%s\n", "\x1B[33m", "\x1B[0m");
 }

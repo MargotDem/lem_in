@@ -67,15 +67,12 @@ int main(void)
     // printf("There is %d ants\n", data->ants);
     // print_lst(rooms);
     // printf("Size list: %d\n", data->size_lst);
-    print_connexion(&data);
+    // print_connexion(&data);
     g_head = search_for(data->start_room, &data);
-    printf("\nROOM DE DEPART -> %s\n", rooms->room_name);
-    // free(data);
-    // free(rooms);
+    printf("\nROOM DE DEPART -> %s\n", g_head->room_name);
     lets_free_all(&data);
     free(rooms);
     free(data);
-    system ("leaks parsing");
     return (0);
 
 }

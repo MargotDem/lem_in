@@ -42,7 +42,7 @@ void    get_command(t_room **li, char *line, t_data **data)
     {
         get_next_line(0, &line);
         if (is_a_room(line, 0))
-        {           
+        {    
             element = new_node(line, 's');
             *li = push(*li, element);
             (*data)->size_lst += 1;
