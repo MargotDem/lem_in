@@ -81,6 +81,7 @@ int main(void)
 
     rooms = NULL;
     data = NULL;
+	g_head = NULL;
 
     mapreader(0, &rooms, &data);
     //On verifie si on a assez de donnee pour 
@@ -93,6 +94,7 @@ int main(void)
     // print_lst(rooms);
     // printf("Size list: %d\n", data->size_lst);
     // print_connexion(&data);
+	printf("here is the start room: %s\n", g_head->room_name);
     lets_free_all(&data);
     free(rooms);
     free(data);

@@ -4,6 +4,7 @@ static int  basic_roomcheck(char *line, int active_connextion);
 static int  shape_roomcheck(char *line);
 static int  word_roomcheck(char *line);
 
+// marg can we rebaptize li into rooms plz
 void   get_room(t_room **li, char *line, t_data **data)
 {
     t_room  *element;

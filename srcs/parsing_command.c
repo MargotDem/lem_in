@@ -49,6 +49,8 @@ void    get_command(t_room **li, char *line, t_data **data)
             (*data)->size_lst += 1;
             (*data)->start_room = extract_name(line);
         }
+		// marg should we display an error message if we have
+		// the start comment but no room afterwards? same for end
     }
     else if (check_command(&line[2], "end"))
     {

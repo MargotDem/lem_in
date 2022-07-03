@@ -58,6 +58,7 @@ void add_links(t_data **data, char *from, char *to)
 	create_links(temp, to, data);
 }
 
+// marg rename room_exists and rename conexion to room?
 int	existing_room(char *conexion, t_data **data)
 {
 	int count;

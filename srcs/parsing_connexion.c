@@ -79,7 +79,10 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	if(!conexion_1 || !conexion_2)
 		err_handling("malloc");
 	if(existing_room(conexion_1,data) && existing_room(conexion_2, data))
-	{	
+	{
+		// marg here it would be faster to fetch conexion_1 and conexion_2 in the hashtable once and then
+		// pass them to add_links
+		// rename add_links to add_link ?
 		add_links(data, conexion_1, conexion_2);
 		add_links(data, conexion_2, conexion_1);
 	}

@@ -41,9 +41,10 @@ t_room **brealloc(t_room **links,t_room *to, int size_list)
 	t_room **dst;
 
 	x = 0;
+	// marg : malloc(sizeof(t_room *) * (size_list + 1));
 	dst = (t_room **)malloc(sizeof(t_room *) * size_list + sizeof(t_room *));
 	if (!dst)
-		err_handling("mallloc");
+		err_handling("malloc");
 	while ( x < size_list )
 	{   
 		dst[x] = links[x];
@@ -67,11 +68,13 @@ void    *ft_cleanstr(char **s, size_t i)
 	return (NULL);
 }
 
-void create_links(t_room *element,char *to, t_data **data)
+// marg rename to create_link ? and rename element and to into room_1 and room_2 or room and link_room 
+void create_links(t_room *element, char *to, t_data **data)
 {
 	
 	int i;
 	t_room *temp;
+	// marg why not use the hashtable here as well
 	temp = search_for(to,data);
 
 	i = 0;
