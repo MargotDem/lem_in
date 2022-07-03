@@ -2,6 +2,7 @@
 
 void	lets_free_all(t_data **data)
 {
+	// marg : if data isnt modified in here we can just pass *data and not **data
 	int i;
 
 	i = 0;
@@ -23,6 +24,7 @@ void	lets_free_all(t_data **data)
 	// free(rooms)
 	free((*data)->hashtab);
 	free((*data)->start_room);
+	// marg what about (*data)->exit_room
 	(*data)->start_room =  NULL;
 
 	// i = 0;

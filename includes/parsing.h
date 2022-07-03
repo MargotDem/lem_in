@@ -5,6 +5,7 @@
 # include "libft.h"
 # include <stdio.h>
 # include <string.h>
+// marg already in lem_in.h
 # include <fcntl.h>
 # include <unistd.h>
 
@@ -56,6 +57,7 @@ static t_line_dispatcher line_dispatch[3] = {
 int get_ants();
 
 /*PARSING_ROOMS*/
+// marg rename is_room and is_connection ?
 int is_a_room(char *line, int  active_connextion);
 
 /*PARSING_CONNEXION*/
@@ -73,6 +75,7 @@ void	print_connexion(t_data **data);
 int      line_id(char *line, t_data **data/*, t_room **li*/);
 
 /*PARSING_COMMAND*/
+// marg rename is_command ?
 int     is_a_command(char *line);
 
 /*HASHTABLE_MAIN*/
@@ -104,6 +107,7 @@ void 	err_mes(char *message);
 /*MEM_HANDLING*/
 void    *ft_cleanstr(char **s, size_t i);
 void 	create_links(t_room *element,char *to, t_data **data);
+// marg rename free all 
 void	lets_free_all(t_data **data);
 int    check_data(t_data **data);
 

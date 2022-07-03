@@ -1,10 +1,12 @@
 #include "parsing.h"
 
+// marg why
 static void     mapreader(int fd, t_room **li, t_data **data);
 static int      is_a_comment(char *line);
 static void     set_data(t_data **data);
 
 /*Set value in struc data to 0*/
+// marg rename init_data ? and no need to pass **data only *data
 static void     set_data(t_data **data)
 {
     (*data)->room_part = 0;
@@ -34,6 +36,7 @@ int      line_id(char *line, t_data **data/*, t_room **li*/)
     return (3);
 }
 
+// marg can we rename li to rooms
 static void    mapreader(int fd, t_room **li, t_data **data)
 {
     char *line;
@@ -41,11 +44,13 @@ static void    mapreader(int fd, t_room **li, t_data **data)
 
     id = 0;
     line = NULL;
+	// marg sizeof t_data ?
     (*data) = (t_data *)malloc(sizeof(**data));
     if (!(*data))
         err_handling("malloc");
     set_data(data);
     (*data)->ants = get_ants();
+	// marg why check data if ants == 0, shouldnt we just exit or display error ?
     if ((*data)->ants == 0)//pas la bonne idee !!!
         check_data(data);
     while (get_next_line(fd, &line))
@@ -61,6 +66,7 @@ static void    mapreader(int fd, t_room **li, t_data **data)
             ft_strdel(&line);
             break;
         }
+		// marg if the ptr to data is never changed anywhere (is it?) then we dont need to pass t_data **data
         line_dispatch[id](li, line, data);
         ft_strdel(&line);
     }

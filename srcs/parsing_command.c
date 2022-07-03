@@ -19,6 +19,7 @@ static int check_command(char *line, char *command)
 
 static int command_id(char *line)
 {
+	// marg ft_strncmp
     if (check_command(line, "start") || check_command(line, "end"))
             return (1);
     return (0);

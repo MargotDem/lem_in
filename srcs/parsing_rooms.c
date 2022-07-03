@@ -11,6 +11,7 @@ void   get_room(t_room **li, char *line, t_data **data)
     element = new_node(line, 'n');
     if (!element)
         err_handling("new node");
+	// marg the push function already checks if li == null return element
     if (*li == NULL)
         *li = element;
     else

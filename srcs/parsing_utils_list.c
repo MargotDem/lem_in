@@ -71,6 +71,7 @@ t_room  *new_node(char *line, char c)
     return (node);
 }
 
+// marg rename push_t_room?
 t_room  *push(t_room *li, t_room *element)
 {
     t_room  *head;
