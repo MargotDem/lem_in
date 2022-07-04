@@ -70,6 +70,8 @@ int	check_word(char **arr)
 
 	i = 0;
 	x = 0;
+	//if (!arr)
+		//return (1);
 	while (arr[i][x] != '\0')
     {
         x = 0;
@@ -87,7 +89,7 @@ int	check_word(char **arr)
 			}
             x++;
         }
-    i++;
+    	i++;
     }
 	return (0);
 }
