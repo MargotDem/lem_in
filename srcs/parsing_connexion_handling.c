@@ -33,30 +33,33 @@ void	print_connexion(t_data **data)
 	}
 }
 
-t_room *search_for(char *connexion, t_data **data)
+/*Change **data to *data*/
+t_room *search_for(char *connexion, t_data *data)
 {
 	unsigned long index;
 	t_room *temp;
 
-	index = hashing(connexion,(*data)->size_lst);
-	temp = (*data)->hashtab[index];
+	index = hashing(connexion,data->size_lst);
+	temp = data->hashtab[index];
 	while (ft_strcmp(connexion, temp->name) != 0 && temp != NULL)
 		temp = temp->h_next;
 	return (temp);
 }
 
-void add_links(t_data **data, char *from, char *to)
-{
-	
-	int index;
-	t_room *temp;
 
-	index =  hashing(from,(*data)->size_lst);
-	temp = (*data)->hashtab[index];
-	while (ft_strcmp(from, temp->name) != 0)
-		temp = temp->h_next;
-	create_links(temp, to, data);
-}
+/*bapt : No need fr this function anymore*/
+// void add_links(t_data **data, char *from, char *to)
+// {
+	
+// 	int index;
+// 	t_room *temp;
+
+// 	index =  hashing(from,(*data)->size_lst);
+// 	temp = (*data)->hashtab[index];
+// 	while (ft_strcmp(from, temp->name) != 0)
+// 		temp = temp->h_next;
+// 	create_links(temp, to, data);
+// }
 
 // marg rename room_exists and rename conexion to room?
 int	existing_room(char *conexion, t_data **data)

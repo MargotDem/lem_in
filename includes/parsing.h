@@ -54,29 +54,27 @@ static t_line_dispatcher line_dispatch[3] = {
 
 /*PROTOTYPE*/
 /*PARSING_ANTS*/
-int get_ants();
+int 		get_ants(t_data *data);
 
 /*PARSING_ROOMS*/
-// marg rename is_room and is_connection ?
-int is_a_room(char *line, int  active_connextion);
+int 		is_room(char *line, int  active_connextion);
 
 /*PARSING_CONNEXION*/
-int is_a_connexion(char *line, int active_room);
+int 		is_connexion(char *line, int active_room);
 
 /*PARSING_CONNEXION_HANDLING*/
-int		existing_room(char *conexion, t_data **hashtab);
-void 	add_links(t_data **data, char *from, char *to);
-t_room 	*search_for(char *connexion, t_data **data);
-int		index_of_chr(char *str, char c);
-void	print_connexion(t_data **data);
+int			existing_room(char *conexion, t_data **hashtab);
+// void 	add_links(t_data **data, char *from, char *to);
+t_room 		*search_for(char *connexion, t_data *data);
+int			index_of_chr(char *str, char c);
+void		print_connexion(t_data **data);
 
 
 /*PARSING_MAIN*/
-int      line_id(char *line, t_data **data/*, t_room **li*/);
+int      line_id(char *line, t_data *data/*, t_room **li*/);
 
 /*PARSING_COMMAND*/
-// marg rename is_command ?
-int     is_a_command(char *line);
+int     is_command(char *line);
 
 /*HASHTABLE_MAIN*/
 void				hashtable_main(t_data **data, t_room *li);
@@ -96,7 +94,7 @@ t_room  *set_startorend(t_room *element, char c);
 
 /*UTILS_LIST*/
 t_room  *new_node(char *line, char c);
-t_room  *push(t_room *li, t_room *element);
+t_room  *push_t_room(t_room *room, t_room *element);
 void    print_lst(t_room *li);
 
 /*ERROR*/
@@ -106,10 +104,9 @@ void 	err_mes(char *message);
 
 /*MEM_HANDLING*/
 void    *ft_cleanstr(char **s, size_t i);
-void 	create_links(t_room *element,char *to, t_data **data);
-// marg rename free all 
-void	lets_free_all(t_data **data);
-int    check_data(t_data **data);
+void 	create_link(t_room *room_1,t_room *room_2);
+void	free_all(t_data **data);
+int    	check_data(t_data *data);
 
 void solve(t_room *start, t_data *data);
 
