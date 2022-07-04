@@ -58,9 +58,7 @@ void solve(t_room *start, t_data *data)
 	printf("\n\nTHE PATHS ARE:\n\n");
 	print_paths(optimal_paths);
 	display_result(optimal_paths, nb_ants);
-	//visualizer(graph, nb_ants, optimal_paths);
-
-
+	visualizer(start, nb_ants, optimal_paths);
 
 	printf("\n\n\n\n");
 }

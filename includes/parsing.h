@@ -15,8 +15,8 @@
 /*STRUCTURE*/
 typedef struct s_room{
 	char *name;
-	int line;
-	int row;
+	int x;
+	int y;
 	int room_start;
 	int room_end;
 	int nb_links;

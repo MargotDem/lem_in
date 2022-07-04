@@ -12,7 +12,7 @@ void    print_lst(t_room *li)
     while (li != NULL)
     {
         printf("room name: %s\n", li->name);
-        printf("Line: %d && Row: %d\n", li->line, li->row);
+        printf("Line: %d && Row: %d\n", li->x, li->y);
         if (li->room_end)
             printf("This is the ending room\n");
         else if (li->room_start)
@@ -62,12 +62,12 @@ t_room  *new_node(char *line, char c)
     if (!node)
         err_handling("malloc");
     node->name = extract_name(line);
-    node->line = extract_line(line);
-    node->row = extract_row(line);
+    node->x = extract_line(line);
+    node->y = extract_row(line);
     node->nb_links = 0;
     node = set_startorend(node, c);
     node = set_null_pointer(node);
-    printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->name, node->line, node->row);
+    printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->name, node->x, node->y);
     return (node);
 }
 
