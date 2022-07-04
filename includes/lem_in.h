@@ -79,6 +79,7 @@ typedef struct s_mlx_win {
 	size_t	scale;
 	size_t	margin;
 	int	room_color;
+	char	**start_and_end;
 }	t_mlx_win;
 
 // Handle errors
@@ -111,9 +112,9 @@ void	copy_path(t_paths *original, t_paths **copy);
 void	set_paths_size(t_paths *paths);
 
 // Path functions 2
-void	find_all_paths(t_room *node, t_paths **potential_paths, t_room **history);
-void	find_optimal_paths(t_room *graph, t_paths **paths, size_t nb_ants);
-void	select_optimal_paths(t_paths *all_paths, t_paths **paths, size_t nb_ants);
+void	find_all_paths(t_room *node, t_paths **potential_paths, t_room **history, char *end);
+void	find_optimal_paths(t_room *graph, t_paths **paths, size_t nb_ants, char **start_and_end);
+void	select_optimal_paths(t_paths *all_paths, t_paths **paths, size_t nb_ants, char *start, char *end);
 
 // Display result
 void	display_result(t_paths *paths, size_t nb_ants);
@@ -135,7 +136,7 @@ void	make_graph6(t_graph **graph);
 void	distribute_ants(t_paths *paths, size_t nb_ants);
 
 // Visualizer
-void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths);
+void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **start_and_end);
 
 char	*get_room_name(t_paths *path_ptr, int room_nb);
 

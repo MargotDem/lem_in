@@ -177,7 +177,7 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 	{
 		x = node_to_find->x * scale + margin;
 		y = node_to_find->y * scale + margin;
-		if (strings_match(name, "start") || strings_match(name, "end"))
+		if (strings_match(name, mlx_win->start_and_end[0]) || strings_match(name, mlx_win->start_and_end[1]))
 		{
 			ant_size = 3;
 			x += ant_nb * ant_size * 3 - 15;
@@ -327,7 +327,7 @@ static void	initialize_ants_positions(t_paths *paths)
 
 
 
-void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths)
+void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **start_and_end)
 {
 	t_mlx_win	*mlx_win;
 	t_room	*history[100];
@@ -350,6 +350,7 @@ void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths)
 	mlx_win->scale = 30;
 	mlx_win->margin = 40;
 	mlx_win->room_color = 0xd1c4ff;
+	mlx_win->start_and_end = start_and_end;
 	printf("nb of turns is %zu\n", mlx_win->max_turns);
 	color_background(mlx_win);
 	reset_history(history);

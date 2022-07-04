@@ -55,14 +55,14 @@ void	add_path_to_list(t_paths **all_paths, t_room **history)
 		lst_add_back((t_void_list *)*all_paths, (t_void_list *)path_el);
 }
 
-void	find_all_paths(t_room *node, t_paths **all_paths, t_room **history)
+void	find_all_paths(t_room *node, t_paths **all_paths, t_room **history, char *end)
 {
 	size_t	nb_links;
 	t_room	**links;
 	size_t	i;
 
 	// TODO change this to real end
-	if (strings_match(node->name, "end"))
+	if (strings_match(node->name, end))
 	{
 		add_path_to_list(all_paths, history);
 		return ;
@@ -75,14 +75,14 @@ void	find_all_paths(t_room *node, t_paths **all_paths, t_room **history)
 		if (not_in_history(links[i], history))
 		{
 			push_history(history, links[i]);
-			find_all_paths(links[i], all_paths, history);
+			find_all_paths(links[i], all_paths, history, end);
 			pop_history(history);
 		}
 		i++;
 	}
 }
 
-int		paths_intersect(t_path_node *path1, t_path_node *path2)
+int		paths_intersect(t_path_node *path1, t_path_node *path2, char *start, char *end)
 {
 	t_path_node	*path;
 
@@ -91,10 +91,9 @@ int		paths_intersect(t_path_node *path1, t_path_node *path2)
 		path = path2;
 		while (path)
 		{
-			// TODO replace start and end with actual start and end room names
 			if (strings_match(path->node->name, path1->node->name) && \
-				(!strings_match(path->node->name, "start") && \
-				(!strings_match(path->node->name, "end"))))
+				(!strings_match(path->node->name, start) && \
+				(!strings_match(path->node->name, end))))
 				return (1);
 			path = path->next;
 		}
@@ -103,7 +102,7 @@ int		paths_intersect(t_path_node *path1, t_path_node *path2)
 	return (0);
 }
 
-void	remove_intersecting_paths(t_paths **all_paths, t_paths *shortest)
+void	remove_intersecting_paths(t_paths **all_paths, t_paths *shortest, char *start, char *end)
 {
 	t_paths	*prev;
 	t_paths	*cur;
@@ -114,7 +113,7 @@ void	remove_intersecting_paths(t_paths **all_paths, t_paths *shortest)
 	while (cur)
 	{
 		next = cur->next;
-		if (paths_intersect(cur->path, shortest->path))
+		if (paths_intersect(cur->path, shortest->path, start, end))
 		{
 			remove_from_list((t_void_list **)all_paths, (t_void_list *)cur, (t_void_list *)prev);
 			// free the list cur->path
@@ -153,14 +152,14 @@ void	get_shortest(t_paths *all_paths, t_paths **shortest_and_prev)
 	shortest_and_prev[1] = shortest_prev;
 }
 
-int	paths_intersect_with_shortest(t_paths *all_paths, t_paths *shortest)
+int	paths_intersect_with_shortest(t_paths *all_paths, t_paths *shortest, char *start, char *end)
 {
 	size_t	nb_intersecting;
 
 	nb_intersecting = 0;
 	while (all_paths)
 	{
-		if (paths_intersect(shortest->path, all_paths->path))
+		if (paths_intersect(shortest->path, all_paths->path, start, end))
 			nb_intersecting++;
 		all_paths = all_paths->next;
 	}
@@ -169,7 +168,7 @@ int	paths_intersect_with_shortest(t_paths *all_paths, t_paths *shortest)
 	return (1);
 }
 
-void	select_optimal_paths(t_paths *all_paths, t_paths **optimal_paths, size_t nb_ants)
+void	select_optimal_paths(t_paths *all_paths, t_paths **optimal_paths, size_t nb_ants, char *start, char *end)
 {
 	t_paths	*shortest;
 	t_paths	*shortest_prev;
@@ -189,14 +188,14 @@ void	select_optimal_paths(t_paths *all_paths, t_paths **optimal_paths, size_t nb
 
 	shortest->next = NULL;
 
-	if (paths_intersect_with_shortest(all_paths, shortest))
+	if (paths_intersect_with_shortest(all_paths, shortest, start, end))
 	{
 		//copy all paths and optimal paths
 		copy_path(all_paths, &all_paths_copy);
 		copy_path(*optimal_paths, &optimal_paths_copy);
 
 		// simulation one:
-		select_optimal_paths(all_paths, optimal_paths, nb_ants);
+		select_optimal_paths(all_paths, optimal_paths, nb_ants, start, end);
 		distribute_ants(*optimal_paths, nb_ants);
 
 		// simulation of the alternative
@@ -206,8 +205,8 @@ void	select_optimal_paths(t_paths *all_paths, t_paths **optimal_paths, size_t nb
 		else
 			lst_add_back((t_void_list *)optimal_paths_copy, (t_void_list *)shortest);
 
-		remove_intersecting_paths(&all_paths_copy, shortest);
-		select_optimal_paths(all_paths_copy, &optimal_paths_copy, nb_ants);
+		remove_intersecting_paths(&all_paths_copy, shortest, start, end);
+		select_optimal_paths(all_paths_copy, &optimal_paths_copy, nb_ants, start, end);
 		distribute_ants(optimal_paths_copy, nb_ants);
 
 		if (optimal_paths_copy->path_size + optimal_paths_copy->nb_ants <= (*optimal_paths)->path_size + (*optimal_paths)->nb_ants)
@@ -230,19 +229,23 @@ void	select_optimal_paths(t_paths *all_paths, t_paths **optimal_paths, size_t nb
 			*optimal_paths = shortest;
 		else
 			lst_add_back((t_void_list *)*optimal_paths, (t_void_list *)shortest);
-		remove_intersecting_paths(&all_paths, shortest);
-		select_optimal_paths(all_paths, optimal_paths, nb_ants);
+		remove_intersecting_paths(&all_paths, shortest, start, end);
+		select_optimal_paths(all_paths, optimal_paths, nb_ants, start, end);
 	}
 }
 
-void	find_optimal_paths(t_room *graph, t_paths **optimal_paths, size_t nb_ants)
+void	find_optimal_paths(t_room *graph, t_paths **optimal_paths, size_t nb_ants, char **start_and_end)
 {
 	t_paths	*all_paths;
 	t_room	*history[100];
+	char	*start;
+	char	*end;
 
 	reset_history(history);
 	push_history(history, graph);
 	all_paths = NULL;
-	find_all_paths(graph, &all_paths, history);
-	select_optimal_paths(all_paths, optimal_paths, nb_ants);
+	start = start_and_end[0];
+	end = start_and_end[1];
+	find_all_paths(graph, &all_paths, history, end);
+	select_optimal_paths(all_paths, optimal_paths, nb_ants, start, end);
 }
