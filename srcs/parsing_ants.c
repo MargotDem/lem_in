@@ -1,6 +1,6 @@
 #include "parsing.h"
 
-int     get_ants()
+int     get_ants(t_data *data)
 {
     int ants;
     char *line;
@@ -8,8 +8,8 @@ int     get_ants()
     line = NULL;
     get_next_line(0, &line);
     ants = ft_atoi(line);
-	// marg should we have a util or libft function to free(ptr) and then ptr = NULL ?
-    free(line);
-    line = NULL;
+    ft_strdel(&line);
+    if (ants == 0)
+        check_data(data);
     return (ants);
 }

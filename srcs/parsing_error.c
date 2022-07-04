@@ -24,4 +24,5 @@ void    err_handling(char *s)
 void err_mes(char *message)
 {
     write(2, message, ft_strlen(message));
+    exit(EXIT_FAILURE);
 }

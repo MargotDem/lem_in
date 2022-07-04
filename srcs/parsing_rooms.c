@@ -4,22 +4,15 @@ static int  basic_roomcheck(char *line, int active_connextion);
 static int  shape_roomcheck(char *line);
 static int  word_roomcheck(char *line);
 
-// marg can we rebaptize li into rooms plz
-void   get_room(t_room **li, char *line, t_data **data)
+void   get_room(t_room **room, char *line, t_data **data)
 {
     t_room  *element;
-    printf("%s================%s========================%s\n\n", "\x1B[33m", "NODE CREATION", "\x1B[0m");
     element = new_node(line, 'n');
     if (!element)
         err_handling("new node");
-	// marg the push function already checks if li == null return element
-    if (*li == NULL)
-        *li = element;
-    else
-        *li = push(*li, element);
+    *room = push_t_room(*room, element);
     (*data)->size_lst += 1;
     (*data)->room_part = 1;
-    printf("\n%s================   END ========================%s\n", "\x1B[33m", "\x1B[0m");
 }
 
 static int  basic_roomcheck(char *line, int active_connextion)
@@ -76,7 +69,7 @@ static int  word_roomcheck(char *line)
     return (0);
 }
 
-int is_a_room(char *line, int active_connextion)
+int is_room(char *line, int active_connextion)
 {
     if(basic_roomcheck(line, active_connextion))
         return(0);

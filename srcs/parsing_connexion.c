@@ -48,7 +48,7 @@ static int shape_connexioncheck(char *line)
 	return (0);
 }
 
-int is_a_connexion(char *line, int active_room)
+int is_connexion(char *line, int active_room)
 {
 	/*
 	**checker si connexion est ( b-v-f)
@@ -66,7 +66,8 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 {
 	char *conexion_1;
 	char *conexion_2;
-
+	t_room *from;
+	t_room *to;
 	/*
 	**checker si connexion est ( b-v-f)
 	** verifier si c est B-v to f or b to v-f
@@ -78,16 +79,15 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	conexion_2 = ft_strdup(&line[(index_of_chr(line, '-')) + 1]);
 	if(!conexion_1 || !conexion_2)
 		err_handling("malloc");
-	if(existing_room(conexion_1,data) && existing_room(conexion_2, data))
-	{
-		// marg here it would be faster to fetch conexion_1 and conexion_2 in the hashtable once and then
-		// pass them to add_links
-		// rename add_links to add_link ?
-		add_links(data, conexion_1, conexion_2);
-		add_links(data, conexion_2, conexion_1);
-	}
+	from = search_for(conexion_1,*data);
+	to = search_for(conexion_2, *data);
+	if(!from || !to)
+		printf("%sSend to solver%s\n", "\x1B[31m","\x1B[0m");
 	else
-		printf("%sNOT OK%s\n", "\x1B[31m","\x1B[0m");
+	{
+		create_link(from, to/*, data*/);
+		create_link(to, from/*, data*/);
+	}
 	ft_strdel(&conexion_1);
 	ft_strdel(&conexion_2);
 }

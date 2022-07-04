@@ -1,8 +1,9 @@
 #include "parsing.h"
 
-void	lets_free_all(t_data **data)
+void	free_all(t_data **data)
 {
 	// marg : if data isnt modified in here we can just pass *data and not **data
+	// bapt: I was thinking that because we are freeing we will need  **data
 	int i;
 
 	i = 0;
@@ -21,18 +22,12 @@ void	lets_free_all(t_data **data)
 		free((*data)->hashtab[i]);
 		i++;
 	}
-	// free(rooms)
+
 	free((*data)->hashtab);
 	free((*data)->start_room);
-	// marg what about (*data)->exit_room
+	free((*data)->exit_room);
+	(*data)->exit_room = NULL;
 	(*data)->start_room =  NULL;
-
-	// i = 0;
-	// while (i < (*data)->size_lst)
-	// {
-	// 	free((*data)->hashtab[i]);
-	// 	i++;
-	// }
 }
 
 t_room **brealloc(t_room **links,t_room *to, int size_list)
@@ -42,6 +37,7 @@ t_room **brealloc(t_room **links,t_room *to, int size_list)
 
 	x = 0;
 	// marg : malloc(sizeof(t_room *) * (size_list + 1));
+	// bapt : + 1 is for the extra I need to make it dynamic
 	dst = (t_room **)malloc(sizeof(t_room *) * size_list + sizeof(t_room *));
 	if (!dst)
 		err_handling("malloc");
@@ -68,25 +64,18 @@ void    *ft_cleanstr(char **s, size_t i)
 	return (NULL);
 }
 
-// marg rename to create_link ? and rename element and to into room_1 and room_2 or room and link_room 
-void create_links(t_room *element, char *to, t_data **data)
+void create_link(t_room *room_1, t_room *room_2)
 {
 	
-	int i;
-	t_room *temp;
-	// marg why not use the hashtable here as well
-	temp = search_for(to,data);
-
-	i = 0;
-	if(element->links[0] == NULL)
+	if(room_1->links[0] == NULL)
 	{
-		element->links[0] = temp;
-		element->links[1] =  NULL;
-		element->size_links = 1;
+		room_1->links[0] = room_2;
+		room_1->links[1] =  NULL;
+		room_1->size_links = 1;
 	}
 	else
 	{
-		element->links = brealloc(element->links, temp, element->size_links);
-		element->size_links += 1;
+		room_1->links = brealloc(room_1->links, room_2, room_1->size_links);
+		room_1->size_links += 1;
 	}
 }

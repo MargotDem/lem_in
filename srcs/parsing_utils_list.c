@@ -46,10 +46,6 @@ static t_room   *set_null_pointer(t_room *element)
         err_handling("malloc");
     element->links[0] =  NULL;
     element->links[1] =  NULL;
-
-    // element->rigth = NULL;
-    // element->parent = NULL;
-    // element->treehead = NULL;
     return (element);
 }
 
@@ -71,27 +67,26 @@ t_room  *new_node(char *line, char c)
     return (node);
 }
 
-// marg rename push_t_room?
-t_room  *push(t_room *li, t_room *element)
+t_room  *push_t_room(t_room *room, t_room *element)
 {
     t_room  *head;
 
-    if (li == NULL)
+    if (room == NULL)
         return (element);
-    head = li;
-    if (ft_strcmp(li->room_name, element->room_name) > 0)
+    head = room;
+    if (ft_strcmp(room->room_name, element->room_name) > 0)
     {
-        element->next = li;
-        li = element;
-        return (li);
+        element->next = room;
+        room = element;
+        return (room);
     }
-    while (li->next !=  NULL)
+    while (room->next !=  NULL)
     {
-        if (ft_strcmp(li->room_name, element->room_name) < 0 &&\
-        ft_strcmp(element->room_name, li->next->room_name) < 0)
+        if (ft_strcmp(room->room_name, element->room_name) < 0 &&\
+        ft_strcmp(element->room_name, room->next->room_name) < 0)
             break;
-        li = li->next;
+        room = room->next;
     }
-    li = set_pointer(li, element);
+    room = set_pointer(room, element);
     return (head);
 }
