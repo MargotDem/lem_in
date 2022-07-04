@@ -5,7 +5,7 @@
 
 // /*STRUCTURE*/
 // typedef struct s_room{
-// 	char *room_name;
+// 	char *name;
 //     int line;
 //     int row;
 	

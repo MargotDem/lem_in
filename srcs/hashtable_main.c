@@ -68,7 +68,7 @@ void	print_hashtab(t_data **data)
 		{
 			while (temp != NULL)
 			{
-				printf("VALEUR -> %s || INDEX -> %d\n", temp->room_name, i);
+				printf("VALEUR -> %s || INDEX -> %d\n", temp->name, i);
 				temp = temp->h_next;
 			}
 		}
@@ -85,7 +85,7 @@ void	fill_up_hashtable(t_data **data, t_room *li)
 	hash_index = 0;
 	while (temp != NULL)
 	{
-		hash_index = hashing(temp->room_name, (*data)->size_lst );
+		hash_index = hashing(temp->name, (*data)->size_lst );
 		(*data)->hashtab[hash_index] = insert_room(data, temp, hash_index);
 		temp = temp->next;
 	}

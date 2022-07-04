@@ -17,11 +17,11 @@ CC		=	gcc
 CCFLAGS	=	-Werror -Wextra -Wall
 
 #INCLUDE
-INCL_LFT	= -I ./libft/
+INCL_LFT	= -I ./libft/ -I/usr/local/include
 INCL_PARS	= -I ./includes/ 
 
 #LIBRAIRIE
-LIB		= -L ./libft/ -lft
+LIB		= -L ./libft/ -lft -L /usr/local/lib -lmlx
 
 #CLEAN & FCLEAN
 RM_DIR	=	rm -rf
@@ -35,8 +35,13 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			parsing_connexion_handling.c \
 			parsing_out_to_solver.c \
 			hashtable_main.c \
+			handle_error.c graph_array.c graph_functions.c \
+			history_functions.c display_result.c \
+			list_functions.c paths_functions1.c paths_functions2.c \
+			helpers.c visualizer.c \
 			#parsing_tree \
-		
+
+FRAMEWORKS = -framework OpenGL -framework Appkit
 
 #OBJECT FILES
 OBJ_DIR			=	./objectFiles/
@@ -45,7 +50,7 @@ OBJS			=	$(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 all: $(NAME) $(LIBFT)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) -g
+	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(FRAMEWORKS) -g
 	
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)

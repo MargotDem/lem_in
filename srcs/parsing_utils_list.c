@@ -11,7 +11,7 @@ void    print_lst(t_room *li)
     temp = li;
     while (li != NULL)
     {
-        printf("room name: %s\n", li->room_name);
+        printf("room name: %s\n", li->name);
         printf("Line: %d && Row: %d\n", li->line, li->row);
         if (li->room_end)
             printf("This is the ending room\n");
@@ -61,13 +61,13 @@ t_room  *new_node(char *line, char c)
     node = malloc(sizeof(*node));
     if (!node)
         err_handling("malloc");
-    node->room_name = extract_name(line);
+    node->name = extract_name(line);
     node->line = extract_line(line);
     node->row = extract_row(line);
-    node->size_links = 0;
+    node->nb_links = 0;
     node = set_startorend(node, c);
     node = set_null_pointer(node);
-    printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->room_name, node->line, node->row);
+    printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->name, node->line, node->row);
     return (node);
 }
 
@@ -79,7 +79,7 @@ t_room  *push(t_room *li, t_room *element)
     if (li == NULL)
         return (element);
     head = li;
-    if (ft_strcmp(li->room_name, element->room_name) > 0)
+    if (ft_strcmp(li->name, element->name) > 0)
     {
         element->next = li;
         li = element;
@@ -87,8 +87,8 @@ t_room  *push(t_room *li, t_room *element)
     }
     while (li->next !=  NULL)
     {
-        if (ft_strcmp(li->room_name, element->room_name) < 0 &&\
-        ft_strcmp(element->room_name, li->next->room_name) < 0)
+        if (ft_strcmp(li->name, element->name) < 0 &&\
+        ft_strcmp(element->name, li->next->name) < 0)
             break;
         li = li->next;
     }

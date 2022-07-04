@@ -94,11 +94,12 @@ int main(void)
     // print_lst(rooms);
     // printf("Size list: %d\n", data->size_lst);
     // print_connexion(&data);
-	printf("here is the start room: %s\n", g_head->room_name);
+	printf("here is the start room: %s\n", g_head->name);
+	solve(g_head, data);
+
     lets_free_all(&data);
     free(rooms);
     free(data);
+
     return (0);
-
 }
-
