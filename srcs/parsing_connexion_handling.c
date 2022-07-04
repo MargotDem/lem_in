@@ -13,16 +13,16 @@ void	print_connexion(t_data **data)
 		{
 			while (temp != NULL)
 			{
-				printf("\nROOM NAME: %s || index %d\n", temp->room_name, i);
-				printf("\tConnexion: total:%d\n",temp->size_links);
-				if (temp->size_links == 0)
+				printf("\nROOM NAME: %s || index %d\n", temp->name, i);
+				printf("\tConnexion: total:%d\n",temp->nb_links);
+				if (temp->nb_links == 0)
 					printf("\tnull");
 				else
 				{
 					x = 0;
-					while (x < temp->size_links)
+					while (x < temp->nb_links)
 					{
-						printf("\ttemp->links[%d]->room_name: %s\n", x,temp->links[x]->room_name);
+						printf("\ttemp->links[%d]->name: %s\n", x,temp->links[x]->name);
 						x++;
 					}
 				}
@@ -41,7 +41,7 @@ t_room *search_for(char *connexion, t_data *data)
 
 	index = hashing(connexion,data->size_lst);
 	temp = data->hashtab[index];
-	while (ft_strcmp(connexion, temp->room_name) != 0 && temp != NULL)
+	while (ft_strcmp(connexion, temp->name) != 0 && temp != NULL)
 		temp = temp->h_next;
 	return (temp);
 }
@@ -54,11 +54,10 @@ t_room *search_for(char *connexion, t_data *data)
 // 	int index;
 // 	t_room *temp;
 
-// 	temp =  search_for(from, data);
-// 	// index =  hashing(from,(*data)->size_lst);
-// 	// temp = (*data)->hashtab[index];
-// 	// while (ft_strcmp(from, temp->room_name) != 0)
-// 	// 	temp = temp->h_next;
+// 	index =  hashing(from,(*data)->size_lst);
+// 	temp = (*data)->hashtab[index];
+// 	while (ft_strcmp(from, temp->name) != 0)
+// 		temp = temp->h_next;
 // 	create_links(temp, to, data);
 // }
 
@@ -74,7 +73,7 @@ int	existing_room(char *conexion, t_data **data)
 	tmp = (*data)->hashtab[index];
 	while(tmp != NULL)
 	{
-		if(ft_strcmp(conexion, tmp->room_name) == 0)
+		if(ft_strcmp(conexion, tmp->name) == 0)
 			return (TRUE);
 		tmp = tmp->next;
 	}

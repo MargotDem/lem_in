@@ -87,13 +87,13 @@ int main(void)
     {
         g_head = search_for(data->start_room, data);
         //envoyer vers le solveur
+		solve(g_head, data);
     }
 
 	printf("here is the start room: %s\n", g_head->room_name);
     free_all(&data);
     free(rooms);
     free(data);
+
     return (0);
-
 }
-

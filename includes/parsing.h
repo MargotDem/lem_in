@@ -14,12 +14,12 @@
 
 /*STRUCTURE*/
 typedef struct s_room{
-	char *room_name;
-	int line;
-	int row;
+	char *name;
+	int x;
+	int y;
 	int room_start;
 	int room_end;
-	int size_links;
+	int nb_links;
 
 	/*POINTER LINK LIST*/
 	struct s_room *next;
@@ -107,5 +107,7 @@ void    *ft_cleanstr(char **s, size_t i);
 void 	create_link(t_room *room_1,t_room *room_2);
 void	free_all(t_data **data);
 int    	check_data(t_data *data);
+
+void solve(t_room *start, t_data *data);
 
 #endif

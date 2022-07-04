@@ -38,6 +38,6 @@ t_room *createtree(t_room **li, int size_lst)
    t_room *tree_head;
    tree_head = create_root(li, size_lst);
 
-   printf("room name--> %s\n", tree_head->room_name);
+   printf("room name--> %s\n", tree_head->name);
    return (tree_head);
 }

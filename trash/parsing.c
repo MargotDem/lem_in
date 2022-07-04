@@ -150,7 +150,7 @@ t_room *push(t_room *li, t_room *element)
     t_room *head;
 
     head = li;
-    if (ft_strcmp(li->room_name, element->room_name) > 0)
+    if (ft_strcmp(li->name, element->name) > 0)
     {
         element->next = li;
         li = element;
@@ -158,8 +158,8 @@ t_room *push(t_room *li, t_room *element)
     }
     while (li->next != NULL)
     {
-        if (ft_strcmp(li->room_name, element->room_name) < 0 && \
-        ft_strcmp(element->room_name, li->next->room_name) < 0)
+        if (ft_strcmp(li->name, element->name) < 0 && \
+        ft_strcmp(element->name, li->next->name) < 0)
             break;
         li = li->next;
     }
@@ -241,7 +241,7 @@ void set_struct_data(t_data *data)
 
 void set_struct_room(t_room *room)
 {
-    room->room_name = "\0";
+    room->name = "\0";
     room->line = 0;
     room->row = 0;
     room->next = NULL;
@@ -340,7 +340,7 @@ int main(void)
 
 // void set_struct_room(t_room *room)
 // {
-//     room->room_name = "\0";
+//     room->name = "\0";
 //     room->line = 0;
 //     room->row = 0;
 //     room->next = NULL;
@@ -411,14 +411,14 @@ t_room     *new_node(char *line)
         write (2, "ERROR MALLOC\n", 13);
         exit(EXIT_FAILURE);
     }
-    tr->room_name = extract_name(line);
+    tr->name = extract_name(line);
     tr->line = extract_line(line);
     tr->row = extract_row(line);
     tr->next = NULL;
     // tr->left = NULL;
     // tr->right = NULL;
     // tr->parent = NULL;
-    printf("Creation de %s avec les valeurs line = %d && row = %d\n", tr->room_name, tr->line, tr->row);
+    printf("Creation de %s avec les valeurs line = %d && row = %d\n", tr->name, tr->line, tr->row);
     return (tr);
 }
 
@@ -497,7 +497,7 @@ void print_lst(t_room *li)
     temp = li;
     while (temp != NULL)
     {
-        printf("%s - ", temp->room_name);
+        printf("%s - ", temp->name);
         count += 1;
         temp = temp->next;
     }

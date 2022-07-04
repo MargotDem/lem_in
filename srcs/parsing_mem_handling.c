@@ -14,7 +14,7 @@ void	free_all(t_data **data)
 		{
 			while ((*data)->hashtab[i] != NULL)
 			{
-				ft_strdel(&(*data)->hashtab[i]->room_name);
+				ft_strdel(&(*data)->hashtab[i]->name);
 				free((*data)->hashtab[i]->links);
 				(*data)->hashtab[i] = (*data)->hashtab[i]->h_next;
 			}
@@ -71,11 +71,11 @@ void create_link(t_room *room_1, t_room *room_2)
 	{
 		room_1->links[0] = room_2;
 		room_1->links[1] =  NULL;
-		room_1->size_links = 1;
+		room_1->nb_links= 1;
 	}
 	else
 	{
-		room_1->links = brealloc(room_1->links, room_2, room_1->size_links);
-		room_1->size_links += 1;
+		room_1->links = brealloc(room_1->links, room_2, room_1->nb_links);
+		room_1->nb_links += 1;
 	}
 }
