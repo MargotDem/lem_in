@@ -90,7 +90,7 @@ int main(void)
 		solve(g_head, data);
     }
 
-	printf("here is the start room: %s\n", g_head->room_name);
+	printf("here is the start room: %s\n", g_head->name);
     free_all(&data);
     free(rooms);
     free(data);

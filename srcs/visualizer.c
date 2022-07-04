@@ -19,22 +19,19 @@ void	draw_room(t_mlx_win *mlx_win, t_room *node, size_t scale, size_t margin)
 	int	i;
 	int	j;
 	int	color;
+	int	room_size;
 
+	room_size = 10;
+	if (strings_match(node->name, mlx_win->start_and_end[0]) || strings_match(node->name, mlx_win->start_and_end[1]))
+		room_size = 20;
 	x = node->x * scale + margin;
 	y = node->y * scale + margin;
 	color = mlx_win->room_color;
-	/*if (strings_match(node->name, "start"))
-		color = 0x693dad; // violet fonce
-	if (strings_match(node->name, "end"))
-		color = 0x8a0c79; // prune
-	if (strings_match(node->name, "A"))
-		color = 0x0c8a49; // vert  fonce
-		*/
-	i = y - 20;
-	while (i < y + 20)
+	i = y - room_size;
+	while (i < y + room_size)
 	{
-		j = x - 20;
-		while (j < x + 20)
+		j = x - room_size;
+		while (j < x + room_size)
 		{
 			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, j, i, color);
 			j++;
@@ -89,7 +86,6 @@ void	draw_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
 	x = x_a;
 	y = y_a;
 	color = mlx_win->room_color;
-	//printf("here\n");
 	if (x_b - x_a >= abs(y_b - y_a))
 	{
 		while (x < x_b)
@@ -118,12 +114,9 @@ void	draw_rooms(t_mlx_win *mlx_win, t_room *node, t_room **history)
 	margin = mlx_win->margin;
 	nb_links = node->nb_links;
 	links = node->links;
-	//printf("\n");
-	//printf("node: '%s', ", node->name);
 	i = 0;
 	if (not_in_history(node, history))
 		push_history(history, node);
-	// draw the room
 	draw_room(mlx_win, node, scale, margin);
 	while (i < nb_links)
 	{
@@ -170,7 +163,7 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 		color = 0xff1e00;
 	else
 		color = 0x0244eb;
-	ant_size = 8;
+	ant_size = 3;
 	reset_history(history);
 	find_node(mlx_win->graph, history, name, &node_to_find);
 	if (node_to_find)
@@ -178,12 +171,7 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 		x = node_to_find->x * scale + margin;
 		y = node_to_find->y * scale + margin;
 		if (strings_match(name, mlx_win->start_and_end[0]) || strings_match(name, mlx_win->start_and_end[1]))
-		{
-			ant_size = 3;
 			x += ant_nb * ant_size * 3 - 15;
-		}
-				
-		//printf("thats the nodeee '%s'\n", node_to_find->name);
 		i = y - ant_size;
 		while (i < y + ant_size)
 		{
@@ -198,12 +186,10 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 			}
 			i++;
 		}
-		
 	}
 	else
 		printf("not found\n");
 }
-
 
 int	handle_key(int key, void *param)
 {
@@ -324,8 +310,6 @@ static void	initialize_ants_positions(t_paths *paths)
 		paths_ptr = paths_ptr->next;
 	}
 }
-
-
 
 void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **start_and_end)
 {

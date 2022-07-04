@@ -17,11 +17,13 @@ CC		=	gcc
 CCFLAGS	=	-Werror -Wextra -Wall
 
 #INCLUDE
-INCL_LFT	= -I ./libft/ -I/usr/local/include
-INCL_PARS	= -I ./includes/ 
+INCL_LFT	= -I ./libft/
+INCL_PARS	= -I ./includes/
+INCL_MLX	= -I/usr/local/include
 
 #LIBRAIRIE
-LIB		= -L ./libft/ -lft -L /usr/local/lib -lmlx
+LIB		= -L ./libft/ -lft
+MLX		= -L /usr/local/lib -lmlx
 
 #CLEAN & FCLEAN
 RM_DIR	=	rm -rf
@@ -35,7 +37,7 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			parsing_connexion_handling.c \
 			parsing_out_to_solver.c \
 			hashtable_main.c \
-			handle_error.c graph_array.c graph_functions.c \
+			handle_error.c solve.c graph_functions.c \
 			history_functions.c display_result.c \
 			list_functions.c paths_functions1.c paths_functions2.c \
 			helpers.c visualizer.c \
@@ -50,11 +52,11 @@ OBJS			=	$(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 all: $(NAME) $(LIBFT)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(FRAMEWORKS) -g
+	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(MLX) $(FRAMEWORKS) -g
 	
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) -o $@ -c $< -g
+	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $< -g
 
 $(LIBFT):
 	@make -sC ./libft/ all

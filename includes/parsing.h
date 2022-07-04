@@ -5,7 +5,6 @@
 # include "libft.h"
 # include <stdio.h>
 # include <string.h>
-// marg already in lem_in.h
 # include <fcntl.h>
 # include <unistd.h>
 

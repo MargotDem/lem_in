@@ -13,26 +13,9 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-
 # include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include "libft.h"
 # include "mlx.h"
-
 #include "parsing.h"
-
-/*
-typedef struct	s_graph
-{
-	struct	s_graph **links;
-	char	*name;
-	size_t	nb_links;
-	size_t	x;
-	size_t	y;
-}				t_graph;
-*/
 
 typedef struct s_path_node
 {
