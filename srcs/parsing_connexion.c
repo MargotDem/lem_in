@@ -82,7 +82,7 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	from = search_for(conexion_1,*data);
 	to = search_for(conexion_2, *data);
 	if(!from || !to)
-		printf("%sSend to solver%s\n", "\x1B[31m","\x1B[0m");
+		go_to_solver(li, line, data);
 	else
 	{
 		create_link(from, to/*, data*/);

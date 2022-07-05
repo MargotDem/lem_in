@@ -42,18 +42,20 @@ typedef struct s_data {
 void    get_room(t_room **li, char *line, t_data **data);
 void    get_connexion(t_room **li, char *line, t_data **data);
 void    get_command(t_room **li, char *line, t_data **data);
+void	go_to_solver(t_room **li, char *line, t_data **data);
 
 
 typedef void (*t_line_dispatcher)(t_room **li, char *line, t_data **data);
-static t_line_dispatcher line_dispatch[3] = {
+static t_line_dispatcher line_dispatch[4] = {
 	get_room,
 	get_connexion,
 	get_command,
+	go_to_solver,
 };
 
 /*PROTOTYPE*/
 /*PARSING_ANTS*/
-int 		get_ants(t_data *data);
+int 		get_ants(t_data *data, char *line);
 
 /*PARSING_ROOMS*/
 int 		is_room(char *line, int  active_connextion);
@@ -62,7 +64,7 @@ int 		is_room(char *line, int  active_connextion);
 int 		is_connexion(char *line, int active_room);
 
 /*PARSING_CONNEXION_HANDLING*/
-int			existing_room(char *conexion, t_data **hashtab);
+int			room_exists(char *room, t_data **hashtab);
 // void 	add_links(t_data **data, char *from, char *to);
 t_room 		*search_for(char *connexion, t_data *data);
 int			index_of_chr(char *str, char c);
@@ -105,7 +107,8 @@ void 	err_mes(char *message);
 void    *ft_cleanstr(char **s, size_t i);
 void 	create_link(t_room *room_1,t_room *room_2);
 void	free_all(t_data **data);
-int    	check_data(t_data *data);
+void    	check_data(t_data *data);
+int      is_comment(char *line);
 
 void solve(t_room *start, t_data *data);
 

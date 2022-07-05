@@ -6,11 +6,11 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/07/01 13:39:34 by briffard         ###   ########.fr        #
+#    Updated: 2022/07/05 09:33:05 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	parsing
+NAME	=	Lem-in
 
 #COMPILATION
 CC		=	gcc

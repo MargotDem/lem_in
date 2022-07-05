@@ -8,6 +8,8 @@
 */
 /*exit*/
 
+
+/*Check if we need to free stuff with exit failure*/
 void    mem_error(char *message, char *where, int line)
 {
     /*doit diriger vers la sdterr*/
