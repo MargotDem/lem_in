@@ -101,7 +101,7 @@ void	draw_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
 		draw_steep_line(mlx_win, x_a, y_a, x_b, y_b);
 }
 
-void	draw_rooms(t_mlx_win *mlx_win, t_room *node, t_room **history)
+void	draw_rooms(t_mlx_win *mlx_win, t_room *node, t_hist *history)
 {
 	size_t	nb_links;
 	t_room	**links;
@@ -144,7 +144,7 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 	size_t	scale;
 	size_t	margin;
 	int	color;
-	t_room	*history[100];
+	t_hist	*history;
 	t_room *node_to_find = NULL;
 
 	scale = mlx_win->scale;
@@ -164,7 +164,8 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 	else
 		color = 0x0244eb;
 	ant_size = 3;
-	reset_history(history);
+	history = NULL;
+	init_history(&history, 4);
 	find_node(mlx_win->graph, history, name, &node_to_find);
 	if (node_to_find)
 	{
@@ -314,7 +315,7 @@ static void	initialize_ants_positions(t_paths *paths)
 void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **start_and_end)
 {
 	t_mlx_win	*mlx_win;
-	t_room	*history[100];
+	t_hist	*history;
 	(void)nb_ants;
 	(void)optimal_paths;
 
@@ -337,7 +338,8 @@ void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **st
 	mlx_win->start_and_end = start_and_end;
 	printf("nb of turns is %zu\n", mlx_win->max_turns);
 	color_background(mlx_win);
-	reset_history(history);
+	history = NULL;
+	init_history(&history, 4);
 	draw_rooms(mlx_win, graph, history);
 	initialize_ants_positions(optimal_paths);
 

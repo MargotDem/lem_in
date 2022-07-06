@@ -26,8 +26,19 @@ typedef struct s_room{
 	struct s_room **links;
 }	t_room;
 
-typedef struct s_data {
+typedef struct s_hist_test {
+	int	counter;
+	int	size;
+	int	*arr;
+}	t_hist_test;
 
+typedef struct s_hist {
+	int	counter;
+	int	size;
+	t_room	**arr;
+}	t_hist;
+
+typedef struct s_data {
 	int room_part;
 	int connexion_part;
 	int size_lst;

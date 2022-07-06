@@ -28,21 +28,23 @@ t_paths	*create_path_el()
 	return (path_el);
 }
 
-void	add_path_to_list(t_paths **all_paths, t_room **history)
+void	add_path_to_list(t_paths **all_paths, t_hist *history)
 {
 	size_t		j;
 	t_paths		*path_el;
 	t_path_node	*path_node;
+	size_t	counter;
 
+	counter = history->counter;
 	path_el = create_path_el();
 	j = 0;
-	while (history[j])
+	while (j < counter)
 	{
 		path_node = (t_path_node *)malloc(sizeof(t_path_node));
 		if (!path_node)
 			handle_error();
 		path_node->next = NULL;
-		path_node->node = history[j];
+		path_node->node = history->arr[j];
 		if (!path_el->path)
 			path_el->path = path_node;
 		else
@@ -55,13 +57,12 @@ void	add_path_to_list(t_paths **all_paths, t_room **history)
 		lst_add_back((t_void_list *)*all_paths, (t_void_list *)path_el);
 }
 
-void	find_all_paths(t_room *node, t_paths **all_paths, t_room **history, char *end)
+void	find_all_paths(t_room *node, t_paths **all_paths, t_hist *history, char *end)
 {
 	size_t	nb_links;
 	t_room	**links;
 	size_t	i;
 
-	// TODO change this to real end
 	if (strings_match(node->name, end))
 	{
 		add_path_to_list(all_paths, history);
@@ -76,6 +77,7 @@ void	find_all_paths(t_room *node, t_paths **all_paths, t_room **history, char *e
 		{
 			push_history(history, links[i]);
 			find_all_paths(links[i], all_paths, history, end);
+			//printf("hey\n");
 			pop_history(history);
 		}
 		i++;
@@ -237,15 +239,20 @@ void	select_optimal_paths(t_paths *all_paths, t_paths **optimal_paths, size_t nb
 void	find_optimal_paths(t_room *graph, t_paths **optimal_paths, size_t nb_ants, char **start_and_end)
 {
 	t_paths	*all_paths;
-	t_room	*history[100];
+	t_hist	*history;
 	char	*start;
 	char	*end;
 
-	reset_history(history);
+	history = NULL;
+	init_history(&history, 4);
 	push_history(history, graph);
 	all_paths = NULL;
 	start = start_and_end[0];
 	end = start_and_end[1];
 	find_all_paths(graph, &all_paths, history, end);
+	printf("HELLOO\n");
+	print_paths(all_paths);
+	printf("HELLOO all_paths\n");
+
 	select_optimal_paths(all_paths, optimal_paths, nb_ants, start, end);
 }

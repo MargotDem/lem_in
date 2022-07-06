@@ -13,62 +13,89 @@
 #include "lem_in.h"
 #include "parsing.h"
 
-int	not_in_history(t_room *node, t_room **history)
+int	not_in_history(t_room *node, t_hist *history)
 {
 	int	i;
+	int	counter;
 
 	i = 0;
-	while (history[i])
+	//printf("hola\n");
+	if (!history)
+		return (1);
+	counter = history->counter;
+	//printf("counter is : %d\n", counter);
+	while (i < counter)
 	{
-		if (node->name == (history[i])->name)
+		//printf("i is : %d\n", i);
+		if (node->name == (history->arr[i])->name)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void	push_history(t_room **history, t_room *node)
+void	push_history(t_hist *history, t_room *node)
 {
+	t_room	**tmp;
 	int	i;
+	int	counter;
+	int	size;
 
-	i = 0;
-	while (history[i])
-		i++;
-	history[i] = node;
-}
-
-void	pop_history(t_room **history)
-{
-	int	i;
-
-	i = 0;
-	while (history[i])
-		i++;
-	history[i - 1] = NULL;
-}
-
-void	reset_history(t_room **history)
-{
-	int	i;
-
-	i = 0;
-	while (i < 100)
+	counter = history->counter;
+	size = history->size;
+	if (counter && counter % size == 0)
 	{
-		history[i] = NULL;
-		i++;
+		printf("reached limit, counter is %d, history is:\n", counter);
+		print_history(history);
+		tmp = (t_room **)malloc(sizeof(t_room *) * (counter + size));
+		if (!tmp)
+			exit(0); // TODO handle this
+		i = 0;
+		while (i < counter)
+		{
+			tmp[i] = history->arr[i];
+			i++;
+		}
+		i = 0;
+		free(history->arr);
+		history->arr = tmp;
 	}
+	history->arr[counter] = node;
+	history->counter = history->counter + 1;
 }
 
-void	print_history(t_room **history)
+void	pop_history(t_hist *history)
 {
-	int k;
+	history->counter = history->counter - 1;
+}
+
+void	print_history(t_hist *history)
+{
+	int	k;
+	int	counter;
 
 	k = 0;
+	counter = history->counter;
 	printf("history:\n");
-	while (history[k])
+	while (k < counter)
 	{
-		printf("%s, ", history[k]->name);
+		printf("%s, ", history->arr[k]->name);
 		k++;
 	}
 	printf("\n");
+}
+
+void	init_history(t_hist **history, int size)
+{
+	int	i;
+
+	*history = (t_hist *)malloc(sizeof(t_hist));
+	if (!(*history)) // TODO handle this
+		exit(0);
+	(*history)->size = size;
+	(*history)->counter = 0;
+	(*history)->arr = (t_room **)malloc(sizeof(t_room *) * size);
+	if (!(*history)->arr) // TODO handle this
+		exit(0);
+	i = 0;
 }

@@ -43,14 +43,16 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 void solve(t_room *start, t_data *data)
 {
 	size_t	nb_ants;
-	t_room	*history[100];
+	t_hist	*history;
 	t_paths	*optimal_paths;
 	char	*start_and_end[2];
 
 	nb_ants = data->ants;
 	printf("***** the tree ***** \n");
-	reset_history(history);
+	history = NULL;
+	init_history(&history, 4);
 	print_graph(start, history);
+	print_history(history);
 	printf("******\n\n\n");
 
 	optimal_paths = NULL;
@@ -62,6 +64,5 @@ void solve(t_room *start, t_data *data)
 	print_paths(optimal_paths);
 	display_result(optimal_paths, nb_ants);
 	visualizer(start, nb_ants, optimal_paths, start_and_end);
-
 	printf("\n\n\n\n");
 }
