@@ -2,26 +2,6 @@
 
 static int basic_connexioncheck(char *line, int active_room);
 static int shape_connexioncheck(char *line);
-// static int recurrence(char *line, char c);
-
-
-// static int recurrence(char *line, char c)
-// {
-// 	int i;
-// 	int count;
-
-// 	count = 0;
-// 	i = 0;
-// 	while (line[i] != '\0')
-// 	{
-// 		if (line[i] == c)
-// 			count += 1;
-// 		i++;
-// 	}
-// 	if (count != 1)
-// 		return (1);
-// 	return (0);
-// }
 
 static int basic_connexioncheck(char *line, int active_room)
 {
@@ -50,11 +30,6 @@ static int shape_connexioncheck(char *line)
 
 int is_connexion(char *line, int active_room)
 {
-	/*
-	**checker si connexion est ( b-v-f)
-	** verifier si c est B-v to f or b to v-f et si la connexion est valide
-	** on aura besoin de la hastable pour checker l existance des connexions
-	*/
 	if (basic_connexioncheck(line, active_room))
 		return (0);
 	if (shape_connexioncheck(line))
@@ -118,14 +93,14 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	t_room *from;
 	t_room *to;
 
-	printf("helloooo\n");
+
 	(*data)->connexion_part = 1;
 	if ((*data)->hash == 0)
 		hashtable_main(data, *li);
-	printf("helloooo2\n");
 	dash_position = test(line, *data);
 	if (dash_position < 0)
 		go_to_solver(li, line, data);
+	printf("LINE-> %s\n", line);
 	conexion_1 = ft_strsub(line, 0 , dash_position);
 	conexion_2 = ft_strdup(&line[dash_position + 1]);
 	if(!conexion_1 || !conexion_2)

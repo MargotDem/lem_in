@@ -56,7 +56,8 @@ static void    mapreader(int fd, t_room **rooms, t_data **data)
         if (is_comment(line))
         {
             ft_strdel(&line);
-            get_next_line(0, &line);
+            if (get_next_line(0, &line) == 0)
+                break;
         }
         id = line_id(line, *data);
         g_line_dispatch[id](rooms, line, data);
@@ -74,7 +75,6 @@ int main(void)
     data = NULL;
     mapreader(0, &rooms, &data);
     check_data(data);
-	printf("heyheyeh\n");
     solve(search_for(data->start_room, data), data);
     free_all(&data);
     free(rooms);
