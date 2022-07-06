@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 11:13:10 by mde-maul          #+#    #+#             */
-/*   Updated: 2021/11/02 11:13:12 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/07/06 08:42:28 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int	fill_array(char const *s, char c, char **array)
 		else
 			i++;
 	}
-	array[substr_nb] = NULL;
+	array[substr_nb] = 0;
 	return (1);
 }
 

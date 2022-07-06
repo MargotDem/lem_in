@@ -2,26 +2,26 @@
 
 static int basic_connexioncheck(char *line, int active_room);
 static int shape_connexioncheck(char *line);
-static int recurrence(char *line, char c);
+// static int recurrence(char *line, char c);
 
 
-static int recurrence(char *line, char c)
-{
-	int i;
-	int count;
+// static int recurrence(char *line, char c)
+// {
+// 	int i;
+// 	int count;
 
-	count = 0;
-	i = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == c)
-			count += 1;
-		i++;
-	}
-	if (count != 1)
-		return (1);
-	return (0);
-}
+// 	count = 0;
+// 	i = 0;
+// 	while (line[i] != '\0')
+// 	{
+// 		if (line[i] == c)
+// 			count += 1;
+// 		i++;
+// 	}
+// 	if (count != 1)
+// 		return (1);
+// 	return (0);
+// }
 
 static int basic_connexioncheck(char *line, int active_room)
 {
@@ -37,8 +37,8 @@ static int shape_connexioncheck(char *line)
 	int i;
 
 	i = 0;
-	if (recurrence(line, '-'))
-		return (1);
+	// if (recurrence(line, '-'))
+	// 	return (1);
 	while (line[i] != '\0')
 	{
 		if (ft_iswhitespace(line[i]))
@@ -62,21 +62,70 @@ int is_connexion(char *line, int active_room)
 	return (1);
 }
 
+int match(char *room, t_data *data)
+{
+	t_room *temp;
+	int index;
+
+	index = hashing(room, data->size_lst);
+	temp = data->hashtab[index];
+	while (temp != NULL)
+	{
+		if(ft_strcmp(room, temp->name) == 0)
+			return (TRUE);
+		temp = temp->h_next;
+	}
+	return (FALSE);
+}
+
+int		test(char *line, t_data *data)
+{
+	int i;
+	char *room_1;
+	char *room_2;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] == '-')
+		{
+			room_1 = ft_strsub(line, 0 , i);
+			if (match(room_1, data))
+			{
+				room_2 = ft_strdup(&line[i + 1]);
+				if (match(room_2, data))
+				{
+					ft_strdel(&room_1);
+					ft_strdel(&room_2);
+					return (i);
+				}
+			}
+		}
+		i++;
+	}
+	ft_strdel(&room_1);
+	ft_strdel(&room_2);
+	return (-1);
+}
+
+
+
 void    get_connexion(t_room **li, char *line, t_data **data)
 {
 	char *conexion_1;
 	char *conexion_2;
+	int dash_position;
 	t_room *from;
 	t_room *to;
-	/*
-	**checker si connexion est ( b-v-f)
-	** verifier si c est B-v to f or b to v-f
-	*/
+
 	(*data)->connexion_part = 1;
 	if ((*data)->hash == 0)
 		hashtable_main(data, *li);
-	conexion_1 = ft_strsub(line, 0 , index_of_chr(line, '-'));
-	conexion_2 = ft_strdup(&line[(index_of_chr(line, '-')) + 1]);
+	dash_position = test(line, *data);
+	if (dash_position < 0)
+		go_to_solver(li, line, data);
+	conexion_1 = ft_strsub(line, 0 , dash_position);
+	conexion_2 = ft_strdup(&line[dash_position + 1]);
 	if(!conexion_1 || !conexion_2)
 		err_handling("malloc");
 	from = search_for(conexion_1,*data);
@@ -84,10 +133,7 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	if(!from || !to)
 		go_to_solver(li, line, data);
 	else
-	{
-		create_link(from, to/*, data*/);
-		create_link(to, from/*, data*/);
-	}
+		insert_links(from, to);
 	ft_strdel(&conexion_1);
 	ft_strdel(&conexion_2);
 }

@@ -27,14 +27,9 @@ void    get_command(t_room **li, char *line, t_data **data)
 	c = line[2];
 	if (c == 's' || c == 'e')
 	{
-		while(get_next_line(0, &line)) // What happend if command end pop ?? Should stay with the fisrt command or not??
-		{
-			if (is_connexion(line, 1))
-				go_to_solver(li, line, data);
-			if (is_room(line, 0))
-				break;
-		}
-		/*What happend if GNL goes at the end of file*/
+		get_next_line(0, &line);
+		if (!is_room(line, 0))
+			go_to_solver(li, line, data);
 		element = new_node(line, c);
 		*li = push_t_room(*li, element);
 		(*data)->size_lst += 1;
@@ -42,6 +37,6 @@ void    get_command(t_room **li, char *line, t_data **data)
 			(*data)->start_room = extract_name(line);
 		else
 			(*data)->exit_room = extract_name(line);
+		(*data)->room_part = 1;
 	}
-	(*data)->room_part = 1;
 }

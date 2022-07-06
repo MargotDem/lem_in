@@ -68,26 +68,24 @@ int	check_word(char **arr)
 	int i;
 	int x;
 
-	i = 0;
+	i = 1;
 	x = 0;
-	while (arr[i][x] != '\0')
-    {
-        x = 0;
-        while (arr[i][x] != '\0')
-        {
-            if (i == 0)
-            {
-				if (!ft_isprint(arr[i][x]))
-                    return (1);
-			}
-            else
-            {
-				if (!ft_isdigit(arr[i][x]))
-                    return (1);
-			}
-            x++;
-        }
-    	i++;
-    }
+	while (arr[0][x] != '\0')
+	{
+		if (!ft_isprint(arr[0][x]))
+            return (1);
+		x++;
+	}
+	while (i < 3)
+	{
+		x = 0;
+		while (arr[i][x] != '\0')
+		{
+			if (!ft_isdigit(arr[i][x]))
+            	return (1);
+			x++;
+		}
+		i++;
+	}
 	return (0);
 }

@@ -107,8 +107,9 @@ void 	err_mes(char *message);
 void    *ft_cleanstr(char **s, size_t i);
 void 	create_link(t_room *room_1,t_room *room_2);
 void	free_all(t_data **data);
-void    	check_data(t_data *data);
-int      is_comment(char *line);
+void    check_data(t_data *data);
+int     is_comment(char *line);
+void	insert_links(t_room *room1, t_room *room2);
 
 void solve(t_room *start, t_data *data);
 

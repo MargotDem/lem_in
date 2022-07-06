@@ -33,7 +33,6 @@ void	print_connexion(t_data **data)
 	}
 }
 
-/*Change **data to *data*/
 t_room *search_for(char *connexion, t_data *data)
 {
 	unsigned long index;

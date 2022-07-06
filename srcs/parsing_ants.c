@@ -1,18 +1,5 @@
 #include "parsing.h"
 
-// int     get_ants()
-// {
-//     int ants;
-//     char *line;
-
-//     line = NULL;
-//     get_next_line(0, &line);
-//     ants = ft_atoi(line);
-//     ft_strdel(&line);
-//     return (ants);
-// }
-
-
 int only_digit(char *line)
 {
     int     i;
@@ -52,12 +39,3 @@ int     get_ants(t_data *data, char *line)
     }
     return (0);
 }
-
-
-/* raison de quitter la boucle:
-    -> si line est comment -> stop le parsing
-    -> si line est une connexion -> stop le parsing
-    -> si le formatde la line de ants n est pas valide -> stop parsing
-    ->si line est une room et que ants == 0 -> stop parsinf
-    */
-
