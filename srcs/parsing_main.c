@@ -59,7 +59,7 @@ static void    mapreader(int fd, t_room **rooms, t_data **data)
             get_next_line(0, &line);
         }
         id = line_id(line, *data);
-        line_dispatch[id](rooms, line, data);
+        g_line_dispatch[id](rooms, line, data);
         ft_strdel(&line);
     }
 }

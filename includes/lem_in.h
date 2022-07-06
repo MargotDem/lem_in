@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:37:29 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/20 11:33:47 by briffard         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:46:13 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include "mlx.h"
-#include "parsing.h"
+# include "parsing.h"
 
 typedef struct s_path_node
 {
@@ -97,7 +97,8 @@ void	set_paths_size(t_paths *paths);
 // Path functions 2
 void	find_all_paths(t_room *node, t_paths **potential_paths, t_room **history, char *end);
 void	find_optimal_paths(t_room *graph, t_paths **paths, size_t nb_ants, char **start_and_end);
-void	select_optimal_paths(t_paths *all_paths, t_paths **paths, size_t nb_ants, char *start, char *end);
+void	select_optimal_paths\
+		(t_paths *all_paths, t_paths **paths, size_t nb_ants, char *start, char *end);
 
 // Display result
 void	display_result(t_paths *paths, size_t nb_ants);
