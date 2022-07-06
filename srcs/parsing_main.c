@@ -2,7 +2,6 @@
 
 
 static void     mapreader(int fd, t_room **li, t_data **data);
-static int      is_comment(char *line);
 static void     set_data(t_data *data);
 
 /*Set value in struc data to 0*/
@@ -16,7 +15,7 @@ static void     set_data(t_data *data)
 }
 
 /*Verifie si line est un commentaire selon les criteres*/
-static int      is_comment(char *line)
+int      is_comment(char *line)
 {
     if (line[0] == '#' && line[1] != '#')
         return (1);
@@ -31,11 +30,18 @@ int      line_id(char *line, t_data *data)
         return (1);
     else if(is_command(line))
         return (2);
-    check_data(data);
-    return (-1);
+    else 
+        return(3);
 }
 
-// marg can we rename li to rooms
+static void data_allocation(t_data **data)
+{
+    (*data) = (t_data *)malloc(sizeof(**data));
+    if (!(*data))
+        err_handling("malloc");
+    set_data(*data);
+}
+
 static void    mapreader(int fd, t_room **rooms, t_data **data)
 {
     char *line;
@@ -43,14 +49,9 @@ static void    mapreader(int fd, t_room **rooms, t_data **data)
 
     id = 0;
     line = NULL;
-	// marg sizeof t_data ?
-    //bapt: if i do malloc(sizeof(*data) -> SEGFAULT or malloc(sizeof(data) -> SEGFAULT
-    (*data) = (t_data *)malloc(sizeof(**data));
-    if (!(*data))
-        err_handling("malloc");
-    set_data(*data);
-    (*data)->ants = get_ants(*data);
-    while (get_next_line(fd, &line))
+    data_allocation(data);
+    (*data)->ants = get_ants(*data, line);
+    while (get_next_line(fd, &line) && id >= 0 && (*data)->ants > 0)
     {
         if (is_comment(line))
         {
@@ -58,13 +59,6 @@ static void    mapreader(int fd, t_room **rooms, t_data **data)
             get_next_line(0, &line);
         }
         id = line_id(line, *data);
-        if (id == -1)
-        {
-            ft_strdel(&line);
-            break;
-        }
-		// marg if the ptr to data is never changed anywhere (is it?) then we dont need to pass t_data **data
-        // BAPT: data is changed in is _room or is connexion. the hashtable is created is connexion
         line_dispatch[id](rooms, line, data);
         ft_strdel(&line);
     }
@@ -74,26 +68,15 @@ static void    mapreader(int fd, t_room **rooms, t_data **data)
 int main(void)
 {
     t_room  *rooms;
-    t_room  *g_head;
     t_data  *data;
 
     rooms = NULL;
     data = NULL;
-	g_head = NULL;
-
     mapreader(0, &rooms, &data);
-    //On verifie si on a assez de donnee pour 
-    if (check_data(data))
-    {
-        g_head = search_for(data->start_room, data);
-        //envoyer vers le solveur
-		solve(g_head, data);
-    }
-
-	printf("here is the start room: %s\n", g_head->name);
+    check_data(data);
+    solve(search_for(data->start_room, data), data);
     free_all(&data);
     free(rooms);
     free(data);
-
     return (0);
 }

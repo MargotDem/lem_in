@@ -1,5 +1,53 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/briffard/Desktop/Lem-in'
-make: Nothing to be done for `all'.
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_main.o -c srcs/parsing_main.c -g
+ 
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_ants.o -c srcs/parsing_ants.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_rooms.o -c srcs/parsing_rooms.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_utils.o -c srcs/parsing_utils.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_utils2.o -c srcs/parsing_utils2.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_error.o -c srcs/parsing_error.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_utils_list.o -c srcs/parsing_utils_list.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_command.o -c srcs/parsing_command.c -g
+ 
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_connexion.o -c srcs/parsing_connexion.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_mem_handling.o -c srcs/parsing_mem_handling.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_connexion_handling.o -c srcs/parsing_connexion_handling.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_out_to_solver.o -c srcs/parsing_out_to_solver.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/hashtable_main.o -c srcs/hashtable_main.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/handle_error.o -c srcs/handle_error.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/solve.o -c srcs/solve.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/graph_functions.o -c srcs/graph_functions.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/history_functions.o -c srcs/history_functions.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/display_result.o -c srcs/display_result.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/list_functions.o -c srcs/list_functions.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/paths_functions1.o -c srcs/paths_functions1.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/paths_functions2.o -c srcs/paths_functions2.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/helpers.o -c srcs/helpers.c -g
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/visualizer.o -c srcs/visualizer.c -g
+gcc -Werror -Wextra -Wall -o Lem-in ./objectFiles/parsing_main.o ./objectFiles/parsing_ants.o ./objectFiles/parsing_rooms.o ./objectFiles/parsing_utils.o ./objectFiles/parsing_utils2.o ./objectFiles/parsing_error.o ./objectFiles/parsing_utils_list.o ./objectFiles/parsing_command.o ./objectFiles/parsing_connexion.o ./objectFiles/parsing_mem_handling.o ./objectFiles/parsing_connexion_handling.o ./objectFiles/parsing_out_to_solver.o ./objectFiles/hashtable_main.o ./objectFiles/handle_error.o ./objectFiles/solve.o ./objectFiles/graph_functions.o ./objectFiles/history_functions.o ./objectFiles/display_result.o ./objectFiles/list_functions.o ./objectFiles/paths_functions1.o ./objectFiles/paths_functions2.o ./objectFiles/helpers.o ./objectFiles/visualizer.o -L ./libft/ -lft -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit -g
 make: Leaving directory `/Users/briffard/Desktop/Lem-in'
  

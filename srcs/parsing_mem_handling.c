@@ -79,3 +79,9 @@ void create_link(t_room *room_1, t_room *room_2)
 		room_1->nb_links += 1;
 	}
 }
+
+void	insert_links(t_room *room1, t_room *room2)
+{
+	create_link(room1, room2);
+	create_link(room2, room1);
+}

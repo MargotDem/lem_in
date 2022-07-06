@@ -1,5 +1,4 @@
 ##COMMAND
-#lol
 12
 ##COMMAND
 #lol
@@ -11,6 +10,7 @@ B 2 2
 #lol
 ##start
 ##COMMAND
+##end
 #lol
 START 3 3
 ##COMMAND
