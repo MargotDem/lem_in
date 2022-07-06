@@ -2,6 +2,7 @@ make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/briffard/Desktop/Lem-in'
 mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_main.o -c srcs/parsing_main.c -g
+ 
 mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_ants.o -c srcs/parsing_ants.c -g
 mkdir -p ./objectFiles/
@@ -16,6 +17,7 @@ mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_utils_list.o -c srcs/parsing_utils_list.c -g
 mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_command.o -c srcs/parsing_command.c -g
+ 
 mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_connexion.o -c srcs/parsing_connexion.c -g
 mkdir -p ./objectFiles/

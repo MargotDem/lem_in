@@ -29,28 +29,22 @@ static int  basic_roomcheck(char *line, int active_connextion)
 static int  shape_roomcheck(char *line)
 {
 	int i;
-	int count;
 
 	i = 0;
-	count = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] == ' ')
-		{
-			if (count == 0)
-			{
-				count += 1;
-				if (!ft_isprint(line[i - 1]) && !ft_isdigit(line[i + 1]))
-					return (1);
-			}
-			else
-			{   
-				if(!ft_isdigit(line[i + 1]) && !ft_isdigit(line[i - 1]))
-					return (1);
-			}
-		}
+	if (!ft_isprint(line[0]))
+		return (1);
+	while (line[i] > 32)
 		i++;
-	}
+	if(line[i] == ' ' && !ft_isdigit(line[i + 1]))
+		return (1);
+	while (line[i] > 32)
+		i++;
+	if(line[i] == ' ' && !ft_isdigit(line[i + 1]))
+		return (1);
+	while (line[i] != '\0')
+		i++;
+	if (line[i - 1] < 33)
+		return (1);
 	return (0);
 }
 
@@ -72,10 +66,10 @@ static int  word_roomcheck(char *line)
 int is_room(char *line, int active_connextion)
 {
 	if(basic_roomcheck(line, active_connextion))
-		return(0);
+		return(FALSE);
 	if (shape_roomcheck(line))
-		return (0);
+		return (FALSE);
 	if (word_roomcheck(line))
-		return (0);
-	return (1);
+		return (FALSE);
+	return (TRUE);
 }
