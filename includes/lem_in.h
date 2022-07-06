@@ -96,7 +96,7 @@ void	copy_path(t_paths *original, t_paths **copy);
 void	set_paths_size(t_paths *paths);
 
 // Path functions 2
-void	find_all_paths(t_room *node, t_paths **potential_paths, t_hist *history, char *end);
+void	find_all_paths(t_room *node, t_paths **potential_paths, t_hist *history, char *end, int path_len, int	*shortest, size_t nb_ants);
 void	find_optimal_paths(t_room *graph, t_paths **paths, size_t nb_ants, char **start_and_end);
 void	select_optimal_paths\
 		(t_paths *all_paths, t_paths **paths, size_t nb_ants, char *start, char *end);

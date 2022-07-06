@@ -13,7 +13,7 @@ void   get_room(t_room **room, char *line, t_data **data)
 	*room = push_t_room(*room, element);
 	(*data)->size_lst += 1;
 	(*data)->room_part = 1;
-	printf("Node %s created\n", element->name);
+	//printf("Node %s created\n", element->name);
 }
 
 static int  basic_roomcheck(char *line, int active_connextion)

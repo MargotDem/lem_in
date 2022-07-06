@@ -57,14 +57,20 @@ void	add_path_to_list(t_paths **all_paths, t_hist *history)
 		lst_add_back((t_void_list *)*all_paths, (t_void_list *)path_el);
 }
 
-void	find_all_paths(t_room *node, t_paths **all_paths, t_hist *history, char *end)
+void	find_all_paths(t_room *node, t_paths **all_paths, t_hist *history, char *end, int path_len, int	*shortest, size_t nb_ants)
 {
 	size_t	nb_links;
 	t_room	**links;
 	size_t	i;
 
+	if (path_len >= *shortest + (int)nb_ants + 1)
+		return ;
 	if (strings_match(node->name, end))
 	{
+		if (path_len < *shortest)
+			*shortest = path_len;
+		printf("path len %d\n", path_len);
+		//printf("shortest len %d\n", *shortest);
 		add_path_to_list(all_paths, history);
 		return ;
 	}
@@ -76,7 +82,9 @@ void	find_all_paths(t_room *node, t_paths **all_paths, t_hist *history, char *en
 		if (not_in_history(links[i], history))
 		{
 			push_history(history, links[i]);
-			find_all_paths(links[i], all_paths, history, end);
+			path_len++;
+			find_all_paths(links[i], all_paths, history, end, path_len, shortest, nb_ants);
+			path_len--;
 			//printf("hey\n");
 			pop_history(history);
 		}
@@ -146,10 +154,12 @@ void	get_shortest(t_paths *all_paths, t_paths **shortest_and_prev)
 		{
 			shortest = t_paths_ptr;
 			shortest_prev = prev;
+			shortest_size = get_list_size((t_void_list *)t_paths_ptr->path);
 		}
 		prev = t_paths_ptr;
 		t_paths_ptr = t_paths_ptr->next;
 	}
+	//printf("	HEYEYYYYY shortest size isssss %zu\n", shortest_size);
 	shortest_and_prev[0] = shortest;
 	shortest_and_prev[1] = shortest_prev;
 }
@@ -198,6 +208,7 @@ void	select_optimal_paths(t_paths *all_paths, t_paths **optimal_paths, size_t nb
 
 		// simulation one:
 		select_optimal_paths(all_paths, optimal_paths, nb_ants, start, end);
+	
 		distribute_ants(*optimal_paths, nb_ants);
 
 		// simulation of the alternative
@@ -242,17 +253,23 @@ void	find_optimal_paths(t_room *graph, t_paths **optimal_paths, size_t nb_ants, 
 	t_hist	*history;
 	char	*start;
 	char	*end;
+	int	shortest;
+	shortest = 2000000;
 
 	history = NULL;
-	init_history(&history, 4);
+	init_history(&history, 2000);
 	push_history(history, graph);
 	all_paths = NULL;
 	start = start_and_end[0];
 	end = start_and_end[1];
-	find_all_paths(graph, &all_paths, history, end);
-	printf("HELLOO\n");
-	print_paths(all_paths);
-	printf("HELLOO all_paths\n");
+	printf("HELLOO before find all  paths\n");
+	find_all_paths(graph, &all_paths, history, end, 0, &shortest, nb_ants);
+	printf("HELLOO after find all  paths\n");
+
+	//print_paths(all_paths);
+	//printf("HELLOO all_paths\n");
 
 	select_optimal_paths(all_paths, optimal_paths, nb_ants, start, end);
+	//printf("HERE nb ants is %zu\n", nb_ants);
+	//printf("and optimal path the first path nb ants is %zu\n", (*optimal_paths)->nb_ants);
 }

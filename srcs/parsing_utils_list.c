@@ -63,7 +63,7 @@ t_room  *new_node(char *line, char c)
     node->nb_links = 0;
     node = set_startorend(node, c);
     node = set_null_pointer(node);
-    printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->name, node->x, node->y);
+    //printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->name, node->x, node->y);
     return (node);
 }
 

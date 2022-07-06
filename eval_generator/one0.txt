@@ -1,0 +1,193 @@
+1
+#Here is the number of lines required: 27
+##start
+Hs_2 3 3
+##end
+Vcn7 6 6
+Nn_5 9 9
+Uzx7 13 13
+Pyh1 18 18
+Jnr2 21 21
+Akv2 24 24
+Via3 27 27
+Azv3 28 28
+Nok7 31 31
+Qyu7 34 34
+Dka6 38 38
+Svp5 41 41
+Nhe2 44 44
+Iqt3 47 47
+Tdg2 49 49
+J_e0 54 54
+Ku_8 55 55
+Efm7 60 60
+Mdk1 63 63
+Gb_2 66 66
+Zy_4 69 69
+Auk6 73 73
+Vqp8 78 78
+Uo_2 82 82
+Kdk8 85 85
+P__7 88 88
+Iur5 89 89
+Jls7 92 92
+Hss6 95 95
+Ext7 98 98
+Dtg3 101 101
+Kvw6 104 104
+Mp_4 107 107
+Wwi6 109 109
+Ocl8 111 111
+Fcx5 113 113
+Iy_1 116 116
+Z_g6 118 118
+A_w6 127 127
+Usp6 130 130
+Y_f1 134 134
+Uql9 139 139
+Amf3 144 144
+Yrx0 147 147
+Xtv1 150 150
+Vds4 155 155
+Fzw9 159 159
+Sxo4 160 160
+Rfh8 163 163
+Otw0 166 166
+Ypg3 168 168
+Evr2 171 171
+Cra2 174 174
+Bfb9 177 177
+N_t5 179 179
+Vo_1 184 184
+Asu7 186 186
+Bsf3 191 191
+Pyz4 194 194
+Dgk1 198 198
+Csu5 200 200
+Wlp3 204 204
+Tk_0 207 207
+Bli4 210 210
+Fyw8 212 212
+Jmo0 215 215
+Plv9 220 220
+Bax2 224 224
+H_d9 228 228
+Rkh4 231 231
+Vzt0 235 235
+Znq2 238 238
+Rre4 242 242
+Saa2 245 245
+Bmp2 247 247
+Pud6 249 249
+Iax3 254 254
+G_k9 258 258
+Mcg2 260 260
+Mmx3 262 262
+Nby2 263 263
+Jxz3 266 266
+Bgu1 268 268
+Zvy6 271 271
+Pyh8 275 275
+Nn_9 279 279
+Clv5 283 283
+Jlu4 287 287
+Tam0 290 290
+Toj5 293 293
+Pum9 295 295
+T_v5 298 298
+Xix8 302 302
+Uo_2-Nn_5
+N_t5-Uzx7
+Dka6-Pyh1
+Ext7-Pum9
+Z_g6-Akv2
+Azv3-Via3
+Nok7-Azv3
+Toj5-Nok7
+Tam0-Toj5
+Jlu4-Tam0
+Zvy6-Dka6
+Svp5-Zvy6
+Bgu1-Svp5
+Nby2-Iqt3
+Tdg2-Mmx3
+J_e0-Tdg2
+Mcg2-Ku_8
+Iax3-G_k9
+Pud6-Efm7
+Bmp2-Pud6
+Mdk1-Bmp2
+Bax2-H_d9
+Plv9-Bax2
+Jmo0-Gb_2
+Tk_0-Auk6
+Wlp3-Vqp8
+Csu5-Wlp3
+Dgk1-Csu5
+Pyz4-Dgk1
+Asu7-Uo_2
+Vo_1-Asu7
+Cra2-Bfb9
+Hs_2-Cra2
+Rfh8-Hss6
+Sxo4-Ext7
+Dtg3-Sxo4
+Xtv1-Vds4
+Amf3-Yrx0
+Wwi6-Amf3
+Uql9-Ocl8
+Iy_1-Fcx5
+Z_g6-Iy_1
+Usp6-Z_g6
+Hs_2-Usp6
+Fcx5-Y_f1
+Y_f1-Uql9
+Ocl8-Wwi6
+Yrx0-Xtv1
+Vds4-Mp_4
+Mp_4-Kvw6
+Kvw6-Fzw9
+Fzw9-Dtg3
+Ext7-Rfh8
+Hss6-Otw0
+Otw0-Ypg3
+Ypg3-Evr2
+Evr2-Jls7
+Jls7-Iur5
+Iur5-A_w6
+A_w6-Vcn7
+Bfb9-N_t5
+N_t5-P__7
+P__7-Kdk8
+Kdk8-Vo_1
+Uo_2-Bsf3
+Bsf3-Pyz4
+Vqp8-Tk_0
+Auk6-Bli4
+Bli4-Zy_4
+Zy_4-Fyw8
+Fyw8-Jmo0
+Gb_2-Plv9
+H_d9-Rkh4
+Rkh4-Vzt0
+Vzt0-Znq2
+Znq2-Rre4
+Rre4-Saa2
+Saa2-Mdk1
+Efm7-Iax3
+G_k9-Mcg2
+Ku_8-J_e0
+Mmx3-Nby2
+Iqt3-Jxz3
+Jxz3-Nhe2
+Nhe2-Bgu1
+Dka6-Pyh8
+Pyh8-Nn_9
+Nn_9-Qyu7
+Qyu7-Clv5
+Clv5-Jlu4
+Via3-Vcn7
+Wlp3-T_v5
+Rkh4-Jnr2
+Pyh1-Xix8
+#Here is the number of lines required: 27

@@ -93,14 +93,13 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	t_room *from;
 	t_room *to;
 
-
 	(*data)->connexion_part = 1;
 	if ((*data)->hash == 0)
 		hashtable_main(data, *li);
 	dash_position = test(line, *data);
 	if (dash_position < 0)
 		go_to_solver(li, line, data);
-	printf("LINE-> %s\n", line);
+	//printf("LINE-> %s\n", line);
 	conexion_1 = ft_strsub(line, 0 , dash_position);
 	conexion_2 = ft_strdup(&line[dash_position + 1]);
 	if(!conexion_1 || !conexion_2)

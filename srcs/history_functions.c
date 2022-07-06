@@ -42,7 +42,7 @@ void	push_history(t_hist *history, t_room *node)
 	size = history->size;
 	if (counter && counter % size == 0)
 	{
-		print_history(history);
+		//print_history(history);
 		tmp = (t_room **)malloc(sizeof(t_room *) * (counter + size));
 		if (!tmp)
 			exit(0); // TODO handle this
