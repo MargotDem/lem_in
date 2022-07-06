@@ -1,28 +1,28 @@
 #include "parsing.h"
 
-static int command_id(char *line);
+static int	command_id(char *line);
 
-static int command_id(char *line)
+static int	command_id(char *line)
 {
 	if ((ft_strcmp(line, "start") != 0) || (ft_strcmp(line, "end") != 0))
-			return (1);
+		return (1);
 	return (0);
 }
 
-int is_command(char *line)
+int	is_command(char *line)
 {
 	if (line[0] == '#' && line[1] == '#')
 	{
 		if (command_id(&line[2]))
 			return (1);
 	}
-	return(0);
+	return (0);
 }
 
-void    get_command(t_room **li, char *line, t_data **data)
+void	get_command(t_room **li, char *line, t_data **data)
 {
-	t_room *element;
-	char c;
+	t_room	*element;
+	char	c;
 
 	c = line[2];
 	if (c == 's' || c == 'e')
