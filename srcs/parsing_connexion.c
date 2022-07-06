@@ -118,9 +118,11 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 	t_room *from;
 	t_room *to;
 
+	printf("helloooo\n");
 	(*data)->connexion_part = 1;
 	if ((*data)->hash == 0)
 		hashtable_main(data, *li);
+	printf("helloooo2\n");
 	dash_position = test(line, *data);
 	if (dash_position < 0)
 		go_to_solver(li, line, data);

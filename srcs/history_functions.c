@@ -19,14 +19,11 @@ int	not_in_history(t_room *node, t_hist *history)
 	int	counter;
 
 	i = 0;
-	//printf("hola\n");
 	if (!history)
 		return (1);
 	counter = history->counter;
-	//printf("counter is : %d\n", counter);
 	while (i < counter)
 	{
-		//printf("i is : %d\n", i);
 		if (node->name == (history->arr[i])->name)
 			return (0);
 		i++;
@@ -45,7 +42,6 @@ void	push_history(t_hist *history, t_room *node)
 	size = history->size;
 	if (counter && counter % size == 0)
 	{
-		printf("reached limit, counter is %d, history is:\n", counter);
 		print_history(history);
 		tmp = (t_room **)malloc(sizeof(t_room *) * (counter + size));
 		if (!tmp)
