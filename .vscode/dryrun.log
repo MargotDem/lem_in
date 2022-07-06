@@ -15,9 +15,9 @@ mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_error.o -c srcs/parsing_error.c -g
 mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_utils_list.o -c srcs/parsing_utils_list.c -g
+ 
 mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_command.o -c srcs/parsing_command.c -g
- 
 mkdir -p ./objectFiles/
 gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_connexion.o -c srcs/parsing_connexion.c -g
 mkdir -p ./objectFiles/

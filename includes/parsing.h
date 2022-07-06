@@ -24,6 +24,12 @@ typedef struct s_room{
 	struct s_room	**links;
 }					t_room;
 
+typedef struct s_hist {
+	int	counter;
+	int	size;
+	t_room	**arr;
+}	t_hist;
+
 typedef struct s_data {
 	int				room_part;
 	int				connexion_part;
@@ -43,7 +49,7 @@ void			go_to_solver(t_room **li, char *line, t_data **data);
 
 typedef void			(*t_line_dispatcher)\
 			(t_room **li, char *line, t_data **data);
-static line_dispatcher	g_line_dispatch[4] = {
+static t_line_dispatcher	g_line_dispatch[4] = {
 	get_room,
 	get_connexion,
 	get_command,

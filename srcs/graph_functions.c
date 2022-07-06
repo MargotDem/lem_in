@@ -27,7 +27,7 @@ t_room	*create_node(char *name)
 	return (new);
 }
 
-void	print_graph(t_room *node, t_room **history)
+void	print_graph(t_room *node, t_hist *history)
 {
 	size_t	nb_links;
 	t_room	**links;
@@ -51,18 +51,16 @@ void	print_graph(t_room *node, t_room **history)
 	}
 }
 
-void	find_node(t_room *node, t_room **history, char *name, t_room **node_to_find)
+void	find_node(t_room *node, t_hist *history, char *name, t_room **node_to_find)
 {
 	size_t	nb_links;
 	t_room	**links;
 	t_room	*link;
 	size_t i;
 
-	if (*node_to_find)
+	if (*node_to_find || !node)
 		return ;
-	if (!node)
-		return ;
-	if (strings_match(node->name, name))
+	if (strings_match(node->name, name)) // TODO if its the same node you could  pass the node instead of the name and check if same pointer..??
 	{
 		*node_to_find = node;
 		return ;
