@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/07/05 09:33:05 by briffard         ###   ########.fr        #
+#    Updated: 2022/07/07 15:47:37 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			history_functions.c display_result.c \
 			list_functions.c paths_functions1.c paths_functions2.c \
 			helpers.c visualizer.c \
+			BSF.c \
 			#parsing_tree \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit

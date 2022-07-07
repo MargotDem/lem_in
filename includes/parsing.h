@@ -19,10 +19,18 @@ typedef struct s_room{
 	int				room_start;
 	int				room_end;
 	int				nb_links;
+	int				visited;
 	struct s_room	*next;
 	struct s_room	*h_next;
 	struct s_room	**links;
 }					t_room;
+
+typedef struct s_bsf
+{
+	t_room **to_visite;
+	int size_n;
+} t_bsf;
+
 
 typedef struct s_hist {
 	int	counter;
@@ -112,4 +120,5 @@ void			check_data(t_data *data);
 int				is_comment(char *line);
 void			insert_links(t_room *room1, t_room *room2);
 void			solve(t_room *start, t_data *data);
+void    bsf(t_room *origin, t_data **data);
 #endif
