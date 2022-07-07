@@ -25,9 +25,9 @@ int	countwords(char const *s, char c)
 /*Extract room name in line*/
 char	*extract_name(char *line)
 {
-	int	i;
-	int start;
-	char *name;
+	int		i;
+	int		start;
+	char	*name;
 
 	i = 0;
 	while (ft_iswhitespace(line[i]))
@@ -36,7 +36,7 @@ char	*extract_name(char *line)
 	while (line[i] > 32)
 		i++;
 	name = ft_strsub(line, start, i - start);
-	if(!name)
+	if (!name)
 		err_handling("malloc");
 	return (name);
 }
@@ -65,8 +65,8 @@ int	extract_row(char *line)
 
 int	check_word(char **arr)
 {
-	int i;
-	int x;
+	int	i;
+	int	x;
 
 	i = 1;
 	x = 0;
