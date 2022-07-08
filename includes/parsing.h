@@ -29,6 +29,7 @@ typedef struct s_bsf
 {
 	t_room **to_visite;
 	int size_n;
+	int deep;
 } t_bsf;
 
 

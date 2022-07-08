@@ -1,13 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BSF.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/08 07:56:02 by briffard          #+#    #+#             */
+/*   Updated: 2022/07/08 08:38:38 by briffard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 
-t_room **a_visted(t_room *origin, t_room **tab, t_bsf **bsf)
+void	a_visted(t_room *origin, t_room **tab, t_bsf **bsf)
 {
-    int i, j,l;
-    int x;
-    t_room **dest;
+    int i;
+/*    t_room **dest;
 
-    i = 0;
+
+	dest = (t_room **)malloc(sizeof(t_room *) * 1000);
+	i = -1;
+	while (++i < 1000)
+		dest[i] = NULL;
+*/
+	i = 0;
+	while ( i < origin->nb_links)
+	{
+		if (origin->links[i]->visited == 0)
+		{
+			(*bsf)->to_visite[(*bsf)->size_n] = tab[i];
+			(*bsf)->size_n += 1;
+			origin->links[i]->visited = TRUE;
+		}
+		i++;
+	}
+   /* i = 0;
     // printf("origin->nb_links => %d\n",origin->nb_links);
     while (i < origin->nb_links)
     {
@@ -39,8 +67,8 @@ t_room **a_visted(t_room *origin, t_room **tab, t_bsf **bsf)
         (*bsf)->size_n = j;
         }
         i++;
-    }
-    return (dest);
+    }*/
+   // return (dest);
 }
 
 void    bsf(t_room *origin, t_data **data)
@@ -49,32 +77,35 @@ void    bsf(t_room *origin, t_data **data)
     int size;
     t_room *node;
     t_bsf *bsf;
-
+	
     bsf = NULL;
     bsf = (t_bsf *)malloc(sizeof(bsf));
-    bsf->to_visite = (t_room **)malloc(sizeof(t_room*) * 1);
-    bsf->to_visite[0] = NULL;
+	bsf->to_visite = (t_room **)malloc(sizeof(t_room *) * 1000);
+	i = -1;
+	while (++i < 1000)
+		bsf->to_visite[i] = NULL;
     bsf->size_n = 0;
+	origin->visited = TRUE;
 
     i = 0;
-    bsf->to_visite = a_visted(origin, origin->links, &bsf); // tableaux de pointeur qui continet les nodes a visiter
+    a_visted(origin, origin->links, &bsf); // tableaux de pointeur qui continet les nodes a visiter
     size = bsf->size_n;
 
-    while ( i < size)
+    while ( i < (*bsf).size_n)
     {
         node = bsf->to_visite[i];
         printf("NODE -> %s || i-> %d\n", node->name, i);
-        if (ft_strcmp(node->name, (*data)->exit_room))
+        if (ft_strcmp(node->name, (*data)->exit_room) == 0)
         {
             printf("LAST NODE  is next\n");
             i++;
-            if (i == size)
+			node = bsf->to_visite[i];
+			printf("NEW NOde -> %s\n", node->name );
+            if (i == bsf->size_n)
                 break;
         }
-        if (!node->visited)
-            bsf->to_visite = a_visted(node, node->links, &bsf);
-        node->visited = TRUE;
-        i++;
+		a_visted(node, node->links, &bsf);
+		i++;
     }
     printf("RETURN ARR DES CHEMIN TROUVER\n");
 }
