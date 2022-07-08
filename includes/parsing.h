@@ -28,7 +28,9 @@ typedef struct s_room{
 typedef struct s_bsf
 {
 	t_room **to_visite;
+	t_room *paths;
 	int size_n;
+	int node_parcourus;
 	int deep;
 } t_bsf;
 
