@@ -6,16 +6,23 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 07:56:02 by briffard          #+#    #+#             */
-/*   Updated: 2022/07/08 08:38:38 by briffard         ###   ########.fr       */
+/*   Updated: 2022/07/08 13:30:43 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
+/*
+void	add_historic(t_room *origin, t_room *to, t_bsf **bsf)
+{
+	(*bsf)->paths[i] =  
+}
 
+*/
 void	a_visted(t_room *origin, t_room **tab, t_bsf **bsf)
 {
     int i;
+	int counter;
 /*    t_room **dest;
 
 
@@ -25,6 +32,7 @@ void	a_visted(t_room *origin, t_room **tab, t_bsf **bsf)
 		dest[i] = NULL;
 */
 	i = 0;
+	counter = 0;
 	while ( i < origin->nb_links)
 	{
 		if (origin->links[i]->visited == 0)
@@ -32,9 +40,11 @@ void	a_visted(t_room *origin, t_room **tab, t_bsf **bsf)
 			(*bsf)->to_visite[(*bsf)->size_n] = tab[i];
 			(*bsf)->size_n += 1;
 			origin->links[i]->visited = TRUE;
+			counter += 1;
 		}
 		i++;
 	}
+		(*bsf)->node_parcourus += 1;
    /* i = 0;
     // printf("origin->nb_links => %d\n",origin->nb_links);
     while (i < origin->nb_links)
@@ -73,38 +83,50 @@ void	a_visted(t_room *origin, t_room **tab, t_bsf **bsf)
 
 void    bsf(t_room *origin, t_data **data)
 {
-    int i;
-    int size;
+    int i, origin_nb_links = 0;
     t_room *node;
     t_bsf *bsf;
 	
     bsf = NULL;
     bsf = (t_bsf *)malloc(sizeof(bsf));
-	bsf->to_visite = (t_room **)malloc(sizeof(t_room *) * 1000);
+	bsf->node_parcourus = 0;
+	bsf->to_visite = (t_room **)malloc(sizeof(t_room *) * 2000);
+/*	bsf->paths = (t_room **)malloc(sizeof(t_room *) * 50);
 	i = -1;
+	while (++i < 50)
+		bsf->paths[i] = NULL;
+*/	i = -1;
 	while (++i < 1000)
 		bsf->to_visite[i] = NULL;
     bsf->size_n = 0;
+	bsf->deep = 0;
 	origin->visited = TRUE;
 
     i = 0;
-    a_visted(origin, origin->links, &bsf); // tableaux de pointeur qui continet les nodes a visiter
-    size = bsf->size_n;
-
+    a_visted(origin, origin->links, &bsf); // tableaux de pointeur qui continet les nodes a visi
+	origin_nb_links = origin->nb_links;
+	printf("X -> %d || n_par -> %d\n", origin_nb_links, bsf->node_parcourus);
     while ( i < (*bsf).size_n)
     {
+		printf("X -> %d || n_par -> %d\n", origin_nb_links, bsf->node_parcourus);
+		if (bsf->node_parcourus >= origin_nb_links)
+		{
+			bsf->node_parcourus = 0;
+			bsf->deep += 1;
+		}
         node = bsf->to_visite[i];
-        printf("NODE -> %s || i-> %d\n", node->name, i);
+        printf("Checking links from NODE -> %s\n\t index-> %d || deep->%d\n", node->name, i, bsf->deep);
         if (ft_strcmp(node->name, (*data)->exit_room) == 0)
         {
-            printf("LAST NODE  is next\n");
+            printf("%sLAST NODE  is next%s\n","\x1B[31m", "\033[0m");
             i++;
+			if (i > bsf->size_n)
+				break;
 			node = bsf->to_visite[i];
 			printf("NEW NOde -> %s\n", node->name );
-            if (i == bsf->size_n)
-                break;
         }
 		a_visted(node, node->links, &bsf);
+		origin_nb_links = node->nb_links;
 		i++;
     }
     printf("RETURN ARR DES CHEMIN TROUVER\n");
