@@ -40,6 +40,7 @@ void	push_history(t_hist *history, t_room *node)
 
 	counter = history->counter;
 	size = history->size;
+	//printf("size is %d counter is %d\n", size, counter);
 	if (counter && counter % size == 0)
 	{
 		//print_history(history);
@@ -94,4 +95,39 @@ void	init_history(t_hist **history, int size)
 	if (!(*history)->arr) // TODO handle this
 		exit(0);
 	i = 0;
+}
+
+void	copy_history(t_hist *src, t_hist **dst)
+{
+	int	i;
+	int	counter;
+
+	i = 0;
+	counter = src->counter;
+	init_history(dst, counter);
+	while (i < counter)
+	{
+		push_history(*dst, src->arr[i]);
+		i++;
+	}
+}
+
+void	append_to_history(t_hist *src, t_hist **dst)
+{
+	int	i;
+	int	counter;
+	int	size;
+
+	i = 0;
+	counter = src->counter;
+	size = counter;
+	if (size == 0)
+		size = 50;
+	if (!(*dst))
+		init_history(dst, size);
+	while (i < counter)
+	{
+		push_history(*dst, src->arr[i]);
+		i++;
+	}
 }

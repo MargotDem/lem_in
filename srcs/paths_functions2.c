@@ -57,13 +57,15 @@ void	add_path_to_list(t_paths **all_paths, t_hist *history)
 		lst_add_back((t_void_list *)*all_paths, (t_void_list *)path_el);
 }
 
-void	find_all_paths(t_room *node, t_paths **all_paths, t_hist *history, char *end, int path_len, int	*shortest, size_t nb_ants)
+void	find_all_paths(t_room *node, t_paths **all_paths, t_hist *history, char *end, int path_len, int	*shortest)
 {
 	size_t	nb_links;
 	t_room	**links;
 	size_t	i;
 
-	if (path_len >= *shortest + (int)nb_ants + 1)
+	//if (path_len >= *shortest + (int)nb_ants + 1)
+		//return ;
+	if (path_len >= 50)
 		return ;
 	if (strings_match(node->name, end))
 	{
@@ -83,8 +85,37 @@ void	find_all_paths(t_room *node, t_paths **all_paths, t_hist *history, char *en
 		{
 			push_history(history, links[i]);
 			path_len++;
-			find_all_paths(links[i], all_paths, history, end, path_len, shortest, nb_ants);
+			find_all_paths(links[i], all_paths, history, end, path_len, shortest);
 			path_len--;
+			//printf("hey\n");
+			pop_history(history);
+		}
+		i++;
+	}
+}
+
+void	find_all_paths2(t_room *node, t_paths **all_paths, t_hist *history, char *end)
+{
+	size_t	nb_links;
+	t_room	**links;
+	size_t	i;
+
+	if (strings_match(node->name, end))
+	{
+		add_path_to_list(all_paths, history);
+		return ;
+	}
+	nb_links = node->nb_links;
+	links = node->links;
+	i = 0;
+	while (i < nb_links)
+	{
+		if (not_in_history(links[i], history))
+		{
+			push_history(history, links[i]);
+		
+			find_all_paths2(links[i], all_paths, history, end);
+	
 			//printf("hey\n");
 			pop_history(history);
 		}
@@ -263,7 +294,7 @@ void	find_optimal_paths(t_room *graph, t_paths **optimal_paths, size_t nb_ants, 
 	start = start_and_end[0];
 	end = start_and_end[1];
 	printf("HELLOO before find all  paths\n");
-	find_all_paths(graph, &all_paths, history, end, 0, &shortest, nb_ants);
+	find_all_paths(graph, &all_paths, history, end, 0, &shortest);
 	printf("HELLOO after find all  paths\n");
 
 	//print_paths(all_paths);
@@ -272,4 +303,28 @@ void	find_optimal_paths(t_room *graph, t_paths **optimal_paths, size_t nb_ants, 
 	select_optimal_paths(all_paths, optimal_paths, nb_ants, start, end);
 	//printf("HERE nb ants is %zu\n", nb_ants);
 	//printf("and optimal path the first path nb ants is %zu\n", (*optimal_paths)->nb_ants);
+}
+
+void	find_optimal_paths2(t_room *graph, t_paths **optimal_paths, size_t nb_ants, char **start_and_end)
+{
+	t_paths	*all_paths;
+	t_hist	*history;
+	char	*start;
+	char	*end;
+	int	shortest;
+	shortest = 2000000;
+
+	history = NULL;
+	init_history(&history, 2000);
+	push_history(history, graph);
+	all_paths = NULL;
+	start = start_and_end[0];
+	end = start_and_end[1];
+	printf("HELLOO before find all  paths 2\n");
+	find_all_paths2(graph, &all_paths, history, end);
+	printf("HELLOO after find all  paths 2, paths are:\n");
+	print_paths(all_paths);
+
+	select_optimal_paths(all_paths, optimal_paths, nb_ants, start, end);
+
 }

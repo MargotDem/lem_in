@@ -22,6 +22,10 @@ typedef struct s_room{
 	struct s_room	*next;
 	struct s_room	*h_next;
 	struct s_room	**links;
+	int				visited;
+	int				to_be_visited;
+	int				part_of_solution;
+	struct s_hist			*history;
 }					t_room;
 
 typedef struct s_hist {

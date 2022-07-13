@@ -60,6 +60,10 @@ t_room  *new_node(char *line, char c)
     node->name = extract_name(line);
     node->x = extract_line(line);
     node->y = extract_row(line);
+	node->visited = 0;
+	node->to_be_visited = 0;
+	node->part_of_solution = 0;
+	node->history = NULL;
     node->nb_links = 0;
     node = set_startorend(node, c);
     node = set_null_pointer(node);

@@ -1,0 +1,26 @@
+6
+##start
+start 5 1
+##end
+end 5 17
+A 1 5
+B 5 5
+C 1 13
+D 5 9
+E 5 13
+F 9 3
+G 9 5
+H 9 9
+I 9 13
+start-A
+start-B
+start-F
+A-C
+C-end
+B-D
+D-E
+E-end
+F-G
+G-H
+H-I
+I-end

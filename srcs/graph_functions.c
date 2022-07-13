@@ -27,7 +27,7 @@ t_room	*create_node(char *name)
 	return (new);
 }
 
-void	print_graph(t_room *node, t_hist *history)
+void	print_graph(t_room *node, t_hist *history, int	only_visited)
 {
 	size_t	nb_links;
 	t_room	**links;
@@ -37,8 +37,11 @@ void	print_graph(t_room *node, t_hist *history)
 	nb_links = node->nb_links;
 	links = node->links;
 	printf("\n");
-	printf("node: '%s', ", node->name);
-	print_history(history);
+	if (only_visited && node->visited)
+	{
+		printf("node: '%s', ", node->name);
+		print_history(history);
+	}
 	i = 0;
 	if (not_in_history(node, history))
 		push_history(history, node);
@@ -46,7 +49,7 @@ void	print_graph(t_room *node, t_hist *history)
 	{
 		link = links[i];
 		if (not_in_history(link, history))
-			print_graph(link, history);
+			print_graph(link, history, only_visited);
 		i++;
 	}
 }
