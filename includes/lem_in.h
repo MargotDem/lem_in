@@ -14,7 +14,7 @@
 # define LEM_IN_H
 
 # include <stdlib.h>
-# include "mlx.h"
+//# include "mlx.h"
 # include "parsing.h"
 
 typedef struct s_path_node
@@ -125,8 +125,12 @@ void	make_graph6(t_graph **graph);
 void	distribute_ants(t_paths *paths, size_t nb_ants);
 
 // Visualizer
-void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **start_and_end);
+//void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **start_and_end);
 
 char	*get_room_name(t_paths *path_ptr, int room_nb);
+
+
+
+void	add_path_to_list(t_paths **all_paths, t_hist *history);
 
 #endif

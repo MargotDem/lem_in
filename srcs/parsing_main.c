@@ -75,7 +75,7 @@ int main(void)
     data = NULL;
     mapreader(0, &rooms, &data);
     check_data(data);
-    solve_new(search_for(data->start_room, data), data);
+    solve(search_for(data->start_room, data), data);
     free_all(&data);
     free(rooms);
     free(data);

@@ -151,6 +151,76 @@ int	calculate_turns(t_room *start, size_t nb_ants, char *end, size_t *new_nb_pat
 	return (sol);
 }
 
+void	set_to_standby(t_hist *hist)
+{
+	int	i;
+	int	counter;
+
+	i = 0;
+	counter = hist->counter;
+	while (i < counter)
+	{
+		hist->arr[i]->stand_by = 1;
+		i++;
+	}
+}
+
+void	reset_to_be_visited(t_hist *arr)
+{
+	int	i;
+	int	counter;
+
+	i = 0;
+	counter = arr->counter;
+	while (i < counter)
+	{
+		arr->arr[i]->to_be_visited = 0;
+		i++;
+	}
+}
+
+int		path_already_found(t_hist *hist, t_paths *paths)
+{
+	int	i;
+	int	counter;
+	t_path_node *path;
+
+	i = 0;
+	counter = hist->counter;
+	while (paths)
+	{
+		path = paths->path;
+		i = 0;
+		while (path)
+		{
+			if (path->node != hist->arr[i])
+				break ;
+			else
+			{
+				i++;
+				path = path->next;
+			}
+			return (1);
+		}
+		paths = paths->next;
+	}
+	return (0);
+}
+
+void		set_parents(t_hist *hist)
+{
+	int	i;
+	int	counter;
+
+	i = 1;
+	counter = hist->counter;
+	while (i < counter)
+	{
+		hist->arr[i]->parent = hist->arr[i - 1];
+		i++;
+	}
+}
+
 void	testsolve(t_room *start, size_t nb_ants, char *end)
 {
 	int	i;
@@ -165,10 +235,10 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 	int	new_sol;
 	size_t	new_nb_paths;
 	size_t	prev_nb_paths;
-	t_paths	*optimal_paths;
+	t_paths	*paths;
 	char	*start_and_end[2];
 
-	optimal_paths = NULL;
+	paths = NULL;
 	start_and_end[0] = start->name;
 	start_and_end[1] = end;
 	i = 0;
@@ -187,6 +257,7 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 	//while (i < arr->counter && i < 500)
 	while (i < arr->counter)
 	{
+		printf("here is is %d\n", i);
 		node = arr->arr[i];
 		node->visited = 1;
 		nb_links = node->nb_links;
@@ -195,35 +266,72 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 		while (j < nb_links)
 		{
 
-				//printf("the child node is %s, mother node is %s\n", links[j]->name, node->name);
+			//printf("the child node is %s, mother node is %s\n", links[j]->name, node->name);
 
-			if (!(links[j]->history))
-			{
+			//if (!(links[j]->history))
+			//{
+				links[j]->history = NULL;
 				append_to_history(node->history, &(links[j]->history));
 				push_history(links[j]->history, node);
-			}
+			//}
 			if (!strings_match(links[j]->name, end))
 			{
+				//printf("not end\n");
 				if (!links[j]->to_be_visited)
 				{
 					links[j]->to_be_visited = 1;
 					push_history(arr, links[j]);
 				}
+				if (links[j]->stand_by)
+				{
+					if (!(node->stand_by))
+					{
+						links[j]->to_be_visited = 1;
+						push_history(arr, links[j]);
+					}
+					else
+					{
+						if (node->parent != links[j])
+						{
+							links[j]->to_be_visited = 1;
+							push_history(arr, links[j]);
+						}
+						// not parentnttttt cos infinite looopppp
+					}
+					
+				}
 			}
 			else
 			{
-
+				if (path_already_found(links[j]->history, paths))
+				{
+					printf("heyyyy path already foundddd. i is %d and counter is %d\n", i, arr->counter);
+					break ;
+				}
 				printf("end reached from node %s\n", node->name);
 				print_history(links[j]->history);
 				printf("^ the path to the end ^\n");
-				printf("****");
-				print_history(arr);
+				add_path_to_list(&paths, links[j]->history);
+				set_to_standby(links[j]->history);
+				set_parents(links[j]->history);
+				reset_to_be_visited(arr);
+				//hihi
+				arr = NULL;
+				init_history(&arr, 2000);
+				push_history(arr, start);
+				i = -1;
+				//continue ;
+				break ;
+
+				printf("****\n");
+				//print_history(arr);
 			
 				//printf("visited nodes:\n");
 				history = NULL;
 				//init_history(&history, 2000);
 				//print_graph(start, history, 1);
 
+				/*
 				new_sol = calculate_turns(start, nb_ants, end, &new_nb_paths);
 				printf("\nnew sol is %d and prev sol is %d\n", new_sol, prev_sol);
 				printf("prev nb paths is %zu and new nb paths is %zu\n", prev_nb_paths, new_nb_paths);
@@ -237,18 +345,20 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 					printf("lets break\n");
 					break ;
 				}
+				*/
 			}
 			j++;
 		}
-
-		if (new_sol != 0 && new_sol == prev_sol && prev_nb_paths < new_nb_paths)
+		/*if (new_sol != 0 && new_sol == prev_sol && prev_nb_paths < new_nb_paths)
 		{
 			break ;
 		}
+		*/
 		i++;
-		printf("\n");
 	}
-	find_optimal_paths2(start, &optimal_paths, nb_ants, start_and_end);
+		printf("THE PATHSSSS\n");
+		print_paths(paths);
+	/*find_optimal_paths2(start, &optimal_paths, nb_ants, start_and_end);
 	distribute_ants(optimal_paths, nb_ants);
 	printf("\n\n\n\n");
 	display_result(optimal_paths, nb_ants);
@@ -256,7 +366,8 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 	printf("\n\nTHE OPTIMAL PATHS ARE:\n\n");
 	print_paths(optimal_paths);
 	printf("\n\nEND OF OPTIMAL PATHS:\n\n");
-	visualizer(start, nb_ants, optimal_paths, start_and_end);
+	*/
+	//visualizer(start, nb_ants, optimal_paths, start_and_end);
 }
 
 void solve(t_room *start, t_data *data)
@@ -288,7 +399,7 @@ void solve(t_room *start, t_data *data)
 	printf("\n\nEND OF OPTIMAL PATHS:\n\n");
 	display_result(optimal_paths, nb_ants);
 	printf("nb of turns is %zu\n", optimal_paths->nb_ants + optimal_paths->path_size - 2);
-	visualizer(start, nb_ants, optimal_paths, start_and_end);
+	//visualizer(start, nb_ants, optimal_paths, start_and_end);
 	printf("\n\n\n\n");
 }
 

@@ -20,12 +20,14 @@ typedef struct s_room{
 	int				room_end;
 	int				nb_links;
 	struct s_room	*next;
+	struct s_room	*parent;
 	struct s_room	*h_next;
 	struct s_room	**links;
 	int				visited;
 	int				to_be_visited;
+	int				stand_by;
 	int				part_of_solution;
-	struct s_room			*history;
+	struct s_hist			*history;
 }					t_room;
 
 typedef struct s_hist {
@@ -117,4 +119,5 @@ int				is_comment(char *line);
 void			insert_links(t_room *room1, t_room *room2);
 void			solve(t_room *start, t_data *data);
 void			solve_new(t_room *start, t_data *data);
+
 #endif
