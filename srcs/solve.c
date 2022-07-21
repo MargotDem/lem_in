@@ -234,10 +234,9 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 				}
 				else if (new_sol == prev_sol && prev_nb_paths < new_nb_paths)
 				{
+					printf("lets break\n");
 					break ;
 				}
-				printf("lets break\n");
-
 			}
 			j++;
 		}

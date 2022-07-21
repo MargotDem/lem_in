@@ -25,7 +25,7 @@ typedef struct s_room{
 	int				visited;
 	int				to_be_visited;
 	int				part_of_solution;
-	struct s_hist			*history;
+	struct s_room			*history;
 }					t_room;
 
 typedef struct s_hist {
@@ -116,4 +116,5 @@ void			check_data(t_data *data);
 int				is_comment(char *line);
 void			insert_links(t_room *room1, t_room *room2);
 void			solve(t_room *start, t_data *data);
+void			solve_new(t_room *start, t_data *data);
 #endif

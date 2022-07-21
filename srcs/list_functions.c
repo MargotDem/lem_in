@@ -15,11 +15,18 @@
 // TODO change this so that if list is not initialized it becomes the new el
 void	lst_add_back(t_void_list *list, t_void_list *new)
 {
+
 	if (list && new)
 	{
+		printf("---->%s\n",((t_room *)new)->name);
+		printf("here5\n");
 		while (list->next)
+		{
+			printf("--->%s\n", ((t_room *)list)->name);
 			list = list->next;
+		}
 		list->next = new;
+		printf("here6\n");
 	}
 }
 

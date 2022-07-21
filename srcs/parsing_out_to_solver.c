@@ -25,7 +25,7 @@ void go_to_solver(t_room **li, char *line, t_data **data)
 {
     ft_strdel(&line);
     check_data((*data));
-    solve(search_for((*data)->start_room, *data), *data);
+    solve_new(search_for((*data)->start_room, *data), *data);
     free_all(data);
     free(li);
     free(data);
