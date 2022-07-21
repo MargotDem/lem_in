@@ -3,43 +3,83 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+         #
+#    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/01 15:53:24 by mde-maul          #+#    #+#              #
-#    Updated: 2022/06/01 15:53:25 by mde-maul         ###   ########.fr        #
+#    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
+#    Updated: 2022/07/05 09:33:05 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem-in
+NAME	=	lem-in
 
-SRCS = main.c handle_error.c
+#COMPILATION
+CC		=	gcc
+CCFLAGS	=	-Werror -Wextra -Wall
 
-OBJS = $(SRCS:.c=.o)
+#INCLUDE
+INCL_LFT	= -I ./libft/
+INCL_PARS	= -I ./includes/
+INCL_MLX	= -I/usr/local/include
 
-FLAGS = -Wall -Werror -Wextra
+#LIBRAIRIE
+LIB		= -L ./libft/ -lft
+MLX		= -L /usr/local/lib -lmlx
 
-LIBS = -L ./libft -lft
+#CLEAN & FCLEAN
+RM_DIR	=	rm -rf
+RM		=	rm	-f
 
-INCLUDES = -I ./libft/includes/
+#SOURCE FILES
+SRC_DIR	=	./srcs/
+FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
+			parsing_utils2.c parsing_error.c parsing_utils_list.c \
+			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
+			parsing_connexion_handling.c \
+			parsing_out_to_solver.c \
+			hashtable_main.c \
+			handle_error.c graph_functions.c \
+			history_functions.c display_result.c \
+			list_functions.c paths_functions1.c paths_functions2.c \
+			helpers.c visualizer.c solve_new.c \
+			#parsing_tree \
 
-all: $(NAME)
+FRAMEWORKS = -framework OpenGL -framework Appkit
 
-$(NAME):
-	make -C ./libft
-	gcc $(FLAGS) $(INCLUDES) -c $(SRCS)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
+#OBJECT FILES
+OBJ_DIR			=	./objectFiles/
+OBJS			=	$(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
+
+all: $(NAME) $(LIBFT)
+
+$(NAME): $(OBJS)
+	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(MLX) $(FRAMEWORKS) -g
+	
+$(OBJ_DIR)%.o:$(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $< -g
+
+$(LIBFT):
+	@make -sC ./libft/ all
+lft:
+	@make -sC ./libft/ all
+
+lft_reboot:
+	@make -sC ./libft/ re
+
+lft_clean:
+	@make -sC ./libft/ clean
+
+lft_fclean:
+	@make -sC ./libft/ fclean
 
 clean:
-	make -C ./libft clean
-	rm -f $(OBJS)
+	@$(RM_DIR) $(OBJ_DIR)
+	@echo "Object Files have been deleted"
 
 fclean: clean
-	make -C ./libft fclean
-	rm -f $(NAME)
+	@$(RM) $(NAME)
+	@echo "Parsing file has been deleted"
 
 re: fclean all
 
-dev:
-	gcc $(FLAGS) $(INCLUDES) -c $(SRCS)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
-	make clean
+.PHONY: all re clean fclean
