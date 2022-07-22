@@ -23,16 +23,15 @@ typedef struct s_room{
 	struct s_room	*next;
 	struct s_room	*h_next;
 	struct s_room	**links;
+	struct s_room	**history;
+	int				size_history;
 }					t_room;
 
-typedef struct s_bsf
+typedef struct s_bfs
 {
 	t_room **to_visite;
-	t_room *paths;
-	int size_n;
-	int node_parcourus;
-	int deep;
-} t_bsf;
+	int size_to_visite;
+} t_bfs;
 
 
 typedef struct s_hist {

@@ -1,0 +1,43 @@
+  --- end
+  |    |
+  M    K ---- J
+  |    |      |
+  H    i      L
+  |    |      |
+  G    E      F
+  |    |      |
+  C -- B      D
+       |      |
+    START --- A
+
+LISTE DES NODES A VISITER:  A B 
+                            C E D
+                            G I F
+                            
+
+Position = start
+    node a visiter : A B
+    history :
+        start
+
+Position = A
+    node a visiter :  D
+    history : start - A
+
+Position B
+    node a visiter : C E
+    history:
+        start - B
+
+Position:  C
+    node a visiter: G
+    history: start - B - C
+
+Position E
+    node a  visiter: I
+    history: start - B - E
+
+Position D
+    node A visiter: F
+    history = start - A - D 
+

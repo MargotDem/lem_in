@@ -39,6 +39,10 @@ static t_room	*set_null_pointer(t_room *element)
 {
 	element->next = NULL;
 	element->h_next = NULL;
+	element->back_trace = NULL;
+	element->history = (t_room **)malloc(sizeof(t_room *) * 1);
+	if (!element->historic)
+		err_handling("malloc");
 	element->links = (t_room **)malloc(sizeof(t_room *) * 2);
 	if (!element->links)
 		err_handling("malloc");
