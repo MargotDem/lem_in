@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graph_array.c                                      :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 17:19:17 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/04 17:19:19 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:30:49 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,34 +276,38 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 			//}
 			if (!strings_match(links[j]->name, end))
 			{
-				//printf("not end\n");
+				printf("links[%d] -> %s\n", j, links[j]->name);
+				printf("\t visited = %d | stbd= %d | to be = %d\n", links[j]->to_be_visited, links[j]->stand_by, links[j]->to_be_visited_stand_by);
 				if (!links[j]->to_be_visited)
 				{
 					links[j]->to_be_visited = 1;
+					printf(" NORMAL NODE PUSH -> %s\n", links[j]->name);
 					push_history(arr, links[j]);
 				}
-				if (links[j]->stand_by && links[j]->to_be_visited_stand_by == 0)
-				{
-					if (!(node->stand_by))
-					{
-						links[j]->to_be_visited = 1;
-						links[j]->to_be_visited_stand_by = 1;
-						push_history(arr, links[j]);
-					}
-					else
-					{
-						if (node->parent)
-							//printf("node parent of %s is %s\n", node->name, node->parent->name);
-						if (node->parent != links[j])
-						{
-							links[j]->to_be_visited = 1;
-							links[j]->to_be_visited_stand_by = 1;
-							push_history(arr, links[j]);
-						}
-						// not parentnttttt cos infinite looopppp
-					}
+				// else if (links[j]->stand_by && links[j]->to_be_visited_stand_by == 0 && links[j]->room_start != 1)
+				// {
+				// 	if (!(node->stand_by))
+				// 	{
+				// 		links[j]->to_be_visited = 1;
+				// 		links[j]->to_be_visited_stand_by = 1;
+				// 		printf("2NODE PUSH -> %s\n", links[j]->name);
+				// 		push_history(arr, links[j]);
+				// 	}
+				// 	else
+				// 	{
+				// 		if (node->parent)
+				// 			//printf("node parent of %s is %s\n", node->name, node->parent->name);
+				// 		if (node->parent != links[j])
+				// 		{
+				// 			links[j]->to_be_visited = 1;
+				// 			links[j]->to_be_visited_stand_by = 1;
+				// 			printf("3NODE PUSH -> %s\n", links[j]->name);
+				// 			push_history(arr, links[j]);
+				// 		}
+				// 		// not parentnttttt cos infinite looopppp
+				// 	}
 					
-				}
+				// }
 			}
 			else
 			{
