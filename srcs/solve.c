@@ -165,16 +165,16 @@ void	set_to_standby(t_hist *hist)
 	}
 }
 
-void	reset_to_be_visited(t_hist *arr)
+void	reset_to_be_visited(t_hist *to_be_visited)
 {
 	int	i;
 	int	counter;
 
 	i = 0;
-	counter = arr->counter;
+	counter = to_be_visited->counter;
 	while (i < counter)
 	{
-		arr->arr[i]->to_be_visited = 0;
+		to_be_visited->arr[i]->to_be_visited = 0;
 		i++;
 	}
 }
@@ -251,7 +251,6 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 	init_history(&arr, 2000);
 	push_history(arr, start);
 	start->to_be_visited = 1;
-	start->part_of_solution = 1;
 	init_history(&(start->history), 50);
 	//push_history(start->history, start);
 	//while (i < arr->counter && i < 500)
@@ -259,6 +258,7 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 	{
 		printf("here is is %d\n", i);
 		node = arr->arr[i];
+		printf("the node: %s\n", node->name);
 		node->visited = 1;
 		nb_links = node->nb_links;
 		links = node->links;
@@ -282,18 +282,22 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 					links[j]->to_be_visited = 1;
 					push_history(arr, links[j]);
 				}
-				if (links[j]->stand_by)
+				if (links[j]->stand_by && links[j]->to_be_visited_stand_by == 0)
 				{
 					if (!(node->stand_by))
 					{
 						links[j]->to_be_visited = 1;
+						links[j]->to_be_visited_stand_by = 1;
 						push_history(arr, links[j]);
 					}
 					else
 					{
+						if (node->parent)
+							//printf("node parent of %s is %s\n", node->name, node->parent->name);
 						if (node->parent != links[j])
 						{
 							links[j]->to_be_visited = 1;
+							links[j]->to_be_visited_stand_by = 1;
 							push_history(arr, links[j]);
 						}
 						// not parentnttttt cos infinite looopppp
@@ -306,12 +310,16 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 				if (path_already_found(links[j]->history, paths))
 				{
 					printf("heyyyy path already foundddd. i is %d and counter is %d\n", i, arr->counter);
+					printf("the path found is  \n");
+					print_history(links[j]->history);
 					break ;
 				}
 				printf("end reached from node %s\n", node->name);
 				print_history(links[j]->history);
 				printf("^ the path to the end ^\n");
 				add_path_to_list(&paths, links[j]->history);
+				printf("the path is\n");
+				print_paths(paths);
 				set_to_standby(links[j]->history);
 				set_parents(links[j]->history);
 				reset_to_be_visited(arr);
@@ -319,6 +327,8 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 				arr = NULL;
 				init_history(&arr, 2000);
 				push_history(arr, start);
+				start->to_be_visited = 1;
+				links[j]->to_be_visited = 0;
 				i = -1;
 				//continue ;
 				break ;
@@ -356,7 +366,7 @@ void	testsolve(t_room *start, size_t nb_ants, char *end)
 		*/
 		i++;
 	}
-		printf("THE PATHSSSS\n");
+		printf("\n\nTHE PATHSSSS\n");
 		print_paths(paths);
 	/*find_optimal_paths2(start, &optimal_paths, nb_ants, start_and_end);
 	distribute_ants(optimal_paths, nb_ants);
