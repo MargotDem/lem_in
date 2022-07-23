@@ -23,6 +23,7 @@ typedef struct s_room{
 	struct s_room	*parent;
 	struct s_room	*h_next;
 	struct s_room	**links;
+	struct s_room	*paths_next;
 	int				visited;
 	int				to_be_visited;
 	int				to_be_visited_stand_by;
@@ -30,6 +31,18 @@ typedef struct s_room{
 	int				part_of_solution;
 	struct s_hist			*history;
 }					t_room;
+
+typedef struct s_solver
+{
+	struct s_room **arr;
+	int				arr_counter;
+	t_room	*node_ref;
+	int	valide_chemin;
+	int	nb_links;
+} t_solver;
+
+
+
 
 typedef struct s_hist {
 	int	counter;
@@ -120,5 +133,6 @@ int				is_comment(char *line);
 void			insert_links(t_room *room1, t_room *room2);
 void			solve(t_room *start, t_data *data);
 void			solve_new(t_room *start, t_data *data);
+void			test_solver(t_room *start);
 
 #endif
