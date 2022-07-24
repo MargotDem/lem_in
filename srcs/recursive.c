@@ -106,6 +106,12 @@ t_room	*cpy_node(t_room *node)
 		err_handling("malloc");
 	cpy->name = node->name;
 	cpy->paths_next = NULL;
+	cpy->nb_links = node->nb_links;
+	cpy->links = node->links;
+	cpy->visited = node->visited;
+	cpy->room_end = node->room_end;
+	cpy->room_start = node->room_start;
+	cpy->part_of_solution = node->part_of_solution;
 	return (cpy);
 }
 
@@ -154,10 +160,11 @@ void	reset(t_solver *data)
 }
 
 
-void	recursive_solver(t_room *node, int index, t_solver *data, t_solver *all_paths)
+void	recursive_solver(t_room *node, int index, t_solver *data, t_solver *all_paths, int max_links)
 {
-	if (all_paths->arr_counter < data->nb_links)
+	if (data->nb_links < max_links)
 	{
+		printf("test\n");
 		printf("NODE POSITION ->%s\n", node->name);
 		printf("Visited->%d\n", node->visited);
 		if (node->room_end == 1)
@@ -172,18 +179,22 @@ void	recursive_solver(t_room *node, int index, t_solver *data, t_solver *all_pat
 		{
 			add_to_visite(node, data);
 			if (index < data->arr_counter)
-				recursive_solver(data->arr[index], index + 1, data, all_paths);
+				recursive_solver(data->arr[index], index + 1, data, all_paths, max_links);
 		}
 		if (data->node_ref == node)
 		{
 			printf("CHEMIN -->%s\n", node->name);
 			if (node->room_end != 1)
+			{
+				node->part_of_solution = 1;
 				add_node_to_paths(node, all_paths);
+			}
 			data->node_ref = node->parent;
 		}
 		else
 		{
-			node->visited = 0;
+			if (node->part_of_solution == 0)
+				node->visited = 0;
 			printf("Node Hors-chemin ->%s || visited ->%d\n", node->name, node->visited);
 		}
 		if (node->room_start == 1)
@@ -191,15 +202,18 @@ void	recursive_solver(t_room *node, int index, t_solver *data, t_solver *all_pat
 			//add_node_to_paths(node, all_paths);
 			node->visited = 1;
 			all_paths->arr_counter += 1;
+			data->nb_links += 1;
 			reset(data);
 			data->arr_counter = 0;
-			recursive_solver(node, 0, data, all_paths);
+			recursive_solver(node, 0, data, all_paths, max_links);
 		}
 	}
 }
 
 void test_solver(t_room *start)
 {
+	int i = 0;
+	t_room *temp;
 	t_solver *data_solver;
 	t_solver *all_paths;
 
@@ -208,8 +222,22 @@ void test_solver(t_room *start)
 	//add_to_visite(start, data_solver);
 	//print_arr(data_solver->arr, data_solver->arr_counter);
 	start->visited = 1;
-	data_solver->nb_links = start->nb_links;
+	data_solver->nb_links = 0;
 	printf("-->%d\n", data_solver->nb_links);
-	recursive_solver(start, 0, data_solver, all_paths);
+	recursive_solver(start, 0, data_solver, all_paths, start->nb_links);
+	while (i < all_paths->valide_chemin)
+	{
+		temp = all_paths->arr[i]->paths_next;
+		while(temp != NULL)
+		{
+			printf("NODE TEST-->%s\n", temp->name);
+			printf("LINKS = %d\n", temp->nb_links);
+			if (temp->room_end == 0)
+				recursive_solver(temp, 0, data_solver, all_paths, temp->nb_links);
+			data_solver->nb_links = 0;
+			temp = temp->paths_next;
+		}
+		i++;
+	}
 	print_p(all_paths);
 }
