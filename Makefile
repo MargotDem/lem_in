@@ -23,7 +23,7 @@ INCL_MLX	= -I/usr/local/include
 
 #LIBRAIRIE
 LIB		= -L ./libft/ -lft
-#MLX		= -L /usr/local/lib -lmlx
+MLX		= -L /usr/local/lib -lmlx
 
 #CLEAN & FCLEAN
 RM_DIR	=	rm -rf
@@ -40,7 +40,7 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			handle_error.c graph_functions.c \
 			history_functions.c display_result.c \
 			list_functions.c paths_functions1.c paths_functions2.c \
-			helpers.c solve.c \
+			helpers.c solve.c visualizer.c \
 			#parsing_tree \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit

@@ -67,6 +67,7 @@ t_room  *new_node(char *line, char c)
 	node->history = NULL;
     node->nb_links = 0;
     node->parent = NULL;
+    node->reverse = NULL;
     node->to_be_visited_stand_by = 0;
     node = set_startorend(node, c);
     node = set_null_pointer(node);

@@ -1,108 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graph_array.c                                      :+:      :+:    :+:   */
+/*   solve2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/04 17:19:17 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/04 17:19:19 by mde-maul         ###   ########.fr       */
+/*   Created: 2022/07/25 21:14:34 by mde-maul          #+#    #+#             */
+/*   Updated: 2022/07/25 21:14:36 by mde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void	distribute_ants3(t_paths *paths, size_t nb_ants)
-{
-	t_paths	*next;
-	t_paths	*paths_ptr;
-
-	if (!paths)
-		return ;
-	set_paths_size(paths);
-	paths->nb_ants = nb_ants;
-	paths_ptr = paths;
-	while (1)
-	{
-		if (!paths_ptr->next)
-			paths_ptr = paths;
-		if (!paths_ptr->next) // if this is still the case it means there's only one path
-			break ;
-		next = paths_ptr->next;
-		if (paths_ptr->nb_ants + paths_ptr->path_size - 1 < next->nb_ants + next->path_size + 1)
-			break ;
-		while (paths_ptr->nb_ants + paths_ptr->path_size - 1 >= next->nb_ants + next->path_size + 1)
-		{
-			(paths_ptr->nb_ants)--;
-			(next->nb_ants)++;
-		}
-		paths_ptr = next;
-	}
-}
-
-
-void	distribute_ants2(t_paths *paths, size_t nb_ants)
-{
-	t_paths	*next;
-	t_paths	*paths_ptr;
-	int	move;
-
-	if (!paths)
-		return ;
-	set_paths_size(paths);
-	//printf("size of the first path is %zu\n", paths->path_size);
-	paths->nb_ants = nb_ants;
-	paths_ptr = paths;
-	while (1)
-	{
-		move = 0;
-		if (!paths_ptr->next)
-			paths_ptr = paths;
-		if (!paths_ptr->next) // if this is still the case it means there's only one path
-			break ;
-		next = paths_ptr->next;
-		/*if (next->path_size == 18)
-		{
-			printf("YES VIIFHWEFWBEIUBF\n");
-			if (paths_ptr->nb_ants + paths_ptr->path_size - 1 < next->nb_ants + next->path_size + 1)
-				printf("YES VIIvewvewvwevwevwefewFHWEFWBEIUBF\n");
-		}*/
-		if (paths_ptr->nb_ants + paths_ptr->path_size - 1 < next->nb_ants + next->path_size + 1)
-		{
-				//printf("LETS BREEAAKKKK, the first path starts with %s and second starts with %s,\nthe first has %zu ants and second has %zu\n", paths_ptr->path->next->node->name, next->path->next->node->name, paths_ptr->nb_ants, next->nb_ants);
-
-			//break ;
-			if (next->nb_ants != 0)
-			{
-				//paths_ptr = paths;
-				//continue ;
-				//break ;
-				printf("LETS BREEAAKKKK, the first path starts with %s and second starts with %s,\nthe first has %zu ants and second has %zu\n", paths_ptr->path->next->node->name, next->path->next->node->name, paths_ptr->nb_ants, next->nb_ants);
-				//break ;
-			}
-			else
-			{
-			}
-		}
-		// not sure if needed now that shortest path fixed
-		//while (paths_ptr->nb_ants > 0 && paths_ptr->nb_ants + paths_ptr->path_size - 1 >= next->nb_ants + next->path_size + 1)
-		while (paths_ptr->nb_ants + paths_ptr->path_size - 1 >= next->nb_ants + next->path_size + 1)
-		{
-			move = 1;
-			(paths_ptr->nb_ants)--;
-			(next->nb_ants)++;
-			//paths_ptr = paths;
-			//continue ;
-		}
-		printf("ok so here, the first path starts with %s and second starts with %s,\nthe first has %zu ants and second has %zu\n", paths_ptr->path->next->node->name, next->path->next->node->name, paths_ptr->nb_ants, next->nb_ants);
-		paths_ptr = next;
-		printf("\n\n");
-		if (next->nb_ants == 0)
-			break;
-		//if (next->nb_ants == 0 && !move)
-			//break ;
-	}
-}
+#include "parsing.h"
 
 void	distribute_ants(t_paths *paths, size_t nb_ants)
 {
@@ -135,309 +44,290 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 	}
 }
 
-int	calculate_turns(t_room *start, size_t nb_ants, char *end, size_t *new_nb_paths)
-{
-	int	sol;
-	t_paths	*optimal_paths;
-	char	*start_and_end[2];
-
-	optimal_paths = NULL;
-	start_and_end[0] = start->name;
-	start_and_end[1] = end;
-	find_optimal_paths2(start, &optimal_paths, nb_ants, start_and_end);
-	distribute_ants(optimal_paths, nb_ants);
-	*new_nb_paths = get_list_size((t_void_list *)optimal_paths);
-	sol = optimal_paths->nb_ants + optimal_paths->path_size - 2;
-	return (sol);
-}
-
-void	set_to_standby(t_hist *hist)
-{
-	int	i;
-	int	counter;
-
-	i = 0;
-	counter = hist->counter;
-	while (i < counter)
-	{
-		hist->arr[i]->stand_by = 1;
-		i++;
-	}
-}
-
-void	reset_to_be_visited(t_hist *to_be_visited)
-{
-	int	i;
-	int	counter;
-
-	i = 0;
-	counter = to_be_visited->counter;
-	while (i < counter)
-	{
-		to_be_visited->arr[i]->to_be_visited = 0;
-		i++;
-	}
-}
-
-int		path_already_found(t_hist *hist, t_paths *paths)
-{
-	int	i;
-	int	counter;
-	t_path_node *path;
-
-	i = 0;
-	counter = hist->counter;
-	while (paths)
-	{
-		path = paths->path;
-		i = 0;
-		while (path)
-		{
-			if (path->node != hist->arr[i])
-				break ;
-			else
-			{
-				i++;
-				path = path->next;
-			}
-			return (1);
-		}
-		paths = paths->next;
-	}
-	return (0);
-}
-
-void		set_parents(t_hist *hist)
-{
-	int	i;
-	int	counter;
-
-	i = 1;
-	counter = hist->counter;
-	while (i < counter)
-	{
-		hist->arr[i]->parent = hist->arr[i - 1];
-		i++;
-	}
-}
-
-void	testsolve(t_room *start, size_t nb_ants, char *end)
+t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 {
 	int	i;
 	int	j;
-	t_hist	*arr;
-	t_hist	*history;
-	t_room	*node;
+	t_hist	*to_be_visited;
 	t_room	**links;
-	int	nb_links;
-	(void)nb_ants;
-	int	prev_sol;
-	int	new_sol;
-	size_t	new_nb_paths;
-	size_t	prev_nb_paths;
-	t_paths	*paths;
-	char	*start_and_end[2];
+	int		nb_links;
+	t_room	*node;
+	(void)start; // if start dont schedule right
+	(void)x;
 
-	paths = NULL;
-	start_and_end[0] = start->name;
-	start_and_end[1] = end;
 	i = 0;
-	new_sol = 0;
-	prev_sol = 0;
-	new_nb_paths = 0;
-	prev_nb_paths = 0;
-	printf("start\n");
-	arr = NULL;
-	init_history(&arr, 2000);
-	push_history(arr, start);
-	start->to_be_visited = 1;
-	init_history(&(start->history), 50);
-	//push_history(start->history, start);
-	//while (i < arr->counter && i < 500)
-	while (i < arr->counter)
+	to_be_visited = NULL;
+
+	init_history(&to_be_visited, 2000);
+
+	//printf("\n\niteration nbbbb %d\n", x + 1);
+	while (i < graph->nb_links)
 	{
-		printf("here is is %d\n", i);
-		node = arr->arr[i];
-		printf("the node: %s\n", node->name);
-		node->visited = 1;
+		if (graph->links[i]->reverse == NULL)
+		{
+			//printf("lets push %s to tobevisited\n", graph->links[i]->name);
+			graph->links[i]->to_be_visited = 1;
+			push_history(to_be_visited, graph->links[i]);
+			init_history(&(graph->links[i]->history), 20);
+			push_history(graph->links[i]->history, graph);
+		}
+		i++;
+	}
+	i = 0;
+	graph->to_be_visited = 1;
+	while (i < to_be_visited->counter)
+	{
+		node = to_be_visited->arr[i];
+		//printf("node is %s\n", node->name);
 		nb_links = node->nb_links;
 		links = node->links;
 		j = 0;
 		while (j < nb_links)
 		{
-
-			//printf("the child node is %s, mother node is %s\n", links[j]->name, node->name);
-
-			//if (!(links[j]->history))
-			//{
-				links[j]->history = NULL;
-				append_to_history(node->history, &(links[j]->history));
-				push_history(links[j]->history, node);
-			//}
-			if (!strings_match(links[j]->name, end))
+			if (strings_match(links[j]->name, end) && node->reverse == NULL)
 			{
-				//printf("not end\n");
-				if (!links[j]->to_be_visited)
+				//printf("end reached, from the path: \n");
+			
+				push_history(node->history, node);
+				push_history(node->history, links[j]);
+				//print_history(node->history);
+				//printf("\n");
+				j = 0;
+				while (j < to_be_visited->counter)
+				{
+					to_be_visited->arr[j]->to_be_visited = 0;
+					j++;
+				}
+				return (node->history);
+			}
+			if (!(node->reverse && !(links[j]->reverse) && !(node->history->arr[node->history->counter - 1]->reverse)))
+			{
+				if (!links[j]->to_be_visited && links[j]->reverse != node && !strings_match(links[j]->name, end) )
 				{
 					links[j]->to_be_visited = 1;
-					push_history(arr, links[j]);
+					push_history(to_be_visited, links[j]);
+					links[j]->history = NULL;
+					append_to_history(node->history, &(links[j]->history));
+					push_history(links[j]->history, node);
 				}
-				if (links[j]->stand_by && links[j]->to_be_visited_stand_by == 0)
+				if (links[j]->to_be_visited && node->reverse == links[j])
 				{
-					if (!(node->stand_by))
-					{
-						links[j]->to_be_visited = 1;
-						links[j]->to_be_visited_stand_by = 1;
-						push_history(arr, links[j]);
-					}
-					else
-					{
-						if (node->parent)
-							//printf("node parent of %s is %s\n", node->name, node->parent->name);
-						if (node->parent != links[j])
-						{
-							links[j]->to_be_visited = 1;
-							links[j]->to_be_visited_stand_by = 1;
-							push_history(arr, links[j]);
-						}
-						// not parentnttttt cos infinite looopppp
-					}
-					
+					links[j]->to_be_visited = 1;
+					push_history(to_be_visited, links[j]);
+					links[j]->history = NULL;
+					append_to_history(node->history, &(links[j]->history));
+					push_history(links[j]->history, node);
 				}
-			}
-			else
-			{
-				if (path_already_found(links[j]->history, paths))
-				{
-					printf("heyyyy path already foundddd. i is %d and counter is %d\n", i, arr->counter);
-					printf("the path found is  \n");
-					print_history(links[j]->history);
-					break ;
-				}
-				printf("end reached from node %s\n", node->name);
-				print_history(links[j]->history);
-				printf("^ the path to the end ^\n");
-				add_path_to_list(&paths, links[j]->history);
-				printf("the path is\n");
-				print_paths(paths);
-				set_to_standby(links[j]->history);
-				set_parents(links[j]->history);
-				reset_to_be_visited(arr);
-				//hihi
-				arr = NULL;
-				init_history(&arr, 2000);
-				push_history(arr, start);
-				start->to_be_visited = 1;
-				links[j]->to_be_visited = 0;
-				i = -1;
-				//continue ;
-				break ;
-
-				printf("****\n");
-				//print_history(arr);
-			
-				//printf("visited nodes:\n");
-				history = NULL;
-				//init_history(&history, 2000);
-				//print_graph(start, history, 1);
-
-				/*
-				new_sol = calculate_turns(start, nb_ants, end, &new_nb_paths);
-				printf("\nnew sol is %d and prev sol is %d\n", new_sol, prev_sol);
-				printf("prev nb paths is %zu and new nb paths is %zu\n", prev_nb_paths, new_nb_paths);
-				if (prev_sol == 0 || new_sol < prev_sol)
-				{
-					prev_sol = new_sol;
-					prev_nb_paths = new_nb_paths;
-				}
-				else if (new_sol == prev_sol && prev_nb_paths < new_nb_paths)
-				{
-					printf("lets break\n");
-					break ;
-				}
-				*/
 			}
 			j++;
 		}
-		/*if (new_sol != 0 && new_sol == prev_sol && prev_nb_paths < new_nb_paths)
-		{
-			break ;
-		}
-		*/
 		i++;
 	}
-		printf("\n\nTHE PATHSSSS\n");
-		print_paths(paths);
-	/*find_optimal_paths2(start, &optimal_paths, nb_ants, start_and_end);
-	distribute_ants(optimal_paths, nb_ants);
-	printf("\n\n\n\n");
-	display_result(optimal_paths, nb_ants);
-	printf("nb of turns is %zu\n", optimal_paths->nb_ants + optimal_paths->path_size - 2);
-	printf("\n\nTHE OPTIMAL PATHS ARE:\n\n");
-	print_paths(optimal_paths);
-	printf("\n\nEND OF OPTIMAL PATHS:\n\n");
-	*/
-	//visualizer(start, nb_ants, optimal_paths, start_and_end);
+	//printf("\n\nno more nodes to visit, gonna return null\n");
+	return (NULL);
 }
 
-void solve(t_room *start, t_data *data)
+void	push_front(t_path_node **path, t_path_node *path_node)
 {
+	if (path && path_node)
+	{
+		path_node->next = *path;
+		*path = path_node;
+	}
+}
+
+void	lst_add_in_order(t_paths **paths, t_paths *path_el)
+{
+	t_paths	*ptr;
+	t_paths	*prev;
+
+	if (path_el)
+	{
+		if (!(*paths))
+			*paths = path_el;
+		else
+		{
+			ptr = *paths;
+			prev = NULL;
+			while (ptr && path_el->path_size > ptr->path_size)
+			{
+				prev = ptr;
+				ptr = ptr->next;
+			}
+			if (!prev)
+			{
+				path_el->next = ptr;
+				*paths = path_el;
+			}
+			else
+			{
+				path_el->next = ptr;
+				prev->next = path_el;
+			}
+		}
+	}
+}
+
+static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_data *data)
+{
+	int	i;
+	int	j;
+	t_room	*end;
+	t_room	*node;
+	t_paths *path_el;
+	t_paths *paths;
+	t_path_node *path_node;
+	size_t	path_size;
+
+	i = 0;
+	paths = NULL;
+	end = search_for(data->exit_room, data);
+	while (i < end->nb_links)
+	{
+		if (end->links[i]->reverse)
+		{
+			path_el = create_path_el(); //
+			path_size = 2;
+			path_node = (t_path_node *)malloc(sizeof(t_path_node));
+			if (!path_node)
+				handle_error();
+			path_node->next = NULL;
+			path_node->node = end;
+			path_el->path = path_node;
+			j = 0;
+			//printf("there's one path:\n %s, ", data->exit_room);
+			node = end->links[i];
+			while (node != graph)
+			{
+				path_size++;
+				path_node = (t_path_node *)malloc(sizeof(t_path_node));
+				if (!path_node)
+					handle_error();
+				path_node->next = NULL;
+				path_node->node = node;
+				printf("%s, ", node->name);
+				push_front(&(path_el->path), path_node);
+				node = node->reverse;
+			}
+			path_node = (t_path_node *)malloc(sizeof(t_path_node));
+			if (!path_node)
+				handle_error();
+			path_node->next = NULL;
+			path_node->node = graph;
+			push_front(&(path_el->path), path_node);
+			path_el->path_size = path_size;
+			printf("%s, ", graph->name);
+
+			if (!paths)
+				paths = path_el;
+			else
+				lst_add_in_order(&paths, path_el);
+		}
+		i++;
+		//printf("\n");
+	}
+	// add to all_paths_combos
+	all_paths_combos->arr[all_paths_combos->counter] = paths;
+	all_paths_combos->counter++;
+}
+
+void	solve222(t_room *graph, t_data *data, char *start, char *end)
+{
+	t_hist	*path;
+	t_all_paths_combos	*all_paths_combos;
+	int	x;
+	int	i;
+	size_t	shortest_nb_turns;
+	t_paths *solution;
 	size_t	nb_ants;
-	t_hist	*history;
-	t_paths	*optimal_paths;
 	char	*start_and_end[2];
+	int	k;
 
 	nb_ants = data->ants;
-	//printf("***** the tree ***** \n");
-	history = NULL;
-	init_history(&history, 2000);
+	x = 0;
+	all_paths_combos = (t_all_paths_combos *)malloc(sizeof(t_all_paths_combos)); // if null
+	all_paths_combos->size = 200;
+	all_paths_combos->counter = 0;
+	all_paths_combos->arr = (t_paths **)malloc(sizeof(t_paths *) * 200); // same
+	while (1)
+	{
+		path = get_aug_path(graph, start, end, x);
+		if (!path)
+		{
+			//printf("lets break out of here\n");
+			break ;
+		}
+		//if (path_invalid(path))
+			//continue ;
+		//printf("so heres the path\n");
+		//print_history(path);
+		i = path->counter - 1;
+		while (i > 0)
+		{
+			if (path->arr[i - 1]->reverse == path->arr[i])
+			{
+				path->arr[i - 1]->reverse = NULL;
+			}
+			else
+			{
+				path->arr[i]->reverse = path->arr[i - 1];
+			}
+			i--;
+		}
+		//printf("\n\n\n iteration number %d, now all the paths are\n", x + 1);
+		get_paths(all_paths_combos, graph, data);
+		x++;
+	}
 
-	testsolve(start, nb_ants, data->exit_room);
-	return ;
-	//print_graph(start, history, 0);
-	//printf("**************\n\n\n");
-	printf("HERE before finding optimal paths\n");
-	optimal_paths = NULL;
-	start_and_end[0] = start->name;
-	start_and_end[1] = data->exit_room;
-	find_optimal_paths(start, &optimal_paths, nb_ants, start_and_end);
-	//printf("\n\nand optimal path the first path nb ants is %zu\n", (optimal_paths)->nb_ants);
-	distribute_ants(optimal_paths, nb_ants);
-	//printf("and AFTER DISTRIB optimal path the first path nb ants is %zu\n", (optimal_paths)->nb_ants);
-	printf("\n\nTHE OPTIMAL PATHS ARE:\n\n");
-	print_paths(optimal_paths);
-	printf("\n\nEND OF OPTIMAL PATHS:\n\n");
-	display_result(optimal_paths, nb_ants);
-	printf("nb of turns is %zu\n", optimal_paths->nb_ants + optimal_paths->path_size - 2);
-	//visualizer(start, nb_ants, optimal_paths, start_and_end);
-	printf("\n\n\n\n");
+
+	/*printf("\n\n\n\n\n\n\n\n\nALRIGHTTT\nall paths combos counter is %d", all_paths_combos->counter);
+	printf(", and all paths combos is:\n");
+	k = 0;
+	while (k < all_paths_combos->counter)
+	{
+		printf("path combination number %d\n\n", k + 1);
+		print_paths(all_paths_combos->arr[k]);
+		printf("\n");
+		k++;
+	}
+	printf("\n\n\n\n\n\n\n\n");
+
+	*/
+	
+
+	k = 1; // what if there is not even one path combination???
+	distribute_ants(all_paths_combos->arr[0], nb_ants);
+	shortest_nb_turns = all_paths_combos->arr[0]->path_size + all_paths_combos->arr[0]->nb_ants;
+	solution = all_paths_combos->arr[0];
+	while (k < all_paths_combos->counter)
+	{
+		distribute_ants(all_paths_combos->arr[k], nb_ants);
+		if (all_paths_combos->arr[k]->path_size + all_paths_combos->arr[k]->nb_ants < shortest_nb_turns)
+		{
+			shortest_nb_turns = all_paths_combos->arr[k]->path_size + all_paths_combos->arr[k]->nb_ants;
+			solution = all_paths_combos->arr[k];
+		}
+		k++;
+	}
+	start_and_end[0] = start;
+	start_and_end[1] = end;
+	printf("\n\nmmkayyyy is this the right solution tho:\n\n");
+	print_paths(solution);
+	display_result(solution, nb_ants);
+	printf("number of turns is %zu\n", solution->path_size + solution->nb_ants - 2);
+	//visualizer(graph, nb_ants, solution, start_and_end);
 }
 
+void	solve(t_room *graph, t_data *data)
+{
+	char	*start;
+	char	*end;
+	t_room	*end_room;
 
-/*
-new idea
-when arriving on node
-and checking its children
-append history to the history of the child that way the hcild gets all the nodes that lead to it
-then when reading end
-going thrugh the childs history and setting these nodes to "ispartofsoluion" and find all paths on that data...???
-
-if i can fix these fucking segfaults maybe...?
-
-apres go lire la theorie et c tt pr ajd
-
-
-ok essayons something else entirely
-when you get on a node, you give its children the correct history unless they already have an history
-cos it means you can get to this node in a shorter path
-when you arrive on end, you add to all paths this history. so for each node you create a path node and BREF
-and you do the calculation with allpaths
-while new solution is better, continue
-normally this way: you get the paths in strict order of shortest to longest
-and you stop at the right time
-shouldnt take too long with big maps
-but it doesnt take into account overlapping paths
-but lets try it anyways
-
-
-*/
+	start = graph->name;
+	end = data->exit_room;
+	end_room = search_for(end, data);
+	printf("SO, end room has %d links\n", end_room->nb_links);
+	
+	solve222(graph, data, start, end);
+}
