@@ -1,0 +1,33 @@
+6
+#hey
+A 16 4
+##start
+start 20 2
+##end
+end 20 18
+B 13 6
+C 12 10
+D 16 12
+E 20 14
+F 20 6
+G 20 10
+K 22 16
+H 24 7
+#comment
+J 24 14
+I 26 11
+start-A
+start-F
+A-B
+B-C
+C-D
+D-E
+E-G
+E-end
+F-H
+F-G
+H-I
+I-J
+J-K
+K-end
+#so it changes between 5 and 6
