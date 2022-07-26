@@ -60,7 +60,6 @@ t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 
 	init_history(&to_be_visited, 2000);
 
-	//printf("\n\niteration nbbbb %d\n", x + 1);
 	while (i < graph->nb_links)
 	{
 		if (graph->links[i]->reverse == NULL)
@@ -84,6 +83,11 @@ t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 		j = 0;
 		while (j < nb_links)
 		{
+			if (links[j] == graph) // not sure if this is useful. it gains 0.02 seconds lmao
+			{
+				j++;
+				continue ;
+			}
 			if (strings_match(links[j]->name, end) && node->reverse == NULL)
 			{
 				//printf("end reached, from the path: \n");
@@ -187,6 +191,7 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 		if (end->links[i]->reverse)
 		{
 			path_el = create_path_el(); //
+			
 			path_size = 2;
 			path_node = (t_path_node *)malloc(sizeof(t_path_node));
 			if (!path_node)
@@ -194,29 +199,38 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 			path_node->next = NULL;
 			path_node->node = end;
 			path_el->path = path_node;
+			
 			j = 0;
 			//printf("there's one path:\n %s, ", data->exit_room);
 			node = end->links[i];
-			while (node != graph)
+			while (node && node != graph) // it is disturbing that checking for node not being null is what fixed the segfaults. how could it become null.
 			{
+		
 				path_size++;
 				path_node = (t_path_node *)malloc(sizeof(t_path_node));
 				if (!path_node)
 					handle_error();
 				path_node->next = NULL;
 				path_node->node = node;
-				printf("%s, ", node->name);
+				
+				//printf("%s, ", node->name);
+			
 				push_front(&(path_el->path), path_node);
+				
 				node = node->reverse;
 			}
+		
 			path_node = (t_path_node *)malloc(sizeof(t_path_node));
 			if (!path_node)
 				handle_error();
+			
 			path_node->next = NULL;
 			path_node->node = graph;
 			push_front(&(path_el->path), path_node);
+	
 			path_el->path_size = path_size;
-			printf("%s, ", graph->name);
+			//printf("%s, ", graph->name);
+
 
 			if (!paths)
 				paths = path_el;
@@ -327,7 +341,7 @@ void	solve(t_room *graph, t_data *data)
 	start = graph->name;
 	end = data->exit_room;
 	end_room = search_for(end, data);
-	printf("SO, end room has %d links\n", end_room->nb_links);
+	//printf("SO, end room has %d links\n", end_room->nb_links);
 	
 	solve222(graph, data, start, end);
 }
