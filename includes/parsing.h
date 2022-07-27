@@ -47,6 +47,8 @@ typedef struct s_data {
 	struct s_room	**hashtab;
 	char			*start_room;
 	char			*exit_room;
+	int				show_paths;
+	int				visualizer;
 }				t_data;
 
 /*ARRAY POINTER FUNCTION*/

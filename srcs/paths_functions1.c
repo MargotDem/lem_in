@@ -14,10 +14,11 @@
 
 void	print_path_node(t_path_node *path)
 {
-	printf("the path:\n");
 	while (path)
 	{
-		printf("%s, ", path->node->name);
+		printf("%s", path->node->name);
+		if (path->next)
+			printf(", ");
 		path = path->next;
 	}
 	printf("\n\n");
@@ -25,13 +26,16 @@ void	print_path_node(t_path_node *path)
 
 void	print_paths(t_paths *paths)
 {
+	int	i;
+
+	i = 0;
 	while (paths)
 	{
-		printf("path size is %zu, nb of ants is %zu, ", paths->path_size, paths->nb_ants);
+		printf("Path %d. Size: %zu. Number of ants: %zu\n", i + 1, paths->path_size, paths->nb_ants);
 		print_path_node(paths->path);
 		paths = paths->next;
+		i++;
 	}
-	printf("\n\n");
 }
 
 int	not_in_paths(t_room *node, t_paths **paths)

@@ -336,7 +336,6 @@ void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **st
 	mlx_win->margin = 40;
 	mlx_win->room_color = 0xd1c4ff;
 	mlx_win->start_and_end = start_and_end;
-	printf("nb of turns is %zu\n", mlx_win->max_turns);
 	color_background(mlx_win);
 	history = NULL;
 	init_history(&history, 4);

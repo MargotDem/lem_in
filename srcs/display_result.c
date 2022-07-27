@@ -98,8 +98,8 @@ void	display_result(t_paths *paths, size_t nb_ants)
 			}
 			paths_ptr = paths_ptr->next;
 		}
-		printf("\n");
 		if (!movement)
 			break ;
+		printf("\n");
 	}
 }

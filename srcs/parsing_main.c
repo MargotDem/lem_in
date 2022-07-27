@@ -1,5 +1,5 @@
- #include "parsing.h"
-
+#include "parsing.h"
+#include "lem_in.h"
 
 static void     mapreader(int fd, t_room **li, t_data **data);
 static void     set_data(t_data *data);
@@ -68,7 +68,7 @@ static void    mapreader(int fd, t_room **rooms, t_data **data)
 }
 
 
-int main(void)
+int main(int argc, char **argv)
 {
     t_room  *rooms;
     t_data  *data;
@@ -77,10 +77,22 @@ int main(void)
     data = NULL;
     mapreader(0, &rooms, &data);
     check_data(data);
- //   solve(search_for(data->start_room, data), data);
+	data->show_paths = 0;
+	data->visualizer = 0;
+	if (argc == 2)
+	{
+		if (strings_match(argv[1], "paths"))
+			data->show_paths = 1;
+		else if (strings_match(argv[1], "visualizer"))
+		{
+			data->show_paths = 1;
+			data->visualizer = 1;
+		}
+	}
+	solve(search_for(data->start_room, data), data);
     free_all(&data);
     free(rooms);
     free(data);
-	system("leaks lem-in");
+	//system("leaks lem-in");
     return (0);
 }

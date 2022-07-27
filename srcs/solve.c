@@ -290,28 +290,16 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 	{
 		path = get_aug_path(graph, start, end, x);
 		if (!path)
-		{
-			//printf("lets break out of here\n");
 			break ;
-		}
-		//if (path_invalid(path))
-			//continue ;
-		//printf("so heres the path\n");
-		//print_history(path);
 		i = path->counter - 1;
 		while (i > 0)
 		{
 			if (path->arr[i - 1]->reverse == path->arr[i])
-			{
 				path->arr[i - 1]->reverse = NULL;
-			}
 			else
-			{
 				path->arr[i]->reverse = path->arr[i - 1];
-			}
 			i--;
 		}
-		//printf("\n\n\n iteration number %d, now all the paths are\n", x + 1);
 		get_paths(all_paths_combos, graph, data);
 		calc_solution(&solution_tmp, all_paths_combos, nb_ants);
 		if (prev_nb_turns > solution_tmp->path_size + solution_tmp->nb_ants - 2)
@@ -321,7 +309,6 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 		}
 		else
 			break ;
-	
 		x++;
 	}
 
@@ -338,14 +325,21 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 	printf("\n\n\n\n\n\n\n\n");
 
 	*/
-	
-	printf("\n\nmmkayyyy is this the right solution tho:\n\n");
-	print_paths(solution);
+	printf("\n");
 	display_result(solution, nb_ants);
-	printf("number of turns is %zu\n", solution->path_size + solution->nb_ants - 2);
-	start_and_end[0] = start;
-	start_and_end[1] = end;
-	//visualizer(graph, nb_ants, solution, start_and_end);
+	if (data->show_paths)
+	{
+		printf("\n********************\n\nThese are the paths that make up the solution:\n\n");
+		print_paths(solution);
+		printf("********************\n\n");
+		printf("The number of turns is %zu\n\n", solution->path_size + solution->nb_ants - 2);
+	}
+	if (data->visualizer)
+	{
+		start_and_end[0] = start;
+		start_and_end[1] = end;
+		visualizer(graph, nb_ants, solution, start_and_end);
+	}
 }
 
 void	solve(t_room *graph, t_data *data)
@@ -356,8 +350,6 @@ void	solve(t_room *graph, t_data *data)
 
 	start = graph->name;
 	end = data->exit_room;
-	end_room = search_for(end, data);
-	//printf("SO, end room has %d links\n", end_room->nb_links);
-	
+	end_room = search_for(end, data);	
 	solve222(graph, data, start, end);
 }
