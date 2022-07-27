@@ -62,3 +62,9 @@ t_room  *set_startorend(t_room *element, char c)
     }
     return (element);
 }
+
+void print_line(char *line)
+{
+    write (1, line, ft_strlen(line));
+    write (1, "\n", 1);
+}

@@ -121,5 +121,6 @@ int				is_comment(char *line);
 void			insert_links(t_room *room1, t_room *room2);
 
 void	solve(t_room *graph, t_data *data);
+void print_line(char *line);
 
 #endif
