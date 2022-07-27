@@ -275,6 +275,7 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 	
 	t_paths *solution;
 	t_paths *solution_tmp;
+	(void)solution_tmp;
 	size_t	nb_ants;
 	size_t	prev_nb_turns;
 	char	*start_and_end[2];
@@ -301,6 +302,7 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 			i--;
 		}
 		get_paths(all_paths_combos, graph, data);
+		/* no yeah no. this reduces the time but doesn't find the optimal solution. SAD.
 		calc_solution(&solution_tmp, all_paths_combos, nb_ants);
 		if (prev_nb_turns > solution_tmp->path_size + solution_tmp->nb_ants - 2)
 		{
@@ -309,9 +311,10 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 		}
 		else
 			break ;
+		*/
 		x++;
 	}
-
+	calc_solution(&solution, all_paths_combos, nb_ants);
 	/*printf("\n\n\n\n\n\n\n\n\nALRIGHTTT\nall paths combos counter is %d", all_paths_combos->counter);
 	printf(", and all paths combos is:\n");
 	k = 0;
