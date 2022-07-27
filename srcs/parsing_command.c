@@ -38,5 +38,7 @@ void	get_command(t_room **li, char *line, t_data **data)
 		else
 			(*data)->exit_room = extract_name(line);
 		(*data)->room_part = 1;
+		print_line(line);
+		ft_strdel(&line);
 	}
 }

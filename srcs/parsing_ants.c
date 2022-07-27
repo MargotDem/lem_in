@@ -28,6 +28,7 @@ int	get_ants(t_data *data, char *line)
 	ants = 0;
 	while (get_next_line(0, &line))
 	{
+		print_line(line);
 		if (is_nb_ants(line))
 		{
 			ants = ft_atoi(line);

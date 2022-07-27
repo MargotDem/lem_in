@@ -51,8 +51,9 @@ static void    mapreader(int fd, t_room **rooms, t_data **data)
     line = NULL;
     data_allocation(data);
     (*data)->ants = get_ants(*data, line);
-    while (get_next_line(fd, &line) && id >= 0 && (*data)->ants > 0)
+    while (get_next_line(fd, &line) && (*data)->ants > 0)
     {
+        print_line(line);
         if (is_comment(line))
         {
             ft_strdel(&line);
@@ -63,6 +64,7 @@ static void    mapreader(int fd, t_room **rooms, t_data **data)
         g_line_dispatch[id](rooms, line, data);
         ft_strdel(&line);
     }
+	ft_strdel(&line);
 }
 
 
@@ -75,9 +77,10 @@ int main(void)
     data = NULL;
     mapreader(0, &rooms, &data);
     check_data(data);
-    solve(search_for(data->start_room, data), data);
+ //   solve(search_for(data->start_room, data), data);
     free_all(&data);
     free(rooms);
     free(data);
+	system("leaks lem-in");
     return (0);
 }

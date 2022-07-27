@@ -15,7 +15,6 @@ void	create_hashtable(t_data **data)
 		(*data)->hashtab[i] = NULL;
 		i++;
 	}
-	printf("Hashtable created\n");
 }
 
 unsigned long	hashing(char *str, unsigned int size)

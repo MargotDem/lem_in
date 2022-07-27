@@ -106,10 +106,10 @@ void    get_connexion(t_room **li, char *line, t_data **data)
 		err_handling("malloc");
 	from = search_for(conexion_1,*data);
 	to = search_for(conexion_2, *data);
+	ft_strdel(&conexion_1);
+	ft_strdel(&conexion_2);
 	if(!from || !to)
 		go_to_solver(li, line, data);
 	else
 		insert_links(from, to);
-	ft_strdel(&conexion_1);
-	ft_strdel(&conexion_2);
 }
