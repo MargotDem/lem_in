@@ -1,5 +1,4 @@
 10
-#Here is the number of lines required: 36
 ##start
 Ces3 3 3
 ##end

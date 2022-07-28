@@ -208,7 +208,7 @@ int	handle_key(int key, void *param)
 	if (key == 123 && mlx_win->turn_nb > 0)
 	{
 		mlx_win->turn_nb--;
-		printf("turn %zu: ", mlx_win->turn_nb);
+		//printf("turn %zu: ", mlx_win->turn_nb);
 		while (paths_ptr)
 		{
 			i = 0;
@@ -218,7 +218,7 @@ int	handle_key(int key, void *param)
 				if ((paths_ptr->ants)[i].room_nb >= 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size - 1)
 				{
 					ant_nb = (paths_ptr->ants)[i].ant_nb;
-					printf("annt nb is %zu, room name is %s\n", ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1));
+					//printf("annt nb is %zu, room name is %s\n", ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1));
 					draw_ant(ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1), mlx_win, 1);
 				}
 				i++;
@@ -237,12 +237,12 @@ int	handle_key(int key, void *param)
 			}
 			paths_ptr = paths_ptr->next;
 		}
-		printf("\n");
+		//printf("\n");
 	}
 	if (key == 124 && mlx_win->turn_nb < mlx_win->max_turns)
 	{
 		mlx_win->turn_nb++;
-		printf("turn %zu: ", mlx_win->turn_nb);
+		//printf("turn %zu: ", mlx_win->turn_nb);
 		while (paths_ptr)
 		{
 			i = 0;
@@ -270,7 +270,7 @@ int	handle_key(int key, void *param)
 			}
 			paths_ptr = paths_ptr->next;
 		}
-		printf("\n");
+		//printf("\n");
 	}
 	(void)i;
 	return (0);

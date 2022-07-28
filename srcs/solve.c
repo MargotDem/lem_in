@@ -104,7 +104,20 @@ t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 				}
 				return (node->history);
 			}
-			if (!(node->reverse && !(links[j]->reverse) && !(node->history->arr[node->history->counter - 1]->reverse)))
+
+			// the middle condition never happens duh. or does it?? @_@ the brainfuck is real
+			if (node->reverse && node->history->arr[node->history->counter - 1]->reverse != node)
+			{
+				if (node->reverse == links[j])
+				{
+					links[j]->to_be_visited = 1;
+					push_history(to_be_visited, links[j]);
+					links[j]->history = NULL;
+					append_to_history(node->history, &(links[j]->history));
+					push_history(links[j]->history, node);
+				}
+			}
+			else
 			{
 				if (!links[j]->to_be_visited && links[j]->reverse != node && !strings_match(links[j]->name, end) )
 				{
@@ -114,7 +127,7 @@ t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 					append_to_history(node->history, &(links[j]->history));
 					push_history(links[j]->history, node);
 				}
-				if (links[j]->to_be_visited && node->reverse == links[j])
+				else if (links[j]->to_be_visited && node->reverse == links[j])
 				{
 					links[j]->to_be_visited = 1;
 					push_history(to_be_visited, links[j]);
@@ -123,6 +136,26 @@ t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 					push_history(links[j]->history, node);
 				}
 			}
+
+			/*if (!(node->reverse && !(links[j]->reverse) && !(node->history->arr[node->history->counter - 1]->reverse)))
+			{
+				if (!links[j]->to_be_visited && links[j]->reverse != node && !strings_match(links[j]->name, end) )
+				{
+					links[j]->to_be_visited = 1;
+					push_history(to_be_visited, links[j]);
+					links[j]->history = NULL;
+					append_to_history(node->history, &(links[j]->history));
+					push_history(links[j]->history, node);
+				}
+				else if (links[j]->to_be_visited && node->reverse == links[j])
+				{
+					links[j]->to_be_visited = 1;
+					push_history(to_be_visited, links[j]);
+					links[j]->history = NULL;
+					append_to_history(node->history, &(links[j]->history));
+					push_history(links[j]->history, node);
+				}
+			}*/
 			j++;
 		}
 		i++;
@@ -182,10 +215,12 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 	t_paths *paths;
 	t_path_node *path_node;
 	size_t	path_size;
+	int	error;
 
 	i = 0;
 	paths = NULL;
 	end = search_for(data->exit_room, data);
+	error = 0;
 	while (i < end->nb_links)
 	{
 		if (end->links[i]->reverse)
@@ -205,25 +240,29 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 			node = end->links[i];
 			while (node && node != graph) // it is disturbing that checking for node not being null is what fixed the segfaults. how could it become null.
 			{
-		
 				path_size++;
 				path_node = (t_path_node *)malloc(sizeof(t_path_node));
 				if (!path_node)
 					handle_error();
 				path_node->next = NULL;
 				path_node->node = node;
-				
 				//printf("%s, ", node->name);
-			
 				push_front(&(path_el->path), path_node);
-				
 				node = node->reverse;
 			}
-		
+			if (node != graph) // no idea what im doing
+			{
+				// free the whole path_el lol.
+				//but whyyy would it be null like WTF
+				
+				i++;
+				continue ;
+				//error = 1;
+				//break ;
+			}
 			path_node = (t_path_node *)malloc(sizeof(t_path_node));
 			if (!path_node)
 				handle_error();
-			
 			path_node->next = NULL;
 			path_node->node = graph;
 			push_front(&(path_el->path), path_node);
@@ -239,6 +278,10 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 		}
 		i++;
 		//printf("\n");
+	}
+	if (error)
+	{
+		// return ;
 	}
 	// add to all_paths_combos
 	all_paths_combos->arr[all_paths_combos->counter] = paths;
@@ -295,6 +338,8 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 		i = path->counter - 1;
 		while (i > 0)
 		{
+			//if (path->arr[i - 1]->reverse && path->arr[i - 1]->reverse != path->arr[i]) // what does this mean lmao
+				//printf("NOOOO\n");
 			if (path->arr[i - 1]->reverse == path->arr[i])
 				path->arr[i - 1]->reverse = NULL;
 			else
