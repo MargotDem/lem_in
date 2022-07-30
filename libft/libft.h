@@ -103,7 +103,7 @@ void			*ft_handle_malloc(void *ptr, void (*handle_error)(void));
 char			*ft_strreplace(char *str, char *tmp);
 
 # define BUFF_SIZE 200
-# define FD_ARRAY_SIZE 4096
+# define FD_SIZE 4096
 
 // btrees
 

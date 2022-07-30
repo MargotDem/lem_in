@@ -14,7 +14,7 @@
 # define LEM_IN_H
 
 # include <stdlib.h>
-# include "mlx.h"
+//# include "mlx.h"
 # include "parsing.h"
 
 typedef struct s_path_node

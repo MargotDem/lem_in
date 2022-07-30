@@ -1,51 +1,30 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/briffard/Desktop/aaaa'
+make: Entering directory `/Users/flagada/Desktop/redo'
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_main.o -c srcs/parsing_main.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/main.o -c srcs/main.c -g
+ 
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_ants.o -c srcs/parsing_ants.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/malloc_handler.o -c srcs/malloc_handler.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_rooms.o -c srcs/parsing_rooms.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/free_handler.o -c srcs/free_handler.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_utils.o -c srcs/parsing_utils.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/init_value.o -c srcs/init_value.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_utils2.o -c srcs/parsing_utils2.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/panic.o -c srcs/panic.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_error.o -c srcs/parsing_error.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/mapreader.o -c srcs/mapreader.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_utils_list.o -c srcs/parsing_utils_list.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/get_ants.o -c srcs/get_ants.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_command.o -c srcs/parsing_command.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/tools.o -c srcs/tools.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_connexion.o -c srcs/parsing_connexion.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/exit_parsing.o -c srcs/exit_parsing.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_mem_handling.o -c srcs/parsing_mem_handling.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/save_data.o -c srcs/save_data.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_connexion_handling.o -c srcs/parsing_connexion_handling.c -g
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/save_data_tools.o -c srcs/save_data_tools.c -g
 mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_out_to_solver.o -c srcs/parsing_out_to_solver.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/hashtable_main.o -c srcs/hashtable_main.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/handle_error.o -c srcs/handle_error.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/graph_functions.o -c srcs/graph_functions.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/history_functions.o -c srcs/history_functions.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/display_result.o -c srcs/display_result.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/list_functions.o -c srcs/list_functions.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/paths_functions1.o -c srcs/paths_functions1.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/paths_functions2.o -c srcs/paths_functions2.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/helpers.o -c srcs/helpers.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/solve.o -c srcs/solve.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/visualizer.o -c srcs/visualizer.c -g
-gcc -Werror -Wextra -Wall -o lem-in ./objectFiles/parsing_main.o ./objectFiles/parsing_ants.o ./objectFiles/parsing_rooms.o ./objectFiles/parsing_utils.o ./objectFiles/parsing_utils2.o ./objectFiles/parsing_error.o ./objectFiles/parsing_utils_list.o ./objectFiles/parsing_command.o ./objectFiles/parsing_connexion.o ./objectFiles/parsing_mem_handling.o ./objectFiles/parsing_connexion_handling.o ./objectFiles/parsing_out_to_solver.o ./objectFiles/hashtable_main.o ./objectFiles/handle_error.o ./objectFiles/graph_functions.o ./objectFiles/history_functions.o ./objectFiles/display_result.o ./objectFiles/list_functions.o ./objectFiles/paths_functions1.o ./objectFiles/paths_functions2.o ./objectFiles/helpers.o ./objectFiles/solve.o ./objectFiles/visualizer.o -L ./libft/ -lft -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit -g
-make: Leaving directory `/Users/briffard/Desktop/aaaa'
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/hashtable_main.o -c srcs/hashtable_main.c -g
+gcc -Werror -Wextra -Wall -o lem-in ./objectFiles/main.o ./objectFiles/malloc_handler.o ./objectFiles/free_handler.o ./objectFiles/init_value.o ./objectFiles/panic.o ./objectFiles/mapreader.o ./objectFiles/get_ants.o ./objectFiles/tools.o ./objectFiles/exit_parsing.o ./objectFiles/save_data.o ./objectFiles/save_data_tools.o ./objectFiles/hashtable_main.o -L ./libft/ -lft   -g
+make: Leaving directory `/Users/flagada/Desktop/redo'
  

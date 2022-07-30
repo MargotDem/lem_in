@@ -19,11 +19,11 @@ CCFLAGS	=	-Werror -Wextra -Wall
 #INCLUDE
 INCL_LFT	= -I ./libft/
 INCL_PARS	= -I ./includes/
-INCL_MLX	= -I/usr/local/include
+INCL_MLX	= #-I/usr/local/include
 
 #LIBRAIRIE
 LIB		= -L ./libft/ -lft
-MLX		= -L /usr/local/lib -lmlx
+MLX		= #-L /usr/local/lib -lmlx
 
 #CLEAN & FCLEAN
 RM_DIR	=	rm -rf
@@ -31,7 +31,18 @@ RM		=	rm	-f
 
 #SOURCE FILES
 SRC_DIR	=	./srcs/
-FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
+FILES = 	main.c \
+			malloc_handler.c \
+			free_handler.c \
+			init_value.c \
+			panic.c \
+			mapreader.c \
+			get_ants.c \
+			tools.c \
+			exit_parsing.c \
+			save_data.c save_data_tools.c \
+			hashtable_main.c \
+#FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			parsing_utils2.c parsing_error.c parsing_utils_list.c \
 			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
 			parsing_connexion_handling.c \
@@ -43,7 +54,8 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			helpers.c solve.c visualizer.c \
 			#parsing_tree \
 
-FRAMEWORKS = -framework OpenGL -framework Appkit
+
+FRAMEWORKS = #-framework OpenGL -framework Appkit
 
 #OBJECT FILES
 OBJ_DIR			=	./objectFiles/

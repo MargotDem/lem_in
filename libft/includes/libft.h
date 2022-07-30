@@ -39,7 +39,7 @@
 # define RESETUNDERLINED	"\033[24m"
 # define RESETBLINK	"\033[25m"
 /*DEFINE GNL*/
-# define BUFF_SIZE 8
+# define BUFF_SIZE 10000
 # define FD_SIZE 4096
 
 /*DEFINE ITOA_BASE*/
