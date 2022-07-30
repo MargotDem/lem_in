@@ -34,13 +34,16 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 			move = 1;
 			(paths_ptr->nb_ants)--;
 			(next->nb_ants)++;
-			//paths_ptr = paths;
-			//continue ;
+		}
+		if (paths_ptr != paths && next->nb_ants && next->nb_ants + next->path_size == paths_ptr->nb_ants + paths_ptr->path_size - 1)
+		{
+			move = 1;
+			(paths_ptr->nb_ants)--;
+			(next->nb_ants)++;
 		}
 		paths_ptr = next;
 		if (!paths_ptr->next && move)
 			paths_ptr = paths;
-
 	}
 }
 
@@ -215,12 +218,10 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 	t_paths *paths;
 	t_path_node *path_node;
 	size_t	path_size;
-	int	error;
 
 	i = 0;
 	paths = NULL;
 	end = search_for(data->exit_room, data);
-	error = 0;
 	while (i < end->nb_links)
 	{
 		if (end->links[i]->reverse)
@@ -234,11 +235,9 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 			path_node->next = NULL;
 			path_node->node = end;
 			path_el->path = path_node;
-			
 			j = 0;
-			//printf("there's one path:\n %s, ", data->exit_room);
 			node = end->links[i];
-			while (node && node != graph) // it is disturbing that checking for node not being null is what fixed the segfaults. how could it become null.
+			while (node && node != graph)
 			{
 				path_size++;
 				path_node = (t_path_node *)malloc(sizeof(t_path_node));
@@ -250,16 +249,8 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 				push_front(&(path_el->path), path_node);
 				node = node->reverse;
 			}
-			if (node != graph) // no idea what im doing
-			{
-				// free the whole path_el lol.
-				//but whyyy would it be null like WTF
-				
-				i++;
-				continue ;
-				//error = 1;
-				//break ;
-			}
+			if (node != graph)
+				printf("ALERT so here we have a path that ends with a node other than start, this should NEVER happen\n");
 			path_node = (t_path_node *)malloc(sizeof(t_path_node));
 			if (!path_node)
 				handle_error();
@@ -270,7 +261,6 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 			path_el->path_size = path_size;
 			//printf("%s, ", graph->name);
 
-
 			if (!paths)
 				paths = path_el;
 			else
@@ -278,10 +268,6 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 		}
 		i++;
 		//printf("\n");
-	}
-	if (error)
-	{
-		// return ;
 	}
 	// add to all_paths_combos
 	all_paths_combos->arr[all_paths_combos->counter] = paths;
@@ -338,8 +324,10 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 		i = path->counter - 1;
 		while (i > 0)
 		{
-			//if (path->arr[i - 1]->reverse && path->arr[i - 1]->reverse != path->arr[i]) // what does this mean lmao
-				//printf("NOOOO\n");
+			if (path->arr[i - 1]->reverse && path->arr[i - 1]->reverse != path->arr[i])
+			{
+				//printf("ALERT so here we are apparently crossing another path...?\n");
+			}
 			if (path->arr[i - 1]->reverse == path->arr[i])
 				path->arr[i - 1]->reverse = NULL;
 			else
@@ -347,12 +335,13 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 			i--;
 		}
 		get_paths(all_paths_combos, graph, data);
-		/* no yeah no. this reduces the time but doesn't find the optimal solution. SAD.
-		calc_solution(&solution_tmp, all_paths_combos, nb_ants);
+		
+		// no yeah no. this reduces the time but doesn't find the optimal solution. SAD.
+		/*calc_solution(&solution_tmp, all_paths_combos, nb_ants);
 		if (prev_nb_turns > solution_tmp->path_size + solution_tmp->nb_ants - 2)
 		{
 			solution = solution_tmp;
-			prev_nb_turns = solution_tmp->path_size + solution->nb_ants - 2;
+			prev_nb_turns = solution_tmp->path_size + solution_tmp->nb_ants - 2;
 		}
 		else
 			break ;

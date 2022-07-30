@@ -32,8 +32,11 @@ void	print_paths(t_paths *paths)
 	while (paths)
 	{
 		if (paths->nb_ants == 0)
+		{
+			printf("\nnot all paths used\n");
 			break ;
-		printf("Path %d. Size: %zu. Number of ants: %zu\n", i + 1, paths->path_size, paths->nb_ants);
+		}
+		printf("Path %d. Size: %zu. Number of ants: %zu. Number or turns: %zu\n", i + 1, paths->path_size, paths->nb_ants, paths->nb_ants + paths->path_size - 2);
 		print_path_node(paths->path);
 		paths = paths->next;
 		i++;
