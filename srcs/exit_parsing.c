@@ -11,19 +11,19 @@ unsigned short data_is_ok(t_data *data)
 
 void    exit_parsing(t_room *rooms, t_data *data)
 {
-    if (rooms)
-    {
+    if (rooms && data->hashtable_created == 0)
         while(rooms != NULL)
-		rooms = my_clean(rooms);
-    }
+		    rooms = my_clean(rooms);
     if (data_is_ok(data))
     {
-        print_line(data->map, data->size_map);
+        write(1, data->map, data->index_line);
         printf("go_to_solver");
         data = data_cleaner(data);
+        system("leaks lem-in");
         exit(EXIT_SUCCESS);
     }
-    printf("error\n");  
+    ft_putstr("error\n"); 
     data = data_cleaner(data);
+    system("leaks lem-in");
     exit(EXIT_FAILURE);
 }

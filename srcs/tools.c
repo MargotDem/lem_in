@@ -53,6 +53,25 @@ t_room  *push_front(t_room *list, t_room *element)
     return (element);
 }
 
+int get_line(char *map, char **line, t_data *data)
+{
+    size_t  i;
+    i = 0;
+
+    while (map[i] != '\0')
+    {
+        if(map[i] == '\n')
+        {
+            *line = ft_strsub(map, 0, i);
+            i++;
+            data->index_line += i;
+            return (1);
+        }
+        i++;
+    }
+    return (0);
+}
+
 
 
 

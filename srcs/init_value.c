@@ -12,6 +12,7 @@ t_data  *set_data(t_data *node)
     node->section_links = DIACTIVATE;
     node->section_rooms = DIACTIVATE;
     node->map = NULL;
+    node->index_line = 0;
     return (node);
 }
 

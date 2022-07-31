@@ -15,17 +15,22 @@ void	save_command(char *line, t_data **data, t_room **rooms)
 {
 	t_room	*element;
 	char	letter;
+	char	*map;
+	int		index;
+
+	map = (*data)->map;
+	index = (*data)->index_line;
 
 	letter = line[2];
 	if (letter == 's' || letter == 'e')
 	{
-		get_next_line(0, &line);
+		// get_next_line(0, &line);
+		get_line(&map[index], &line, *data);
 		if (type_of_line(line, *data) != 0)
 		{
 			ft_strdel(&line);
 			exit_parsing(*rooms, *data);
 		}
-        (*data)->map = cpy_line(line,(*data)->map, *data);
 		element = new_node(line, letter);
 		*rooms = push_front(*rooms, element);
 		(*data)->size_list += 1;
@@ -61,6 +66,8 @@ static int		check_link_name(char *line, t_data *data)
 	char *room_1;
 	char *room_2;
 
+	room_1 = NULL;
+	room_2 = NULL;
 	i = 0;
 	while (line[i] != '\0')
 	{

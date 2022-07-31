@@ -5,19 +5,29 @@ t_room	*my_clean(t_room *list)
 	t_room *temp;
 	if (list->next ==  NULL)
 	{
-		free(list->name);
-		free(list->links);
+		if(list->name)
+			ft_strdel(&list->name);
+		if (list->links)
+			free(list->links);
 		list->next = NULL;
-		free(list);
-		list = NULL;
+		if(list)
+		{
+			free(list);
+			list = NULL;
+		}
 		return (NULL);
 	}
 	temp = list->next;
-	free(list->name);
-	free(list->links);
+	if(list->name)
+		free(list->name);
+	if (list->links)
+		free(list->links);
 	list->next = NULL;
-	free(list);
-	list = NULL;
+	if(list)
+	{
+		free(list);
+		list = NULL;
+	}
 	return (temp);
 }
 
@@ -67,6 +77,8 @@ t_data	*data_cleaner(t_data *data)
 
 void    clean2str(char *s1, char *s2)
 {
-    ft_strdel(&s1);
-    ft_strdel(&s2);
+	if(s1)
+    	ft_strdel(&s1);
+	if(s2)
+    	ft_strdel(&s2);
 }
