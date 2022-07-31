@@ -46,6 +46,7 @@ t_data	*data_cleaner(t_data *data)
 {
 	ft_strdel(&data->start_room_name);
 	ft_strdel(&data->end_room_name);
+	ft_strdel(&data->map);
 
 	t_room *temp;
 	size_t i = 0;

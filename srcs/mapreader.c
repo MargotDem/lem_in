@@ -96,7 +96,7 @@ void    mapreader(t_room **rooms, t_data **data)
 	while (get_next_line(0, &line) > 0)
 	{
 		type = type_of_line(line, *data);
-		print_line(line);
+		(*data)->map = cpy_line(line,(*data)->map, *data);
 		if (type == COMMENT)
 		{
 			ft_strdel(&line);

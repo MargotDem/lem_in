@@ -18,6 +18,7 @@ void    exit_parsing(t_room *rooms, t_data *data)
     }
     if (data_is_ok(data))
     {
+        print_line(data->map, data->size_map);
         printf("go_to_solver");
         data = data_cleaner(data);
         exit(EXIT_SUCCESS);

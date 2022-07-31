@@ -11,6 +11,7 @@ t_data  *set_data(t_data *node)
     node->hashtable_created = FALSE;
     node->section_links = DIACTIVATE;
     node->section_rooms = DIACTIVATE;
+    node->map = NULL;
     return (node);
 }
 

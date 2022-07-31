@@ -64,19 +64,23 @@ t_room **brealloc(t_room **links,t_room *to, unsigned long size_list)
 }
 
 
-char	*cpy_line(char *line, char *map)
+char	*cpy_line(char *line, char *test, t_data *data)
 {
 	char	*temp;
-	
+	char	*map;
+
+	(void)test;
+	map = data->map;
 	if (!map)
 		temp = ft_strdup(line);
 	else
 		temp = ft_strjoin(map, line);
 	if (!temp)
-		panic("malloc");
+		panic("In malloc_handler.c: cpy_line");
 	free(map);
 	map = ft_strjoin(temp,"\n");
 	ft_strdel(&temp);
+	data->size_map += ft_strlen(line) + 1;
 	return (map);
 }
 

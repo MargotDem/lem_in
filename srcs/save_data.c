@@ -25,7 +25,7 @@ void	save_command(char *line, t_data **data, t_room **rooms)
 			ft_strdel(&line);
 			exit_parsing(*rooms, *data);
 		}
-        print_line(line);
+        (*data)->map = cpy_line(line,(*data)->map, *data);
 		element = new_node(line, letter);
 		*rooms = push_front(*rooms, element);
 		(*data)->size_list += 1;

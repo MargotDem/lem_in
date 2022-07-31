@@ -21,16 +21,17 @@ unsigned long	get_ants(t_data **data)
 
 	while (get_next_line(0, &line))
 	{
+		(*data)->map = cpy_line(line,(*data)->map, *data);
 		if (only_digit_in(line))
 		{
-            print_line(line);
+            (*data)->map = cpy_line(line,(*data)->map, *data);
 			ants = ft_atoi(line);
             (*data)->ants = ants;
 			return(ft_strdel(&line), ants);
 		}
 		if (type_of_line(line, *data) != 1)
 			return (ft_strdel(&line), 0);
-        print_line(line);
+		(*data)->map = cpy_line(line,(*data)->map, *data);
 	}
 	return(ft_strdel(&line), 0);
 }

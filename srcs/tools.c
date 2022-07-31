@@ -1,11 +1,11 @@
 #include "parsing.h"
 
-void    print_line(char *line)
+void    print_line(char *line, int size)
 {
-    size_t  length;
+    // size_t  length;
 
-    length = ft_strlen(line);
-    write (1, line, length);
+    // length = ft_strlen(line);
+    write (1, line, size);
     write (1, "\n", 1);
 }
 
@@ -19,7 +19,7 @@ char    *save_name(char *line)
         i++;
     name = ft_strsub(line, 0, i);
     if (!name)
-        panic("malloc");
+        panic("In tools.c: save_name");
     return (name);
 }
 

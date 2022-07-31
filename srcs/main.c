@@ -67,7 +67,10 @@ int main(int argc, char **argv)
 	mapreader(&rooms, &data);
 	printf("ANTS -> %lu || start -> %s || end ->%s\n", data->ants, data->start_room_name, data->end_room_name);
 	if (data_is_ok(data))
+	{
+		print_line(data->map, data->size_map);
 		printf("GO TO SOLVER\n");
+	}
 	else
 		printf("error\n");
 	// data = data_cleaner(data);
