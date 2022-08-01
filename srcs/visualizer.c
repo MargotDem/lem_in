@@ -189,7 +189,7 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 		}
 	}
 	else
-		printf("not found\n");
+		ft_putstr("not found\n");
 }
 
 int	handle_key(int key, void *param)
@@ -201,14 +201,12 @@ int	handle_key(int key, void *param)
 	size_t	ant_nb;
 
 	mlx_win = (t_mlx_win *)param;
-	//printf("key is %d\n", key);
 	paths_ptr = mlx_win->optimal_paths;
 	if (key == 53)
 		escape(mlx_win);
 	if (key == 123 && mlx_win->turn_nb > 0)
 	{
 		mlx_win->turn_nb--;
-		//printf("turn %zu: ", mlx_win->turn_nb);
 		while (paths_ptr)
 		{
 			i = 0;
@@ -218,7 +216,6 @@ int	handle_key(int key, void *param)
 				if ((paths_ptr->ants)[i].room_nb >= 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size - 1)
 				{
 					ant_nb = (paths_ptr->ants)[i].ant_nb;
-					//printf("annt nb is %zu, room name is %s\n", ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1));
 					draw_ant(ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1), mlx_win, 1);
 				}
 				i++;
@@ -231,18 +228,15 @@ int	handle_key(int key, void *param)
 					ant_nb = (paths_ptr->ants)[i].ant_nb;
 					name = get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb);
 					draw_ant(ant_nb, name, mlx_win, 0);
-					//printf("L%zu-%s ", (paths_ptr->ants)[i].ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
 				}
 				i++;
 			}
 			paths_ptr = paths_ptr->next;
 		}
-		//printf("\n");
 	}
 	if (key == 124 && mlx_win->turn_nb < mlx_win->max_turns)
 	{
 		mlx_win->turn_nb++;
-		//printf("turn %zu: ", mlx_win->turn_nb);
 		while (paths_ptr)
 		{
 			i = 0;
@@ -264,13 +258,11 @@ int	handle_key(int key, void *param)
 					ant_nb = (paths_ptr->ants)[i].ant_nb;
 					name = get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb);
 					draw_ant(ant_nb, name, mlx_win, 0);
-					//printf("L%zu-%s ", (paths_ptr->ants)[i].ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
 				}
 				i++;
 			}
 			paths_ptr = paths_ptr->next;
 		}
-		//printf("\n");
 	}
 	(void)i;
 	return (0);

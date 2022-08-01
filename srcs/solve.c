@@ -66,7 +66,6 @@ t_hist	*get_aug_path(t_room *graph, char **start_and_end, int x)
 	{
 		if (graph->links[i]->reverse == NULL)
 		{
-			//printf("lets push %s to tobevisited\n", graph->links[i]->name);
 			graph->links[i]->to_be_visited = 1;
 			push_history(to_be_visited, graph->links[i]);
 			init_history(&(graph->links[i]->history), 20);
@@ -79,7 +78,6 @@ t_hist	*get_aug_path(t_room *graph, char **start_and_end, int x)
 	while (i < to_be_visited->counter)
 	{
 		node = to_be_visited->arr[i];
-		//printf("node is %s\n", node->name);
 		nb_links = node->nb_links;
 		links = node->links;
 		j = 0;
@@ -92,12 +90,8 @@ t_hist	*get_aug_path(t_room *graph, char **start_and_end, int x)
 			}
 			if (strings_match(links[j]->name, start_and_end[1]) && node->reverse == NULL)
 			{
-				//printf("end reached, from the path: \n");
-			
 				push_history(node->history, node);
 				push_history(node->history, links[j]);
-				//print_history(node->history);
-				//printf("\n");
 				j = 0;
 				while (j < to_be_visited->counter)
 				{
@@ -106,8 +100,6 @@ t_hist	*get_aug_path(t_room *graph, char **start_and_end, int x)
 				}
 				return (node->history);
 			}
-
-			// the middle condition never happens duh. or does it?? @_@ the brainfuck is real
 			if (node->reverse && node->history->arr[node->history->counter - 1]->reverse != node)
 			{
 				if (node->reverse == links[j])
@@ -138,31 +130,10 @@ t_hist	*get_aug_path(t_room *graph, char **start_and_end, int x)
 					push_history(links[j]->history, node);
 				}
 			}
-
-			/*if (!(node->reverse && !(links[j]->reverse) && !(node->history->arr[node->history->counter - 1]->reverse)))
-			{
-				if (!links[j]->to_be_visited && links[j]->reverse != node && !strings_match(links[j]->name, end) )
-				{
-					links[j]->to_be_visited = 1;
-					push_history(to_be_visited, links[j]);
-					links[j]->history = NULL;
-					append_to_history(node->history, &(links[j]->history));
-					push_history(links[j]->history, node);
-				}
-				else if (links[j]->to_be_visited && node->reverse == links[j])
-				{
-					links[j]->to_be_visited = 1;
-					push_history(to_be_visited, links[j]);
-					links[j]->history = NULL;
-					append_to_history(node->history, &(links[j]->history));
-					push_history(links[j]->history, node);
-				}
-			}*/
 			j++;
 		}
 		i++;
 	}
-	//printf("\n\nno more nodes to visit, gonna return null\n");
 	return (NULL);
 }
 
@@ -244,31 +215,25 @@ static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_dat
 					handle_error();
 				path_node->next = NULL;
 				path_node->node = node;
-				//printf("%s, ", node->name);
 				push_front(&(path_el->path), path_node);
 				node = node->reverse;
 			}
 			if (node != graph)
-				printf("ALERT so here we have a path that ends with a node other than start, this should NEVER happen\n");
+				ft_putstr("ALERT so here we have a path that ends with a node other than start, this should NEVER happen\n");
 			path_node = (t_path_node *)malloc(sizeof(t_path_node));
 			if (!path_node)
 				handle_error();
 			path_node->next = NULL;
 			path_node->node = graph;
 			push_front(&(path_el->path), path_node);
-	
 			path_el->path_size = path_size;
-			//printf("%s, ", graph->name);
-
 			if (!paths)
 				paths = path_el;
 			else
 				lst_add_in_order(&paths, path_el);
 		}
 		i++;
-		//printf("\n");
 	}
-	// add to all_paths_combos
 	all_paths_combos->arr[all_paths_combos->counter] = paths;
 	all_paths_combos->counter++;
 }
@@ -303,6 +268,7 @@ void	solve222(t_room *graph, t_data *data, char **start_and_end, size_t nb_ants)
 	t_paths *solution;
 
 	x = 0;
+	// handle this better
 	all_paths_combos = (t_all_paths_combos *)malloc(sizeof(t_all_paths_combos)); // if null
 	all_paths_combos->size = 200;
 	all_paths_combos->counter = 0;
@@ -315,10 +281,8 @@ void	solve222(t_room *graph, t_data *data, char **start_and_end, size_t nb_ants)
 		i = path->counter - 1;
 		while (i > 0)
 		{
-			if (path->arr[i - 1]->reverse && path->arr[i - 1]->reverse != path->arr[i])
-			{
-				//printf("ALERT so here we are apparently crossing another path...?\n");
-			}
+			//if (path->arr[i - 1]->reverse && path->arr[i - 1]->reverse != path->arr[i])
+				//ft_putstr("ALERT so here we are apparently crossing another path...?\n");
 			if (path->arr[i - 1]->reverse == path->arr[i])
 				path->arr[i - 1]->reverse = NULL;
 			else
@@ -329,14 +293,16 @@ void	solve222(t_room *graph, t_data *data, char **start_and_end, size_t nb_ants)
 		x++;
 	}
 	calc_solution(&solution, all_paths_combos, nb_ants);
-	printf("\n");
+	ft_putstr("\n");
 	display_result(solution, nb_ants);
 	if (data->show_paths)
 	{
-		printf("\n********************\n\nThese are the paths that make up the solution:\n\n");
+		ft_putstr("\n********************\n\nThese are the paths that make up the solution:\n\n");
 		print_paths(solution);
-		printf("********************\n\n");
-		printf("The number of turns is %zu\n\n", solution->path_size + solution->nb_ants - 2);
+		ft_putstr("********************\n\n");
+		ft_putstr("The number of turns is ");
+		ft_putnbr((int)(solution->path_size + solution->nb_ants - 2));
+		ft_putstr("\n\n");
 	}
 	if (data->visualizer)
 		visualizer(graph, nb_ants, solution, start_and_end);

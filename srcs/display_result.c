@@ -92,7 +92,11 @@ void	display_result(t_paths *paths, size_t nb_ants)
 				if ((paths_ptr->ants)[i].room_nb > 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size)
 				{
 					movement = 1;
-					printf("L%zu-%s ", (paths_ptr->ants)[i].ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
+					ft_putstr("L");
+					ft_putnbr((int)((paths_ptr->ants)[i].ant_nb));
+					ft_putstr("-");
+					ft_putstr(get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
+					ft_putstr(" ");
 				}
 				i++;
 			}
@@ -100,6 +104,6 @@ void	display_result(t_paths *paths, size_t nb_ants)
 		}
 		if (!movement)
 			break ;
-		printf("\n");
+		ft_putstr("\n");
 	}
 }

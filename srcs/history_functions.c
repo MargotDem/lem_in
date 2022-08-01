@@ -40,10 +40,8 @@ void	push_history(t_hist *history, t_room *node)
 
 	counter = history->counter;
 	size = history->size;
-	//printf("size is %d counter is %d\n", size, counter);
 	if (counter && counter % size == 0)
 	{
-		//print_history(history);
 		tmp = (t_room **)malloc(sizeof(t_room *) * (counter + size));
 		if (!tmp)
 			exit(0); // TODO handle this
@@ -73,13 +71,14 @@ void	print_history(t_hist *history)
 
 	k = 0;
 	counter = history->counter;
-	printf("history:\n");
+	ft_putstr("history:\n");
 	while (k < counter)
 	{
-		printf("%s, ", history->arr[k]->name);
+		ft_putstr(history->arr[k]->name);
+		ft_putstr(", ");
 		k++;
 	}
-	printf("\n");
+	ft_putstr("\n");
 }
 
 void	init_history(t_hist **history, int size)

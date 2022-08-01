@@ -69,7 +69,11 @@ void	print_hashtab(t_data **data)
 		{
 			while (temp != NULL)
 			{
-				printf("VALEUR -> %s || INDEX -> %d\n", temp->name, i);
+				ft_putstr("VALEUR -> ");
+				ft_putstr(temp->name);
+				ft_putstr(" || INDEX -> ");
+				ft_putnbr(i);
+				ft_putstr("\n");
 				temp = temp->h_next;
 			}
 		}

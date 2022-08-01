@@ -16,12 +16,12 @@ void	print_path_node(t_path_node *path)
 {
 	while (path)
 	{
-		printf("%s", path->node->name);
+		ft_putstr(path->node->name);
 		if (path->next)
-			printf(", ");
+			ft_putstr(", ");
 		path = path->next;
 	}
-	printf("\n\n");
+	ft_putstr("\n\n");
 }
 
 void	print_paths(t_paths *paths)
@@ -33,10 +33,18 @@ void	print_paths(t_paths *paths)
 	{
 		if (paths->nb_ants == 0)
 		{
-			printf("\nnot all paths used\n");
+			ft_putstr("\nnot all paths used\n");
 			break ;
 		}
-		printf("Path %d. Size: %zu. Number of ants: %zu. Number or turns: %zu\n", i + 1, paths->path_size, paths->nb_ants, paths->nb_ants + paths->path_size - 2);
+		ft_putstr("Path ");
+		ft_putnbr(i + 1);
+		ft_putstr(". Size: ");
+		ft_putnbr((int)(paths->path_size));
+		ft_putstr(". Number of ants: ");
+		ft_putnbr((int)(paths->nb_ants));
+		ft_putstr(". Number or turns: ");
+		ft_putnbr((int)(paths->nb_ants + paths->path_size - 2));
+		ft_putstr("\n");
 		print_path_node(paths->path);
 		paths = paths->next;
 		i++;
