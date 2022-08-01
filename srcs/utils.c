@@ -18,3 +18,16 @@ size_t	strings_match(char *str1, char *str2)
 		return (1);
 	return (0);
 }
+
+size_t	get_list_size(t_void_list *list)
+{
+	size_t	i;
+
+	i = 0;
+	while (list)
+	{
+		i++;
+		list = list->next;
+	}
+	return (i);
+}

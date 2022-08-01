@@ -13,47 +13,6 @@
 #include "lem_in.h"
 #include "parsing.h"
 
-t_room	*create_node(char *name)
-{
-	t_room	*new;
-
-	new = (t_room *)malloc(sizeof(t_room));
-	if (new)
-	{
-		new->links = NULL;
-		new->name = name;
-		new->nb_links = 0;
-	}
-	return (new);
-}
-
-void	print_graph(t_room *node, t_hist *history, int	only_visited)
-{
-	size_t	nb_links;
-	t_room	**links;
-	t_room	*link;
-	size_t i;
-
-	nb_links = node->nb_links;
-	links = node->links;
-	printf("\n");
-	if (only_visited && node->visited)
-	{
-		printf("node: '%s', ", node->name);
-		print_history(history);
-	}
-	i = 0;
-	if (not_in_history(node, history))
-		push_history(history, node);
-	while (i < nb_links)
-	{
-		link = links[i];
-		if (not_in_history(link, history))
-			print_graph(link, history, only_visited);
-		i++;
-	}
-}
-
 void	find_node(t_room *node, t_hist *history, char *name, t_room **node_to_find)
 {
 	size_t	nb_links;

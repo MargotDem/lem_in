@@ -12,6 +12,7 @@
 
 #include "lem_in.h"
 
+// can probably be made better
 char	*get_room_name(t_paths *path_ptr, int room_nb)
 {
 	int	i;

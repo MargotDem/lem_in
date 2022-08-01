@@ -37,10 +37,10 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			parsing_connexion_handling.c \
 			parsing_out_to_solver.c \
 			hashtable_main.c \
-			handle_error.c graph_functions.c \
-			history_functions.c display_result.c \
-			list_functions.c paths_functions1.c paths_functions2.c \
-			helpers.c solve.c visualizer.c \
+			handle_error.c graph_utils.c \
+			history_utils.c display_result.c \
+			paths_utils.c \
+			utils.c solve.c visualizer.c \
 			#parsing_tree \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit
