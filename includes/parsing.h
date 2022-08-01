@@ -20,14 +20,9 @@ typedef struct s_room{
 	int				room_end;
 	int				nb_links;
 	struct s_room	*next;
-	struct s_room	*parent;
 	struct s_room	*h_next;
 	struct s_room	**links;
-	int				visited;
 	int				to_be_visited;
-	int				to_be_visited_stand_by;
-	int				stand_by;
-	int				part_of_solution;
 	struct s_hist			*history;
 	struct s_room	*reverse;
 }					t_room;
