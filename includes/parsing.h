@@ -46,6 +46,9 @@ typedef struct s_data {
     t_room          **hashtab;
     char            *start_room_name;
     char            *end_room_name;
+	char			*map;
+	int				index_line;
+	int				size_map;
 }				t_data;
 
 void	save_command(char *line, t_data **data, t_room **rooms);
@@ -86,7 +89,7 @@ void    mapreader(t_room **rooms, t_data **data);
 unsigned short	type_of_line(char *line, t_data *data);
 
 /*get_ants*/
-unsigned long	get_ants(t_data **data);
+unsigned long	get_ants(t_data **data, t_room *rooms);
 
 /*exit_parsing*/
 void    exit_parsing(t_room *rooms, t_data *data);
@@ -106,7 +109,7 @@ void	insert_links(t_room *room1, t_room *room2);
 
 /*tools*/
 char    *save_name(char *line);
-void    print_line(char *line);
+void    print_line(char *line, int size);
 t_room  *push_front(t_room *list, t_room *element);
 unsigned long	save_abscisse(char *line);
 unsigned long	save_ordonne(char *line);
@@ -114,9 +117,10 @@ unsigned long	save_ordonne(char *line);
 
 /*TOREMOVE*/
 void    print_lst(t_room *li);
-char	*cpy_line(char *line, char *map); //  pas necessaire
+char	*cpy_line(char *line, char *map, t_data *data); //  pas necessaire
 // void	print_connexion(t_data **data);
 void	print_hashtab(t_data *data);
+int		get_line(char *map, char **line,t_data *data);
 
 
 #endif

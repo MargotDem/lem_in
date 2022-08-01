@@ -37,26 +37,39 @@ t_room	*my_clean_data(t_room *list)
 
 	if (list->hash_next ==  NULL)
 	{
-		free(list->name);
-		free(list->links);
-		free(list);
-		list = NULL;
+		if(list->name)
+			free(list->name);
+		if (list->links)
+			free(list->links);
+		if (list)
+		{
+			free(list);
+			list = NULL;
+		}
 		return (NULL);
 	}
 	temp = list->hash_next;
-	free(list->name);
-	free(list->links);
-	free(list);
-	list = NULL;
+	if(list->name)
+		free(list->name);
+	if (list->links)
+		free(list->links);
+	if (list)
+	{
+		free(list);
+		list = NULL;
+		}
 	return (temp);
 
 }
 
 t_data	*data_cleaner(t_data *data)
 {
-	ft_strdel(&data->start_room_name);
-	ft_strdel(&data->end_room_name);
-	ft_strdel(&data->map);
+	if (data->start_room_name)
+		ft_strdel(&data->start_room_name);
+	if (data->end_room_name)
+		ft_strdel(&data->end_room_name);
+	if (data->map)
+		ft_strdel(&data->map);
 
 	t_room *temp;
 	size_t i = 0;
@@ -70,7 +83,8 @@ t_data	*data_cleaner(t_data *data)
 		}
 		i++;
 	}
-	free(data->hashtab);
+	if (data->hashtable_created == TRUE)
+		free(data->hashtab);
 	free(data);
 	return (NULL);
 }

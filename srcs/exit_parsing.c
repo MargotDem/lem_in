@@ -17,7 +17,7 @@ void    exit_parsing(t_room *rooms, t_data *data)
     if (data_is_ok(data))
     {
         write(1, data->map, data->index_line);
-        printf("go_to_solver");
+        printf("go_to_solver\n");
         data = data_cleaner(data);
         system("leaks lem-in");
         exit(EXIT_SUCCESS);

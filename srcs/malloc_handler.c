@@ -30,7 +30,7 @@ void	create_hashtable(t_data **data)
 
 	i = 0;
 	size = (*data)->size_list;
-	(*data)->hashtab = (t_room **)malloc(sizeof(t_room) * size);
+	(*data)->hashtab = (t_room **)malloc(sizeof(*(*data)->hashtab) * size);
     // printf("HAAASSHHH ---> %p\n", (*data)->hashtab);
 	if (!(*data)->hashtab)
 		panic("malloc hashtab");
