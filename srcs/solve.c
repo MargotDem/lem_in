@@ -47,7 +47,7 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 	}
 }
 
-t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
+t_hist	*get_aug_path(t_room *graph, char **start_and_end, int x)
 {
 	int	i;
 	int	j;
@@ -55,7 +55,6 @@ t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 	t_room	**links;
 	int		nb_links;
 	t_room	*node;
-	(void)start; // if start dont schedule right
 	(void)x;
 
 	i = 0;
@@ -91,7 +90,7 @@ t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 				j++;
 				continue ;
 			}
-			if (strings_match(links[j]->name, end) && node->reverse == NULL)
+			if (strings_match(links[j]->name, start_and_end[1]) && node->reverse == NULL)
 			{
 				//printf("end reached, from the path: \n");
 			
@@ -122,7 +121,7 @@ t_hist	*get_aug_path(t_room *graph, char *start, char *end, int x)
 			}
 			else
 			{
-				if (!links[j]->to_be_visited && links[j]->reverse != node && !strings_match(links[j]->name, end) )
+				if (!links[j]->to_be_visited && links[j]->reverse != node && !strings_match(links[j]->name, start_and_end[1]) )
 				{
 					links[j]->to_be_visited = 1;
 					push_history(to_be_visited, links[j]);
@@ -295,30 +294,22 @@ void	calc_solution(t_paths **solution, t_all_paths_combos *all_paths_combos, siz
 	}
 }
 
-void	solve222(t_room *graph, t_data *data, char *start, char *end)
+void	solve222(t_room *graph, t_data *data, char **start_and_end, size_t nb_ants)
 {
 	t_hist	*path;
 	t_all_paths_combos	*all_paths_combos;
 	int	x;
 	int	i;
-	
 	t_paths *solution;
-	t_paths *solution_tmp;
-	(void)solution_tmp;
-	size_t	nb_ants;
-	size_t	prev_nb_turns;
-	char	*start_and_end[2];
 
-	nb_ants = data->ants;
 	x = 0;
-	prev_nb_turns = 5000;
 	all_paths_combos = (t_all_paths_combos *)malloc(sizeof(t_all_paths_combos)); // if null
 	all_paths_combos->size = 200;
 	all_paths_combos->counter = 0;
 	all_paths_combos->arr = (t_paths **)malloc(sizeof(t_paths *) * 200); // same
 	while (1)
 	{
-		path = get_aug_path(graph, start, end, x);
+		path = get_aug_path(graph, start_and_end, x);
 		if (!path)
 			break ;
 		i = path->counter - 1;
@@ -335,33 +326,9 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 			i--;
 		}
 		get_paths(all_paths_combos, graph, data);
-		
-		// no yeah no. this reduces the time but doesn't find the optimal solution. SAD.
-		/*calc_solution(&solution_tmp, all_paths_combos, nb_ants);
-		if (prev_nb_turns > solution_tmp->path_size + solution_tmp->nb_ants - 2)
-		{
-			solution = solution_tmp;
-			prev_nb_turns = solution_tmp->path_size + solution_tmp->nb_ants - 2;
-		}
-		else
-			break ;
-		*/
 		x++;
 	}
 	calc_solution(&solution, all_paths_combos, nb_ants);
-	/*printf("\n\n\n\n\n\n\n\n\nALRIGHTTT\nall paths combos counter is %d", all_paths_combos->counter);
-	printf(", and all paths combos is:\n");
-	k = 0;
-	while (k < all_paths_combos->counter)
-	{
-		printf("path combination number %d\n\n", k + 1);
-		print_paths(all_paths_combos->arr[k]);
-		printf("\n");
-		k++;
-	}
-	printf("\n\n\n\n\n\n\n\n");
-
-	*/
 	printf("\n");
 	display_result(solution, nb_ants);
 	if (data->show_paths)
@@ -372,21 +339,14 @@ void	solve222(t_room *graph, t_data *data, char *start, char *end)
 		printf("The number of turns is %zu\n\n", solution->path_size + solution->nb_ants - 2);
 	}
 	if (data->visualizer)
-	{
-		start_and_end[0] = start;
-		start_and_end[1] = end;
 		visualizer(graph, nb_ants, solution, start_and_end);
-	}
 }
 
 void	solve(t_room *graph, t_data *data)
 {
-	char	*start;
-	char	*end;
-	t_room	*end_room;
+	char	*start_and_end[2];
 
-	start = graph->name;
-	end = data->exit_room;
-	end_room = search_for(end, data);	
-	solve222(graph, data, start, end);
+	start_and_end[0] = graph->name;
+	start_and_end[1] = data->exit_room;
+	solve222(graph, data, start_and_end, data->ants);
 }
