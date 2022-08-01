@@ -1,11 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/01 12:17:19 by briffard          #+#    #+#             */
+/*   Updated: 2022/08/01 12:28:52 by briffard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
-void	print_usage(void)
-{
-	write (1,"usage: lem-in [-vmh] < source_file\n",35);
-}
-
-void check_letter(char letter, t_data *data)
+void	check_letter(char letter, t_data *data)
 {
 	if (letter != 'v' && letter != 'm' && letter != 'h')
 	{
@@ -32,7 +39,7 @@ t_data	*check_option(int argc, char *option, t_data *data)
 	set_data(data);
 	if (argc == 1)
 		return (data);
-	if(option[0] != '-' || argc > 2)
+	if (option[0] != '-' || argc > 2)
 	{
 		print_usage();
 		free(data);
@@ -47,28 +54,26 @@ t_data	*check_option(int argc, char *option, t_data *data)
 	return (data);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_room		*rooms;
 	t_data		*data;
 
 	data = NULL;
 	rooms = NULL;
-
 	data = check_option(argc, argv[1], data);
 	if (data->help)
 	{
-		printf("MAN LEM-in\n");
+		print_man();
 		free(data);
 		data = NULL;
 		exit(EXIT_SUCCESS);
 	}
-
 	mapreader(&rooms, &data);
-	printf("ANTS -> %lu || start -> %s || end ->%s\n", data->ants, data->start_room_name, data->end_room_name);
 	if (data_is_ok(data))
 	{
-		write(1, data->map, data->index_line);
+		if (data->no_map == FALSE)
+			write(1, data->map, data->index_line);
 		printf("GO TO SOLVER\n");
 	}
 	else
