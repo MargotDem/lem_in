@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:31:05 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 12:32:27 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:34:50 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*add_buffer_to(char **str, char *buffer)
 	{
 		*str = (char *)malloc(sizeof(char) * BUFF_SIZE + 1);
 		if (!(*str))
-			return (NULL);
+			panic("In mapreader_tool: add_buffer_to");
 		ft_bzero(*str, BUFF_SIZE);
 	}
 	temp = ft_strjoin(*str, buffer);
