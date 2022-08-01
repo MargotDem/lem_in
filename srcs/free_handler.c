@@ -1,29 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_handler.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/01 11:39:54 by briffard          #+#    #+#             */
+/*   Updated: 2022/08/01 11:45:05 by briffard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 t_room	*my_clean(t_room *list)
 {
-	t_room *temp;
-	if (list->next ==  NULL)
+	t_room	*temp;
+
+	if (list->next == NULL)
 	{
-		if(list->name)
+		if (list->name)
 			ft_strdel(&list->name);
 		if (list->links)
 			free(list->links);
 		list->next = NULL;
-		if(list)
-		{
+		if (list)
 			free(list);
-			list = NULL;
-		}
 		return (NULL);
 	}
 	temp = list->next;
-	if(list->name)
+	if (list->name)
 		free(list->name);
 	if (list->links)
 		free(list->links);
 	list->next = NULL;
-	if(list)
+	if (list)
 	{
 		free(list);
 		list = NULL;
@@ -33,23 +43,20 @@ t_room	*my_clean(t_room *list)
 
 t_room	*my_clean_data(t_room *list)
 {
-	t_room *temp;
+	t_room	*temp;
 
-	if (list->hash_next ==  NULL)
+	if (list->hash_next == NULL)
 	{
-		if(list->name)
+		if (list->name)
 			free(list->name);
 		if (list->links)
 			free(list->links);
 		if (list)
-		{
 			free(list);
-			list = NULL;
-		}
 		return (NULL);
 	}
 	temp = list->hash_next;
-	if(list->name)
+	if (list->name)
 		free(list->name);
 	if (list->links)
 		free(list->links);
@@ -57,22 +64,22 @@ t_room	*my_clean_data(t_room *list)
 	{
 		free(list);
 		list = NULL;
-		}
+	}
 	return (temp);
-
 }
 
 t_data	*data_cleaner(t_data *data)
 {
+	size_t	i;
+	t_room	*temp;
+
+	i = 0;
 	if (data->start_room_name)
 		ft_strdel(&data->start_room_name);
 	if (data->end_room_name)
 		ft_strdel(&data->end_room_name);
 	if (data->map)
 		ft_strdel(&data->map);
-
-	t_room *temp;
-	size_t i = 0;
 	while (i < data->size_list)
 	{
 		temp = data->hashtab[i];
@@ -85,14 +92,13 @@ t_data	*data_cleaner(t_data *data)
 	}
 	if (data->hashtable_created == TRUE)
 		free(data->hashtab);
-	free(data);
-	return (NULL);
+	return (free(data), NULL);
 }
 
-void    clean2str(char *s1, char *s2)
+void	clean2str(char *s1, char *s2)
 {
-	if(s1)
-    	ft_strdel(&s1);
-	if(s2)
-    	ft_strdel(&s2);
+	if (s1)
+		ft_strdel(&s1);
+	if (s2)
+		ft_strdel(&s2);
 }
