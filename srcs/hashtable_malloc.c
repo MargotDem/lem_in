@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:02:34 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 12:13:18 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/01 13:57:36 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_room	*set_copy(t_room *dst, t_room *source)
 
 t_room	*cpy_room(t_room *room)
 {
-	t_rooom	*element;
+	t_room	*element;
 
 	element = (t_room *)malloc(sizeof(t_room));
 	if (!element)

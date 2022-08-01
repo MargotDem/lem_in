@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:45:52 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 11:47:47 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/01 13:56:16 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ unsigned long	get_ants(t_data **data, t_room *room)
 			(*data)->ants = ants;
 			ft_strdel(&line);
 			if (ants == 0)
-				exit_parsing(room, *data);
+				exit_parsing(line, room, *data);
 			return (ants);
 		}
 		if (type_of_line(line, *data) != 1)

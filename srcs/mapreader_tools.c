@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:31:05 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 12:34:50 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:20:18 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	*readmap(char *map)
 	char	buffer[10000];
 
 	ret = read(0, buffer, 10000);
+	if (!ret)
+		return (NULL);
 	while (ret > 0)
 	{
 		buffer[ret] = '\0';
@@ -44,4 +46,50 @@ char	*readmap(char *map)
 		ret = read(0, buffer, 10000);
 	}
 	return (map);
+}
+
+static unsigned int	is_digit(char *line, unsigned int index)
+{
+	while (line[index] != '\0' && line[index] != ' ')
+	{
+		if (!ft_isdigit(line[index]))
+			return (FALSE);
+		index += 1;
+	}
+	return (index);
+}
+
+unsigned short	is_room(char *line, unsigned short section_links)
+{
+	char	letter;
+	size_t	i;
+
+	i = 0;
+	letter = line[0];
+	if (section_links == ACTIVATE)
+		return (FALSE);
+	if (letter == '#' || letter == 'L' || letter < 33)
+		return (FALSE);
+	while (line[i] > 32 && line[i] != '\0')
+			i++;
+	if (line[i] == '\0' || line[i] != ' ' || !ft_isdigit(line[i + 1]))
+		return (FALSE);
+	i += 1;
+	i = is_digit(line, i);
+	if (i == 0)
+		return (FALSE);
+	if (line[i] == '\0' || line[i] != ' ' || !ft_isdigit(line[i + 1]))
+		return (FALSE);
+	i += 1;
+	i = is_digit(line, i);
+	if (i == 0)
+		return (FALSE);
+	return (TRUE);
+}
+
+void	pass_comment(char *line, t_data **data, t_room **rooms)
+{
+	(void)line;
+	(void)data;
+	(void)rooms;
 }

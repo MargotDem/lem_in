@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:37:11 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 11:38:47 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/01 13:14:59 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ unsigned short	data_is_ok(t_data *data)
 	return (TRUE);
 }
 
-void	exit_parsing(t_room *rooms, t_data *data)
+void	exit_parsing(char *line, t_room *rooms, t_data *data)
 {
+	if (line)
+		ft_strdel(&line);
 	if (rooms && data->hashtable_created == 0)
 		while (rooms != NULL)
 			rooms = my_clean(rooms);
