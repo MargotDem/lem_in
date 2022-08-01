@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:21:57 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 11:35:41 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/01 13:53:49 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,15 @@ typedef struct s_data {
 void				save_command(char *line, t_data **data, t_room **rooms);
 void				save_room(char *line, t_data **data, t_room **room);
 void				save_links(char *line, t_data **data, t_room **rooms);
+void				pass_comment(char *line, t_data **data, t_room **rooms);
 
 typedef void				(*t_line_dispatcher)\
 			(char *line,t_data **data, t_room **rooms);
-static t_line_dispatcher	g_line_dispatch[3] = {
+static t_line_dispatcher	g_line_dispatch[4] = {
 	save_room,
 	save_command,
 	save_links,
+	pass_comment,
 };
 
 /*init_value*/
@@ -99,16 +101,23 @@ t_room				*my_clean_data(t_room *list);
 void				mapreader(t_room **rooms, t_data **data);
 unsigned short		type_of_line(char *line, t_data *data);
 
+/*mapreader_tools*/
+char				*readmap(char *map);
+unsigned short		is_room(char *line, unsigned short section_links);
+
 /*get_ants*/
 unsigned long		get_ants(t_data **data, t_room *rooms);
 
 /*exit_parsing*/
-void				exit_parsing(t_room *rooms, t_data *data);
+void				exit_parsing(char *line, t_room *rooms, t_data *data);
 
 /*hashtable*/
 t_room				*search_for(char *name, t_data *data);
 void				hashtable_main(t_data **data, t_room *li);
 unsigned long		hashing(char *str, unsigned int size);
+
+/*hashtable_malloc*/
+t_room				*cpy_room(t_room *room);
 
 /*save_data_tools*/
 void				insert_links(t_room *room1, t_room *room2);
@@ -119,6 +128,10 @@ void				print_line(char *line, int size);
 t_room				*push_front(t_room *list, t_room *element);
 unsigned long		save_abscisse(char *line);
 unsigned long		save_ordonne(char *line);
+
+/*print_man*/
+void				print_usage(void);
+void				print_man(void);
 
 /*TOREMOVE*/
 void				print_lst(t_room *li);
