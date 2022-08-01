@@ -1,5 +1,16 @@
-#include "parsing.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hashtable_main.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/01 11:48:41 by briffard          #+#    #+#             */
+/*   Updated: 2022/08/01 12:12:04 by briffard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "parsing.h"
 
 unsigned long	hashing(char *str, unsigned int size)
 {
@@ -16,10 +27,10 @@ unsigned long	hashing(char *str, unsigned int size)
 	return (h_index % size);
 }
 
-t_room *search_for(char *name, t_data *data)
+t_room	*search_for(char *name, t_data *data)
 {
-	unsigned long index;
-	t_room *temp;
+	unsigned long	index;
+	t_room			*temp;
 
 	index = hashing(name, data->size_list);
 	temp = data->hashtab[index];
@@ -28,36 +39,6 @@ t_room *search_for(char *name, t_data *data)
 	return (temp);
 }
 
-t_room	*set_copy(t_room *dst, t_room *source)
-{
-	dst->name = ft_strdup(source->name);
-	dst->abscisse = source->abscisse;
-	dst->ordonne = source->ordonne;
-	dst->end = source->end;
-	dst->start = source->start;
-	dst->total_links = 0;
-	dst->hash_next = NULL;
-	dst->next = NULL;
-	dst->links = (t_room **)malloc(sizeof(t_room *));
-	// printf("LINKS -> %p\n", dst->links);
-	if (!dst->links)
-		panic("malloc links");
-	return (dst);
-}
-
-t_room *cpy_room(t_room *room)
-{
-	t_room *element;
-
-	element = (t_room *)malloc(sizeof(t_room));
-	// printf("element -> %p\n", element);
-	if (!element)
-		panic("malloc cpy_room");
-	element = set_copy(element, room);
-	return (element);
-}
-
-
 t_room	*insert_room(t_data **data, t_room *li, int index)
 {
 	t_room	*temp;
@@ -65,7 +46,6 @@ t_room	*insert_room(t_data **data, t_room *li, int index)
 	t_room	*new;
 
 	new = cpy_room(li);
-
 	tempo = NULL;
 	temp = (*data)->hashtab[index];
 	if (temp == NULL)
@@ -103,6 +83,6 @@ void	hashtable_main(t_data **data, t_room *li)
 	(*data)->hashtable_created = TRUE;
 	create_hashtable(data);
 	fill_up_hashtable(data, li);
-	while(li != NULL)
+	while (li != NULL)
 		li = my_clean(li);
 }
