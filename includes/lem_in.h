@@ -74,7 +74,11 @@ void	find_node(t_room *node, t_hist *history, char *name, t_room **node_to_find)
 
 // Utils
 size_t	strings_match(char *str1, char *str2);
+
+// List utils
 size_t	get_list_size(t_void_list *list);
+void	push_front(t_path_node **path, t_path_node *path_node);
+void	lst_add_in_order(t_paths **paths, t_paths *path_el);
 
 // History functions
 void	init_history(t_hist **history, int size);
@@ -90,6 +94,9 @@ void	print_path_node(t_path_node *path);
 void	print_paths(t_paths *paths);
 void	set_paths_size(t_paths *paths);
 t_paths	*create_path_el();
+
+// Solving functions
+t_hist	*get_aug_path(t_room *graph, char **start_and_end);
 
 // Display result
 void	display_result(t_paths *paths, size_t nb_ants);

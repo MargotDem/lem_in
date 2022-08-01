@@ -11,172 +11,6 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "parsing.h"
-
-void	distribute_ants(t_paths *paths, size_t nb_ants)
-{
-	t_paths	*next;
-	t_paths	*paths_ptr;
-	int	move;
-
-	if (!paths)
-		return ;
-	set_paths_size(paths);
-	paths->nb_ants = nb_ants;
-	paths_ptr = paths;
-	while (paths_ptr->next)
-	{
-		if (paths_ptr == paths)
-			move = 0;
-		next = paths_ptr->next;
-		while (paths_ptr->nb_ants + paths_ptr->path_size - 1 >= next->nb_ants + next->path_size + 1)
-		{
-			move = 1;
-			(paths_ptr->nb_ants)--;
-			(next->nb_ants)++;
-		}
-		if (paths_ptr != paths && next->nb_ants && next->nb_ants + next->path_size == paths_ptr->nb_ants + paths_ptr->path_size - 1)
-		{
-			move = 1;
-			(paths_ptr->nb_ants)--;
-			(next->nb_ants)++;
-		}
-		paths_ptr = next;
-		if (!paths_ptr->next && move)
-			paths_ptr = paths;
-	}
-}
-
-t_hist	*get_aug_path(t_room *graph, char **start_and_end, int x)
-{
-	int	i;
-	int	j;
-	t_hist	*to_be_visited;
-	t_room	**links;
-	int		nb_links;
-	t_room	*node;
-	(void)x;
-
-	i = 0;
-	to_be_visited = NULL;
-
-	init_history(&to_be_visited, 2000);
-
-	while (i < graph->nb_links)
-	{
-		if (graph->links[i]->reverse == NULL)
-		{
-			graph->links[i]->to_be_visited = 1;
-			push_history(to_be_visited, graph->links[i]);
-			init_history(&(graph->links[i]->history), 20);
-			push_history(graph->links[i]->history, graph);
-		}
-		i++;
-	}
-	i = 0;
-	graph->to_be_visited = 1;
-	while (i < to_be_visited->counter)
-	{
-		node = to_be_visited->arr[i];
-		nb_links = node->nb_links;
-		links = node->links;
-		j = 0;
-		while (j < nb_links)
-		{
-			if (links[j] == graph) // not sure if this is useful. it gains 0.02 seconds lmao
-			{
-				j++;
-				continue ;
-			}
-			if (strings_match(links[j]->name, start_and_end[1]) && node->reverse == NULL)
-			{
-				push_history(node->history, node);
-				push_history(node->history, links[j]);
-				j = 0;
-				while (j < to_be_visited->counter)
-				{
-					to_be_visited->arr[j]->to_be_visited = 0;
-					j++;
-				}
-				return (node->history);
-			}
-			if (node->reverse && node->history->arr[node->history->counter - 1]->reverse != node)
-			{
-				if (node->reverse == links[j])
-				{
-					links[j]->to_be_visited = 1;
-					push_history(to_be_visited, links[j]);
-					links[j]->history = NULL;
-					append_to_history(node->history, &(links[j]->history));
-					push_history(links[j]->history, node);
-				}
-			}
-			else
-			{
-				if (!links[j]->to_be_visited && links[j]->reverse != node && !strings_match(links[j]->name, start_and_end[1]) )
-				{
-					links[j]->to_be_visited = 1;
-					push_history(to_be_visited, links[j]);
-					links[j]->history = NULL;
-					append_to_history(node->history, &(links[j]->history));
-					push_history(links[j]->history, node);
-				}
-				else if (links[j]->to_be_visited && node->reverse == links[j])
-				{
-					links[j]->to_be_visited = 1;
-					push_history(to_be_visited, links[j]);
-					links[j]->history = NULL;
-					append_to_history(node->history, &(links[j]->history));
-					push_history(links[j]->history, node);
-				}
-			}
-			j++;
-		}
-		i++;
-	}
-	return (NULL);
-}
-
-void	push_front(t_path_node **path, t_path_node *path_node)
-{
-	if (path && path_node)
-	{
-		path_node->next = *path;
-		*path = path_node;
-	}
-}
-
-void	lst_add_in_order(t_paths **paths, t_paths *path_el)
-{
-	t_paths	*ptr;
-	t_paths	*prev;
-
-	if (path_el)
-	{
-		if (!(*paths))
-			*paths = path_el;
-		else
-		{
-			ptr = *paths;
-			prev = NULL;
-			while (ptr && path_el->path_size > ptr->path_size)
-			{
-				prev = ptr;
-				ptr = ptr->next;
-			}
-			if (!prev)
-			{
-				path_el->next = ptr;
-				*paths = path_el;
-			}
-			else
-			{
-				path_el->next = ptr;
-				prev->next = path_el;
-			}
-		}
-	}
-}
 
 static	void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_data *data)
 {
@@ -259,23 +93,26 @@ void	calc_solution(t_paths **solution, t_all_paths_combos *all_paths_combos, siz
 	}
 }
 
+void	init_combos(t_all_paths_combos **all_paths_combos)
+{
+	// make it dynamic...?
+	(*all_paths_combos) = (t_all_paths_combos *)malloc(sizeof(t_all_paths_combos)); // if null
+	(*all_paths_combos)->size = 300;
+	(*all_paths_combos)->counter = 0;
+	(*all_paths_combos)->arr = (t_paths **)malloc(sizeof(t_paths *) * 300); // same
+}
+
 void	solve222(t_room *graph, t_data *data, char **start_and_end, size_t nb_ants)
 {
 	t_hist	*path;
 	t_all_paths_combos	*all_paths_combos;
-	int	x;
 	int	i;
 	t_paths *solution;
 
-	x = 0;
-	// handle this better
-	all_paths_combos = (t_all_paths_combos *)malloc(sizeof(t_all_paths_combos)); // if null
-	all_paths_combos->size = 200;
-	all_paths_combos->counter = 0;
-	all_paths_combos->arr = (t_paths **)malloc(sizeof(t_paths *) * 200); // same
+	init_combos(&all_paths_combos);
 	while (1)
 	{
-		path = get_aug_path(graph, start_and_end, x);
+		path = get_aug_path(graph, start_and_end);
 		if (!path)
 			break ;
 		i = path->counter - 1;
@@ -290,7 +127,6 @@ void	solve222(t_room *graph, t_data *data, char **start_and_end, size_t nb_ants)
 			i--;
 		}
 		get_paths(all_paths_combos, graph, data);
-		x++;
 	}
 	calc_solution(&solution, all_paths_combos, nb_ants);
 	ft_putstr("\n");
