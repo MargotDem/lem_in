@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   panic.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/01 12:56:55 by briffard          #+#    #+#             */
+/*   Updated: 2022/08/01 12:57:25 by briffard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
-void    panic(char *message)
+void	panic(char *message)
 {
-    perror(message);
-    exit(EXIT_FAILURE);
+	perror(message);
+	exit(EXIT_FAILURE);
 }
