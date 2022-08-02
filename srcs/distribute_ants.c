@@ -12,11 +12,18 @@
 
 #include "lem_in.h"
 
+void	switch_ant(t_paths *path, t_paths *next, int *move)
+{
+	*move = 1;
+	(path->nb_ants)--;
+	(next->nb_ants)++;
+}
+
 void	distribute_ants(t_paths *paths, size_t nb_ants)
 {
 	t_paths	*next;
 	t_paths	*paths_ptr;
-	int	move;
+	int		move;
 
 	if (!paths)
 		return ;
@@ -28,18 +35,11 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 		if (paths_ptr == paths)
 			move = 0;
 		next = paths_ptr->next;
-		while (paths_ptr->nb_ants + paths_ptr->path_size - 1 >= next->nb_ants + next->path_size + 1)
-		{
-			move = 1;
-			(paths_ptr->nb_ants)--;
-			(next->nb_ants)++;
-		}
-		if (paths_ptr != paths && next->nb_ants && next->nb_ants + next->path_size == paths_ptr->nb_ants + paths_ptr->path_size - 1)
-		{
-			move = 1;
-			(paths_ptr->nb_ants)--;
-			(next->nb_ants)++;
-		}
+		while (get_nb_turns(paths_ptr) - 1 >= get_nb_turns(next) + 1)
+			switch_ant(paths_ptr, next, &move);
+		if (paths_ptr != paths && next->nb_ants && \
+				get_nb_turns(next) == get_nb_turns(paths_ptr) - 1)
+			switch_ant(paths_ptr, next, &move);
 		paths_ptr = next;
 		if (!paths_ptr->next && move)
 			paths_ptr = paths;

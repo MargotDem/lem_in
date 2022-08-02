@@ -38,12 +38,12 @@ void	calc_solution(t_paths **solution, \
 	}
 }
 
+// TODO make it dynamic...?
 void	init_combos(t_all_paths_combos **all_paths_combos)
 {
 	size_t	size;
 
 	size = 300;
-	// TODO make it dynamic...?
 	(*all_paths_combos) = (t_all_paths_combos *)handle_null((void \
 		*)malloc(sizeof(t_all_paths_combos)));
 	(*all_paths_combos)->size = size;
