@@ -74,6 +74,7 @@ void	find_node(t_room *node, t_hist *history, char *name, t_room **node_to_find)
 
 // Utils
 size_t	strings_match(char *str1, char *str2);
+size_t	get_nb_turns(t_paths *paths);
 
 // List utils
 size_t	get_list_size(t_void_list *list);
@@ -97,6 +98,7 @@ t_paths	*create_path_el();
 
 // Solving functions
 t_hist	*get_aug_path(t_room *graph, char **start_and_end);
+void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_data *data);
 
 // Display result
 void	display_result(t_paths *paths, size_t nb_ants);

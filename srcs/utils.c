@@ -18,3 +18,8 @@ size_t	strings_match(char *str1, char *str2)
 		return (1);
 	return (0);
 }
+
+size_t	get_nb_turns(t_paths *paths)
+{
+	return (paths->path_size + paths->nb_ants - 2);
+}

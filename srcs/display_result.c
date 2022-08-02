@@ -80,6 +80,7 @@ void	display_result(t_paths *paths, size_t nb_ants)
 
 	initialize_ants_positions(paths);
 	initialize_ants_numbers(paths, nb_ants);
+	ft_putstr("\n");
 	while (1)
 	{
 		movement = 0;

@@ -39,7 +39,7 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			hashtable_main.c \
 			handle_error.c graph_utils.c \
 			history_utils.c display_result.c \
-			paths_utils.c distribute_ants.c list_utils.c \
+			paths_utils.c distribute_ants.c list_utils.c get_paths.c \
 			utils.c solve.c visualizer.c get_aug_paths.c \
 			#parsing_tree \
 
