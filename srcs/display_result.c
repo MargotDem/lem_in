@@ -12,10 +12,10 @@
 
 #include "lem_in.h"
 
-// can probably be made better
+// TODO can probably be made better
 char	*get_room_name(t_paths *path_ptr, int room_nb)
 {
-	int	i;
+	int			i;
 	t_path_node	*path;
 
 	i = 0;
@@ -72,10 +72,32 @@ void	initialize_ants_numbers(t_paths *paths, size_t nb_ants)
 	}
 }
 
+void	handle_ants(t_paths *path_el, size_t *movement)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < path_el->nb_ants)
+	{
+		(path_el->ants)[i].room_nb++;
+		if ((path_el->ants)[i].room_nb > 0 && \
+			(path_el->ants)[i].room_nb < (int)path_el->path_size)
+		{
+			*movement = 1;
+			ft_putstr("L");
+			ft_putnbr((int)((path_el->ants)[i].ant_nb));
+			ft_putstr("-");
+			ft_putstr(get_room_name(path_el, \
+				(path_el->ants)[i].room_nb));
+			ft_putstr(" ");
+		}
+		i++;
+	}
+}
+
 void	display_result(t_paths *paths, size_t nb_ants)
 {
 	t_paths	*paths_ptr;
-	size_t	i;
 	size_t	movement;
 
 	initialize_ants_positions(paths);
@@ -87,21 +109,7 @@ void	display_result(t_paths *paths, size_t nb_ants)
 		paths_ptr = paths;
 		while (paths_ptr)
 		{
-			i = 0;
-			while (i < paths_ptr->nb_ants)
-			{
-				(paths_ptr->ants)[i].room_nb++;
-				if ((paths_ptr->ants)[i].room_nb > 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size)
-				{
-					movement = 1;
-					ft_putstr("L");
-					ft_putnbr((int)((paths_ptr->ants)[i].ant_nb));
-					ft_putstr("-");
-					ft_putstr(get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb));
-					ft_putstr(" ");
-				}
-				i++;
-			}
+			handle_ants(paths_ptr, &movement);
 			paths_ptr = paths_ptr->next;
 		}
 		if (!movement)
