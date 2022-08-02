@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:19 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 12:29:38 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:06:16 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ int	main(int argc, char **argv)
 		exit(EXIT_SUCCESS);
 	}
 	mapreader(&rooms, &data);
+	printf("START -> %s || end-> %s || ants-> %lu\n", data->start_room_name, data->end_room_name, data->ants);
 	if (data_is_ok(data))
 	{
 		if (data->no_map == FALSE)
 			write(1, data->map, data->index_line);
-		printf("GO TO SOLVER\n");
+		printf("GO TO SOLVER MAIN\n");
 	}
 	else
 		printf("error\n");

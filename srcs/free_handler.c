@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:39:54 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 11:45:42 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:21:42 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,23 @@ t_data	*data_cleaner(t_data *data)
 	return (free(data), NULL);
 }
 
-void	clean2str(char *s1, char *s2)
+void	clean2str(char *s1, char *s2, char letter)
 {
-	if (s1)
-		ft_strdel(&s1);
-	if (s2)
-		ft_strdel(&s2);
+	if (letter == 'n')
+	{
+		if (s1)
+			ft_strdel(&s1);
+		if (s2)
+			ft_strdel(&s2);
+	}
+	else if (letter == 's')
+	{
+		if (s1)
+			ft_strdel(&s1);
+	}
+	else if (letter == 'e')
+	{
+		if (s2)
+			ft_strdel(&s2);
+	}
 }
