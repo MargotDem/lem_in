@@ -93,6 +93,48 @@ void	display_options(t_data *data, t_room *graph, t_paths *solution, char **star
 		visualizer(graph, data->ants, solution, start_and_end);
 }
 
+void	free_path(t_path_node *path)
+{
+	t_path_node	*next;
+
+	while (path)
+	{
+		next = path->next;
+		free(path);
+		path = next;
+	}
+}
+
+void	free_path_el(t_paths *paths)
+{
+	t_paths	*next;
+
+	while (paths)
+	{
+		next = paths->next;
+		free_path(paths->path);
+		if (paths->ants)
+			free(paths->ants);
+		paths = next;
+	}
+}
+
+void	free_combos(t_all_paths_combos *all_paths_combos)
+{
+	int	counter;
+	int	j;
+
+	counter = all_paths_combos->counter;
+	j = 0;
+	while (j < counter)
+	{
+		free_path_el(all_paths_combos->arr[j]);
+		j++;
+	}
+	free(all_paths_combos->arr);
+	free(all_paths_combos);
+}
+
 void	solve(t_room *graph, t_data *data)
 {
 	size_t				nb_ants;
@@ -108,6 +150,5 @@ void	solve(t_room *graph, t_data *data)
 	calc_solution(&solution, all_paths_combos, nb_ants);
 	display_result(solution, nb_ants);
 	display_options(data, graph, solution, start_and_end);
-	free(all_paths_combos->arr);
-	free(all_paths_combos);
+	free_combos(all_paths_combos);
 }
