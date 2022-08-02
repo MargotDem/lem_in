@@ -41,6 +41,7 @@ FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			history_utils.c display_result.c \
 			paths_utils.c distribute_ants.c list_utils.c get_paths.c \
 			utils.c solve.c visualizer.c get_aug_paths.c \
+			add_node_to_be_visited.c \
 			#parsing_tree \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit

@@ -99,6 +99,8 @@ t_paths	*create_path_el();
 // Solving functions
 t_hist	*get_aug_path(t_room *graph, char **start_and_end);
 void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_data *data);
+void	add_node_to_be_visited(t_room *node, t_room *prev_node, \
+	t_hist *to_be_visited);
 
 // Display result
 void	display_result(t_paths *paths, size_t nb_ants);
