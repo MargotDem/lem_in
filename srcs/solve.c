@@ -73,8 +73,24 @@ void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 				path->arr[i]->reverse = path->arr[i - 1];
 			i--;
 		}
+		//free_history(&path); can't free without segfault???
 		get_paths(all_paths_combos, graph, data);
 	}
+}
+
+void	display_options(t_data *data, t_room *graph, t_paths *solution, char **start_and_end)
+{
+	if (data->show_paths)
+	{
+		ft_putstr("\n********************\n\n");
+		ft_putstr("These are the paths that make up the solution:\n\n");
+		print_paths(solution);
+		ft_putstr("********************\n\nThe number of turns is ");
+		ft_putnbr((int)(get_nb_turns(solution)));
+		ft_putstr("\n\n");
+	}
+	if (data->visualizer)
+		visualizer(graph, data->ants, solution, start_and_end);
 }
 
 void	solve(t_room *graph, t_data *data)
@@ -91,15 +107,7 @@ void	solve(t_room *graph, t_data *data)
 	edmond_karp_with_a_twist(graph, data, start_and_end, all_paths_combos);
 	calc_solution(&solution, all_paths_combos, nb_ants);
 	display_result(solution, nb_ants);
-	if (data->show_paths)
-	{
-		ft_putstr("\n********************\n\n");
-		ft_putstr("These are the paths that make up the solution:\n\n");
-		print_paths(solution);
-		ft_putstr("********************\n\nThe number of turns is ");
-		ft_putnbr((int)(get_nb_turns(solution)));
-		ft_putstr("\n\n");
-	}
-	if (data->visualizer)
-		visualizer(graph, nb_ants, solution, start_and_end);
+	display_options(data, graph, solution, start_and_end);
+	free(all_paths_combos->arr);
+	free(all_paths_combos);
 }

@@ -91,6 +91,22 @@ t_hist	*handle_links(t_room *node, t_room *graph, char **start_and_end, \
 	return (NULL);
 }
 
+void	free_to_be_visited(t_hist **to_be_visited, t_room *node)
+{
+	int	j;
+	int	counter;
+
+	j = 0;
+	counter = (*to_be_visited)->counter;
+	while (j < counter)
+	{
+		if ((*to_be_visited)->arr[j] != node && (*to_be_visited)->arr[j]->history)
+			free_history(&(*to_be_visited)->arr[j]->history);
+		j++;
+	}
+	free_history(to_be_visited);
+}
+
 t_hist	*get_aug_path(t_room *graph, char **start_and_end)
 {
 	int		i;
@@ -105,8 +121,12 @@ t_hist	*get_aug_path(t_room *graph, char **start_and_end)
 		node = to_be_visited->arr[i];
 		path = handle_links(node, graph, start_and_end, to_be_visited);
 		if (path)
+		{
+			free_to_be_visited(&to_be_visited, node);
 			return (path);
+		}
 		i++;
 	}
+	free_to_be_visited(&to_be_visited, node);
 	return (NULL);
 }

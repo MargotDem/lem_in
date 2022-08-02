@@ -75,6 +75,8 @@ void	find_node(t_room *node, t_hist *history, char *name, t_room **node_to_find)
 // Utils
 size_t	strings_match(char *str1, char *str2);
 size_t	get_nb_turns(t_paths *paths);
+void	print_history(t_hist *history);
+void	free_history(t_hist **hist);
 
 // List utils
 size_t	get_list_size(t_void_list *list);
@@ -86,7 +88,6 @@ void	init_history(t_hist **history, int size);
 int		not_in_history(t_room *node, t_hist *history);
 void	push_history(t_hist *history, t_room *node);
 void	pop_history(t_hist *history);
-void	print_history(t_hist *history);
 void	copy_history(t_hist *src, t_hist **dst);
 void	append_to_history(t_hist *src, t_hist **dst);
 

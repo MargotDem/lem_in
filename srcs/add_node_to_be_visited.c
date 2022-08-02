@@ -17,7 +17,8 @@ void	add_node_to_be_visited(t_room *node, t_room *prev_node, \
 {
 	node->to_be_visited = 1;
 	push_history(to_be_visited, node);
-	node->history = NULL;
+	if (node->history)
+		free_history(&(node->history));
 	append_to_history(prev_node->history, &(node->history));
 	push_history(node->history, prev_node);
 }
