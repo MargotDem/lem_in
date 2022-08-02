@@ -30,7 +30,7 @@ void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_data *data
 	{
 		if (end->links[i]->reverse)
 		{
-			path_el = create_path_el(); //
+			path_el = create_path_el();
 			path_size = 2;
 			path_node = (t_path_node *)malloc(sizeof(t_path_node));
 			if (!path_node)

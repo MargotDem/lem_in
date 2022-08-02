@@ -39,29 +39,26 @@ void	lst_add_in_order(t_paths **paths, t_paths *path_el)
 	t_paths	*ptr;
 	t_paths	*prev;
 
-	if (path_el)
+	if (!(*paths))
+		*paths = path_el;
+	else
 	{
-		if (!(*paths))
+		ptr = *paths;
+		prev = NULL;
+		while (ptr && path_el->path_size > ptr->path_size)
+		{
+			prev = ptr;
+			ptr = ptr->next;
+		}
+		if (!prev)
+		{
+			path_el->next = ptr;
 			*paths = path_el;
+		}
 		else
 		{
-			ptr = *paths;
-			prev = NULL;
-			while (ptr && path_el->path_size > ptr->path_size)
-			{
-				prev = ptr;
-				ptr = ptr->next;
-			}
-			if (!prev)
-			{
-				path_el->next = ptr;
-				*paths = path_el;
-			}
-			else
-			{
-				path_el->next = ptr;
-				prev->next = path_el;
-			}
+			path_el->next = ptr;
+			prev->next = path_el;
 		}
 	}
 }

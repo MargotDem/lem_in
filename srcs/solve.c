@@ -44,12 +44,12 @@ void	init_combos(t_all_paths_combos **all_paths_combos)
 	size_t	size;
 
 	size = 300;
-	(*all_paths_combos) = (t_all_paths_combos *)handle_null((void \
-		*)malloc(sizeof(t_all_paths_combos)));
+	(*all_paths_combos) = (t_all_paths_combos *)handle_null(\
+		malloc(sizeof(t_all_paths_combos)));
 	(*all_paths_combos)->size = size;
 	(*all_paths_combos)->counter = 0;
-	(*all_paths_combos)->arr = (t_paths **)handle_null((void \
-		*)malloc(sizeof(t_paths *) * size));
+	(*all_paths_combos)->arr = (t_paths **)handle_null(\
+		malloc(sizeof(t_paths *) * size));
 	ft_memset((void *)((*all_paths_combos)->arr), 0, size);
 }
 

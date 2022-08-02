@@ -1,4 +1,4 @@
-3
+9
 #hey
 A 16 4
 ##start
@@ -39,4 +39,4 @@ lL-M
 M-N
 N-O
 O-end
-#so it changes between 11 and 12
+#so it changes between 9 and 10
