@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:21:57 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 13:53:49 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/02 09:23:13 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_room				**brealloc(t_room **links, \
 
 /*free_handler*/
 t_room				*my_clean(t_room *list);
-void				clean2str(char *s1, char *s2);
+void				clean2str(char *s1, char *s2, char letter);
 t_data				*data_cleaner(t_data *data);
 t_room				*my_clean_data(t_room *list);
 
