@@ -6,7 +6,7 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/07/05 09:33:05 by briffard         ###   ########.fr        #
+#    Updated: 2022/08/02 09:02:22 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,13 @@ FILES = 	main.c \
 			free_handler.c \
 			init_value.c \
 			panic.c \
-			mapreader.c \
+			mapreader.c mapreader_tools.c\
 			get_ants.c \
 			tools.c \
 			exit_parsing.c \
 			save_data.c save_data_tools.c \
-			hashtable_main.c \
+			hashtable_main.c hashtable_malloc.c\
+			print_man.c \
 #FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
 			parsing_utils2.c parsing_error.c parsing_utils_list.c \
 			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
