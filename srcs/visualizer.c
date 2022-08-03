@@ -144,7 +144,6 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 	size_t	scale;
 	size_t	margin;
 	int	color;
-	t_hist	*history;
 	t_room *node_to_find = NULL;
 
 	scale = mlx_win->scale;
@@ -164,9 +163,7 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 	else
 		color = 0x0244eb;
 	ant_size = 3;
-	history = NULL;
-	init_history(&history, 4);
-	find_node(mlx_win->graph, history, name, &node_to_find);
+	node_to_find = search_for(name, mlx_win->data);
 	if (node_to_find)
 	{
 		x = node_to_find->x * scale + margin;
@@ -304,17 +301,17 @@ static void	initialize_ants_positions(t_paths *paths)
 	}
 }
 
-void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **start_and_end)
+void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths, char **start_and_end)
 {
 	t_mlx_win	*mlx_win;
 	t_hist	*history;
-	(void)nb_ants;
+	size_t nb_ants;
 	(void)optimal_paths;
 
-	mlx_win = (t_mlx_win *)malloc(sizeof(t_mlx_win));
-	if (!mlx_win)
-		handle_error();
+	nb_ants = data->ants;
+	mlx_win = (t_mlx_win *)handle_null(malloc(sizeof(t_mlx_win)));
 	mlx_win->mlx_ptr = handle_null(mlx_init());
+	mlx_win->data = data;
 	mlx_win->window_width = 1500;
 	mlx_win->window_length = 1100;
 	mlx_win->window = handle_null(mlx_new_window(mlx_win->mlx_ptr, mlx_win->window_width, \
@@ -351,8 +348,6 @@ void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **st
 		}
 		paths_ptr = paths_ptr->next;
 	}
-
 	mlx_key_hook(mlx_win->window, handle_key, (void *)mlx_win);
 	mlx_loop(mlx_win->mlx_ptr);
-	(void)i;
 }

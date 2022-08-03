@@ -110,7 +110,7 @@ void	display_options(t_data *data, t_room *graph, t_paths *solution, char **star
 		ft_putstr("\n\n");
 	}
 	if (data->visualizer)
-		visualizer(graph, data->ants, solution, start_and_end);
+		visualizer(graph, data, solution, start_and_end);
 }
 
 void	free_path(t_path_node *path)

@@ -63,14 +63,12 @@ typedef struct s_mlx_win {
 	size_t	margin;
 	int	room_color;
 	char	**start_and_end;
+	t_data	*data;
 }	t_mlx_win;
 
 // Handle errors
 void	handle_error(void);
 void	*handle_null(void *param);
-
-// Graph functions
-void	find_node(t_room *node, t_hist *history, char *name, t_room **node_to_find);
 
 // Utils
 size_t	strings_match(char *str1, char *str2);
@@ -111,6 +109,6 @@ char	*get_room_name(t_paths *path_ptr, int room_nb);
 void	distribute_ants(t_paths *paths, size_t nb_ants);
 
 // Visualizer
-void	visualizer(t_room *graph, size_t nb_ants, t_paths *optimal_paths, char **start_and_end);
+void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths, char **start_and_end);
 
 #endif
