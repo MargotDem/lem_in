@@ -53,17 +53,37 @@ void	init_combos(t_all_paths_combos **all_paths_combos)
 	ft_memset((void *)((*all_paths_combos)->arr), 0, size);
 }
 
+void	free_to_be_visited(t_hist **to_be_visited)
+{
+	int	j;
+	int	counter;
+
+	j = 0;
+	counter = (*to_be_visited)->counter;
+	while (j < counter)
+	{
+		if ((*to_be_visited)->arr[j]->history)
+			free_history(&(*to_be_visited)->arr[j]->history);
+		j++;
+	}
+	free_history(to_be_visited);
+}
+
 void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 	char **start_and_end, t_all_paths_combos	*all_paths_combos)
 {
 	t_hist	*path;
+	t_hist	*to_be_visited;
 	int		i;
 
 	while (1)
 	{
-		path = get_aug_path(graph, start_and_end);
+		path = get_aug_path(graph, start_and_end, &to_be_visited);
 		if (!path)
+		{
+			free_to_be_visited(&to_be_visited);
 			break ;
+		}
 		i = path->counter - 1;
 		while (i > 0)
 		{
@@ -73,8 +93,8 @@ void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 				path->arr[i]->reverse = path->arr[i - 1];
 			i--;
 		}
-		//free_history(&path); can't free without segfault???
 		get_paths(all_paths_combos, graph, data);
+		free_to_be_visited(&to_be_visited);
 	}
 }
 
