@@ -14,7 +14,7 @@
 
 void	check_letter(char letter, t_data *data)
 {
-	if (letter != 'v' && letter != 'm' && letter != 'h')
+	if (letter != 'v' && letter != 'm' && letter != 'h' && letter != 'p')
 	{
 		print_usage();
 		free(data);
@@ -27,6 +27,8 @@ void	check_letter(char letter, t_data *data)
 		data->no_map = TRUE;
 	else if (letter == 'h')
 		data->help = TRUE;
+	else if (letter == 'p')
+		data->print_paths = TRUE;
 }
 
 t_data	*check_option(int argc, char *option, t_data *data)
@@ -70,16 +72,15 @@ int	main(int argc, char **argv)
 		exit(EXIT_SUCCESS);
 	}
 	mapreader(&rooms, &data);
-	printf("START -> %s || end-> %s || ants-> %lu\n", data->start_room_name, data->end_room_name, data->ants);
 	if (data_is_ok(data))
 	{
 		if (data->no_map == FALSE)
 			write(1, data->map, data->index_line);
-		printf("GO TO SOLVER MAIN\n");
+		solve(search_for(data->start_room_name, data), data);
 	}
 	else
 		write (1, "ERROR\n", 6);
 	data = data_cleaner(data);
-	system("leaks lem-in");
+	//system("leaks lem-in");
 	return (0);
 }

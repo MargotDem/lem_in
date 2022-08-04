@@ -26,7 +26,7 @@ char	*save_name(char *line)
 	return (name);
 }
 
-unsigned long	save_abscisse(char *line)
+unsigned int	save_abscissa(char *line)
 {
 	size_t	i;
 
@@ -38,7 +38,7 @@ unsigned long	save_abscisse(char *line)
 	return (ft_atoi(&line[i]));
 }
 
-unsigned long	save_ordonne(char *line)
+unsigned int	save_ordinate(char *line)
 {
 	int	i;
 

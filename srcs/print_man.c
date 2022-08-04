@@ -45,6 +45,8 @@ void	print_man(void)
 	ft_putstr("\tDoesn't print the map on the standart ouput.\n");
 	print_bold("\t-v");
 	ft_putstr("\tActivate the graphic mode.\n");
+	print_bold("\t-p");
+	ft_putstr("\tPrint the paths taken by the ants.\n");
 	print_bold("\t-h");
 	ft_putstr("\tDisplay man of the program.\n\n");
 }

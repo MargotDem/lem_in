@@ -17,8 +17,8 @@ static t_room	*set_copy(t_room *dst, t_room *source)
 	dst->name = ft_strdup(source->name);
 	if (!dst->name)
 		panic("In hashtable_malloc: set_copy: dst->name");
-	dst->abscisse = source->abscisse;
-	dst->ordonne = source->ordonne;
+	dst->abscissa = source->abscissa;
+	dst->ordinate = source->ordinate;
 	dst->end = source->end;
 	dst->start = source->start;
 	dst->total_links = 0;

@@ -36,18 +36,28 @@ typedef struct s_room
 	char			*name;
 	unsigned short	start;
 	unsigned short	end;
-	unsigned long	abscisse;
-	unsigned long	ordonne;
+	unsigned int	abscissa;
+	unsigned int	ordinate;
 	struct s_room	*next;
 	struct s_room	*hash_next;
 	struct s_room	**links;
-	unsigned long	total_links;
+	unsigned int	total_links;
+	int				to_be_visited;
+	struct s_hist	*history;
+	struct s_room	*reverse;
 }				t_room;
+
+typedef struct s_hist {
+	int	counter;
+	int	size;
+	t_room	**arr;
+}	t_hist;
 
 typedef struct s_data {
 	unsigned short	visual;
 	unsigned short	help;
 	unsigned short	no_map;
+	unsigned short	print_paths;
 	unsigned short	section_links;
 	unsigned short	section_rooms;
 	unsigned short	hashtable_created;
@@ -126,8 +136,8 @@ void				insert_links(t_room *room1, t_room *room2);
 char				*save_name(char *line);
 void				print_line(char *line, int size);
 t_room				*push_front(t_room *list, t_room *element);
-unsigned long		save_abscisse(char *line);
-unsigned long		save_ordonne(char *line);
+unsigned int		save_abscissa(char *line);
+unsigned int		save_ordinate(char *line);
 
 /*print_man*/
 void				print_usage(void);
@@ -137,5 +147,7 @@ void				print_man(void);
 void				print_lst(t_room *li);
 void				print_hashtab(t_data *data);
 int					get_line(char *map, char **line, t_data *data);
+
+void	solve(t_room *graph, t_data *data);
 
 #endif

@@ -18,6 +18,7 @@ t_data	*set_data(t_data *node)
 	node->help = 0;
 	node->visual = 0;
 	node->no_map = 0;
+	node->print_paths = 0;
 	node->end_room_name = NULL;
 	node->start_room_name = NULL;
 	node->hashtable_created = FALSE;
@@ -36,8 +37,8 @@ t_room	*set_room(char *line, char letter, t_room *room)
 		panic("In init_value: set_room");
 	room->start = FALSE;
 	room->end = FALSE;
-	room->abscisse = save_abscisse(line);
-	room->ordonne = save_ordonne(line);
+	room->abscissa = save_abscissa(line);
+	room->ordinate = save_ordinate(line);
 	room->next = NULL;
 	room->hash_next = NULL;
 	room->links = NULL;

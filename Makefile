@@ -19,11 +19,11 @@ CCFLAGS	=	-Werror -Wextra -Wall
 #INCLUDE
 INCL_LFT	= -I ./libft/
 INCL_PARS	= -I ./includes/
-INCL_MLX	= #-I/usr/local/include
+INCL_MLX	= -I/usr/local/include
 
 #LIBRAIRIE
 LIB		= -L ./libft/ -lft
-MLX		= #-L /usr/local/lib -lmlx
+MLX		= -L /usr/local/lib -lmlx
 
 #CLEAN & FCLEAN
 RM_DIR	=	rm -rf
@@ -43,20 +43,20 @@ FILES = 	main.c \
 			save_data.c save_data_tools.c \
 			hashtable_main.c hashtable_malloc.c\
 			print_man.c \
-#FILES	= 	parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
-			parsing_utils2.c parsing_error.c parsing_utils_list.c \
-			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
-			parsing_connexion_handling.c \
-			parsing_out_to_solver.c \
-			hashtable_main.c \
-			handle_error.c graph_functions.c \
-			history_functions.c display_result.c \
-			list_functions.c paths_functions1.c paths_functions2.c \
-			helpers.c solve.c visualizer.c \
-			#parsing_tree \
+			add_node_to_be_visited.c \
+			display_result.c \
+			distribute_ants.c \
+			get_aug_paths.c \
+			get_paths.c \
+			handle_error.c \
+			history_utils.c \
+			list_utils.c \
+			paths_utils.c \
+			solve.c \
+			utils.c \
+			visualizer.c
 
-
-FRAMEWORKS = #-framework OpenGL -framework Appkit
+FRAMEWORKS = -framework OpenGL -framework Appkit
 
 #OBJECT FILES
 OBJ_DIR			=	./objectFiles/
