@@ -6,7 +6,7 @@
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:33:04 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/08/01 18:33:07 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:56:40 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	create_path_node(t_path_node **path_node, t_room *node)
 {
 	(*path_node) = (t_path_node *)handle_null(malloc(sizeof(t_path_node)));
+	printf("(*path_node: %p\n)", (*path_node));
 	(*path_node)->next = NULL;
 	(*path_node)->node = node;
 }

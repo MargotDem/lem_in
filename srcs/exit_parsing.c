@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:37:11 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/02 09:37:49 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/05 09:37:07 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ unsigned short	data_is_ok(t_data *data)
 	t_room	*start;
 	t_room	*end;
 
+	if (!data->end_room_name || !data->start_room_name)
+		return (FALSE);
+	if (!data->hashtab)
+		return (FALSE);
 	start = search_for(data->start_room_name, data);
 	end = search_for(data->end_room_name, data);
 	if (data->ants == 0)
-		return (FALSE);
-	if (!data->end_room_name || !data->start_room_name)
 		return (FALSE);
 	if (start->total_links == 0 || end->total_links == 0)
 		return (FALSE);
@@ -44,7 +46,7 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 		system("leaks lem-in");
 		exit(EXIT_SUCCESS);
 	}
-	ft_putstr("error\n");
+	ft_putstr("ERROR\n");
 	data = data_cleaner(data);
 	system("leaks lem-in");
 	exit(EXIT_FAILURE);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history_functions.c                                :+:      :+:    :+:   */
+/*   history_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 17:27:02 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/05 17:27:04 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:58:34 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	push_history(t_hist *history, t_room *node)
 	{
 		tmp = (t_room **)handle_null(\
 			malloc(sizeof(t_room *) * (counter + size)));
+		printf("tmp: %p\n", tmp);
 		i = 0;
 		while (i < counter)
 		{
@@ -67,9 +68,11 @@ void	init_history(t_hist **history, int size)
 	int	i;
 
 	*history = (t_hist *)handle_null(malloc(sizeof(t_hist)));
+	printf("history: %p\n", *history);
 	(*history)->size = size;
 	(*history)->counter = 0;
 	(*history)->arr = (t_room **)handle_null(malloc(sizeof(t_room *) * size));
+	printf("history->arr: %p\n", (*history)->arr);
 	i = 0;
 }
 

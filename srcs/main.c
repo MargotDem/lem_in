@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:19 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/02 09:40:17 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/05 09:26:29 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ int	main(int argc, char **argv)
 	else
 		write (1, "ERROR\n", 6);
 	data = data_cleaner(data);
-	//system("leaks lem-in");
+	system("leaks lem-in");
 	return (0);
 }

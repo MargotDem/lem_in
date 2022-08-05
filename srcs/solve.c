@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve2.c                                           :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:14:34 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/07/25 21:14:36 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/08/05 09:01:01 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ void	init_combos(t_all_paths_combos **all_paths_combos)
 	size = 300;
 	(*all_paths_combos) = (t_all_paths_combos *)handle_null(\
 		malloc(sizeof(t_all_paths_combos)));
+	printf("(*all_paths_combos): %p\n", (*all_paths_combos));
 	(*all_paths_combos)->size = size;
 	(*all_paths_combos)->counter = 0;
 	(*all_paths_combos)->arr = (t_paths **)handle_null(\
 		malloc(sizeof(t_paths *) * size));
+	printf("(*all_paths_combos)->arr: %p\n", (*all_paths_combos)->arr);
 	ft_memset((void *)((*all_paths_combos)->arr), 0, size);
 }
 

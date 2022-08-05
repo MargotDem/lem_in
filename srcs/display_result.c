@@ -6,7 +6,7 @@
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:21:47 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/05 18:21:49 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:55:26 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	initialize_ants_positions(t_paths *paths)
 	while (paths_ptr)
 	{
 		paths_ptr->ants = (t_ant *)handle_null(malloc(sizeof(t_ant) * paths_ptr->nb_ants));
+		printf("PATHS_ptr->ants: %p\n", paths_ptr->ants);
 		i = 0;
 		while (i < paths_ptr->nb_ants)
 		{

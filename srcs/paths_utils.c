@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paths_functions1.c                                 :+:      :+:    :+:   */
+/*   paths_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:35:31 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/05 18:35:33 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:59:22 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_paths	*create_path_el(void)
 	t_paths	*path_el;
 
 	path_el = (t_paths *)handle_null(malloc(sizeof(t_paths)));
+	printf("path_el: %p\n", path_el);
 	path_el->next = NULL;
 	path_el->path = NULL;
 	path_el->path_size = 0;

@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:39:54 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/02 09:21:42 by briffard         ###   ########.fr       */
+/*   Updated: 2022/08/05 09:36:47 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,18 @@ t_data	*data_cleaner(t_data *data)
 		ft_strdel(&data->end_room_name);
 	if (data->map)
 		ft_strdel(&data->map);
-	while (i < data->size_list)
+	if(data->hashtab)
 	{
-		temp = data->hashtab[i];
-		if (temp)
+		while (i < data->size_list)
 		{
-			while (temp != NULL)
-				temp = my_clean_data(temp);
+			temp = data->hashtab[i];
+			if (temp)
+			{
+				while (temp != NULL)
+					temp = my_clean_data(temp);
+			}
+			i++;
 		}
-		i++;
 	}
 	if (data->hashtable_created == TRUE)
 		free(data->hashtab);
