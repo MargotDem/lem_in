@@ -137,6 +137,7 @@ void	free_path_el(t_paths *paths)
 		free_path(paths->path);
 		if (paths->ants)
 			free(paths->ants);
+		free(paths);
 		paths = next;
 	}
 }
