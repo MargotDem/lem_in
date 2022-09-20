@@ -17,7 +17,7 @@ t_paths	*create_path_el(void)
 	t_paths	*path_el;
 
 	path_el = (t_paths *)handle_null(malloc(sizeof(t_paths)));
-	printf("path_el: %p\n", path_el);
+	//printf("path_el: %p\n", path_el);
 	path_el->next = NULL;
 	path_el->path = NULL;
 	path_el->path_size = 0;

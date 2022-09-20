@@ -15,7 +15,7 @@
 void	create_path_node(t_path_node **path_node, t_room *node)
 {
 	(*path_node) = (t_path_node *)handle_null(malloc(sizeof(t_path_node)));
-	printf("(*path_node: %p\n)", (*path_node));
+	//printf("(*path_node: %p\n)", (*path_node));
 	(*path_node)->next = NULL;
 	(*path_node)->node = node;
 }

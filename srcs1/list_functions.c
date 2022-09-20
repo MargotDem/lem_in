@@ -1,52 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_functions.c                                   :+:      :+:    :+:   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 18:32:51 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/06/05 18:32:53 by mde-maul         ###   ########.fr       */
+/*   Created: 2022/08/01 18:27:11 by mde-maul          #+#    #+#             */
+/*   Updated: 2022/08/01 18:27:13 by mde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-// TODO change this so that if list is not initialized it becomes the new el
-void	lst_add_back(t_void_list *list, t_void_list *new)
-{
-
-	if (list && new)
-	{
-		//printf("---->%s\n",((t_room *)new)->name);
-		//printf("here5\n");
-		while (list->next)
-		{
-			//printf("--->%s\n", ((t_room *)list)->name);
-			list = list->next;
-		}
-		list->next = new;
-		//printf("here6\n");
-	}
-}
-
-void	lst_add_back2(t_void_list **list, t_void_list *new)
-{
-	t_void_list *ptr;
-
-	if (new)
-	{
-		if (!(*list))
-			*list = new;
-		else
-		{
-			ptr = *list;
-			while (ptr->next)
-				ptr = ptr->next;
-			ptr->next = new;
-		}
-	}
-}
 
 size_t	get_list_size(t_void_list *list)
 {
@@ -61,10 +25,40 @@ size_t	get_list_size(t_void_list *list)
 	return (i);
 }
 
-void	remove_from_list(t_void_list **list, t_void_list *node, t_void_list *prev)
+void	push_front(t_path_node **path, t_path_node *path_node)
 {
-	if (!prev)
-		*list = node->next;
+	if (path && path_node)
+	{
+		path_node->next = *path;
+		*path = path_node;
+	}
+}
+
+void	lst_add_in_order(t_paths **paths, t_paths *path_el)
+{
+	t_paths	*ptr;
+	t_paths	*prev;
+
+	if (!(*paths))
+		*paths = path_el;
 	else
-		prev->next = node->next;
+	{
+		ptr = *paths;
+		prev = NULL;
+		while (ptr && path_el->path_size > ptr->path_size)
+		{
+			prev = ptr;
+			ptr = ptr->next;
+		}
+		if (!prev)
+		{
+			path_el->next = ptr;
+			*paths = path_el;
+		}
+		else
+		{
+			path_el->next = ptr;
+			prev->next = path_el;
+		}
+	}
 }

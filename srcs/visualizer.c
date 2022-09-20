@@ -310,7 +310,7 @@ void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths, char **star
 
 	nb_ants = data->ants;
 	mlx_win = (t_mlx_win *)handle_null(malloc(sizeof(t_mlx_win)));
-	printf("mlx_win: %p\n", mlx_win);
+	//printf("mlx_win: %p\n", mlx_win);
 	mlx_win->mlx_ptr = handle_null(mlx_init());
 	mlx_win->data = data;
 	mlx_win->window_width = 1500;

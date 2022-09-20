@@ -13,16 +13,24 @@ void	print_connexion(t_data **data)
 		{
 			while (temp != NULL)
 			{
-				printf("\nROOM NAME: %s || index %d\n", temp->name, i);
-				printf("\tConnexion: total:%d\n",temp->nb_links);
+				ft_putstr("\nROOM NAME: ");
+				ft_putstr(temp->name);
+				ft_putstr(" || index ");
+				ft_putnbr(i);
+				ft_putstr("\tConnexion: total:");
+				ft_putnbr(temp->nb_links);
 				if (temp->nb_links == 0)
-					printf("\tnull");
+					ft_putstr("\tnull");
 				else
 				{
 					x = 0;
 					while (x < temp->nb_links)
 					{
-						printf("\ttemp->links[%d]->name: %s\n", x,temp->links[x]->name);
+						ft_putstr("\ttemp->links[");
+						ft_putnbr(x);
+						ft_putstr("]->name: ");
+						ft_putstr(temp->links[x]->name);
+						ft_putstr("\n");
 						x++;
 					}
 				}

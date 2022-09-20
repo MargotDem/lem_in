@@ -43,7 +43,7 @@ void	push_history(t_hist *history, t_room *node)
 	{
 		tmp = (t_room **)handle_null(\
 			malloc(sizeof(t_room *) * (counter + size)));
-		printf("tmp: %p\n", tmp);
+		//printf("tmp: %p\n", tmp);
 		i = 0;
 		while (i < counter)
 		{
@@ -68,11 +68,11 @@ void	init_history(t_hist **history, int size)
 	int	i;
 
 	*history = (t_hist *)handle_null(malloc(sizeof(t_hist)));
-	printf("history: %p\n", *history);
+	//printf("history: %p\n", *history);
 	(*history)->size = size;
 	(*history)->counter = 0;
 	(*history)->arr = (t_room **)handle_null(malloc(sizeof(t_room *) * size));
-	printf("history->arr: %p\n", (*history)->arr);
+	//printf("history->arr: %p\n", (*history)->arr);
 	i = 0;
 }
 

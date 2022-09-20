@@ -31,6 +31,7 @@ RM		=	rm	-f
 
 #SOURCE FILES
 SRC_DIR	=	./srcs/
+
 FILES = 	main.c \
 			malloc_handler.c \
 			free_handler.c \
@@ -55,6 +56,12 @@ FILES = 	main.c \
 			solve.c \
 			utils.c \
 			visualizer.c
+#parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
+			parsing_utils2.c parsing_error.c parsing_utils_list.c \
+			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
+			parsing_connexion_handling.c \
+			#parsing_out_to_solver.c \
+			#parsing_tree \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit
 

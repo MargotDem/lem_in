@@ -11,16 +11,21 @@ void    print_lst(t_room *li)
     temp = li;
     while (li != NULL)
     {
-        printf("room name: %s\n", li->name);
-        printf("Line: %d && Row: %d\n", li->x, li->y);
+		ft_putstr("room name: ");
+		ft_putstr(li->name);
+		ft_putstr("\nLine: ");
+		ft_putnbr(li->x);
+		ft_putstr(" && Row: ");
+		ft_putnbr(li->y);
+		ft_putstr("\n");
         if (li->room_end)
-            printf("This is the ending room\n");
+            ft_putstr("This is the ending room\n");
         else if (li->room_start)
-            printf("This is the starting room\n");
+            ft_putstr("This is the starting room\n");
         else
-            printf("This is the normal room\n");
+            ft_putstr("This is the normal room\n");
 
-        printf("--------------------------------\n");
+        ft_putstr("--------------------------------\n");
         li =li->next;
     }
 }
@@ -60,18 +65,12 @@ t_room  *new_node(char *line, char c)
     node->name = extract_name(line);
     node->x = extract_line(line);
     node->y = extract_row(line);
-	node->visited = 0;
 	node->to_be_visited = 0;
-	node->part_of_solution = 0;
-	node->stand_by = 0;
 	node->history = NULL;
     node->nb_links = 0;
-    node->parent = NULL;
     node->reverse = NULL;
-    node->to_be_visited_stand_by = 0;
     node = set_startorend(node, c);
     node = set_null_pointer(node);
-    //printf("Creation de %s avec les valeurs line = %d && row = %d\n", node->name, node->x, node->y);
     return (node);
 }
 
