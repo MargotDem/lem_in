@@ -43,11 +43,9 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 			write(1, data->map, data->index_line);
 		printf("go_to_solver\n");
 		data = data_cleaner(data);
-		system("leaks lem-in");
 		exit(EXIT_SUCCESS);
 	}
 	ft_putstr("ERROR\n");
 	data = data_cleaner(data);
-	system("leaks lem-in");
 	exit(EXIT_FAILURE);
 }
