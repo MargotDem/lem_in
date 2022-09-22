@@ -20,28 +20,28 @@
 typedef struct s_path_node
 {
 	struct s_path_node	*next;
-	t_room			*node;
+	t_room				*node;
 }				t_path_node;
 
 typedef struct s_ant
 {
 	size_t	ant_nb;
-	int	room_nb;
+	int		room_nb;
 }				t_ant;
 
 typedef struct s_paths
 {
-	struct s_paths *next;
-	t_path_node *path;
-	size_t	path_size;
-	size_t	nb_ants;
-	size_t	nb_ants2;
-	t_ant	*ants;
+	struct s_paths	*next;
+	t_path_node		*path;
+	size_t			path_size;
+	size_t			nb_ants;
+	size_t			nb_ants2;
+	t_ant			*ants;
 }				t_paths;
 
 typedef struct s_all_paths_combos {
-	int	counter;
-	int	size;
+	int		counter;
+	int		size;
 	t_paths	**arr;
 }	t_all_paths_combos;
 
@@ -50,10 +50,10 @@ typedef struct s_void_list {
 }	t_void_list;
 
 typedef struct s_mlx_win {
-	void		*mlx_ptr;
-	void		*window;
-	size_t		window_width;
-	size_t		window_length;
+	void	*mlx_ptr;
+	void	*window;
+	size_t	window_width;
+	size_t	window_length;
 	t_room	*graph;
 	size_t	nb_ants;
 	t_paths	*optimal_paths;
@@ -61,7 +61,7 @@ typedef struct s_mlx_win {
 	size_t	max_turns;
 	size_t	scale;
 	size_t	margin;
-	int	room_color;
+	int		room_color;
 	char	**start_and_end;
 	t_data	*data;
 }	t_mlx_win;
@@ -93,11 +93,13 @@ void	append_to_history(t_hist *src, t_hist **dst);
 void	print_path_node(t_path_node *path);
 void	print_paths(t_paths *paths);
 void	set_paths_size(t_paths *paths);
-t_paths	*create_path_el();
+t_paths	*create_path_el(void);
 
 // Solving functions
-t_hist	*get_aug_path(t_room *graph, char **start_and_end, t_hist **to_be_visited);
-void	get_paths(t_all_paths_combos *all_paths_combos, t_room *graph, t_data *data);
+t_hist	*get_aug_path(t_room *graph, char **start_and_end, \
+	t_hist **to_be_visited);
+void	get_paths(t_all_paths_combos *all_paths_combos, \
+	t_room *graph, t_data *data);
 void	add_node_to_be_visited(t_room *node, t_room *prev_node, \
 	t_hist *to_be_visited);
 void	find_best_solution(t_paths **solution, \
@@ -108,7 +110,8 @@ void	display_result(t_paths *paths, size_t nb_ants);
 char	*get_room_name(t_paths *path_ptr, int room_nb);
 
 // Visualizer
-void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths, char **start_and_end);
+void	visualizer(t_room *graph, t_data *data, \
+	t_paths *optimal_paths, char **start_and_end);
 
 // Freeing memory
 void	free_combos(t_all_paths_combos *all_paths_combos);

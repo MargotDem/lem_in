@@ -48,8 +48,8 @@ typedef struct s_room
 }				t_room;
 
 typedef struct s_hist {
-	int	counter;
-	int	size;
+	int		counter;
+	int		size;
 	t_room	**arr;
 }	t_hist;
 
@@ -148,6 +148,6 @@ void				print_lst(t_room *li);
 void				print_hashtab(t_data *data);
 int					get_line(char *map, char **line, t_data *data);
 
-void	solve(t_room *graph, t_data *data);
+void				solve(t_room *graph, t_data *data);
 
 #endif
