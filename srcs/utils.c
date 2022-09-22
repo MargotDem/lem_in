@@ -40,13 +40,3 @@ void	print_history(t_hist *history)
 	}
 	ft_putstr("\n");
 }
-
-void	free_history(t_hist **hist)
-{
-	if (*hist)
-	{
-		free((*hist)->arr);
-		free(*hist);
-		*hist = NULL;
-	}
-}

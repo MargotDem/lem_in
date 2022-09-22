@@ -39,14 +39,13 @@ FILES = 	main.c \
 			panic.c \
 			mapreader.c mapreader_tools.c\
 			get_ants.c \
-			tools.c \
+			parsing_tools.c \
 			exit_parsing.c \
 			save_data.c save_data_tools.c \
 			hashtable_main.c hashtable_malloc.c\
 			print_man.c \
 			add_node_to_be_visited.c \
 			display_result.c \
-			distribute_ants.c \
 			get_aug_paths.c \
 			get_paths.c \
 			handle_error.c \
@@ -55,13 +54,9 @@ FILES = 	main.c \
 			paths_utils.c \
 			solve.c \
 			utils.c \
-			visualizer.c
-#parsing_main.c parsing_ants.c parsing_rooms.c parsing_utils.c \
-			parsing_utils2.c parsing_error.c parsing_utils_list.c \
-			parsing_command.c parsing_connexion.c parsing_mem_handling.c \
-			parsing_connexion_handling.c \
-			#parsing_out_to_solver.c \
-			#parsing_tree \
+			visualizer.c \
+			free_handler_solve.c \
+			find_best_solution.c \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit
 

@@ -80,16 +80,14 @@ t_data	*data_cleaner(t_data *data)
 		ft_strdel(&data->end_room_name);
 	if (data->map)
 		ft_strdel(&data->map);
-	if(data->hashtab)
+	if (data->hashtab)
 	{
 		while (i < data->size_list)
 		{
 			temp = data->hashtab[i];
 			if (temp)
-			{
 				while (temp != NULL)
 					temp = my_clean_data(temp);
-			}
 			i++;
 		}
 	}

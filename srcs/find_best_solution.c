@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   distribute_ants.c                                  :+:      :+:    :+:   */
+/*   find_best_solution.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/01 18:23:58 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/08/01 18:23:59 by mde-maul         ###   ########.fr       */
+/*   Created: 2022/09/22 15:46:40 by mde-maul          #+#    #+#             */
+/*   Updated: 2022/09/22 15:46:42 by mde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,33 @@ void	distribute_ants(t_paths *paths, size_t nb_ants)
 		paths_ptr = next;
 		if (!paths_ptr->next && move)
 			paths_ptr = paths;
+	}
+}
+
+void	find_best_solution(t_paths **solution, \
+	t_all_paths_combos *all_paths_combos_struct, size_t nb_ants)
+{
+	int		k;
+	size_t	shortest_nb_turns;
+	size_t	new_nb_turns;
+	t_paths	**all_paths_combos;
+
+	all_paths_combos = all_paths_combos_struct->arr;
+	if (!all_paths_combos[0])
+		handle_error();
+	distribute_ants(all_paths_combos[0], nb_ants);
+	shortest_nb_turns = get_nb_turns(all_paths_combos[0]);
+	*solution = all_paths_combos[0];
+	k = 1;
+	while (k < all_paths_combos_struct->counter)
+	{
+		distribute_ants(all_paths_combos[k], nb_ants);
+		new_nb_turns = get_nb_turns(all_paths_combos[k]);
+		if (new_nb_turns < shortest_nb_turns)
+		{
+			shortest_nb_turns = new_nb_turns;
+			*solution = all_paths_combos[k];
+		}
+		k++;
 	}
 }

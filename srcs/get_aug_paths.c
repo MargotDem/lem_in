@@ -29,19 +29,21 @@ void	reset_to_be_visited(t_hist *to_be_visited)
 void	init_to_be_visited(t_hist **to_be_visited, t_room *graph)
 {
 	unsigned int	i;
+	t_room			*node;
 
 	i = 0;
 	init_history(to_be_visited, 2000);
 	while (i < graph->total_links)
 	{
-		if (graph->links[i]->reverse == NULL)
+		node = graph->links[i];
+		if (node->reverse == NULL)
 		{
-			graph->links[i]->to_be_visited = 1;
-			push_history(*to_be_visited, graph->links[i]);
-			if (graph->links[i]->history)
-				free_history(&(graph->links[i]->history));
-			init_history(&(graph->links[i]->history), 20);
-			push_history(graph->links[i]->history, graph);
+			node->to_be_visited = 1;
+			push_history(*to_be_visited, node);
+			if (node->history)
+				free_history(&(node->history));
+			init_history(&(node->history), 20);
+			push_history(node->history, graph);
 		}
 		i++;
 	}
@@ -67,8 +69,8 @@ void	decide_if_visit(t_room *node, t_room *prev_node, \
 t_hist	*handle_links(t_room *node, t_room *graph, char **start_and_end, \
 	t_hist *to_be_visited)
 {
-	t_room	**links;
-	unsigned int		j;
+	t_room			**links;
+	unsigned int	j;
 
 	links = node->links;
 	j = 0;
@@ -93,10 +95,10 @@ t_hist	*handle_links(t_room *node, t_room *graph, char **start_and_end, \
 	return (NULL);
 }
 
-t_hist	*get_aug_path(t_room *graph, char **start_and_end, t_hist **to_be_visited)
+t_hist	*get_aug_path(t_room *graph, char **start_and_end, \
+	t_hist **to_be_visited)
 {
 	int		i;
-	
 	t_hist	*path;
 	t_room	*node;
 
