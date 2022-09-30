@@ -71,7 +71,7 @@ $(NAME): $(OBJS)
 	
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $< -g
+	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $< -g 
 
 $(LIBFT):
 	@make -sC ./libft/ all
