@@ -54,7 +54,7 @@ void	find_best_solution(t_paths **solution, \
 	size_t	new_nb_turns;
 	t_paths	**all_paths_combos;
 
-	all_paths_combos = (t_paths	**)(all_paths_combos_struct->arr);
+	all_paths_combos = (t_paths **)(all_paths_combos_struct->arr);
 	if (!all_paths_combos[0])
 		handle_error();
 	distribute_ants(all_paths_combos[0], nb_ants);

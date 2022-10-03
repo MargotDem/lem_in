@@ -69,8 +69,35 @@ void	initialize_ants_numbers(t_paths *paths, size_t nb_ants)
 	}
 }
 
-void	handle_ants(t_paths *path_el, size_t *movement)
+void	add_ant_nb(size_t ant_nb, t_vector_string *str)
 {
+	char	c;
+
+	if (ant_nb > 9)
+	{
+		add_ant_nb(ant_nb / 10, str);
+	}
+	c = ant_nb % 10 + '0';
+	push_to_vect_str(str, c);
+}
+
+void	add_room_name(char *name, t_vector_string *str)
+{
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(name);
+	i = 0;
+	while (i < len)
+	{
+		push_to_vect_str(str, name[i]);
+		i++;
+	}
+}
+
+void	handle_ants(t_paths *path_el, size_t *movement, t_vector_string *str)
+{
+	(void)str;
 	size_t	i;
 
 	i = 0;
@@ -84,9 +111,13 @@ void	handle_ants(t_paths *path_el, size_t *movement)
 			ft_putstr("L");
 			ft_putnbr((int)((path_el->ants)[i].ant_nb));
 			ft_putstr("-");
-			ft_putstr(get_room_name(path_el, \
-				(path_el->ants)[i].room_nb));
+			ft_putstr(get_room_name(path_el, (path_el->ants)[i].room_nb));
 			ft_putstr(" ");
+			//push_to_vect_str(str, 'L');
+			//add_ant_nb((path_el->ants)[i].ant_nb, str);
+			//push_to_vect_str(str, '-');
+			//add_room_name(get_room_name(path_el, (path_el->ants)[i].room_nb), str);
+			//push_to_vect_str(str, ' ');
 		}
 		i++;
 	}
@@ -94,29 +125,29 @@ void	handle_ants(t_paths *path_el, size_t *movement)
 
 void	display_result(t_paths *paths, size_t nb_ants)
 {
-	t_paths	*paths_ptr;
-	size_t	movement;
-	//char	*solution;
+	t_paths			*paths_ptr;
+	size_t			movement;
+	t_vector_string	*str;
 
 	initialize_ants_positions(paths);
 	initialize_ants_numbers(paths, nb_ants);
 	ft_putstr("\n");
-	//solution = handle_null((void *)malloc(sizeof(char) * 2));
-	//solution[0] = '\n';
-	//solution[1] = '\0';
+	//init_vect_str(&str, 1000);
+	str = NULL;
+	//push_to_vect_str(str, '\n');
 	while (1)
 	{
 		movement = 0;
 		paths_ptr = paths;
 		while (paths_ptr)
 		{
-			//handle_ants(paths_ptr, &movement, &solution);
-			handle_ants(paths_ptr, &movement);
+			handle_ants(paths_ptr, &movement, str);
 			paths_ptr = paths_ptr->next;
 		}
 		if (!movement)
 			break ;
 		ft_putstr("\n");
-		//solution = str_concat_free(&solution, "\n");
+		//push_to_vect_str(str, '\n');
 	}
+	//write(1, str->str, str->counter);
 }

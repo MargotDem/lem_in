@@ -72,56 +72,65 @@ typedef struct s_vector {
 	void	**arr;
 }	t_vector;
 
+typedef struct s_vector_string {
+	size_t	counter;
+	size_t	size;
+	char	*str;
+}	t_vector_string;
+
 // Handle errors
-void	handle_error(void);
-void	*handle_null(void *param);
+void		handle_error(void);
+void		*handle_null(void *param);
 
 // Utils
-size_t	strings_match(char *str1, char *str2);
-size_t	get_nb_turns(t_paths *paths);
+size_t		strings_match(char *str1, char *str2);
+size_t		get_nb_turns(t_paths *paths);
 
 // List utils
-size_t	get_list_size(t_void_list *list);
-void	push_front_node(t_path_node **path, t_path_node *path_node);
-void	lst_add_in_order(t_paths **paths, t_paths *path_el);
+size_t		get_list_size(t_void_list *list);
+void		push_front_node(t_path_node **path, t_path_node *path_node);
+void		lst_add_in_order(t_paths **paths, t_paths *path_el);
 
 // History functions
-int		not_in_history(t_room *node, t_vector *history);
+int			not_in_history(t_room *node, t_vector *history);
 
 // Path functions 1
-void	print_path_node(t_path_node *path);
-void	print_paths(t_paths *paths);
-void	set_paths_size(t_paths *paths);
-t_paths	*create_path_el(void);
+void		print_path_node(t_path_node *path);
+void		print_paths(t_paths *paths);
+void		set_paths_size(t_paths *paths);
+t_paths		*create_path_el(void);
 
 // Solving functions
 t_vector	*get_aug_path(t_room *graph, char **start_and_end, \
 	t_vector **to_be_visited);
-void	get_paths(t_vector *all_paths_combos, \
+void		get_paths(t_vector *all_paths_combos, \
 	t_room *graph, t_data *data);
-void	add_node_to_be_visited(t_room *node, t_room *prev_node, \
+void		add_node_to_be_visited(t_room *node, t_room *prev_node, \
 	t_vector *to_be_visited);
-void	find_best_solution(t_paths **solution, \
+void		find_best_solution(t_paths **solution, \
 	t_vector *all_paths_combos_struct, size_t nb_ants);
 
 // Display result
-void	display_result(t_paths *paths, size_t nb_ants);
-char	*get_room_name(t_paths *path_ptr, int room_nb);
+void		display_result(t_paths *paths, size_t nb_ants);
+char		*get_room_name(t_paths *path_ptr, int room_nb);
 
 // Visualizer
-void	visualizer(t_room *graph, t_data *data, \
+void		visualizer(t_room *graph, t_data *data, \
 	t_paths *optimal_paths, char **start_and_end);
 
 // Freeing memory
-void	free_combos(t_vector *all_paths_combos);
-void	free_path_el(t_paths *paths);
-void	free_path(t_path_node *path);
-void	free_to_be_visited(t_vector **to_be_visited);
+void		free_combos(t_vector *all_paths_combos);
+void		free_path_el(t_paths *paths);
+void		free_path(t_path_node *path);
+void		free_to_be_visited(t_vector **to_be_visited);
 
 // vectors utils
-void	init_vect(t_vector **vector, size_t size);
-void	concat_vects(t_vector *src, t_vector **dst);
-void	free_vect(t_vector **vector);
-void	push_to_vect(t_vector *vector, void *el);
+void		init_vect(t_vector **vector, size_t size);
+void		concat_vects(t_vector *src, t_vector **dst);
+void		free_vect(t_vector **vector);
+void		push_to_vect(t_vector *vector, void *el);
+void		free_vect_str(t_vector_string **vector);
+void		push_to_vect_str(t_vector_string *vector, char el);
+void		init_vect_str(t_vector_string **vector, size_t size);
 
 #endif

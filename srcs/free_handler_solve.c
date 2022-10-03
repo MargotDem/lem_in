@@ -14,8 +14,8 @@
 
 void	free_to_be_visited(t_vector **to_be_visited)
 {
-	int	j;
-	int	counter;
+	int		j;
+	int		counter;
 	t_room	*room;
 
 	j = 0;
@@ -72,4 +72,3 @@ void	free_combos(t_vector *all_paths_combos)
 	free(all_paths_combos->arr);
 	free(all_paths_combos);
 }
-

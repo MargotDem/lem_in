@@ -53,8 +53,8 @@ void	decide_if_visit(t_room *node, t_room *prev_node, \
 	t_vector *to_be_visited, char **start_and_end)
 {
 	if (prev_node->reverse && \
-		((t_room *)(prev_node->history->arr[prev_node->history->counter - 1]))->reverse \
-		!= prev_node)
+		((t_room *)(prev_node->history->arr[prev_node->history->counter - \
+			1]))->reverse != prev_node)
 	{
 		if (prev_node->reverse == node)
 			add_node_to_be_visited(node, prev_node, to_be_visited);
