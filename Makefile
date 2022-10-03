@@ -57,6 +57,7 @@ FILES = 	main.c \
 			visualizer.c \
 			free_handler_solve.c \
 			find_best_solution.c \
+			vector_utils.c \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit
 
@@ -67,11 +68,11 @@ OBJS			=	$(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 all: $(NAME) $(LIBFT)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(MLX) $(FRAMEWORKS) -g
+	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(MLX) $(FRAMEWORKS)
 	
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $< -g 
+	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
 
 $(LIBFT):
 	@make -sC ./libft/ all

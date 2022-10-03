@@ -12,23 +12,8 @@
 
 #include "lem_in.h"
 
-// TODO make it dynamic...?
-void	init_combos(t_all_paths_combos **all_paths_combos)
-{
-	size_t	size;
-
-	size = 300;
-	*all_paths_combos = (t_all_paths_combos *)handle_null(\
-		malloc(sizeof(t_all_paths_combos)));
-	(*all_paths_combos)->size = size;
-	(*all_paths_combos)->counter = 0;
-	(*all_paths_combos)->arr = (t_paths **)handle_null(\
-		malloc(sizeof(t_paths *) * size));
-	ft_bzero((void *)((*all_paths_combos)->arr), size);
-}
-
 void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
-	char **start_and_end, t_all_paths_combos *all_paths_combos)
+	char **start_and_end, t_vector *all_paths_combos)
 {
 	t_hist	*path;
 	t_hist	*to_be_visited;
@@ -76,13 +61,13 @@ void	solve(t_room *graph, t_data *data)
 {
 	size_t				nb_ants;
 	char				*start_and_end[2];
-	t_all_paths_combos	*all_paths_combos;
+	t_vector			*all_paths_combos;
 	t_paths				*solution;
 
 	nb_ants = data->ants;
 	start_and_end[0] = data->start_room_name;
 	start_and_end[1] = data->end_room_name;
-	init_combos(&all_paths_combos);
+	init_vect(&all_paths_combos, 300); // test avec genre 4
 	edmond_karp_with_a_twist(graph, data, start_and_end, all_paths_combos);
 	find_best_solution(&solution, all_paths_combos, nb_ants);
 	display_result(solution, nb_ants);

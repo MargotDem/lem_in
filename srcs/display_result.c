@@ -32,21 +32,19 @@ char	*get_room_name(t_paths *path_ptr, int room_nb)
 
 void	initialize_ants_positions(t_paths *paths)
 {
-	t_paths	*paths_ptr;
 	size_t	i;
 
-	paths_ptr = paths;
-	while (paths_ptr)
+	while (paths)
 	{
-		paths_ptr->ants = (t_ant *)handle_null(malloc(sizeof(t_ant) * \
-			paths_ptr->nb_ants));
+		paths->ants = (t_ant *)handle_null(malloc(sizeof(t_ant) * \
+			paths->nb_ants));
 		i = 0;
-		while (i < paths_ptr->nb_ants)
+		while (i < paths->nb_ants)
 		{
-			(paths_ptr->ants)[i].room_nb = -i;
+			(paths->ants)[i].room_nb = -i;
 			i++;
 		}
-		paths_ptr = paths_ptr->next;
+		paths = paths->next;
 	}
 }
 
@@ -98,21 +96,27 @@ void	display_result(t_paths *paths, size_t nb_ants)
 {
 	t_paths	*paths_ptr;
 	size_t	movement;
+	//char	*solution;
 
 	initialize_ants_positions(paths);
 	initialize_ants_numbers(paths, nb_ants);
 	ft_putstr("\n");
+	//solution = handle_null((void *)malloc(sizeof(char) * 2));
+	//solution[0] = '\n';
+	//solution[1] = '\0';
 	while (1)
 	{
 		movement = 0;
 		paths_ptr = paths;
 		while (paths_ptr)
 		{
+			//handle_ants(paths_ptr, &movement, &solution);
 			handle_ants(paths_ptr, &movement);
 			paths_ptr = paths_ptr->next;
 		}
 		if (!movement)
 			break ;
 		ft_putstr("\n");
+		//solution = str_concat_free(&solution, "\n");
 	}
 }

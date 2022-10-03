@@ -64,13 +64,10 @@ void	pop_history(t_hist *history)
 
 void	init_history(t_hist **history, int size)
 {
-	int	i;
-
 	*history = (t_hist *)handle_null(malloc(sizeof(t_hist)));
 	(*history)->size = size;
 	(*history)->counter = 0;
 	(*history)->arr = (t_room **)handle_null(malloc(sizeof(t_room *) * size));
-	i = 0;
 }
 
 void	append_to_history(t_hist *src, t_hist **dst)

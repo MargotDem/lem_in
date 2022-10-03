@@ -55,7 +55,7 @@ void	free_path_el(t_paths *paths)
 	}
 }
 
-void	free_combos(t_all_paths_combos *all_paths_combos)
+void	free_combos(t_vector *all_paths_combos)
 {
 	int	counter;
 	int	j;

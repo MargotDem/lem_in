@@ -48,7 +48,7 @@ void	get_path(t_room *node, t_paths **paths, t_room *graph, t_room *end)
 		lst_add_in_order(paths, path_el);
 }
 
-void	get_paths(t_all_paths_combos *all_paths_combos, \
+void	get_paths(t_vector *all_paths_combos, \
 	t_room *graph, t_data *data)
 {
 	unsigned int	i;

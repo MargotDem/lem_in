@@ -66,6 +66,12 @@ typedef struct s_mlx_win {
 	t_data	*data;
 }	t_mlx_win;
 
+typedef struct s_vector {
+	size_t	counter;
+	size_t	size;
+	void	**arr;
+}	t_vector;
+
 // Handle errors
 void	handle_error(void);
 void	*handle_null(void *param);
@@ -98,12 +104,12 @@ t_paths	*create_path_el(void);
 // Solving functions
 t_hist	*get_aug_path(t_room *graph, char **start_and_end, \
 	t_hist **to_be_visited);
-void	get_paths(t_all_paths_combos *all_paths_combos, \
+void	get_paths(t_vector *all_paths_combos, \
 	t_room *graph, t_data *data);
 void	add_node_to_be_visited(t_room *node, t_room *prev_node, \
 	t_hist *to_be_visited);
 void	find_best_solution(t_paths **solution, \
-	t_all_paths_combos *all_paths_combos_struct, size_t nb_ants);
+	t_vector *all_paths_combos_struct, size_t nb_ants);
 
 // Display result
 void	display_result(t_paths *paths, size_t nb_ants);
@@ -114,9 +120,12 @@ void	visualizer(t_room *graph, t_data *data, \
 	t_paths *optimal_paths, char **start_and_end);
 
 // Freeing memory
-void	free_combos(t_all_paths_combos *all_paths_combos);
+void	free_combos(t_vector *all_paths_combos);
 void	free_path_el(t_paths *paths);
 void	free_path(t_path_node *path);
 void	free_to_be_visited(t_hist **to_be_visited);
+
+// vectors utils
+void	init_vect(t_vector **vector, size_t size);
 
 #endif
