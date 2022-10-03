@@ -47,12 +47,6 @@ typedef struct s_room
 	struct s_room	*reverse;
 }				t_room;
 
-typedef struct s_hist {
-	int		counter;
-	int		size;
-	t_room	**arr;
-}	t_hist;
-
 typedef struct s_data {
 	unsigned short	visual;
 	unsigned short	help;

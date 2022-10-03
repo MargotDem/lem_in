@@ -79,8 +79,6 @@ void	*handle_null(void *param);
 // Utils
 size_t	strings_match(char *str1, char *str2);
 size_t	get_nb_turns(t_paths *paths);
-void	print_history(t_hist *history);
-void	free_history(t_hist **hist);
 
 // List utils
 size_t	get_list_size(t_void_list *list);

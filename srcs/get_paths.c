@@ -36,9 +36,6 @@ void	get_path(t_room *node, t_paths **paths, t_room *graph, t_room *end)
 		push_front_node(&(path_el->path), path_node);
 		node = node->reverse;
 	}
-	if (node != graph)
-		ft_putstr("ALERT so here we have a path that ends \
-			with a node other than start, this should NEVER happen\n");
 	create_path_node(&path_node, graph);
 	push_front_node(&(path_el->path), path_node);
 	path_el->path_size = path_size;
@@ -64,6 +61,5 @@ void	get_paths(t_vector *all_paths_combos, \
 			get_path(end->links[i], &paths, graph, end);
 		i++;
 	}
-	all_paths_combos->arr[all_paths_combos->counter] = paths;
-	all_paths_combos->counter++;
+	push_to_vect(all_paths_combos, paths);
 }
