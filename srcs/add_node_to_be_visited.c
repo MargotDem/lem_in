@@ -13,12 +13,12 @@
 #include "lem_in.h"
 
 void	add_node_to_be_visited(t_room *node, t_room *prev_node, \
-	t_hist *to_be_visited)
+	t_vector *to_be_visited)
 {
 	node->to_be_visited = 1;
-	push_history(to_be_visited, node);
+	push_to_vect(to_be_visited, node);
 	if (node->history)
-		free_history(&(node->history));
-	append_to_history(prev_node->history, &(node->history));
-	push_history(node->history, prev_node);
+		free_vect(&(node->history));
+	concat_vects(prev_node->history, &(node->history));
+	push_to_vect(node->history, prev_node);
 }

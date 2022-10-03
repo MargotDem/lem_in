@@ -88,12 +88,7 @@ void	push_front_node(t_path_node **path, t_path_node *path_node);
 void	lst_add_in_order(t_paths **paths, t_paths *path_el);
 
 // History functions
-void	init_history(t_hist **history, int size);
-int		not_in_history(t_room *node, t_hist *history);
-void	push_history(t_hist *history, t_room *node);
-void	pop_history(t_hist *history);
-void	copy_history(t_hist *src, t_hist **dst);
-void	append_to_history(t_hist *src, t_hist **dst);
+int		not_in_history(t_room *node, t_vector *history);
 
 // Path functions 1
 void	print_path_node(t_path_node *path);
@@ -102,12 +97,12 @@ void	set_paths_size(t_paths *paths);
 t_paths	*create_path_el(void);
 
 // Solving functions
-t_hist	*get_aug_path(t_room *graph, char **start_and_end, \
-	t_hist **to_be_visited);
+t_vector	*get_aug_path(t_room *graph, char **start_and_end, \
+	t_vector **to_be_visited);
 void	get_paths(t_vector *all_paths_combos, \
 	t_room *graph, t_data *data);
 void	add_node_to_be_visited(t_room *node, t_room *prev_node, \
-	t_hist *to_be_visited);
+	t_vector *to_be_visited);
 void	find_best_solution(t_paths **solution, \
 	t_vector *all_paths_combos_struct, size_t nb_ants);
 
@@ -123,9 +118,12 @@ void	visualizer(t_room *graph, t_data *data, \
 void	free_combos(t_vector *all_paths_combos);
 void	free_path_el(t_paths *paths);
 void	free_path(t_path_node *path);
-void	free_to_be_visited(t_hist **to_be_visited);
+void	free_to_be_visited(t_vector **to_be_visited);
 
 // vectors utils
 void	init_vect(t_vector **vector, size_t size);
+void	concat_vects(t_vector *src, t_vector **dst);
+void	free_vect(t_vector **vector);
+void	push_to_vect(t_vector *vector, void *el);
 
 #endif

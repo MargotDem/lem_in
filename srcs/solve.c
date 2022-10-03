@@ -15,9 +15,9 @@
 void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 	char **start_and_end, t_vector *all_paths_combos)
 {
-	t_hist	*path;
-	t_hist	*to_be_visited;
-	int		i;
+	t_vector	*path;
+	t_vector	*to_be_visited;
+	int			i;
 
 	while (1)
 	{
@@ -30,10 +30,10 @@ void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 		i = path->counter - 1;
 		while (i > 0)
 		{
-			if (path->arr[i - 1]->reverse == path->arr[i])
-				path->arr[i - 1]->reverse = NULL;
+			if (((t_room *)(path->arr[i - 1]))->reverse == path->arr[i])
+				((t_room *)(path->arr[i - 1]))->reverse = NULL;
 			else
-				path->arr[i]->reverse = path->arr[i - 1];
+				((t_room *)(path->arr[i]))->reverse = path->arr[i - 1];
 			i--;
 		}
 		get_paths(all_paths_combos, graph, data);

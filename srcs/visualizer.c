@@ -101,7 +101,7 @@ void	draw_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
 		draw_steep_line(mlx_win, x_a, y_a, x_b, y_b);
 }
 
-void	draw_rooms(t_mlx_win *mlx_win, t_room *node, t_hist *history)
+void	draw_rooms(t_mlx_win *mlx_win, t_room *node, t_vector *history)
 {
 	unsigned int	total_links;
 	t_room	**links;
@@ -116,7 +116,7 @@ void	draw_rooms(t_mlx_win *mlx_win, t_room *node, t_hist *history)
 	links = node->links;
 	i = 0;
 	if (not_in_history(node, history))
-		push_history(history, node);
+		push_to_vect(history, node);
 	draw_room(mlx_win, node, scale, margin);
 	while (i < total_links)
 	{
@@ -304,7 +304,7 @@ static void	initialize_ants_positions(t_paths *paths)
 void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths, char **start_and_end)
 {
 	t_mlx_win	*mlx_win;
-	t_hist	*history;
+	t_vector	*history;
 	size_t nb_ants;
 	(void)optimal_paths;
 
@@ -328,7 +328,7 @@ void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths, char **star
 	mlx_win->start_and_end = start_and_end;
 	color_background(mlx_win);
 	history = NULL;
-	init_history(&history, 4);
+	init_vect(&history, 4);
 	draw_rooms(mlx_win, graph, history);
 	initialize_ants_positions(optimal_paths);
 

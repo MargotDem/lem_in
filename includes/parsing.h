@@ -43,7 +43,7 @@ typedef struct s_room
 	struct s_room	**links;
 	unsigned int	total_links;
 	int				to_be_visited;
-	struct s_hist	*history;
+	struct s_vector	*history;
 	struct s_room	*reverse;
 }				t_room;
 

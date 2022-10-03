@@ -12,20 +12,22 @@
 
 #include "lem_in.h"
 
-void	free_to_be_visited(t_hist **to_be_visited)
+void	free_to_be_visited(t_vector **to_be_visited)
 {
 	int	j;
 	int	counter;
+	t_room	*room;
 
 	j = 0;
 	counter = (*to_be_visited)->counter;
 	while (j < counter)
 	{
-		if ((*to_be_visited)->arr[j]->history)
-			free_history(&(*to_be_visited)->arr[j]->history);
+		room = (t_room *)((*to_be_visited)->arr[j]);
+		if (room->history)
+			free_vect(&(room->history));
 		j++;
 	}
-	free_history(to_be_visited);
+	free_vect(to_be_visited);
 }
 
 void	free_path(t_path_node *path)
@@ -71,12 +73,3 @@ void	free_combos(t_vector *all_paths_combos)
 	free(all_paths_combos);
 }
 
-void	free_history(t_hist **hist)
-{
-	if (*hist)
-	{
-		free((*hist)->arr);
-		free(*hist);
-		*hist = NULL;
-	}
-}
