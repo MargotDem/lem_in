@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:14:09 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 12:16:46 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:51:36 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ t_room	*set_room(char *line, char letter, t_room *room)
 	if (letter == 's')
 		room->start = TRUE;
 	else if (letter == 'e')
-	room->end = TRUE;
+		room->end = TRUE;
 	return (room);
 }

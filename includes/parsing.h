@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:21:57 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/02 09:23:13 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:48:36 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ unsigned long		hashing(char *str, unsigned int size);
 t_room				*cpy_room(t_room *room);
 
 /*save_data_tools*/
-void				insert_links(t_room *room1, t_room *room2);
+int				insert_links(t_room *room1, t_room *room2);
 
 /*tools*/
 char				*save_name(char *line);

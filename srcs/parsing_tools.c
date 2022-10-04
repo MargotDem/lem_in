@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   parsing_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:08:55 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 13:12:27 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:19:08 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,24 @@ unsigned int	save_ordinate(char *line)
 	return (ft_atoi(&line[i]));
 }
 
+static int	already_existing_room(t_room *list, t_room *element)
+{
+	t_room	*temp;
+
+	temp = list;
+	while (temp != NULL)
+	{
+		if (ft_strcmp(element->name, temp->name) == 0)
+			return (TRUE);
+		temp = temp->next;
+	}
+	return (FALSE);
+}
+
 t_room	*push_front(t_room *list, t_room *element)
 {
+	if (already_existing_room(list, element))
+		return (NULL);
 	if (list == NULL)
 		return (element);
 	element->next = list;

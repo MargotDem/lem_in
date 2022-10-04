@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:31:05 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 15:20:18 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:44:27 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ static char	*add_buffer_to(char **str, char *buffer)
 char	*readmap(char *map)
 {
 	int		ret;
-	char	buffer[10000];
+	char	buffer[BUFF_SIZE + 1];
 
-	ret = read(0, buffer, 10000);
+	ret = read(0, buffer, BUFF_SIZE);
 	if (!ret)
 		return (NULL);
 	while (ret > 0)
 	{
 		buffer[ret] = '\0';
 		map = add_buffer_to(&map, buffer);
-		ret = read(0, buffer, 10000);
+		ret = read(0, buffer, BUFF_SIZE);
 	}
 	return (map);
 }
@@ -82,7 +82,7 @@ unsigned short	is_room(char *line, unsigned short section_links)
 		return (FALSE);
 	i += 1;
 	i = is_digit(line, i);
-	if (i == 0)
+	if (i == 0 || line[i] != '\0')
 		return (FALSE);
 	return (TRUE);
 }

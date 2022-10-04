@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:37:11 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/05 09:37:07 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:27:27 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 		data = data_cleaner(data);
 		exit(EXIT_SUCCESS);
 	}
-	ft_putstr("ERROR\n");
+	ft_putstr("error\n");
 	data = data_cleaner(data);
 	exit(EXIT_FAILURE);
 }
