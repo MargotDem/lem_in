@@ -36,7 +36,7 @@ void	init_to_be_visited(t_vector **to_be_visited, t_room *graph)
 	while (i < graph->total_links)
 	{
 		node = graph->links[i];
-		if (node->reverse == NULL)
+		if (!node->reverse)
 		{
 			node->to_be_visited = 1;
 			push_to_vect(*to_be_visited, node);
@@ -47,6 +47,7 @@ void	init_to_be_visited(t_vector **to_be_visited, t_room *graph)
 		}
 		i++;
 	}
+	
 }
 
 void	decide_if_visit(t_room *node, t_room *prev_node, \

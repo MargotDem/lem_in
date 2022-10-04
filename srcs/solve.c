@@ -18,9 +18,7 @@ void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 	t_vector	*path;
 	t_vector	*to_be_visited;
 	int			i;
-	int			j;
 
-j = 0;
 	while (1)
 	{
 		path = get_aug_path(graph, start_and_end, &to_be_visited);
@@ -40,7 +38,6 @@ j = 0;
 		}
 		get_paths(all_paths_combos, graph, data);
 		free_to_be_visited(&to_be_visited);
-		j++;
 	}
 }
 
@@ -71,10 +68,7 @@ void	solve(t_room *graph, t_data *data)
 	start_and_end[0] = data->start_room_name;
 	start_and_end[1] = data->end_room_name;
 	init_vect(&all_paths_combos, 30);
-	printf("hellohelooo\n");
 	edmond_karp_with_a_twist(graph, data, start_and_end, all_paths_combos);
-	if (!(all_paths_combos->arr[0]))
-		printf("vide \n");
 	find_best_solution(&solution, all_paths_combos, nb_ants);
 	display_result(solution, nb_ants);
 	display_options(data, graph, solution, start_and_end);

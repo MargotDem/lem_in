@@ -15,6 +15,7 @@ NAME	=	lem-in
 #COMPILATION
 CC		=	gcc
 CCFLAGS	=	-Werror -Wextra -Wall
+#CCFLAGS	=	-Werror -Wextra -Wall -g -fsanitize=address
 
 #INCLUDE
 INCL_LFT	= -I ./libft/

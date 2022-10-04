@@ -27,6 +27,9 @@ static t_room	*set_copy(t_room *dst, t_room *source)
 	dst->links = (t_room **)malloc(sizeof(t_room *));
 	if (!dst->links)
 		panic("In hashtable_malloc: set_copy: dst->links");
+	dst->reverse = NULL;
+	dst->to_be_visited = 0;
+	dst->history = NULL;
 	return (dst);
 }
 

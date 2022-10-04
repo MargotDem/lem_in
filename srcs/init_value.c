@@ -46,5 +46,8 @@ t_room	*set_room(char *line, char letter, t_room *room)
 		room->start = TRUE;
 	else if (letter == 'e')
 	room->end = TRUE;
+	room->reverse = NULL;
+	room->to_be_visited = 0;
+	room->history = NULL;
 	return (room);
 }

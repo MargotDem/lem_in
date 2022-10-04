@@ -76,7 +76,7 @@ void	mapreader(t_room **rooms, t_data **data)
 	map = (*data)->map;
 	if (!map)
 		exit_parsing(line, *rooms, *data);
-	ants = get_ants(data,*rooms);
+	ants = get_ants(data, *rooms);
 	index = (*data)->index_line;
 	while (get_line(&map[index], &line, *data))
 	{
