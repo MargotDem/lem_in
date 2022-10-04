@@ -1,4 +1,4 @@
-- -fsanitize compilation
+- -fsanitize compilation: can i fix it
 - tests avec maps de miro
 - implementation fonction pour print tout d'un coup les lignes
 - re norme
