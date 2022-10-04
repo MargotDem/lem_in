@@ -47,7 +47,6 @@ void	init_to_be_visited(t_vector **to_be_visited, t_room *graph)
 		}
 		i++;
 	}
-	
 }
 
 void	decide_if_visit(t_room *node, t_room *prev_node, \

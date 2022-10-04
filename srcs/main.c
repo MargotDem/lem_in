@@ -81,6 +81,5 @@ int	main(int argc, char **argv)
 	else
 		write (1, "ERROR\n", 6);
 	data = data_cleaner(data);
-	//system("leaks lem-in");
 	return (0);
 }
