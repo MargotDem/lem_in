@@ -18,10 +18,10 @@ static char	*add_buffer_to(char **str, char *buffer)
 
 	if (!(*str))
 	{
-		*str = (char *)malloc(sizeof(char) * BUFF_SIZE + 1);
+		*str = (char *)malloc(sizeof(char) * BUFF_SIZE);
 		if (!(*str))
 			panic("In mapreader_tool: add_buffer_to");
-		ft_bzero(*str, BUFF_SIZE);
+		ft_bzero(*str, sizeof(char) * BUFF_SIZE);
 	}
 	temp = ft_strjoin(*str, buffer);
 	if (!temp)
@@ -34,16 +34,16 @@ static char	*add_buffer_to(char **str, char *buffer)
 char	*readmap(char *map)
 {
 	int		ret;
-	char	buffer[10000];
+	char	buffer[BUFF_SIZE + 1];
 
-	ret = read(0, buffer, 10000);
+	ret = read(0, buffer, BUFF_SIZE);
 	if (!ret)
 		return (NULL);
 	while (ret > 0)
 	{
 		buffer[ret] = '\0';
 		map = add_buffer_to(&map, buffer);
-		ret = read(0, buffer, 10000);
+		ret = read(0, buffer, BUFF_SIZE);
 	}
 	return (map);
 }
