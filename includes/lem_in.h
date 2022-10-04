@@ -72,12 +72,6 @@ typedef struct s_vector {
 	void	**arr;
 }	t_vector;
 
-typedef struct s_vector_string {
-	size_t	counter;
-	size_t	size;
-	char	*str;
-}	t_vector_string;
-
 // Handle errors
 void		handle_error(void);
 void		*handle_null(void *param);
@@ -129,8 +123,5 @@ void		init_vect(t_vector **vector, size_t size);
 void		concat_vects(t_vector *src, t_vector **dst);
 void		free_vect(t_vector **vector);
 void		push_to_vect(t_vector *vector, void *el);
-void		free_vect_str(t_vector_string **vector);
-void		push_to_vect_str(t_vector_string *vector, char el);
-void		init_vect_str(t_vector_string **vector, size_t size);
 
 #endif
