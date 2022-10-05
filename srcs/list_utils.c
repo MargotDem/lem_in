@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:27:11 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/08/01 18:27:13 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:45:27 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "parsing.h"
 
 size_t	get_list_size(t_void_list *list)
 {
@@ -61,4 +62,28 @@ void	lst_add_in_order(t_paths **paths, t_paths *path_el)
 			prev->next = path_el;
 		}
 	}
+}
+
+static int	already_existing_room(t_room *list, t_room *element)
+{
+	t_room	*temp;
+
+	temp = list;
+	while (temp != NULL)
+	{
+		if (ft_strcmp(element->name, temp->name) == 0)
+			return (TRUE);
+		temp = temp->next;
+	}
+	return (FALSE);
+}
+
+t_room	*push_front(t_room *list, t_room *element)
+{
+	if (already_existing_room(list, element))
+		return (NULL);
+	if (list == NULL)
+		return (element);
+	element->next = list;
+	return (element);
 }

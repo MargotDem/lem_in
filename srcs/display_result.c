@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_result.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:21:47 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/08/05 08:55:26 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:15:25 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,6 @@ void	handle_ants(t_paths *path_el, size_t *movement, t_vector_string *str)
 			ft_putstr("-");
 			ft_putstr(get_room_name(path_el, (path_el->ants)[i].room_nb));
 			ft_putstr(" ");
-			//push_to_vect_str(str, 'L');
-			//add_ant_nb((path_el->ants)[i].ant_nb, str);
-			//push_to_vect_str(str, '-');
-			//add_room_name(get_room_name(path_el, (path_el->ants)[i].room_nb), str);
-			//push_to_vect_str(str, ' ');
 		}
 		i++;
 	}

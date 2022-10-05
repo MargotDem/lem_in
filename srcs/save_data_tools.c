@@ -6,13 +6,13 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:07:41 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/04 12:49:18 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:55:37 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int links_already_exist(t_room *room_1, t_room *room_2)
+int	links_already_exist(t_room *room_1, t_room *room_2)
 {
 	int	index;
 	int	max;
@@ -37,7 +37,7 @@ void	create_link(t_room *room_1, t_room *room_2)
 	}
 	else
 	{
-		room_1->links = brealloc(room_1->links, room_2, room_1->total_links);
+		room_1->links = re_alloc(room_1->links, room_2, room_1->total_links);
 		room_1->total_links += 1;
 	}
 }

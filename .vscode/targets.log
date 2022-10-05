@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue Oct  4 13:58:38 2022
+# Make data base, printed on Wed Oct  5 13:55:29 2022
 
 # Variables
 
@@ -17,7 +17,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 29)
+# makefile (from `Makefile', line 30)
 RM_DIR = rm -rf
 # environment
 NVM_INC = /Users/briffard/.nvm/versions/node/v18.0.0/include/node
@@ -31,43 +31,43 @@ NVM_INC = /Users/briffard/.nvm/versions/node/v18.0.0/include/node
 CURDIR := /Users/briffard/Desktop/lem-in
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 30)
+# makefile (from `Makefile', line 31)
 RM = rm	-f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# makefile (from `Makefile', line 26)
+# makefile (from `Makefile', line 27)
 MLX = -L /usr/local/lib -lmlx
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# makefile (from `Makefile', line 65)
-OBJ_DIR = ./objectFiles/
 # makefile (from `Makefile', line 66)
+OBJ_DIR = ./objectFiles/
+# makefile (from `Makefile', line 67)
 OBJS = $(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.NaxMsFLEIc/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.dFcZyJPIXA/Render
 # environment
-PATH = /Users/briffard/.nvm/versions/node/v18.0.0/bin:/Users/briffard/.brew/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+PATH = /Users/briffard/.nvm/versions/node/v18.0.0/bin:/Users/briffard/.brew/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
 NVM_BIN = /Users/briffard/.nvm/versions/node/v18.0.0/bin
 # environment
 ELECTRON_RUN_AS_NODE = 1
-# makefile (from `Makefile', line 25)
+# makefile (from `Makefile', line 26)
 LIB = -L ./libft/ -lft
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.hqrmwaM4LU/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.1tOGG5eWse/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
 PWD = /Users/briffard/Desktop/lem-in
-# makefile (from `Makefile', line 62)
+# makefile (from `Makefile', line 63)
 FRAMEWORKS = -framework OpenGL -framework Appkit
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
@@ -99,7 +99,9 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 16)
+# makefile (from `Makefile', line 14)
+LIBFT = libft.a
+# makefile (from `Makefile', line 17)
 CC = gcc
 # default
 MAKE_VERSION := 3.81
@@ -107,7 +109,7 @@ MAKE_VERSION := 3.81
 USER = briffard
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from `Makefile', line 17)
+# makefile (from `Makefile', line 18)
 CCFLAGS = -Werror -Wextra -Wall
 # makefile (from `Makefile', line 13)
 NAME = lem-in
@@ -115,7 +117,7 @@ NAME = lem-in
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 20)
+# makefile (from `Makefile', line 21)
 INCL_LFT = -I ./libft/
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
@@ -125,7 +127,7 @@ MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n0000l580004s_/T/
 # automatic
 *F = $(notdir $*)
-# makefile (from `Makefile', line 22)
+# makefile (from `Makefile', line 23)
 INCL_MLX = -I/usr/local/include
 # environment
 VSCODE_IPC_HOOK = /Users/briffard/Library/Application Support/Code/1.71.2-main.sock
@@ -140,25 +142,29 @@ MFLAGS = -Rrqp
 # environment
 NVM_DIR = /Users/briffard/.nvm
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1156
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x1000000b.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x132A:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
-# makefile (from `Makefile', line 33)
+# makefile (from `Makefile', line 34)
 SRC_DIR = ./srcs/
 # automatic
 <F = $(notdir $<)
-# makefile (from `Makefile', line 21)
+# makefile (from `Makefile', line 22)
 INCL_PARS = -I ./includes/
 # environment
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 1872c
 # automatic
 ^F = $(notdir $^)
 # default
@@ -170,11 +176,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 29155
-# makefile (from `Makefile', line 35)
-FILES = main.c malloc_handler.c free_handler.c init_value.c panic.c mapreader.c mapreader_tools.c get_ants.c parsing_tools.c exit_parsing.c save_data.c save_data_tools.c hashtable_main.c hashtable_malloc.c print_man.c add_node_to_be_visited.c display_result.c get_aug_paths.c get_paths.c handle_error.c history_utils.c list_utils.c paths_utils.c solve.c utils.c visualizer.c free_handler_solve.c find_best_solution.c vector_utils.c 
+VSCODE_PID = 34566
+# makefile (from `Makefile', line 36)
+FILES = main.c malloc_handler.c free_handler.c init_value.c save_links.c mapreader.c mapreader_tools.c get_ants.c parsing_tools.c exit_parsing.c save_data.c save_data_tools.c hashtable_main.c hashtable_malloc.c print_man.c add_node_to_be_visited.c display_result.c get_aug_paths.c get_paths.c handle_error.c history_utils.c list_utils.c paths_utils.c solve.c utils.c visualizer.c free_handler_solve.c find_best_solution.c vector_utils.c 
 # variable set hash-table stats:
-# Load=80/1024=8%, Rehash=0, Collisions=5/113=4%
+# Load=83/1024=8%, Rehash=0, Collisions=5/118=4%
 
 # Pattern-specific Variable Values
 
@@ -182,17 +188,16 @@ FILES = main.c malloc_handler.c free_handler.c init_value.c panic.c mapreader.c 
 
 # Directories
 
- 
-# . (device 16777227, inode 4079454): 22 files, no impossibilities.
-# ./srcs (device 16777227, inode 4079843): 31 files, no impossibilities so far.
-# srcs (device 16777227, inode 4079843): 31 files, no impossibilities so far.
+# . (device 16777227, inode 4095155): 21 files, no impossibilities.
+# ./srcs (device 16777227, inode 4095704): No files, no impossibilities so far.
 
-# 84 files, no impossibilities in 3 directories.
+# 21 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
+ 
 objectFiles/%.o: ./srcs/%.c
-#  commands to execute (from `Makefile', line 74):
+#  commands to execute (from `Makefile', line 76):
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
 	
@@ -202,92 +207,28 @@ objectFiles/%.o: ./srcs/%.c
 # Files
 
 # Not a target:
-srcs/history_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/print_man.o: srcs/print_man.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `print_man'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-objectFiles/history_utils.o: srcs/history_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `history_utils'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
+objectFiles/print_man.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-srcs/get_ants.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objectFiles/history_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-srcs/free_handler.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/get_ants.o: srcs/get_ants.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `get_ants'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
+objectFiles/get_ants.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-srcs/malloc_handler.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/free_handler.o: srcs/free_handler.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `free_handler'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
+objectFiles/free_handler.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 all: lem-in
 #  Phony target (prerequisite of .PHONY).
@@ -295,93 +236,38 @@ all: lem-in
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
 
 # Not a target:
-srcs/mapreader.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objectFiles/free_handler_solve.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-objectFiles/free_handler_solve.o: srcs/free_handler_solve.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `free_handler_solve'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-objectFiles/malloc_handler.o: srcs/malloc_handler.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `malloc_handler'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
+# Not a target:
+objectFiles/malloc_handler.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 .PHONY: all re clean fclean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-objectFiles/mapreader.o: srcs/mapreader.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mapreader'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
+# Not a target:
+objectFiles/mapreader.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-srcs/find_best_solution.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/find_best_solution.o: srcs/find_best_solution.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `find_best_solution'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/free_handler_solve.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objectFiles/find_best_solution.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -392,182 +278,85 @@ srcs/free_handler_solve.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
+#  Last modified 2022-10-05 13:54:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-# Not a target:
-srcs/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
+libft.a:
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := libft.a
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/main.o: srcs/main.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
+# Load=8/32=25%, Rehash=0, Collisions=1/10=10%
+#  commands to execute (from `Makefile', line 80):
+	@make -sC ./libft/ 
 	
 
 # Not a target:
-srcs/save_data.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 12:48:59
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/hashtable_main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/visualizer.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/save_data.o: srcs/save_data.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `save_data'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
- 
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/solve.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/hashtable_main.o: srcs/hashtable_main.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `hashtable_main'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-objectFiles/visualizer.o: srcs/visualizer.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `visualizer'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-objectFiles/solve.o: srcs/solve.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `solve'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/mapreader_tools.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:44:27
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-lft:
+objectFiles/main.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 80):
-	@make -sC ./libft/ all
-	
 
-objectFiles/mapreader_tools.o: srcs/mapreader_tools.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mapreader_tools'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
+# Not a target:
+objectFiles/save_data.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/hashtable_main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/visualizer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/solve.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/mapreader_tools.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 96):
+#  commands to execute (from `Makefile', line 89):
+	@make -sC ./libft/ fclean
 	@$(RM) $(NAME)
-	@echo "Parsing file has been deleted"
-	
-
-objectFiles/get_aug_paths.o: srcs/get_aug_paths.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `get_aug_paths'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-lft_reboot:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 83):
-	@make -sC ./libft/ re
+	@echo "Lem-in file has been deleted"
 	
 
 # Not a target:
@@ -577,57 +366,16 @@ lft_reboot:
 #  File has not been updated.
 
 # Not a target:
-srcs/vector_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objectFiles/vector_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-srcs/add_node_to_be_visited.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/vector_utils.o: srcs/vector_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `vector_utils'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-objectFiles/add_node_to_be_visited.o: srcs/add_node_to_be_visited.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `add_node_to_be_visited'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/panic.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objectFiles/add_node_to_be_visited.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -640,325 +388,116 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 92):
+#  commands to execute (from `Makefile', line 83):
+	@make -sC ./libft/ clean
 	@$(RM_DIR) $(OBJ_DIR)
 	@echo "Object Files have been deleted"
 	
 
 # Not a target:
-srcs/parsing_tools.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 12:19:08
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/panic.o: srcs/panic.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `panic'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-objectFiles/save_data_tools.o: srcs/save_data_tools.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `save_data_tools'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/hashtable_malloc.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/parsing_tools.o: srcs/parsing_tools.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parsing_tools'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/get_aug_paths.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/save_data_tools.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 12:49:18
-#  File has been updated.
-#  Successfully updated.
- 
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/utils.o: srcs/utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-objectFiles/hashtable_malloc.o: srcs/hashtable_malloc.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `hashtable_malloc'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-lft_fclean:
+objectFiles/save_data_tools.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 89):
-	@make -sC ./libft/ fclean
-	
 
 # Not a target:
-srcs/exit_parsing.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:27:27
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-lft_clean:
+objectFiles/parsing_tools.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 86):
-	@make -sC ./libft/ clean
-	
-
-objectFiles/exit_parsing.o: srcs/exit_parsing.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exit_parsing'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
 
 # Not a target:
-srcs/paths_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-srcs/list_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/paths_utils.o: srcs/paths_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `paths_utils'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/handle_error.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/list_utils.o: srcs/list_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `list_utils'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/get_paths.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/handle_error.o: srcs/handle_error.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `handle_error'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/init_value.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:51:36
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/get_paths.o: srcs/get_paths.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `get_paths'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-objectFiles/init_value.o: srcs/init_value.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `init_value'
-#  Last modified 2022-10-04 12:49:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
-
-# Not a target:
-srcs/display_result.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-lem-in: objectFiles/main.o objectFiles/malloc_handler.o objectFiles/free_handler.o objectFiles/init_value.o objectFiles/panic.o objectFiles/mapreader.o objectFiles/mapreader_tools.o objectFiles/get_ants.o objectFiles/parsing_tools.o objectFiles/exit_parsing.o objectFiles/save_data.o objectFiles/save_data_tools.o objectFiles/hashtable_main.o objectFiles/hashtable_malloc.o objectFiles/print_man.o objectFiles/add_node_to_be_visited.o objectFiles/display_result.o objectFiles/get_aug_paths.o objectFiles/get_paths.o objectFiles/handle_error.o objectFiles/history_utils.o objectFiles/list_utils.o objectFiles/paths_utils.o objectFiles/solve.o objectFiles/utils.o objectFiles/visualizer.o objectFiles/free_handler_solve.o objectFiles/find_best_solution.o objectFiles/vector_utils.o
+objectFiles/utils.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-10-04 12:49:21
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/hashtable_malloc.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/get_aug_paths.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/save_links.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/exit_parsing.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/paths_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/list_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/handle_error.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/get_paths.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/init_value.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+lem-in: libft.a objectFiles/main.o objectFiles/malloc_handler.o objectFiles/free_handler.o objectFiles/init_value.o objectFiles/save_links.o objectFiles/mapreader.o objectFiles/mapreader_tools.o objectFiles/get_ants.o objectFiles/parsing_tools.o objectFiles/exit_parsing.o objectFiles/save_data.o objectFiles/save_data_tools.o objectFiles/hashtable_main.o objectFiles/hashtable_malloc.o objectFiles/print_man.o objectFiles/add_node_to_be_visited.o objectFiles/display_result.o objectFiles/get_aug_paths.o objectFiles/get_paths.o objectFiles/handle_error.o objectFiles/history_utils.o objectFiles/list_utils.o objectFiles/paths_utils.o objectFiles/solve.o objectFiles/utils.o objectFiles/visualizer.o objectFiles/free_handler_solve.o objectFiles/find_best_solution.o objectFiles/vector_utils.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-10-05 13:55:04
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 71):
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
+#  commands to execute (from `Makefile', line 72):
 	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(MLX) $(FRAMEWORKS)
+	@echo "$(NAME) has been created"
 	
 
 # Not a target:
-srcs/print_man.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-10-04 10:10:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/display_result.o: srcs/display_result.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `display_result'
-#  Last modified 2022-10-04 12:49:21
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 74):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
-	
+objectFiles/display_result.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=71/1024=7%, Rehash=0, Collisions=7/208=3%
+# Load=39/1024=4%, Rehash=0, Collisions=2/91=2%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
+ 
 # # of strings in strcache: 1
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Oct  4 13:58:38 2022
+# Finished Make data base on Wed Oct  5 13:55:29 2022
 
  

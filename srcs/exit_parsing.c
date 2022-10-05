@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:37:11 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/04 10:27:27 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:24:14 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 		ft_strdel(&line);
 	if (rooms && data->hashtable_created == 0)
 		while (rooms != NULL)
-			rooms = my_clean(rooms);
+			rooms = clean_list(rooms);
 	if (data_is_ok(data))
 	{
 		if (data->no_map == FALSE)
@@ -47,5 +47,11 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 	}
 	ft_putstr("error\n");
 	data = data_cleaner(data);
+	exit(EXIT_FAILURE);
+}
+
+void	panic(char *message)
+{
+	perror(message);
 	exit(EXIT_FAILURE);
 }
