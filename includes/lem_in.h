@@ -101,7 +101,7 @@ void		get_paths(t_vector *all_paths_combos, \
 	t_room *graph, t_data *data);
 void		add_node_to_be_visited(t_room *node, t_room *prev_node, \
 	t_vector *to_be_visited);
-void		find_best_solution(t_paths **solution, \
+int			find_best_solution(t_paths **solution, \
 	t_vector *all_paths_combos_struct, size_t nb_ants);
 
 // Display result

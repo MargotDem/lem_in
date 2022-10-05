@@ -122,7 +122,7 @@ unsigned long		hashing(char *str, unsigned int size);
 t_room				*cpy_room(t_room *room);
 
 /*save_data_tools*/
-int				insert_links(t_room *room1, t_room *room2);
+int					insert_links(t_room *room1, t_room *room2);
 
 /*tools*/
 char				*save_name(char *line);
@@ -139,5 +139,7 @@ void				print_man(void);
 
 int					get_line(char *map, char **line, t_data *data);
 void				solve(t_room *graph, t_data *data);
+
+void				handle_error(void);
 
 #endif

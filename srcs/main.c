@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "lem_in.h"
 
 void	check_letter(char letter, t_data *data)
 {
@@ -73,13 +73,9 @@ int	main(int argc, char **argv)
 	}
 	mapreader(&rooms, &data);
 	if (data_is_ok(data))
-	{
-		if (data->no_map == FALSE)
-			write(1, data->map, data->index_line);
 		solve(search_for(data->start_room_name, data), data);
-	}
 	else
-		write(2, "ERROR\n", 6);
+		handle_error();
 	data = data_cleaner(data);
 	return (0);
 }

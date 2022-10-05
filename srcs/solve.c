@@ -69,8 +69,14 @@ void	solve(t_room *graph, t_data *data)
 	start_and_end[1] = data->end_room_name;
 	init_vect(&all_paths_combos, 30);
 	edmond_karp_with_a_twist(graph, data, start_and_end, all_paths_combos);
-	find_best_solution(&solution, all_paths_combos, nb_ants);
-	display_result(solution, nb_ants);
-	display_options(data, graph, solution, start_and_end);
+	if (find_best_solution(&solution, all_paths_combos, nb_ants))
+	{
+		if (!data->no_map)
+			write(1, data->map, data->index_line);
+		display_result(solution, nb_ants);
+		display_options(data, graph, solution, start_and_end);
+	}
+	else
+		handle_error();
 	free_combos(all_paths_combos);
 }

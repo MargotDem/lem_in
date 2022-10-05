@@ -15,12 +15,14 @@
 void	handle_error(void)
 {
 	write(2, "ERROR\n", 6);
-	exit(1);
 }
 
 void	*handle_null(void *param)
 {
 	if (!param)
+	{
 		handle_error();
+		exit(1);
+	}
 	return (param);
 }
