@@ -43,8 +43,6 @@ char	*readmap(char *map)
 	{
 		buffer[ret] = '\0';
 		map = add_buffer_to(&map, buffer);
-		if (map == NULL)
-			printf("EXIT\n");
 		ret = read(0, buffer, BUFF_SIZE);
 	}
 	return (map);

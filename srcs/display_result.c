@@ -12,7 +12,6 @@
 
 #include "lem_in.h"
 
-// TODO can probably be made better
 char	*get_room_name(t_paths *path_ptr, int room_nb)
 {
 	int			i;
@@ -36,8 +35,11 @@ void	initialize_ants_positions(t_paths *paths)
 
 	while (paths)
 	{
-		paths->ants = (t_ant *)handle_null(malloc(sizeof(t_ant) * \
-			paths->nb_ants));
+		if (!paths->ants)
+		{
+			paths->ants = (t_ant *)handle_null(malloc(sizeof(t_ant) * \
+				paths->nb_ants));
+		}
 		i = 0;
 		while (i < paths->nb_ants)
 		{

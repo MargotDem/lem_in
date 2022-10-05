@@ -138,6 +138,7 @@ void				print_usage(void);
 void				print_man(void);
 
 int					get_line(char *map, char **line, t_data *data);
+
 void				solve(t_room *graph, t_data *data);
 
 void				handle_error(void);

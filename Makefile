@@ -60,6 +60,9 @@ FILES = 	main.c \
 			free_handler_solve.c \
 			find_best_solution.c \
 			vector_utils.c \
+			viz_draw_rooms.c \
+			viz_init.c \
+			viz_draw_line.c \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit
 

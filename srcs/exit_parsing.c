@@ -37,14 +37,6 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 	if (rooms && data->hashtable_created == 0)
 		while (rooms != NULL)
 			rooms = clean_list(rooms);
-	if (data_is_ok(data))
-	{
-		if (data->no_map == FALSE)
-			write(1, data->map, data->index_line);
-		printf("go_to_solver\n");
-		data = data_cleaner(data);
-		exit(EXIT_SUCCESS);
-	}
 	handle_error();
 	data = data_cleaner(data);
 	exit(EXIT_FAILURE);

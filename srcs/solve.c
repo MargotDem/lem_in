@@ -42,7 +42,7 @@ void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 }
 
 void	display_options(t_data *data, t_room *graph, \
-	t_paths *solution, char **start_and_end)
+	t_paths *solution)
 {
 	if (data->print_paths)
 	{
@@ -54,7 +54,7 @@ void	display_options(t_data *data, t_room *graph, \
 		ft_putstr("\n\n");
 	}
 	if (data->visual)
-		visualizer(graph, data, solution, start_and_end);
+		visualizer(graph, data, solution);
 }
 
 void	solve(t_room *graph, t_data *data)
@@ -74,7 +74,7 @@ void	solve(t_room *graph, t_data *data)
 		if (!data->no_map)
 			write(1, data->map, data->index_line);
 		display_result(solution, nb_ants);
-		display_options(data, graph, solution, start_and_end);
+		display_options(data, graph, solution);
 	}
 	else
 		handle_error();

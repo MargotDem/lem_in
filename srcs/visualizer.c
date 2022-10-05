@@ -12,122 +12,6 @@
 
 #include "lem_in.h"
 
-void	draw_room(t_mlx_win *mlx_win, t_room *node, size_t scale, size_t margin)
-{
-	int	x;
-	int	y;
-	int	i;
-	int	j;
-	int	color;
-	int	room_size;
-
-	room_size = 10;
-	if (strings_match(node->name, mlx_win->start_and_end[0]) || strings_match(node->name, mlx_win->start_and_end[1]))
-		room_size = 20;
-	x = node->abscissa * scale + margin;
-	y = node->ordinate * scale + margin;
-	color = mlx_win->room_color;
-	i = y - room_size;
-	while (i < y + room_size)
-	{
-		j = x - room_size;
-		while (j < x + room_size)
-		{
-			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, j, i, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-int	round_point(float x)
-{
-	if ((int)(x * 10) % 10 >= 5)
-		return ((int)x + 1);
-	return ((int)x);
-}
-
-void	draw_steep_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
-{
-	int	x;
-	int	y;
-	int	tmp_x;
-	int	tmp_y;
-	int	color;
-
-	color = mlx_win->room_color;
-	if (y_b <= y_a)
-	{
-		tmp_x = x_a;
-		tmp_y = y_a;
-		x_a = x_b;
-		y_a = y_b;
-		x_b = tmp_x;
-		y_b = tmp_y;
-	}
-	x = x_a;	
-	y = y_a;
-	while (y < y_b)
-	{
-		x = round_point(x_a + (y - 0.5 - y_a) * \
-			((float)(x_b - x_a) / \
-			(float)(y_b - y_a)));
-		mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, x, y, color);
-		y++;
-	}
-}
-
-void	draw_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	x = x_a;
-	y = y_a;
-	color = mlx_win->room_color;
-	if (x_b - x_a >= abs(y_b - y_a))
-	{
-		while (x < x_b)
-		{
-			y = round_point(((float)(y_b - y_a) / \
-				(float)(x_b - x_a)) * (x - x_a) + \
-				y_a + 0.5);
-			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, x, y, color);
-			x++;
-		}
-	}
-	else
-		draw_steep_line(mlx_win, x_a, y_a, x_b, y_b);
-}
-
-void	draw_rooms(t_mlx_win *mlx_win, t_room *node, t_vector *history)
-{
-	unsigned int	total_links;
-	t_room	**links;
-	t_room	*link;
-	unsigned int i;
-	size_t	scale;
-	size_t	margin;
-
-	scale = mlx_win->scale;
-	margin = mlx_win->margin;
-	total_links = node->total_links;
-	links = node->links;
-	i = 0;
-	if (not_in_history(node, history))
-		push_to_vect(history, node);
-	draw_room(mlx_win, node, scale, margin);
-	while (i < total_links)
-	{
-		link = links[i];
-		draw_line(mlx_win, node->abscissa * scale + margin, node->ordinate * scale + margin, link->abscissa * scale + margin, link->ordinate * scale + margin);
-		if (not_in_history(link, history))
-			draw_rooms(mlx_win, link, history);
-		i++;
-	}
-}
-
 void	escape(t_mlx_win *mlx_win)
 {
 	mlx_destroy_window(mlx_win->mlx_ptr, mlx_win->window);
@@ -168,7 +52,7 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 	{
 		x = node_to_find->abscissa * scale + margin;
 		y = node_to_find->ordinate * scale + margin;
-		if (strings_match(name, mlx_win->start_and_end[0]) || strings_match(name, mlx_win->start_and_end[1]))
+		if (strings_match(name, mlx_win->start) || strings_match(name, mlx_win->end))
 			x += ant_nb * ant_size * 3 - 15;
 		i = y - ant_size;
 		while (i < y + ant_size)
@@ -213,7 +97,8 @@ int	handle_key(int key, void *param)
 				if ((paths_ptr->ants)[i].room_nb >= 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size - 1)
 				{
 					ant_nb = (paths_ptr->ants)[i].ant_nb;
-					draw_ant(ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1), mlx_win, 1);
+					name = get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb + 1);
+					draw_ant(ant_nb, name, mlx_win, 1);
 				}
 				i++;
 			}
@@ -243,7 +128,8 @@ int	handle_key(int key, void *param)
 				if ((paths_ptr->ants)[i].room_nb > 0 && (paths_ptr->ants)[i].room_nb < (int)paths_ptr->path_size)
 				{
 					ant_nb = (paths_ptr->ants)[i].ant_nb;
-					draw_ant(ant_nb, get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb - 1), mlx_win, 1);
+					name = get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb - 1);
+					draw_ant(ant_nb, name, mlx_win, 1);
 				}
 				i++;
 			}
@@ -261,7 +147,6 @@ int	handle_key(int key, void *param)
 			paths_ptr = paths_ptr->next;
 		}
 	}
-	(void)i;
 	return (0);
 }
 
@@ -276,67 +161,19 @@ void	color_background(t_mlx_win *mlx_win)
 		j = 0;
 		while (j < mlx_win->window_width)
 		{
-			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, (int)j, (int)i, 0xededed);
+			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, (int)j, (int)i, mlx_win->background_color);
 			j++;
 		}
 		i++;
 	}
 }
 
-static void	initialize_ants_positions(t_paths *paths)
+void	draw_ants_start(t_paths *paths_ptr, t_mlx_win *mlx_win)
 {
-	t_paths	*paths_ptr;
 	size_t	i;
-
-	paths_ptr = paths;
-	while (paths_ptr)
-	{
-		i = 0;
-		while (i < paths_ptr->nb_ants)
-		{
-			(paths_ptr->ants)[i].room_nb = -i;
-			i++;
-		}
-		paths_ptr = paths_ptr->next;
-	}
-}
-
-void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths, char **start_and_end)
-{
-	t_mlx_win	*mlx_win;
-	t_vector	*history;
-	size_t nb_ants;
-	(void)optimal_paths;
-
-	nb_ants = data->ants;
-	mlx_win = (t_mlx_win *)handle_null(malloc(sizeof(t_mlx_win)));
-	//printf("mlx_win: %p\n", mlx_win);
-	mlx_win->mlx_ptr = handle_null(mlx_init());
-	mlx_win->data = data;
-	mlx_win->window_width = 1500;
-	mlx_win->window_length = 1100;
-	mlx_win->window = handle_null(mlx_new_window(mlx_win->mlx_ptr, mlx_win->window_width, \
-		mlx_win->window_length, "Lem in"));
-	mlx_win->graph = graph;
-	mlx_win->nb_ants = nb_ants;
-	mlx_win->optimal_paths = optimal_paths;
-	mlx_win->turn_nb = 0;
-	mlx_win->max_turns = optimal_paths->nb_ants + optimal_paths->path_size - 2;
-	mlx_win->scale = 30;
-	mlx_win->margin = 40;
-	mlx_win->room_color = 0xd1c4ff;
-	mlx_win->start_and_end = start_and_end;
-	color_background(mlx_win);
-	history = NULL;
-	init_vect(&history, 4);
-	draw_rooms(mlx_win, graph, history);
-	initialize_ants_positions(optimal_paths);
-
-	t_paths	*paths_ptr;
-	paths_ptr = optimal_paths;
-	size_t i;
-	char	*name;
 	size_t	ant_nb;
+	char	*name;
+
 	while (paths_ptr)
 	{
 		i = 0;
@@ -349,6 +186,20 @@ void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths, char **star
 		}
 		paths_ptr = paths_ptr->next;
 	}
+}
+
+void	visualizer(t_room *graph, t_data *data, t_paths *optimal_paths)
+{
+	t_mlx_win	*mlx_win;
+	t_vector	*history;
+
+	init_viz(graph, data, optimal_paths, &mlx_win);
+	color_background(mlx_win);
+	history = NULL;
+	init_vect(&history, 20);
+	draw_rooms(mlx_win, graph, history);
+	initialize_ants_positions(optimal_paths);
+	draw_ants_start(optimal_paths, mlx_win);
 	mlx_key_hook(mlx_win->window, handle_key, (void *)mlx_win);
 	mlx_loop(mlx_win->mlx_ptr);
 }
