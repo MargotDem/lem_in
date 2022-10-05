@@ -45,7 +45,7 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 		data = data_cleaner(data);
 		exit(EXIT_SUCCESS);
 	}
-	ft_putstr("error\n");
+	write(2, "ERROR\n", 6);
 	data = data_cleaner(data);
 	exit(EXIT_FAILURE);
 }

@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 		solve(search_for(data->start_room_name, data), data);
 	}
 	else
-		write (1, "Error\n", 6);
+		write(2, "ERROR\n", 6);
 	data = data_cleaner(data);
 	return (0);
 }

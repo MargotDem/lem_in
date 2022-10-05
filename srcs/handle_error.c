@@ -14,7 +14,7 @@
 
 void	handle_error(void)
 {
-	write(2, "error\n", 6);
+	write(2, "ERROR\n", 6);
 	exit(1);
 }
 
