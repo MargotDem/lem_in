@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:08:45 by briffard          #+#    #+#             */
-/*   Updated: 2022/06/01 10:00:46 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:33:52 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define RESETBLINK	"\033[25m"
 /*DEFINE GNL*/
 # define BUFF_SIZE 10000
-# define FD_SIZE 4096
+# define FD_ARRAY_SIZE 4096
 
 /*DEFINE ITOA_BASE*/
 # define BASE "0123456789abcdef"
@@ -145,7 +145,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 
 void				ft_color(const char *s);
 int					ft_randomnbr(void);
-int					ft_get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 void				ft_swap(char *a, char *b);
 
 /*MATH*/

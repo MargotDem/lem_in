@@ -6,62 +6,46 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:39:54 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/05 09:36:47 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:43:25 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_room	*my_clean(t_room *list)
+void	inside_clean(t_room *element)
+{
+	if (element->name)
+		ft_strdel(&element->name);
+	if (element->links)
+		free(element->links);
+}
+
+t_room	*clean_list(t_room *list)
 {
 	t_room	*temp;
 
-	if (list->next == NULL)
-	{
-		if (list->name)
-			ft_strdel(&list->name);
-		if (list->links)
-			free(list->links);
-		list->next = NULL;
-		if (list)
-			free(list);
-		return (NULL);
-	}
-	temp = list->next;
-	if (list->name)
-		free(list->name);
-	if (list->links)
-		free(list->links);
-	list->next = NULL;
+	temp = NULL;
+	inside_clean(list);
+	if (list->next != NULL)
+		temp = list->next;
 	if (list)
-	{
+	{	
 		free(list);
 		list = NULL;
 	}
 	return (temp);
 }
 
-t_room	*my_clean_data(t_room *list)
+t_room	*clean_hash(t_room *list)
 {
 	t_room	*temp;
 
-	if (list->hash_next == NULL)
-	{
-		if (list->name)
-			free(list->name);
-		if (list->links)
-			free(list->links);
-		if (list)
-			free(list);
-		return (NULL);
-	}
-	temp = list->hash_next;
-	if (list->name)
-		free(list->name);
-	if (list->links)
-		free(list->links);
+	temp = NULL;
+	inside_clean(list);
+	if (list->hash_next != NULL)
+		temp = list->hash_next;
 	if (list)
-	{
+	{	
 		free(list);
 		list = NULL;
 	}
@@ -87,7 +71,7 @@ t_data	*data_cleaner(t_data *data)
 			temp = data->hashtab[i];
 			if (temp)
 				while (temp != NULL)
-					temp = my_clean_data(temp);
+					temp = clean_hash(temp);
 			i++;
 		}
 	}

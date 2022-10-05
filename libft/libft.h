@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 17:36:20 by mde-maul          #+#    #+#             */
-/*   Updated: 2021/10/31 13:09:22 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:35:17 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void			*ft_handle_malloc(void *ptr, void (*handle_error)(void));
 char			*ft_strreplace(char *str, char *tmp);
 
 # define BUFF_SIZE 200
-# define FD_SIZE 4096
+# define FD_ARRAY_SIZE 4096
 
 // btrees
 

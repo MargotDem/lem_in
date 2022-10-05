@@ -1,5 +1,2 @@
 - tests avec maps de miro
-- implementation fonction pour print tout d'un coup les lignes
-- re norme
-- leaks
 - visualizerrr

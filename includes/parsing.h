@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:21:57 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/02 09:23:13 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:51:16 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,19 @@ static t_line_dispatcher	g_line_dispatch[4] = {
 t_data				*set_data(t_data *node);
 t_room				*set_room(char *line, char letter, t_room *room);
 
-/*panic*/
-void				panic(char *message);
-unsigned short		data_is_ok(t_data *data);
-
 /*malloc_handler*/
 t_data				*create_data(void);
 t_room				*new_node(char *line, char letter);
 void				create_hashtable(t_data **data);
 void				create_links(t_room **room);
-t_room				**brealloc(t_room **links, \
+t_room				**re_alloc(t_room **links, \
 					t_room *to, unsigned long size_list);
 
 /*free_handler*/
-t_room				*my_clean(t_room *list);
+t_room				*clean_list(t_room *list);
 void				clean2str(char *s1, char *s2, char letter);
 t_data				*data_cleaner(t_data *data);
-t_room				*my_clean_data(t_room *list);
+t_room				*clean_hash(t_room *list);
 
 /*mapreader*/
 void				mapreader(t_room **rooms, t_data **data);
@@ -114,6 +110,8 @@ unsigned long		get_ants(t_data **data, t_room *rooms);
 
 /*exit_parsing*/
 void				exit_parsing(char *line, t_room *rooms, t_data *data);
+void				panic(char *message);
+unsigned short		data_is_ok(t_data *data);
 
 /*hashtable*/
 t_room				*search_for(char *name, t_data *data);
@@ -124,24 +122,22 @@ unsigned long		hashing(char *str, unsigned int size);
 t_room				*cpy_room(t_room *room);
 
 /*save_data_tools*/
-void				insert_links(t_room *room1, t_room *room2);
+int				insert_links(t_room *room1, t_room *room2);
 
 /*tools*/
 char				*save_name(char *line);
 void				print_line(char *line, int size);
-t_room				*push_front(t_room *list, t_room *element);
 unsigned int		save_abscissa(char *line);
 unsigned int		save_ordinate(char *line);
+
+/*list_utils.c*/
+t_room				*push_front(t_room *list, t_room *element);
 
 /*print_man*/
 void				print_usage(void);
 void				print_man(void);
 
-/*TOREMOVE*/
-void				print_lst(t_room *li);
-void				print_hashtab(t_data *data);
 int					get_line(char *map, char **line, t_data *data);
-
 void				solve(t_room *graph, t_data *data);
 
 #endif

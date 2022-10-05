@@ -1,30 +1,8 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/flagada/Desktop/redo'
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/main.o -c srcs/main.c -g
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/briffard/Desktop/lem-in'
+make -sC ./libft/ 
  
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/malloc_handler.o -c srcs/malloc_handler.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/free_handler.o -c srcs/free_handler.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/init_value.o -c srcs/init_value.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/panic.o -c srcs/panic.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/mapreader.o -c srcs/mapreader.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/get_ants.o -c srcs/get_ants.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/tools.o -c srcs/tools.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/exit_parsing.o -c srcs/exit_parsing.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/save_data.o -c srcs/save_data.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/save_data_tools.o -c srcs/save_data_tools.c -g
-mkdir -p ./objectFiles/
-gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/  -o objectFiles/hashtable_main.o -c srcs/hashtable_main.c -g
-gcc -Werror -Wextra -Wall -o lem-in ./objectFiles/main.o ./objectFiles/malloc_handler.o ./objectFiles/free_handler.o ./objectFiles/init_value.o ./objectFiles/panic.o ./objectFiles/mapreader.o ./objectFiles/get_ants.o ./objectFiles/tools.o ./objectFiles/exit_parsing.o ./objectFiles/save_data.o ./objectFiles/save_data_tools.o ./objectFiles/hashtable_main.o -L ./libft/ -lft   -g
-make: Leaving directory `/Users/flagada/Desktop/redo'
+gcc -Werror -Wextra -Wall -o lem-in ./objectFiles/main.o ./objectFiles/malloc_handler.o ./objectFiles/free_handler.o ./objectFiles/init_value.o ./objectFiles/save_links.o ./objectFiles/mapreader.o ./objectFiles/mapreader_tools.o ./objectFiles/get_ants.o ./objectFiles/parsing_tools.o ./objectFiles/exit_parsing.o ./objectFiles/save_data.o ./objectFiles/save_data_tools.o ./objectFiles/hashtable_main.o ./objectFiles/hashtable_malloc.o ./objectFiles/print_man.o ./objectFiles/add_node_to_be_visited.o ./objectFiles/display_result.o ./objectFiles/get_aug_paths.o ./objectFiles/get_paths.o ./objectFiles/handle_error.o ./objectFiles/history_utils.o ./objectFiles/list_utils.o ./objectFiles/paths_utils.o ./objectFiles/solve.o ./objectFiles/utils.o ./objectFiles/visualizer.o ./objectFiles/free_handler_solve.o ./objectFiles/find_best_solution.o ./objectFiles/vector_utils.o -L ./libft/ -lft -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit
+echo "lem-in has been created"
+make: Leaving directory `/Users/briffard/Desktop/lem-in'
  

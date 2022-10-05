@@ -6,11 +6,12 @@
 #    By: briffard <briffard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:35:11 by mde-maul          #+#    #+#              #
-#    Updated: 2022/08/02 09:02:22 by briffard         ###   ########.fr        #
+#    Updated: 2022/10/05 13:54:58 by briffard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	lem-in
+LIBFT	=	libft.a
 
 #COMPILATION
 CC		=	gcc
@@ -37,7 +38,7 @@ FILES = 	main.c \
 			malloc_handler.c \
 			free_handler.c \
 			init_value.c \
-			panic.c \
+			save_links.c \
 			mapreader.c mapreader_tools.c\
 			get_ants.c \
 			parsing_tools.c \
@@ -66,36 +67,29 @@ FRAMEWORKS = -framework OpenGL -framework Appkit
 OBJ_DIR			=	./objectFiles/
 OBJS			=	$(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 
-all: $(NAME) $(LIBFT)
+all: $(NAME) 
 
-$(NAME): $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(MLX) $(FRAMEWORKS)
+	@echo "$(NAME) has been created"
 	
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
 
 $(LIBFT):
-	@make -sC ./libft/ all
-lft:
-	@make -sC ./libft/ all
-
-lft_reboot:
-	@make -sC ./libft/ re
-
-lft_clean:
-	@make -sC ./libft/ clean
-
-lft_fclean:
-	@make -sC ./libft/ fclean
+	@make -sC ./libft/ 
 
 clean:
+	@make -sC ./libft/ clean
 	@$(RM_DIR) $(OBJ_DIR)
 	@echo "Object Files have been deleted"
+	
 
 fclean: clean
+	@make -sC ./libft/ fclean
 	@$(RM) $(NAME)
-	@echo "Parsing file has been deleted"
+	@echo "Lem-in file has been deleted"
 
 re: fclean all
 

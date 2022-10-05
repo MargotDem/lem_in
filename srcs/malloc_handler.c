@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:54:25 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 11:59:41 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:07:46 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	create_hashtable(t_data **data)
 	}
 }
 
-t_room	**brealloc(t_room **links, t_room *to, unsigned long size_list)
+t_room	**re_alloc(t_room **links, t_room *to, unsigned long size_list)
 {
 	size_t	x;
 	t_room	**dst;

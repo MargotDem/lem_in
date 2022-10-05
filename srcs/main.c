@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:19 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/05 09:26:29 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:55:35 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 		solve(search_for(data->start_room_name, data), data);
 	}
 	else
-		write (1, "ERROR\n", 6);
+		write (1, "Error\n", 6);
 	data = data_cleaner(data);
 	return (0);
 }

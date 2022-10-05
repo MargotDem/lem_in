@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:48:41 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/05 09:35:20 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:24:14 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ void	hashtable_main(t_data **data, t_room *li)
 	create_hashtable(data);
 	fill_up_hashtable(data, li);
 	while (li != NULL)
-		li = my_clean(li);
+		li = clean_list(li);
 }

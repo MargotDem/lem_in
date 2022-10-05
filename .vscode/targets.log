@@ -8,16 +8,19 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Fri Jul 29 22:27:50 2022
+# Make data base, printed on Wed Oct  5 13:55:29 2022
 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 29)
+# makefile (from `Makefile', line 30)
 RM_DIR = rm -rf
+# environment
+NVM_INC = /Users/briffard/.nvm/versions/node/v18.0.0/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -25,62 +28,65 @@ RM_DIR = rm -rf
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/flagada/Desktop/redo
+CURDIR := /Users/briffard/Desktop/lem-in
 # makefile
 SHELL = /bin/sh
-# makefile (from `Makefile', line 30)
- 
+# makefile (from `Makefile', line 31)
 RM = rm	-f
 # environment
-VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{},"_languagePackSupport":true}
-# makefile (from `Makefile', line 26)
-MLX = 
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from `Makefile', line 27)
+MLX = -L /usr/local/lib -lmlx
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# makefile (from `Makefile', line 61)
+# makefile (from `Makefile', line 66)
 OBJ_DIR = ./objectFiles/
-# environment
-__CFBundleIdentifier = com.microsoft.VSCode
+# makefile (from `Makefile', line 67)
+OBJS = $(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.dFcZyJPIXA/Render
+# environment
+PATH = /Users/briffard/.nvm/versions/node/v18.0.0/bin:/Users/briffard/.brew/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
+NVM_BIN = /Users/briffard/.nvm/versions/node/v18.0.0/bin
+# environment
 ELECTRON_RUN_AS_NODE = 1
-# makefile (from `Makefile', line 25)
+# makefile (from `Makefile', line 26)
 LIB = -L ./libft/ -lft
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ph2SjeNBkS/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.1tOGG5eWse/Listeners
 # automatic
 %F = $(notdir $%)
-# makefile (from `Makefile', line 62)
-OBJS = $(addprefix $(OBJ_DIR), $(FILES:%.c=%.o))
 # environment
-PWD = /Users/flagada/Desktop/redo
-# makefile (from `Makefile', line 58)
-FRAMEWORKS = 
+PWD = /Users/briffard/Desktop/lem-in
+# makefile (from `Makefile', line 63)
+FRAMEWORKS = -framework OpenGL -framework Appkit
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/flagada
+HOME = /Users/briffard
 # default
-MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/flagada/Library/Application Support/Code/CachedData/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+VSCODE_CODE_CACHE_PATH = /Users/briffard/Library/Application Support/Code/CachedData/74b1f979648cc44d385a2286793c226e611f59e7
 # environment
-LOGNAME = flagada
+LOGNAME = briffard
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-ZSH = /Users/flagada/.oh-my-zsh
+NVM_CD_FLAGS = -q
+# environment
+ZSH = /Users/briffard/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -93,15 +99,17 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 16)
+# makefile (from `Makefile', line 14)
+LIBFT = libft.a
+# makefile (from `Makefile', line 17)
 CC = gcc
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = flagada
+USER = briffard
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from `Makefile', line 17)
+# makefile (from `Makefile', line 18)
 CCFLAGS = -Werror -Wextra -Wall
 # makefile (from `Makefile', line 13)
 NAME = lem-in
@@ -109,20 +117,20 @@ NAME = lem-in
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 20)
+# makefile (from `Makefile', line 21)
 INCL_LFT = -I ./libft/
 # default
-MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/tg/s_2r8vp967gdf_d7rkv5nx640000gn/T/
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n0000l580004s_/T/
 # automatic
 *F = $(notdir $*)
-# makefile (from `Makefile', line 22)
-INCL_MLX = 
+# makefile (from `Makefile', line 23)
+INCL_MLX = -I/usr/local/include
 # environment
-VSCODE_IPC_HOOK = /Users/flagada/Library/Application Support/Code/1.69.1-main.sock
+VSCODE_IPC_HOOK = /Users/briffard/Library/Application Support/Code/1.71.2-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -132,27 +140,31 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.69349.69355
+NVM_DIR = /Users/briffard/.nvm
+# environment
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x1000000b.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x1
+__CF_USER_TEXT_ENCODING = 0x132A:0x0:0x0
 # environment
 COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
-# makefile (from `Makefile', line 33)
+# makefile (from `Makefile', line 34)
 SRC_DIR = ./srcs/
 # automatic
 <F = $(notdir $<)
-# makefile (from `Makefile', line 21)
+# makefile (from `Makefile', line 22)
 INCL_PARS = -I ./includes/
 # environment
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 1872c
 # automatic
 ^F = $(notdir $^)
 # default
@@ -164,11 +176,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1036
-# makefile (from `Makefile', line 34)
-FILES = main.c malloc_handler.c free_handler.c init_value.c panic.c mapreader.c get_ants.c tools.c exit_parsing.c save_data.c save_data_tools.c hashtable_main.c 
+VSCODE_PID = 34566
+# makefile (from `Makefile', line 36)
+FILES = main.c malloc_handler.c free_handler.c init_value.c save_links.c mapreader.c mapreader_tools.c get_ants.c parsing_tools.c exit_parsing.c save_data.c save_data_tools.c hashtable_main.c hashtable_malloc.c print_man.c add_node_to_be_visited.c display_result.c get_aug_paths.c get_paths.c handle_error.c history_utils.c list_utils.c paths_utils.c solve.c utils.c visualizer.c free_handler_solve.c find_best_solution.c vector_utils.c 
 # variable set hash-table stats:
-# Load=77/1024=8%, Rehash=0, Collisions=8/118=7%
+# Load=83/1024=8%, Rehash=0, Collisions=5/118=4%
 
 # Pattern-specific Variable Values
 
@@ -176,19 +188,18 @@ FILES = main.c malloc_handler.c free_handler.c init_value.c panic.c mapreader.c 
 
 # Directories
 
-# . (device 16777220, inode 876483): 20 files, no impossibilities.
-# ./srcs (device 16777220, inode 877091): 10 files, no impossibilities so far.
- 
-# srcs (device 16777220, inode 877091): 10 files, no impossibilities so far.
+# . (device 16777227, inode 4095155): 21 files, no impossibilities.
+# ./srcs (device 16777227, inode 4095704): No files, no impossibilities so far.
 
-# 40 files, no impossibilities in 3 directories.
+# 21 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
+ 
 objectFiles/%.o: ./srcs/%.c
-#  commands to execute (from `Makefile', line 70):
+#  commands to execute (from `Makefile', line 76):
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $< -g
+	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $<
 	
 
 # 1 implicit rules, 0 (0.0%) terminal.
@@ -196,19 +207,22 @@ objectFiles/%.o: ./srcs/%.c
 # Files
 
 # Not a target:
-objectFiles/get_ants.o:
+objectFiles/print_man.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
-srcs/malloc_handler.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-29 18:15:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+objectFiles/history_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/get_ants.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objectFiles/free_handler.o:
@@ -224,36 +238,19 @@ all: lem-in
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
 
-objectFiles/malloc_handler.o: srcs/malloc_handler.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `malloc_handler'
-#  Last modified 2022-07-29 18:14:57
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := objectFiles/malloc_handler.o
-# automatic
-# % := 
-# automatic
-# * := malloc_handler
-# automatic
-# + := srcs/malloc_handler.c
-# automatic
-# | := 
-# automatic
-# < := srcs/malloc_handler.c
-# automatic
-# ^ := srcs/malloc_handler.c
-# automatic
-# ? := srcs/malloc_handler.c
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/18=6%
-#  commands to execute (from `Makefile', line 70):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $< -g
-	
+# Not a target:
+objectFiles/free_handler_solve.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/malloc_handler.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 .PHONY: all re clean fclean
 #  Implicit rule search has not been done.
@@ -267,7 +264,7 @@ objectFiles/mapreader.o:
 #  File has not been updated.
 
 # Not a target:
-objectFiles/tools.o:
+objectFiles/find_best_solution.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -281,33 +278,45 @@ objectFiles/tools.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-29 15:55:01
+#  Last modified 2022-10-05 13:54:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+libft.a:
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := libft.a
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/10=10%
+#  commands to execute (from `Makefile', line 80):
+	@make -sC ./libft/ 
+	
 
 # Not a target:
-srcs/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-29 18:12:27
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-objectFiles/main.o: srcs/main.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main'
-#  Last modified 2022-07-29 18:14:57
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 70):
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAGS) $(INCL_LFT) $(INCL_PARS) $(INCL_MLX) -o $@ -c $< -g
-	
+objectFiles/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objectFiles/save_data.o:
@@ -321,34 +330,49 @@ objectFiles/hashtable_main.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-lft:
+# Not a target:
+objectFiles/visualizer.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 76):
-	@make -sC ./libft/ all
-	
+
+# Not a target:
+objectFiles/solve.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/mapreader_tools.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 92):
+#  commands to execute (from `Makefile', line 89):
+	@make -sC ./libft/ fclean
 	@$(RM) $(NAME)
-	@echo "Parsing file has been deleted"
-	
-
-lft_reboot:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 79):
-	@make -sC ./libft/ re
+	@echo "Lem-in file has been deleted"
 	
 
 # Not a target:
 .DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/vector_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/add_node_to_be_visited.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -364,16 +388,11 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 88):
+#  commands to execute (from `Makefile', line 83):
+	@make -sC ./libft/ clean
 	@$(RM_DIR) $(OBJ_DIR)
 	@echo "Object Files have been deleted"
 	
-
-# Not a target:
-objectFiles/panic.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 objectFiles/save_data_tools.o:
@@ -381,21 +400,35 @@ objectFiles/save_data_tools.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-lft_fclean:
+# Not a target:
+objectFiles/parsing_tools.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 85):
-	@make -sC ./libft/ fclean
-	
 
-lft_clean:
+# Not a target:
+objectFiles/utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 82):
-	@make -sC ./libft/ clean
-	
+
+# Not a target:
+objectFiles/hashtable_malloc.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/get_aug_paths.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/save_links.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 objectFiles/exit_parsing.o:
@@ -404,36 +437,67 @@ objectFiles/exit_parsing.o:
 #  File has not been updated.
 
 # Not a target:
-objectFiles/init_value.o:
+objectFiles/paths_utils.o:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
-lem-in: objectFiles/main.o objectFiles/malloc_handler.o objectFiles/free_handler.o objectFiles/init_value.o objectFiles/panic.o objectFiles/mapreader.o objectFiles/get_ants.o objectFiles/tools.o objectFiles/exit_parsing.o objectFiles/save_data.o objectFiles/save_data_tools.o objectFiles/hashtable_main.o
+# Not a target:
+objectFiles/list_utils.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-29 18:14:58
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/handle_error.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/get_paths.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objectFiles/init_value.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+lem-in: libft.a objectFiles/main.o objectFiles/malloc_handler.o objectFiles/free_handler.o objectFiles/init_value.o objectFiles/save_links.o objectFiles/mapreader.o objectFiles/mapreader_tools.o objectFiles/get_ants.o objectFiles/parsing_tools.o objectFiles/exit_parsing.o objectFiles/save_data.o objectFiles/save_data_tools.o objectFiles/hashtable_main.o objectFiles/hashtable_malloc.o objectFiles/print_man.o objectFiles/add_node_to_be_visited.o objectFiles/display_result.o objectFiles/get_aug_paths.o objectFiles/get_paths.o objectFiles/handle_error.o objectFiles/history_utils.o objectFiles/list_utils.o objectFiles/paths_utils.o objectFiles/solve.o objectFiles/utils.o objectFiles/visualizer.o objectFiles/free_handler_solve.o objectFiles/find_best_solution.o objectFiles/vector_utils.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-10-05 13:55:04
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
-#  commands to execute (from `Makefile', line 67):
-	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(MLX) $(FRAMEWORKS) -g
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
+#  commands to execute (from `Makefile', line 72):
+	@$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIB) $(MLX) $(FRAMEWORKS)
+	@echo "$(NAME) has been created"
 	
 
+# Not a target:
+objectFiles/display_result.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=27/1024=3%, Rehash=0, Collisions=0/66=0%
+# Load=39/1024=4%, Rehash=0, Collisions=2/91=2%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
+ 
 # # of strings in strcache: 1
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jul 29 22:27:50 2022
+# Finished Make data base on Wed Oct  5 13:55:29 2022
 
  

@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:02:34 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 13:57:36 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/05 11:12:25 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ static t_room	*set_copy(t_room *dst, t_room *source)
 	dst->end = source->end;
 	dst->start = source->start;
 	dst->total_links = 0;
+	dst->to_be_visited = 0;
 	dst->hash_next = NULL;
 	dst->next = NULL;
+	dst->reverse = NULL;
+	dst->history = NULL;
 	dst->links = (t_room **)malloc(sizeof(t_room *));
 	if (!dst->links)
 		panic("In hashtable_malloc: set_copy: dst->links");

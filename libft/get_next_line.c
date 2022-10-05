@@ -3,104 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: briffard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/22 11:52:18 by briffard          #+#    #+#             */
-/*   Updated: 2022/01/18 11:14:47 by briffard         ###   ########.fr       */
+/*   Created: 2021/12/28 18:16:30 by mde-maul          #+#    #+#             */
+/*   Updated: 2021/12/28 18:16:34 by mde-maul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_print_line(char **str, char **line)
+static void	handle_line(char **fd_array, int fd, char **line)
 {
-	char	*temp;
-	int		i;
+	char	*tmp;
+	int		length;
 
-	i = 0;
-	while ((*str)[i] != '\n' && (*str)[i] != '\0')
-		i++;
-	if ((*str)[i] == '\n')
+	length = 0;
+	while (fd_array[fd][length] != '\0' && fd_array[fd][length] != '\n')
+		length++;
+	if (fd_array[fd][length] == '\n')
 	{
-		*line = ft_strsub(*str, 0, i);
-		temp = ft_strdup(&((*str)[i + 1]));
-		if (!line || !temp)
-			return (-1);
-		ft_memdel((void **)(&(*str)));
-		*str = temp;
-		if ((*str)[0] == '\0')
-			ft_strdel(str);
+		*line = ft_strsub(fd_array[fd], 0, length);
+		tmp = ft_strdup(&fd_array[fd][length + 1]);
+		ft_memdel((void **)&fd_array[fd]);
+		fd_array[fd] = tmp;
+		if (*fd_array[fd] == '\0')
+			ft_memdel((void **)&fd_array[fd]);
 	}
 	else
 	{
-		*line = ft_strdup(*str);
-		if (!line)
-			return (-1);
-		ft_strdel(str);
+		*line = ft_strdup(fd_array[fd]);
+		ft_memdel((void **)&fd_array[fd]);
 	}
-	return (1);
 }
 
-static int	ft_check_return(char **str, char **line, int ret, int fd)
+static int	handle_ret(char **fd_array, int fd, char **line, int ret)
 {
+	if (ret == 0 && !fd_array[fd])
+		return (0);
 	if (ret < 0)
 		return (-1);
-	else if (ret == 0 && !str[fd])
-		return (0);
-	return (ft_print_line(&str[fd], line));
-}
-
-static char	*add_buffer_to(char **str, char *buffer)
-{
-	char	*temp;
-
-	if (!(*str))
-	{
-		*str = (char *)malloc(sizeof(char) * BUFF_SIZE + 1);
-		if (!(*str))
-			return (NULL);
-		ft_bzero(*str, BUFF_SIZE);
-	}
-	temp = ft_strjoin(*str, buffer);
-	if (!temp)
-		return (NULL);
-	ft_memdel((void **)(&(*str)));
-	*str = temp;
-	return (*str);
-}
-
-static int	error_check(int fd, char **line)
-{
-	if (fd < 0 || !line || BUFF_SIZE <= 0 || fd > FD_SIZE)
-		return (-1);
-	return (0);
+	handle_line(fd_array, fd, line);
+	return (1);
 }
 
 int	get_next_line(const int fd, char **line)
 {
-	static char	*str[FD_SIZE];
-	char		buffer[BUFF_SIZE + 1];
+	static char	*fd_array[FD_ARRAY_SIZE];
+	char		buf[BUFF_SIZE + 1];
 	int			ret;
+	char		*tmp;
 
-	if (error_check(fd, line) == -1)
+	if (fd < 0 || fd >= FD_ARRAY_SIZE || !line || BUFF_SIZE < 1)
 		return (-1);
-	if (str[fd] && ft_strchr(str[fd], '\n'))
-		return (ft_print_line(&str[fd], line));
-	else
+	ret = read(fd, buf, BUFF_SIZE);
+	buf[ret] = '\0';
+	while (ret > 0)
 	{
-		ret = read(fd, buffer, BUFF_SIZE);
-		if (ret == 0)
-			return (ft_check_return(str, line, ret, fd));
-		while (ret > 0)
+		if (!fd_array[fd])
+			fd_array[fd] = ft_strdup(buf);
+		else
 		{
-			buffer[ret] = '\0';
-			str[fd] = add_buffer_to(&str[fd], buffer);
-			if (str[fd] == NULL)
-				return (-1);
-			if (ft_strchr(str[fd], '\n'))
-				break ;
-			ret = read(fd, buffer, BUFF_SIZE);
+			tmp = ft_strjoin(fd_array[fd], buf);
+			ft_memdel((void **)&fd_array[fd]);
+			fd_array[fd] = tmp;
 		}
+		if (ft_strchr(buf, '\n'))
+			break ;
+		ret = read(fd, buf, BUFF_SIZE);
+		buf[ret] = '\0';
 	}
-	return (ft_check_return(str, line, ret, fd));
+	return (handle_ret(fd_array, fd, line, ret));
 }
