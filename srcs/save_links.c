@@ -12,7 +12,6 @@
 
 #include "parsing.h"
 
-/*fonction similaire to search_for*/
 static int	match(char *room, t_data *data)
 {
 	t_room	*temp;
@@ -74,7 +73,7 @@ void	save_links(char *line, t_data **data, t_room **rooms)
 	link_2 = ft_strdup(&line[dash_position + 1]);
 	if (!link_1 || !link_2)
 		panic("In save_data.c: save_linker");
-	from = search_for(link_1,*data);
+	from = search_for(link_1, *data);
 	to = search_for(link_2, *data);
 	clean2str(link_1, link_2, 'n');
 	if (!from || !to)

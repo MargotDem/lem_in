@@ -21,7 +21,7 @@ int	links_already_exist(t_room *room_1, t_room *room_2)
 	max = room_1->total_links;
 	while (index < max)
 	{
-		if (strcmp(room_1->links[index]->name, room_2->name) == 0)
+		if (ft_strcmp(room_1->links[index]->name, room_2->name) == 0)
 			return (TRUE);
 		index++;
 	}

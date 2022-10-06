@@ -23,20 +23,9 @@ void	draw_steep_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
 {
 	int	x;
 	int	y;
-	int	tmp_x;
-	int	tmp_y;
 	int	color;
 
 	color = mlx_win->room_color;
-	if (y_b <= y_a)
-	{
-		tmp_x = x_a;
-		tmp_y = y_a;
-		x_a = x_b;
-		y_a = y_b;
-		x_b = tmp_x;
-		y_b = tmp_y;
-	}
 	x = x_a;
 	y = y_a;
 	while (y < y_b)
