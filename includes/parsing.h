@@ -121,7 +121,7 @@ unsigned long		hashing(char *str, unsigned int size);
 t_room				*cpy_room(t_room *room);
 
 /*save_data_tools*/
-void					insert_links(t_room *room1, t_room *room2);
+void				insert_links(t_room *room1, t_room *room2);
 
 /*tools*/
 char				*save_name(char *line);

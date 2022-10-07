@@ -43,12 +43,12 @@ unsigned short	is_command(char *line)
 	{
 		if (ft_strlen(line) == 7)
 		{
-			if (ft_strstr(line,"start"))
+			if (ft_strstr(line, "start"))
 				return (TRUE);
 		}
 		else if (ft_strlen(line) == 5)
 		{
-			if (ft_strstr(line,"end"))
+			if (ft_strstr(line, "end"))
 				return (TRUE);
 		}
 	}

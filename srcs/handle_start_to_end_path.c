@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-int		end_connected_to_start(t_room *start, t_data *data)
+int	end_connected_to_start(t_room *start, t_data *data)
 {
 	int	connected;
 	int	i;
@@ -40,7 +40,8 @@ void	create_start_end_path(t_paths **path, t_room *start, t_room *end)
 	push_front_node(&((*path)->path), node);
 }
 
-void	handle_start_to_end_path(t_room *graph, t_data *data, t_vector *all_paths_combos)
+void	handle_start_to_end_path(t_room *graph, t_data *data, \
+	t_vector *all_paths_combos)
 {
 	t_paths			*path;
 	t_room			*end;
@@ -53,7 +54,8 @@ void	handle_start_to_end_path(t_room *graph, t_data *data, t_vector *all_paths_c
 	}
 }
 
-void	handle_start_to_end_path2(t_room *graph, t_data *data, t_vector *all_paths_combos)
+void	handle_start_to_end_path2(t_room *graph, t_data *data, \
+	t_vector *all_paths_combos)
 {
 	t_paths		*path;
 	t_room		*end;
