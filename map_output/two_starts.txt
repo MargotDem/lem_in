@@ -1,0 +1,28 @@
+5
+##start
+start 0 0
+a 1 1
+b 2 1
+d 1 0
+c 2 0
+##end
+sink 3 0
+##start
+anotherstart 0 0
+start-a
+anotherstart-d
+a-d
+a-c
+a-b
+b-c
+b-sink
+d-c
+c-sink
+
+L1-d 
+L1-c L2-d 
+L1-sink L2-c L3-d 
+L2-sink L3-c L4-d 
+L3-sink L4-c L5-d 
+L4-sink L5-c 
+L5-sink 

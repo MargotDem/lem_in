@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:21:57 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 13:51:16 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:36:19 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define LINKS 2
 # define COMMENT 3
 # define EXIT_PARSING 4
+# define ERROR 0
+# define OK 1
 
 /*STRUCTURE*/
 typedef struct s_room
@@ -85,7 +87,7 @@ t_room				*set_room(char *line, char letter, t_room *room);
 /*malloc_handler*/
 t_data				*create_data(void);
 t_room				*new_node(char *line, char letter);
-void				create_hashtable(t_data **data);
+int					create_hashtable(t_data **data);
 void				create_links(t_room **room);
 t_room				**re_alloc(t_room **links, \
 					t_room *to, unsigned long size_list);
@@ -121,7 +123,7 @@ unsigned long		hashing(char *str, unsigned int size);
 t_room				*cpy_room(t_room *room);
 
 /*save_data_tools*/
-void				insert_links(t_room *room1, t_room *room2);
+int				insert_links(t_room *room1, t_room *room2);
 
 /*tools*/
 char				*save_name(char *line);

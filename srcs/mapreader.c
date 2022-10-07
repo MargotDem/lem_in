@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:36:07 by briffard          #+#    #+#             */
-/*   Updated: 2022/08/01 15:16:43 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:21:05 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	mapreader(t_room **rooms, t_data **data)
 	if (!map)
 		exit_parsing(line, *rooms, *data);
 	ants = get_ants(data, *rooms);
+	if (ants == 0)
+		exit_parsing(line, *rooms, *data);
 	index = (*data)->index_line;
 	while (get_line(&map[index], &line, *data))
 	{

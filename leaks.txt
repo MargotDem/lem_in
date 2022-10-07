@@ -1,0 +1,20 @@
+Process:         lem-in [16642]
+Path:            /Volumes/VOLUME/*/lem-in
+Load Address:    0x10b4b0000
+Identifier:      lem-in
+Version:         ???
+Code Type:       X86-64
+Parent Process:  bash [16360]
+
+Date/Time:       2022-10-07 15:57:05.072 +0300
+Launch Time:     2022-10-07 15:57:04.617 +0300
+OS Version:      Mac OS X 10.14.6 (18G9323)
+Report Version:  7
+Analysis Tool:   /Applications/Xcode.app/Contents/Developer/usr/bin/leaks
+Analysis Tool Version:  Xcode 11.3.1 (11C505)
+----
+
+leaks Report Version: 4.0
+Process 16642: 786 nodes malloced for 108 KB
+Process 16642: 0 leaks for 0 total leaked bytes.
+

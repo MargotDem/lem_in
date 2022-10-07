@@ -3,25 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:27:13 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/10/03 14:27:14 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:33:50 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	init_vect(t_vector **vector, size_t size)
+int	init_vect(t_vector **vector, size_t size)
 {
 	t_vector	*vect;
 
-	vect = (t_vector *)handle_null(malloc(sizeof(t_vector)));
+	vect = (t_vector *)/*handle_null*/(malloc(sizeof(t_vector)));
+	if (!vect)
+		return (ERROR);
 	vect->size = size;
 	vect->counter = 0;
-	vect->arr = (void **)handle_null(malloc(sizeof(void *) * size));
+	vect->arr = (void **)/*handle_null*/(malloc(sizeof(void *) * size));
+	if (!vect->arr)
+		return (ERROR);
 	ft_bzero((void *)(vect->arr), sizeof(void *) * size);
 	*vector = vect;
+	return (OK);
 }
 
 void	push_to_vect(t_vector *vector, void *el)
@@ -35,7 +40,7 @@ void	push_to_vect(t_vector *vector, void *el)
 	size = vector->size;
 	if (counter && counter % size == 0)
 	{
-		tmp = (void **)handle_null(\
+		tmp = (void **)/*handle_null*/(\
 			malloc(sizeof(void *) * (counter + size)));
 		i = 0;
 		while (i < counter)

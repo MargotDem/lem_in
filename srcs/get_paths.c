@@ -3,46 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   get_paths.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:33:04 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/08/05 08:56:40 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:33:14 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	create_path_node(t_path_node **path_node, t_room *node)
+int		create_path_node(t_path_node **path_node, t_room *node)
 {
-	(*path_node) = (t_path_node *)handle_null(malloc(sizeof(t_path_node)));
+	(*path_node) = (t_path_node *)/*handle_null*/(malloc(sizeof(t_path_node)));
+	if (!(*path_node))
+		return (ERROR);
 	(*path_node)->next = NULL;
 	(*path_node)->node = node;
+	return (OK);
 }
 
-void	get_path(t_room *node, t_paths **paths, t_room *graph, t_room *end)
+int	get_path(t_room *node, t_paths **paths, t_room *graph, t_room *end)
 {
 	t_paths			*path_el;
 	t_path_node		*path_node;
 	size_t			path_size;
 
 	path_el = create_path_el();
+	if (!path_el)
+		return (ERROR);
 	path_size = 2;
-	create_path_node(&path_node, end);
+	if (!create_path_node(&path_node, end))
+		return (ERROR);
 	path_el->path = path_node;
 	while (node && node != graph)
 	{
 		path_size++;
-		create_path_node(&path_node, node);
+		if (!create_path_node(&path_node, node))
+			return (ERROR);
 		push_front_node(&(path_el->path), path_node);
 		node = node->reverse;
 	}
-	create_path_node(&path_node, graph);
+	if (!create_path_node(&path_node, graph))
+		return (ERROR);
 	push_front_node(&(path_el->path), path_node);
 	path_el->path_size = path_size;
 	if (!(*paths))
 		(*paths) = path_el;
 	else
 		lst_add_in_order(paths, path_el);
+	return (OK);
 }
 
 void	get_paths(t_vector *all_paths_combos, \
@@ -58,7 +67,8 @@ void	get_paths(t_vector *all_paths_combos, \
 	while (i < end->total_links)
 	{
 		if (end->links[i]->reverse)
-			get_path(end->links[i], &paths, graph, end);
+			if (!get_path(end->links[i], &paths, graph, end))
+				exit_solver(all_paths_combos, data);
 		i++;
 	}
 	push_to_vect(all_paths_combos, paths);

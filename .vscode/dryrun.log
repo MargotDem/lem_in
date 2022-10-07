@@ -1,8 +1,73 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/briffard/Desktop/lem-in'
 make -sC ./libft/ 
- 
-gcc -Werror -Wextra -Wall -o lem-in ./objectFiles/main.o ./objectFiles/malloc_handler.o ./objectFiles/free_handler.o ./objectFiles/init_value.o ./objectFiles/save_links.o ./objectFiles/mapreader.o ./objectFiles/mapreader_tools.o ./objectFiles/get_ants.o ./objectFiles/parsing_tools.o ./objectFiles/exit_parsing.o ./objectFiles/save_data.o ./objectFiles/save_data_tools.o ./objectFiles/hashtable_main.o ./objectFiles/hashtable_malloc.o ./objectFiles/print_man.o ./objectFiles/add_node_to_be_visited.o ./objectFiles/display_result.o ./objectFiles/get_aug_paths.o ./objectFiles/get_paths.o ./objectFiles/handle_error.o ./objectFiles/history_utils.o ./objectFiles/list_utils.o ./objectFiles/paths_utils.o ./objectFiles/solve.o ./objectFiles/utils.o ./objectFiles/visualizer.o ./objectFiles/free_handler_solve.o ./objectFiles/find_best_solution.o ./objectFiles/vector_utils.o -L ./libft/ -lft -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/main.o -c srcs/main.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/malloc_handler.o -c srcs/malloc_handler.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/free_handler.o -c srcs/free_handler.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/init_value.o -c srcs/init_value.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/save_links.o -c srcs/save_links.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/mapreader.o -c srcs/mapreader.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/mapreader_tools.o -c srcs/mapreader_tools.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/get_ants.o -c srcs/get_ants.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/parsing_tools.o -c srcs/parsing_tools.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/exit_parsing.o -c srcs/exit_parsing.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/save_data.o -c srcs/save_data.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/save_data_tools.o -c srcs/save_data_tools.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/hashtable_main.o -c srcs/hashtable_main.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/hashtable_malloc.o -c srcs/hashtable_malloc.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/print_man.o -c srcs/print_man.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/add_node_to_be_visited.o -c srcs/add_node_to_be_visited.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/display_result.o -c srcs/display_result.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/get_aug_paths.o -c srcs/get_aug_paths.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/get_paths.o -c srcs/get_paths.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/handle_error.o -c srcs/handle_error.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/history_utils.o -c srcs/history_utils.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/list_utils.o -c srcs/list_utils.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/paths_utils.o -c srcs/paths_utils.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/solve.o -c srcs/solve.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/utils.o -c srcs/utils.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/visualizer.o -c srcs/visualizer.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/free_handler_solve.o -c srcs/free_handler_solve.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/find_best_solution.o -c srcs/find_best_solution.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/vector_utils.o -c srcs/vector_utils.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/viz_draw_rooms.o -c srcs/viz_draw_rooms.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/viz_init.o -c srcs/viz_init.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/viz_draw_line.o -c srcs/viz_draw_line.c
+mkdir -p ./objectFiles/
+gcc -Werror -Wextra -Wall -I ./libft/ -I ./includes/ -I/usr/local/include -o objectFiles/handle_start_to_end_path.o -c srcs/handle_start_to_end_path.c
+gcc -Werror -Wextra -Wall -o lem-in ./objectFiles/main.o ./objectFiles/malloc_handler.o ./objectFiles/free_handler.o ./objectFiles/init_value.o ./objectFiles/save_links.o ./objectFiles/mapreader.o ./objectFiles/mapreader_tools.o ./objectFiles/get_ants.o ./objectFiles/parsing_tools.o ./objectFiles/exit_parsing.o ./objectFiles/save_data.o ./objectFiles/save_data_tools.o ./objectFiles/hashtable_main.o ./objectFiles/hashtable_malloc.o ./objectFiles/print_man.o ./objectFiles/add_node_to_be_visited.o ./objectFiles/display_result.o ./objectFiles/get_aug_paths.o ./objectFiles/get_paths.o ./objectFiles/handle_error.o ./objectFiles/history_utils.o ./objectFiles/list_utils.o ./objectFiles/paths_utils.o ./objectFiles/solve.o ./objectFiles/utils.o ./objectFiles/visualizer.o ./objectFiles/free_handler_solve.o ./objectFiles/find_best_solution.o ./objectFiles/vector_utils.o ./objectFiles/viz_draw_rooms.o ./objectFiles/viz_init.o ./objectFiles/viz_draw_line.o ./objectFiles/handle_start_to_end_path.o -L ./libft/ -lft -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit
 echo "lem-in has been created"
 make: Leaving directory `/Users/briffard/Desktop/lem-in'
  

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 21:14:34 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/08/05 09:01:01 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:29:38 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 	t_vector	*path;
 	t_vector	*to_be_visited;
 	int			i;
+	int			ret;
 
 	while (1)
 	{
-		path = get_aug_path(graph, start_and_end, &to_be_visited);
-		if (!path)
+		ret = get_aug_path(graph, start_and_end, &to_be_visited, &path);
+		if (ret < 1)
 		{
+			if (!ret)
+				exit_solver(all_paths_combos, data);
 			free_to_be_visited(&to_be_visited);
 			break ;
 		}
@@ -67,7 +70,8 @@ void	solve(t_room *graph, t_data *data)
 	nb_ants = data->ants;
 	start_and_end[0] = data->start_room_name;
 	start_and_end[1] = data->end_room_name;
-	init_vect(&all_paths_combos, 30);
+	if (!init_vect(&all_paths_combos, 30))
+		exit_solver(all_paths_combos, data);
 	handle_start_to_end_path(graph, data, all_paths_combos);
 	edmond_karp_with_a_twist(graph, data, start_and_end, all_paths_combos);
 	handle_start_to_end_path2(graph, data, all_paths_combos);
@@ -79,6 +83,6 @@ void	solve(t_room *graph, t_data *data)
 		display_options(data, graph, solution);
 	}
 	else
-		handle_error();
+		exit_solver(all_paths_combos, data);
 	free_combos(all_paths_combos);
 }

@@ -1,0 +1,51 @@
+9
+#hey
+A 16 4
+##start
+start 20 2
+##end
+end 20 18
+B 13 6
+C 12 10
+D 16 12
+E 20 14
+F 20 6
+G 20 10
+K 22 16
+H 24 7
+#comment
+J 24 14
+lL 28 3
+I 26 11
+M 32 8
+N 33 11
+O 30 14
+start-A
+start-F
+start-lL
+A-B
+B-C
+C-D
+D-E
+E-G
+E-end
+F-H
+F-G
+H-I
+I-J
+J-K
+K-end
+lL-M
+M-N
+N-O
+O-end
+#so it changes between 9 and 10
+
+L1-F L2-lL 
+L1-G L3-F L2-M L4-lL 
+L1-E L3-G L5-F L2-N L4-M L6-lL 
+L1-end L3-E L5-G L7-F L2-O L4-N L6-M L8-lL 
+L3-end L5-E L7-G L9-F L2-end L4-O L6-N L8-M 
+L5-end L7-E L9-G L4-end L6-O L8-N 
+L7-end L9-E L6-end L8-O 
+L9-end L8-end 

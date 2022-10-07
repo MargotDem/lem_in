@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:54:25 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 13:07:46 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:15:41 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ t_data	*create_data(void)
 
 	element = (t_data *)malloc(sizeof(*element));
 	if (!element)
+	{
 		panic("In malloc_handler.c: create_data");
+		return (NULL);
+	}
 	return (element);
 }
 
@@ -28,12 +31,12 @@ t_room	*new_node(char *line, char letter)
 
 	new = (t_room *)malloc(sizeof(*new));
 	if (!new)
-		panic("I malloc_handler: new_node");
+		return (panic("I malloc_handler: new_node"), NULL);
 	new = set_room(line, letter, new);
 	return (new);
 }
 
-void	create_hashtable(t_data **data)
+int	create_hashtable(t_data **data)
 {
 	size_t			i;
 	unsigned long	size;
@@ -42,12 +45,13 @@ void	create_hashtable(t_data **data)
 	size = (*data)->size_list;
 	(*data)->hashtab = (t_room **)malloc(sizeof(*(*data)->hashtab) * size);
 	if (!(*data)->hashtab)
-		panic("In malloc_handler: create_hashtable");
+		return (panic("In malloc_handler: create_hashtable"), ERROR);
 	while (i < size)
 	{
 		(*data)->hashtab[i] = NULL;
 		i++;
 	}
+	return (TRUE);
 }
 
 t_room	**re_alloc(t_room **links, t_room *to, unsigned long size_list)
@@ -58,7 +62,7 @@ t_room	**re_alloc(t_room **links, t_room *to, unsigned long size_list)
 	x = 0;
 	dst = (t_room **)malloc(sizeof(t_room *) * size_list + sizeof(t_room *));
 	if (!dst)
-		panic("In malloc_handler: brealloc");
+		return(panic("In malloc_handler: brealloc"), NULL);
 	while (x < size_list)
 	{
 		dst[x] = links[x];
@@ -70,10 +74,10 @@ t_room	**re_alloc(t_room **links, t_room *to, unsigned long size_list)
 	return (dst);
 }
 
-void	create_links(t_room **room)
-{
-	(*room)->links = (t_room **)malloc(sizeof(t_room *));
-	if (!(*room)->links)
-		panic("In malloc_handler: create_links");
-	(*room)->links[0] = NULL;
-}
+// void	create_links(t_room **room)
+// {
+// 	(*room)->links = (t_room **)malloc(sizeof(t_room *));
+// 	if (!(*room)->links)
+// 		panic("In malloc_handler: create_links");
+// 	(*room)->links[0] = NULL;
+// }

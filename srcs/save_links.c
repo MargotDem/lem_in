@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   panic.c                                            :+:      :+:    :+:   */
+/*   save_links.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:56:55 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 13:54:29 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:25:17 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,15 @@ void	save_links(char *line, t_data **data, t_room **rooms)
 	link_1 = ft_strsub(line, 0, dash_position);
 	link_2 = ft_strdup(&line[dash_position + 1]);
 	if (!link_1 || !link_2)
+	{
 		panic("In save_data.c: save_linker");
+		exit_parsing(line, *rooms, *data);
+	}
 	from = search_for(link_1, *data);
 	to = search_for(link_2, *data);
 	clean2str(link_1, link_2, 'n');
 	if (!from || !to)
 		exit_parsing(line, *rooms, *data);
-	insert_links(from, to);
+	if (!insert_links(from, to))
+		exit_parsing(line, *rooms, *data);	
 }

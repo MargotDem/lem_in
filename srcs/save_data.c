@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:02:18 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 13:54:25 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:57:20 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	save_room(char *line, t_data **data, t_room **room)
 
 	element = new_node(line, 'n');
 	if (!element)
+	{
 		panic("In save_data.c: save_room");
+		exit_parsing(line, *room, *data);
+	}	
 	*room = push_front(*room, element);
 	if (!*room)
 		exit_parsing(line, *room, *data);
@@ -26,12 +29,21 @@ void	save_room(char *line, t_data **data, t_room **room)
 	(*data)->section_rooms = ACTIVATE;
 }
 
-static void	save_start_end(t_data **data, char letter, char *line)
+static int	save_start_end(t_data **data, char letter, char *line)
 {
 	if (letter == 's')
+	{
 		(*data)->start_room_name = save_name(line);
+		if (!(*data)->start_room_name)
+			return (ERROR);
+	}
 	else
+	{
 		(*data)->end_room_name = save_name(line);
+		if (!(*data)->end_room_name)
+			return (ERROR);
+	}
+	return (1);
 }
 
 void	save_command(char *line, t_data **data, t_room **rooms)
@@ -56,7 +68,8 @@ void	save_command(char *line, t_data **data, t_room **rooms)
 		(*data)->size_list += 1;
 		if ((*data)->start_room_name || (*data)->end_room_name)
 			clean2str((*data)->start_room_name, (*data)->end_room_name, letter);
-		save_start_end(data, letter, line);
+		if(!save_start_end(data, letter, line))
+			exit_parsing(line, *rooms, *data);
 		(*data)->section_rooms = ACTIVATE;
 		ft_strdel(&line);
 	}

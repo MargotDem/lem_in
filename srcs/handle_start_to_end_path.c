@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_start_to_end_path.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:07:10 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/10/07 09:07:26 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:00:41 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,21 @@ int	end_connected_to_start(t_room *start, t_data *data)
 	return (0);
 }
 
-void	create_start_end_path(t_paths **path, t_room *start, t_room *end)
+int	create_start_end_path(t_paths **path, t_room *start, t_room *end)
 {
 	t_path_node		*node;
 
 	(*path) = create_path_el();
+	if (!path)
+		return (ERROR);
 	(*path)->path_size = 2;
-	create_path_node(&node, end);
+	if (!create_path_node(&node, end))
+		return (ERROR);
 	(*path)->path = node;
-	create_path_node(&node, start);
+	if (!create_path_node(&node, start))
+		return (ERROR);
 	push_front_node(&((*path)->path), node);
+	return (OK);
 }
 
 void	handle_start_to_end_path(t_room *graph, t_data *data, \
@@ -49,7 +54,8 @@ void	handle_start_to_end_path(t_room *graph, t_data *data, \
 	if (end_connected_to_start(graph, data))
 	{
 		end = search_for(data->end_room_name, data);
-		create_start_end_path(&path, graph, end);
+		if (!create_start_end_path(&path, graph, end))
+			exit_solver(all_paths_combos, data);
 		push_to_vect(all_paths_combos, path);
 	}
 }
@@ -67,7 +73,8 @@ void	handle_start_to_end_path2(t_room *graph, t_data *data, \
 		end = search_for(data->end_room_name, data);
 		while (i < all_paths_combos->counter)
 		{
-			create_start_end_path(&path, graph, end);
+			if (!create_start_end_path(&path, graph, end))
+				exit_solver(all_paths_combos, data);
 			path->next = (all_paths_combos->arr[i]);
 			(all_paths_combos->arr[i]) = path;
 			i++;

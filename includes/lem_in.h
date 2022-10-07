@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 15:37:29 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/07/06 13:46:13 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:16:40 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ void		print_path_node(t_path_node *path);
 void		print_paths(t_paths *paths);
 void		set_paths_size(t_paths *paths);
 t_paths		*create_path_el(void);
-void		create_path_node(t_path_node **path_node, t_room *node);
+int			create_path_node(t_path_node **path_node, t_room *node);
 
 // Solving functions
-t_vector	*get_aug_path(t_room *graph, char **start_and_end, \
-	t_vector **to_be_visited);
+int			get_aug_path(t_room *graph, char **start_and_end, \
+	t_vector **to_be_visited,t_vector **path);
 void		get_paths(t_vector *all_paths_combos, \
 	t_room *graph, t_data *data);
 void		add_node_to_be_visited(t_room *node, t_room *prev_node, \
@@ -127,7 +127,7 @@ void		free_path(t_path_node *path);
 void		free_to_be_visited(t_vector **to_be_visited);
 
 // Vectors utils
-void		init_vect(t_vector **vector, size_t size);
+int			init_vect(t_vector **vector, size_t size);
 void		concat_vects(t_vector *src, t_vector **dst);
 void		free_vect(t_vector **vector);
 void		push_to_vect(t_vector *vector, void *el);
@@ -137,5 +137,7 @@ void		handle_start_to_end_path2(t_room *graph, t_data *data, \
 	t_vector *all_paths_combos);
 void		handle_start_to_end_path(t_room *graph, t_data *data, \
 	t_vector *all_paths_combos);
+
+void	exit_solver(t_vector *vector, t_data *data);
 
 #endif
