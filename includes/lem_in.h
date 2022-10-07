@@ -132,4 +132,10 @@ void		concat_vects(t_vector *src, t_vector **dst);
 void		free_vect(t_vector **vector);
 void		push_to_vect(t_vector *vector, void *el);
 
+// Handle specific case when start connected to end
+void		handle_start_to_end_path2(t_room *graph, t_data *data, \
+	t_vector *all_paths_combos);
+void		handle_start_to_end_path(t_room *graph, t_data *data, \
+	t_vector *all_paths_combos);
+
 #endif

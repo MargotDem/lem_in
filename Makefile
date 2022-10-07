@@ -63,6 +63,7 @@ FILES = 	main.c \
 			viz_draw_rooms.c \
 			viz_init.c \
 			viz_draw_line.c \
+			handle_start_to_end_path.c \
 
 FRAMEWORKS = -framework OpenGL -framework Appkit
 
