@@ -39,13 +39,18 @@ unsigned short	is_comment(char *line)
 
 unsigned short	is_command(char *line)
 {
-	char	*test;
-
 	if (line[0] == '#' && line[1] == '#')
 	{
-		test = &line[2];
-		if ((ft_strcmp(test, "start") != 0) || (ft_strcmp(test, "end") != 0))
-			return (TRUE);
+		if (ft_strlen(line) == 7)
+		{
+			if (ft_strstr(line,"start"))
+				return (TRUE);
+		}
+		else if (ft_strlen(line) == 5)
+		{
+			if (ft_strstr(line,"end"))
+				return (TRUE);
+		}
 	}
 	return (FALSE);
 }

@@ -95,6 +95,7 @@ void		print_path_node(t_path_node *path);
 void		print_paths(t_paths *paths);
 void		set_paths_size(t_paths *paths);
 t_paths		*create_path_el(void);
+void		create_path_node(t_path_node **path_node, t_room *node);
 
 // Solving functions
 t_vector	*get_aug_path(t_room *graph, char **start_and_end, \

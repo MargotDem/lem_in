@@ -78,6 +78,5 @@ void	save_links(char *line, t_data **data, t_room **rooms)
 	clean2str(link_1, link_2, 'n');
 	if (!from || !to)
 		exit_parsing(line, *rooms, *data);
-	if (insert_links(from, to))
-		exit_parsing(line, *rooms, *data);
+	insert_links(from, to);
 }

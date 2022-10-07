@@ -71,6 +71,26 @@ void	initialize_ants_numbers(t_paths *paths, size_t nb_ants)
 	}
 }
 
+/*char	*build_line(int ant, char *room)
+{
+	char	*temp;
+	char	*tempo;
+	char	*nb_int;
+
+	nb_int	= ft_itoa(ant);
+	temp = ft_strdup("L");
+	tempo = ft_strjoin(temp, nb_int);
+	ft_strdel(&temp);
+	ft_strdel(&nb_int);
+	temp = ft_strjoin(tempo, "-");
+	ft_strdel(&tempo);
+	tempo = ft_strjoin(temp, room);
+	ft_strdel(&temp);
+	temp = ft_strjoin(tempo , " ");
+	ft_strdel(&tempo);
+	return (temp);
+}*/
+
 void	handle_ants(t_paths *path_el, size_t *movement)
 {
 	size_t	i;

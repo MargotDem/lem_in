@@ -57,6 +57,41 @@ void	display_options(t_data *data, t_room *graph, \
 		visualizer(graph, data, solution);
 }
 
+int		end_connected_to_start(t_room *start, t_data *data)
+{
+	int	connected;
+	int	i;
+
+	connected = 0;
+	i = 0;
+	while (i < (int)start->total_links)
+	{
+		if (strings_match((start->links[i])->name, data->end_room_name))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	handle_start_to_end_path(t_room *graph, t_data *data, t_vector *all_paths_combos)
+{
+	t_paths			*path;
+	t_path_node		*node;
+	static int		already_done;
+
+	if (end_connected_to_start(graph, data) && !already_done)
+	{
+		path = create_path_el();
+		path->path_size = 2;
+		create_path_node(&node, search_for(data->end_room_name, data));
+		path->path = node;
+		create_path_node(&node, graph);
+		push_front_node(&(path->path), node);
+		push_to_vect(all_paths_combos, path);
+		already_done = 1;
+	}
+}
+
 void	solve(t_room *graph, t_data *data)
 {
 	size_t				nb_ants;
@@ -68,6 +103,7 @@ void	solve(t_room *graph, t_data *data)
 	start_and_end[0] = data->start_room_name;
 	start_and_end[1] = data->end_room_name;
 	init_vect(&all_paths_combos, 30);
+	handle_start_to_end_path(graph, data, all_paths_combos);
 	edmond_karp_with_a_twist(graph, data, start_and_end, all_paths_combos);
 	if (find_best_solution(&solution, all_paths_combos, nb_ants))
 	{
