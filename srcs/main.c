@@ -77,6 +77,6 @@ int	main(int argc, char **argv)
 	else
 		handle_error();
 	data = data_cleaner(data);
-	system("leaks lem-in");
+	//system("leaks lem-in");
 	return (0);
 }

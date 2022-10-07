@@ -28,7 +28,7 @@ unsigned short	only_digit_in(char *line)
 unsigned long	get_ants(t_data **data, t_room *room)
 {
 	char			*line;
-	unsigned long	ants;
+	int				ants;
 	char			*map;
 	size_t			index;
 
@@ -41,7 +41,7 @@ unsigned long	get_ants(t_data **data, t_room *room)
 			ants = ft_atoi(line);
 			(*data)->ants = ants;
 			ft_strdel(&line);
-			if (ants == 0)
+			if (ants == 0 || ants > 1000)
 				exit_parsing(line, room, *data);
 			return (ants);
 		}
