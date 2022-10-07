@@ -42,11 +42,11 @@ void	create_link(t_room *room_1, t_room *room_2)
 	}
 }
 
-int	insert_links(t_room *from, t_room *to)
+void	insert_links(t_room *from, t_room *to)
 {
-	if (links_already_exist(from, to) || links_already_exist(to, from))
-		return (TRUE);
-	create_link(to, from);
-	create_link(from, to);
-	return (FALSE);
+	if (!links_already_exist(from, to))
+	{
+		create_link(to, from);
+		create_link(from, to);
+	}
 }
