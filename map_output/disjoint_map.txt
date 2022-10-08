@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 20
 ##start
 A 0 8
@@ -46,3 +47,4 @@ L10-Y L13-FF L16-F L19-DD L11-Y L14-BOTTLEB L17-MIDB L12-Y L15-BOTTLEA L18-MIDA 
 L13-Y L16-FF L19-F L14-Y L17-BOTTLEB L15-Y L18-BOTTLEA L20-MIDA 
 L16-Y L19-FF L17-Y L18-Y L20-BOTTLEA 
 L19-Y L20-Y 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

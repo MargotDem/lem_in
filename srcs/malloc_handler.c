@@ -28,12 +28,18 @@ t_data	*create_data(void)
 t_room	*new_node(char *line, char letter)
 {
 	t_room	*new;
+	t_room	*element;
 
 	new = (t_room *)malloc(sizeof(*new));
 	if (!new)
 		return (panic("I malloc_handler: new_node"), NULL);
-	new = set_room(line, letter, new);
-	return (new);
+	element = set_room(line, letter, new);
+	if (!element)
+	{	
+		free(new);
+		new = NULL;
+	}
+	return (element);
 }
 
 int	create_hashtable(t_data **data)

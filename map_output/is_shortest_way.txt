@@ -1,0 +1,55 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
+16
+##start
+s 0 0
+##end
+end 1 1
+a 2 2
+b 3 3
+c 4 4
+d 5 5
+e 6 6
+f 7 7
+g 8 8
+h 9 9
+i 10 10
+j 16 16
+k 11 11
+l 12 12
+m 13 13
+n 14 14
+o 15 15
+s-a
+s-b
+s-c
+a-d
+b-f
+c-g
+c-h
+d-e
+e-i
+f-i
+f-j
+g-j
+g-h
+h-k
+i-l
+j-m
+k-n
+l-end
+m-end
+n-o
+
+L1-c L2-b 
+L1-g L3-c L2-f L4-b 
+L1-j L3-g L5-c L2-i L4-f L6-b 
+L1-m L3-j L5-g L7-c L2-l L4-i L6-f L8-b 
+L1-end L3-m L5-j L7-g L9-c L2-end L4-l L6-i L8-f L10-b 
+L3-end L5-m L7-j L9-g L11-c L4-end L6-l L8-i L10-f L12-b 
+L5-end L7-m L9-j L11-g L13-c L6-end L8-l L10-i L12-f L14-b 
+L7-end L9-m L11-j L13-g L15-c L8-end L10-l L12-i L14-f L16-b 
+L9-end L11-m L13-j L15-g L10-end L12-l L14-i L16-f 
+L11-end L13-m L15-j L12-end L14-l L16-i 
+L13-end L15-m L14-end L16-l 
+L15-end L16-end 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

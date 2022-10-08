@@ -44,14 +44,18 @@ static int	check_link_name(char *line, t_data *data)
 			room_1 = ft_strsub(line, 0, i);
 			if (match(room_1, data))
 			{
+				ft_strdel(&room_1);
 				room_2 = ft_strdup(&line[i + 1]);
 				if (match(room_2, data))
+				{
+					ft_strdel(&room_2);
 					return (clean2str(room_1, room_2, 'n'), i);
+				}
 			}
+			clean2str(room_1, room_2, 'n');
 		}
 		i++;
 	}
-	clean2str(room_1, room_2, 'n');
 	return (-1);
 }
 
@@ -73,6 +77,7 @@ void	save_links(char *line, t_data **data, t_room **rooms)
 	link_2 = ft_strdup(&line[dash_position + 1]);
 	if (!link_1 || !link_2)
 	{
+		clean2str(link_1, link_2, 'n');
 		panic("In save_data.c: save_linker");
 		exit_parsing(line, *rooms, *data);
 	}
@@ -82,5 +87,5 @@ void	save_links(char *line, t_data **data, t_room **rooms)
 	if (!from || !to)
 		exit_parsing(line, *rooms, *data);
 	if (!insert_links(from, to))
-		exit_parsing(line, *rooms, *data);	
+		exit_parsing(line, *rooms, *data);
 }

@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 5
 ##start
 start 0 0
@@ -22,3 +23,4 @@ L1-c L3-d L2-b L4-a
 L1-sink L3-c L5-d L2-sink L4-b 
 L3-sink L5-c L4-sink 
 L5-sink 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

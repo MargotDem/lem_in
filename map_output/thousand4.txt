@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 111
 #Here is the number of lines required: 29
 ##start
@@ -1134,3 +1135,4 @@ L99-S_x2 L105-H_b0 L109-Vmz4 L111-E_b1 L100-S_x2 L106-Tv_4 L110-Hsx5 L86-S_x2 L9
 L105-S_x2 L109-H_b0 L111-Vmz4 L106-S_x2 L110-Tv_4 L94-S_x2 L101-Gmh3 L107-Dsx6 L95-S_x2 L102-Woc5 L108-Npk7 L88-S_x2 L96-Qoc7 L103-Gdj7 L89-S_x2 L97-Yhd6 L104-Sth7 L82-S_x2 L90-Igf8 L98-Nqs7 L74-S_x2 L83-V_k2 L91-Hgw2 L53-S_x2 L64-Rbo9 L75-Dgh2 L43-S_x2 L54-Ief0 L65-Zc_4 L44-S_x2 L55-Zvl4 L66-Yce0 
 L109-S_x2 L111-H_b0 L110-S_x2 L101-S_x2 L107-Gmh3 L102-S_x2 L108-Woc5 L96-S_x2 L103-Qoc7 L97-S_x2 L104-Yhd6 L90-S_x2 L98-Igf8 L83-S_x2 L91-V_k2 L64-S_x2 L75-Rbo9 L54-S_x2 L65-Ief0 L55-S_x2 L66-Zvl4 
 L111-S_x2 L107-S_x2 L108-S_x2 L103-S_x2 L104-S_x2 L98-S_x2 L91-S_x2 L75-S_x2 L65-S_x2 L66-S_x2 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

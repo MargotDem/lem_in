@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 405
 #Here is the number of lines required: 56
 ##start
@@ -6411,3 +6412,4 @@ L402-A_d7 L403-I_j0 L404-Vui2 L405-Z_i6 L393-A_d7 L397-W_n6 L401-Zdi1 L389-A_d7 
 L403-A_d7 L404-I_j0 L405-Vui2 L397-A_d7 L401-W_n6 L394-A_d7 L398-Zsb3 L395-A_d7 L399-Fzo1 L375-A_d7 L383-Dwv5 L376-A_d7 L384-Sou7 L377-A_d7 L385-Orz7 L391-Uva0 L369-A_d7 L378-Cw_7 L386-Ner3 L350-A_d7 L361-Nht2 L370-Mmn0 L329-A_d7 L340-Itp3 L351-Rmj3 L330-A_d7 L341-O_h2 L352-M_t6 L292-A_d7 L306-Hcz9 L319-Cof4 L279-A_d7 L293-Sph0 L307-Hln2 L266-A_d7 L280-Cwg6 L294-Gfu0 
 L404-A_d7 L405-I_j0 L401-A_d7 L398-A_d7 L399-A_d7 L383-A_d7 L384-A_d7 L385-A_d7 L391-Orz7 L378-A_d7 L386-Cw_7 L361-A_d7 L370-Nht2 L340-A_d7 L351-Itp3 L341-A_d7 L352-O_h2 L306-A_d7 L319-Hcz9 L293-A_d7 L307-Sph0 L280-A_d7 L294-Cwg6 
 L405-A_d7 L391-A_d7 L386-A_d7 L370-A_d7 L351-A_d7 L352-A_d7 L319-A_d7 L307-A_d7 L294-A_d7 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

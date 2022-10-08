@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 703
 ##start
 6y3IBqYQFtg5 63 55
@@ -715,3 +716,4 @@ L700-fxZ1ITkdTnO4C6l L701-beDmQngbGm7z7A4M L702-Nm0PAUJS9iJVIX
 L701-fxZ1ITkdTnO4C6l L702-beDmQngbGm7z7A4M L703-Nm0PAUJS9iJVIX 
 L702-fxZ1ITkdTnO4C6l L703-beDmQngbGm7z7A4M 
 L703-fxZ1ITkdTnO4C6l 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

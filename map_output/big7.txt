@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 220
 #Here is the number of lines required: 43
 ##start
@@ -6800,3 +6801,4 @@ L216-J_i5 L218-Skx6 L219-Plt0 L220-Ys_0 L213-J_i5 L215-Gyk5 L217-Hln5 L200-J_i5 
 L218-J_i5 L219-Skx6 L220-Plt0 L215-J_i5 L217-Gyk5 L204-J_i5 L207-Fq_6 L195-J_i5 L201-Ske4 L188-J_i5 L196-Uu_0 L189-J_i5 L197-Wqt4 L171-J_i5 L181-Kgu5 L190-Jvu1 L172-J_i5 L182-Ykc6 L191-Rrt6 L163-J_i5 L173-Mbm0 L183-Kgi7 L153-J_i5 L164-Ykl1 L174-Uhj6 L131-J_i5 L143-Exn6 L154-Bmb1 L108-J_i5 L120-Rft1 L132-I_n4 
 L219-J_i5 L220-Skx6 L217-J_i5 L207-J_i5 L201-J_i5 L196-J_i5 L197-J_i5 L181-J_i5 L190-Kgu5 L182-J_i5 L191-Ykc6 L173-J_i5 L183-Mbm0 L164-J_i5 L174-Ykl1 L143-J_i5 L154-Exn6 L120-J_i5 L132-Rft1 
 L220-J_i5 L190-J_i5 L191-J_i5 L183-J_i5 L174-J_i5 L154-J_i5 L132-J_i5 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

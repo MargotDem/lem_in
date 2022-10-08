@@ -15,16 +15,24 @@
 void	save_room(char *line, t_data **data, t_room **room)
 {
 	t_room	*element;
+	t_room	*li;
 
+	li = NULL;
 	element = new_node(line, 'n');
 	if (!element)
 	{
 		panic("In save_data.c: save_room");
 		exit_parsing(line, *room, *data);
 	}	
-	*room = push_front(*room, element);
-	if (!*room)
+	li = push_front(*room, element);
+	if (!li)
+	{
+		ft_strdel(&element->name);
+		free(element);
+		element = NULL;
 		exit_parsing(line, *room, *data);
+	}
+	*room = li;
 	(*data)->size_list += 1;
 	(*data)->section_rooms = ACTIVATE;
 }
@@ -64,7 +72,12 @@ void	save_command(char *line, t_data **data, t_room **rooms)
 		element = new_node(line, letter);
 		*rooms = push_front(*rooms, element);
 		if (!*rooms)
+		{
+			ft_strdel(&element->name);
+			free(element);
+			element = NULL;
 			exit_parsing(line, *rooms, *data);
+		}
 		(*data)->size_list += 1;
 		if ((*data)->start_room_name || (*data)->end_room_name)
 			clean2str((*data)->start_room_name, (*data)->end_room_name, letter);

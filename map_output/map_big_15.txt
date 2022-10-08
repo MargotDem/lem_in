@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 290
 #Here is the number of lines required: 60
 ##start
@@ -5355,3 +5356,4 @@ L287-Fwq1 L288-Uq_2 L289-Grj8 L290-Ri_4 L280-Fwq1 L282-Vho1 L284-Jdj5 L272-Fwq1 
 L288-Fwq1 L289-Uq_2 L290-Grj8 L282-Fwq1 L284-Vho1 L275-Fwq1 L278-Rab2 L252-Fwq1 L257-Szi6 L246-Fwq1 L253-I_b2 L239-Fwq1 L247-Jrq6 L240-Fwq1 L248-Eml9 L233-Fwq1 L241-Iip6 L207-Fwq1 L216-Cn_8 L225-Psr8 
 L289-Fwq1 L290-Uq_2 L284-Fwq1 L278-Fwq1 L257-Fwq1 L253-Fwq1 L247-Fwq1 L248-Fwq1 L241-Fwq1 L216-Fwq1 L225-Cn_8 
 L290-Fwq1 L225-Fwq1 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

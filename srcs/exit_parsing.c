@@ -39,7 +39,8 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 			rooms = clean_list(rooms);
 	handle_error();
 	data = data_cleaner(data);
-	system("leaks lem-in > leaks.txt");
+	system("leaks lem-in > exit_p_leaks.txt");
+	system("leaks lem-in > exit_leaks.txt");
 	exit(EXIT_FAILURE);
 }
 

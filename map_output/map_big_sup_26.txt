@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 488
 #Here is the number of lines required: 83
 ##start
@@ -9691,3 +9692,4 @@ L485-Psp1 L486-Zwf4 L487-Apa6 L488-Ycz0 L464-Psp1 L466-Pfd6 L468-Iii3 L470-Fk_7 
 L486-Psp1 L487-Zwf4 L488-Apa6 L466-Psp1 L468-Pfd6 L470-Iii3 L447-Psp1 L451-Gif5 L455-Sli1 L448-Psp1 L452-Oqq5 L456-Jaz4 L426-Psp1 L431-Mjg3 L436-Wrz2 L406-Psp1 L413-Pq_0 L420-Ijv1 L407-Psp1 L414-Cai4 L421-Ust2 L377-Psp1 L385-Ohb3 L393-Yks6 L335-Psp1 L344-Xhs4 L353-Hq_0 L269-Psp1 L280-Vun9 L290-Ewi1 L248-Psp1 L259-Fhn1 L270-U_p5 L213-Psp1 L225-Pw_8 L237-Imb2 L175-Psp1 L188-Htz1 L201-Xoe0 L56-Psp1 L70-Hpr6 L84-Odr0 
 L487-Psp1 L488-Zwf4 L468-Psp1 L470-Pfd6 L451-Psp1 L455-Gif5 L452-Psp1 L456-Oqq5 L431-Psp1 L436-Mjg3 L413-Psp1 L420-Pq_0 L414-Psp1 L421-Cai4 L385-Psp1 L393-Ohb3 L344-Psp1 L353-Xhs4 L280-Psp1 L290-Vun9 L259-Psp1 L270-Fhn1 L225-Psp1 L237-Pw_8 L188-Psp1 L201-Htz1 L70-Psp1 L84-Hpr6 
 L488-Psp1 L470-Psp1 L455-Psp1 L456-Psp1 L436-Psp1 L420-Psp1 L421-Psp1 L393-Psp1 L353-Psp1 L290-Psp1 L270-Psp1 L237-Psp1 L201-Psp1 L84-Psp1 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

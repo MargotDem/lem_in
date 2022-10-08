@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 10
 #rooms
 ##start
@@ -60,3 +61,4 @@ L7-end L8-A3 L9-A2 L10-A1 L2-C7 L4-C6 L6-C5
 L8-end L9-A3 L10-A2 L2-end L4-C7 L6-C6 
 L9-end L10-A3 L4-end L6-C7 
 L10-end L6-end 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

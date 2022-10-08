@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 12
 ##start
 start 5 6
@@ -28,3 +29,4 @@ L9-end L10-encore-test L11-encore
 L10-end L11-encore-test L12-encore 
 L11-end L12-encore-test 
 L12-end 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

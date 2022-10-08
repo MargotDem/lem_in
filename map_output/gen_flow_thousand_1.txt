@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 132
 #Here is the number of lines required: 32
 ##start
@@ -1057,3 +1058,4 @@ L122-I_l3 L126-Zny3 L129-Fqe2 L132-Sni4 L123-I_l3 L127-D_z2 L130-Web8 L117-I_l3 
 L126-I_l3 L129-Zny3 L132-Fqe2 L127-I_l3 L130-D_z2 L124-I_l3 L128-Cql1 L131-Xfi6 L110-I_l3 L118-Za_5 L125-B_k6 L102-I_l3 L111-Zsf6 L119-Wtj6 L103-I_l3 L112-Spo5 L120-S_u4 L104-I_l3 L113-Uc_4 L121-Uyp6 L96-I_l3 L105-Fgr7 L114-I_k8 L86-I_l3 L97-Blr9 L106-Tzf6 L65-I_l3 L76-Awh3 L87-Mrt4 L66-I_l3 L77-Exz4 L88-Kaq7 
 L129-I_l3 L132-Zny3 L130-I_l3 L128-I_l3 L131-Cql1 L118-I_l3 L125-Za_5 L111-I_l3 L119-Zsf6 L112-I_l3 L120-Spo5 L113-I_l3 L121-Uc_4 L105-I_l3 L114-Fgr7 L97-I_l3 L106-Blr9 L76-I_l3 L87-Awh3 L77-I_l3 L88-Exz4 
 L132-I_l3 L131-I_l3 L125-I_l3 L119-I_l3 L120-I_l3 L121-I_l3 L114-I_l3 L106-I_l3 L87-I_l3 L88-I_l3 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 264
 #Here is the number of lines required: 71
 ##start
@@ -11932,3 +11933,4 @@ L261-Wlf7 L262-Bei2 L263-Jhw8 L264-Brf7 L256-Wlf7 L258-Xtj7 L260-Npp5 L244-Wlf7 
 L262-Wlf7 L263-Bei2 L264-Jhw8 L258-Wlf7 L260-Xtj7 L247-Wlf7 L250-Rvm3 L230-Wlf7 L234-Uho6 L238-Pzd3 L216-Wlf7 L221-Ytz8 L226-Rwk6 L192-Wlf7 L199-Syu9 L206-Whn0 L186-Wlf7 L193-Tq_9 L200-Pps4 L156-Wlf7 L164-Avv9 L172-Jpy5 L122-Wlf7 L131-Qz_7 L140-Bzh3 L46-Wlf7 L58-Fje7 L68-Apj2 L23-Wlf7 L35-Tjw9 L47-Fig3 L24-Wlf7 L36-Znf8 L48-Nek3 
 L263-Wlf7 L264-Bei2 L260-Wlf7 L250-Wlf7 L234-Wlf7 L238-Uho6 L221-Wlf7 L226-Ytz8 L199-Wlf7 L206-Syu9 L193-Wlf7 L200-Tq_9 L164-Wlf7 L172-Avv9 L131-Wlf7 L140-Qz_7 L58-Wlf7 L68-Fje7 L35-Wlf7 L47-Tjw9 L36-Wlf7 L48-Znf8 
 L264-Wlf7 L238-Wlf7 L226-Wlf7 L206-Wlf7 L200-Wlf7 L172-Wlf7 L140-Wlf7 L68-Wlf7 L47-Wlf7 L48-Wlf7 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

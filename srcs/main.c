@@ -70,6 +70,7 @@ int	main(int argc, char **argv)
 		exit(EXIT_SUCCESS);
 	}
 	mapreader(&rooms, &data);
+	system("leaks lem-in > int_leaks.txt");
 	if (data_is_ok(data))
 		solve(search_for(data->start_room_name, data), data);
 	else

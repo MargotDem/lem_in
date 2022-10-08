@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 405
 #Here is the number of lines required: 62
 ##start
@@ -5479,3 +5480,4 @@ L401-Ykd9 L403-Xhm1 L404-Oqn1 L405-Zwv1 L396-Ykd9 L398-Pji9 L400-Ngq4 L402-Rzf5 
 L403-Ykd9 L404-Xhm1 L405-Oqn1 L398-Ykd9 L400-Pji9 L402-Ngq4 L383-Ykd9 L387-Jtg8 L390-Ahz3 L376-Ykd9 L380-Tyc5 L384-Vnc9 L354-Ykd9 L361-U_l5 L367-Qxd9 L355-Ykd9 L362-Rnu3 L368-Kcz1 L337-Ykd9 L347-Hrp2 L356-Hac9 L327-Ykd9 L338-Kyf3 L348-Nd_5 L328-Ykd9 L339-Rf_5 L349-Fvh4 L318-Ykd9 L329-Fwj6 L340-Yji2 L308-Ykd9 L319-Qyy8 L330-Erh5 
 L404-Ykd9 L405-Xhm1 L400-Ykd9 L402-Pji9 L387-Ykd9 L390-Jtg8 L380-Ykd9 L384-Tyc5 L361-Ykd9 L367-U_l5 L362-Ykd9 L368-Rnu3 L347-Ykd9 L356-Hrp2 L338-Ykd9 L348-Kyf3 L339-Ykd9 L349-Rf_5 L329-Ykd9 L340-Fwj6 L319-Ykd9 L330-Qyy8 
 L405-Ykd9 L402-Ykd9 L390-Ykd9 L384-Ykd9 L367-Ykd9 L368-Ykd9 L356-Ykd9 L348-Ykd9 L349-Ykd9 L340-Ykd9 L330-Ykd9 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

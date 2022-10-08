@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 265
 #Here is the number of lines required: 50
 ##start
@@ -6655,3 +6656,4 @@ L258-E_z7 L263-Tlm1 L264-Cbi6 L265-Odq3 L244-E_z7 L252-Tyr0 L259-Pmj5 L235-E_z7 
 L263-E_z7 L264-Tlm1 L265-Cbi6 L252-E_z7 L259-Tyr0 L245-E_z7 L253-Woy0 L260-Wa_3 L246-E_z7 L254-Kfb7 L261-Wur1 L247-E_z7 L255-Fiu2 L262-Uiw5 L238-E_z7 L248-Dxl8 L256-Pwu9 L239-E_z7 L249-Hcg0 L257-Kzy6 L228-E_z7 L240-Nju2 L250-Aux6 L217-E_z7 L229-Exx8 L241-Gtf9 L218-E_z7 L230-Vyn2 L242-Ges5 L206-E_z7 L219-Arq7 L231-Ynn5 L207-E_z7 L220-Coe0 L232-Rei6 L182-E_z7 L195-Q_p0 L208-Urt3 
 L264-E_z7 L265-Tlm1 L259-E_z7 L253-E_z7 L260-Woy0 L254-E_z7 L261-Kfb7 L255-E_z7 L262-Fiu2 L248-E_z7 L256-Dxl8 L249-E_z7 L257-Hcg0 L240-E_z7 L250-Nju2 L229-E_z7 L241-Exx8 L230-E_z7 L242-Vyn2 L219-E_z7 L231-Arq7 L220-E_z7 L232-Coe0 L195-E_z7 L208-Q_p0 
 L265-E_z7 L260-E_z7 L261-E_z7 L262-E_z7 L256-E_z7 L257-E_z7 L250-E_z7 L241-E_z7 L242-E_z7 L231-E_z7 L232-E_z7 L208-E_z7 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

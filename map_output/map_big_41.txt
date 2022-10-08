@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 412
 #Here is the number of lines required: 75
 ##start
@@ -5196,3 +5197,4 @@ L409-Yta0 L410-Grg2 L411-Tl_2 L412-Bmn8 L400-Yta0 L404-Pmh7 L408-Kpc0 L397-Yta0 
 L410-Yta0 L411-Grg2 L412-Tl_2 L404-Yta0 L408-Pmh7 L401-Yta0 L405-Vto8 L402-Yta0 L406-Ul_0 L389-Yta0 L394-Ixs8 L378-Yta0 L384-Pyc2 L349-Yta0 L358-Ayz2 L350-Yta0 L359-Vjl8 L342-Yta0 L351-Gu_0 L360-Wol1 
 L411-Yta0 L412-Grg2 L408-Yta0 L405-Yta0 L406-Yta0 L394-Yta0 L384-Yta0 L358-Yta0 L359-Yta0 L351-Yta0 L360-Gu_0 
 L412-Yta0 L360-Yta0 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

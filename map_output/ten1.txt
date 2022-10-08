@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 10
 ##start
 Ces3 3 3
@@ -612,3 +613,4 @@ L7-Z_o3 L8-Ubo8 L9-Uip0 L10-Ipg8 L2-Xvq0 L5-Cae8 L3-Jio1 L6-Cqb9
 L8-Z_o3 L9-Ubo8 L10-Uip0 L2-Z_o3 L5-Xvq0 L3-Scg1 L6-Jio1 
 L9-Z_o3 L10-Ubo8 L5-Z_o3 L3-Z_o3 L6-Scg1 
 L10-Z_o3 L6-Z_o3 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

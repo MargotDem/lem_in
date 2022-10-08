@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 331
 #Here is the number of lines required: 49
 ##start
@@ -5626,3 +5627,4 @@ L318-Xu_0 L322-N_a4 L326-Xsn4 L330-Ehm5 L319-Xu_0 L323-Wmg8 L327-Idi9 L331-Ubw4 
 L322-Xu_0 L326-N_a4 L330-Xsn4 L323-Xu_0 L327-Wmg8 L331-Idi9 L320-Xu_0 L324-Cbr6 L328-Tmo5 L321-Xu_0 L325-Irh7 L329-Erx3 L301-Xu_0 L309-Ckr9 L316-Rt_1 L302-Xu_0 L310-Zqy9 L317-Gzk2 L295-Xu_0 L303-Vnk5 L311-Awb6 L288-Xu_0 L296-Viq8 L304-Kle8 L261-Xu_0 L271-Ixk6 L280-Iyl3 L238-Xu_0 L250-Vki7 L262-Ozq8 L227-Xu_0 L239-Twi3 L251-Xkh8 L228-Xu_0 L240-S_n6 L252-Orv0 
 L326-Xu_0 L330-N_a4 L327-Xu_0 L331-Wmg8 L324-Xu_0 L328-Cbr6 L325-Xu_0 L329-Irh7 L309-Xu_0 L316-Ckr9 L310-Xu_0 L317-Zqy9 L303-Xu_0 L311-Vnk5 L296-Xu_0 L304-Viq8 L271-Xu_0 L280-Ixk6 L250-Xu_0 L262-Vki7 L239-Xu_0 L251-Twi3 L240-Xu_0 L252-S_n6 
 L330-Xu_0 L331-Xu_0 L328-Xu_0 L329-Xu_0 L316-Xu_0 L317-Xu_0 L311-Xu_0 L304-Xu_0 L280-Xu_0 L262-Xu_0 L251-Xu_0 L252-Xu_0 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

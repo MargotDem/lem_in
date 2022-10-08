@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 412
 #Here is the number of lines required: 67
 ##start
@@ -5916,3 +5917,4 @@ L407-Ixo3 L410-Fgj8 L411-Xl_7 L412-D_k1 L396-Ixo3 L400-Kc_0 L404-Yj_3 L408-Net3 
 L410-Ixo3 L411-Fgj8 L412-Xl_7 L400-Ixo3 L404-Kc_0 L408-Yj_3 L401-Ixo3 L405-Sby8 L409-F_r2 L398-Ixo3 L402-Yan1 L406-R_e4 L382-Ixo3 L388-H_s9 L394-Ntl5 L376-Ixo3 L383-Zit0 L389-A_l6 L362-Ixo3 L370-Apo7 L377-Xhz5 L346-Ixo3 L355-Qbj6 L363-Odh4 L327-Ixo3 L337-Thk7 L347-Fyx5 L318-Ixo3 L328-W_r1 L338-Sm_4 L286-Ixo3 L297-Otv0 L308-F_q6 
 L411-Ixo3 L412-Fgj8 L404-Ixo3 L408-Kc_0 L405-Ixo3 L409-Sby8 L402-Ixo3 L406-Yan1 L388-Ixo3 L394-H_s9 L383-Ixo3 L389-Zit0 L370-Ixo3 L377-Apo7 L355-Ixo3 L363-Qbj6 L337-Ixo3 L347-Thk7 L328-Ixo3 L338-W_r1 L297-Ixo3 L308-Otv0 
 L412-Ixo3 L408-Ixo3 L409-Ixo3 L406-Ixo3 L394-Ixo3 L389-Ixo3 L377-Ixo3 L363-Ixo3 L347-Ixo3 L338-Ixo3 L308-Ixo3 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

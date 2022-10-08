@@ -47,6 +47,7 @@ void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 void	display_options(t_data *data, t_room *graph, \
 	t_paths *solution)
 {
+	(void)graph;
 	if (data->print_paths)
 	{
 		ft_putstr("\n********************\n\n");
@@ -56,8 +57,8 @@ void	display_options(t_data *data, t_room *graph, \
 		ft_putnbr((int)(get_nb_turns(solution)));
 		ft_putstr("\n\n");
 	}
-	if (data->visual)
-		visualizer(graph, data, solution);
+	// if (data->visual)
+		// visualizer(graph, data, solution);
 }
 
 void	solve(t_room *graph, t_data *data)

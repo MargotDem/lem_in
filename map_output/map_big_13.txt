@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 194
 #Here is the number of lines required: 42
 ##start
@@ -6598,3 +6599,4 @@ L191-Ywy2 L192-Mty2 L193-Uo_6 L194-Saf3 L185-Ywy2 L188-Ofa6 L190-Hou3 L180-Ywy2 
 L192-Ywy2 L193-Mty2 L194-Uo_6 L188-Ywy2 L190-Ofa6 L183-Ywy2 L186-Iic8 L167-Ywy2 L171-Qei7 L154-Ywy2 L163-Xyp4 L144-Ywy2 L155-Gze2 L145-Ywy2 L156-H_s4 L134-Ywy2 L146-Gwz7 L157-Ypn9 L135-Ywy2 L147-Xtq6 L158-Ppk7 L122-Ywy2 L136-Scx6 L148-Wbq3 L123-Ywy2 L137-Fbq9 L149-Tys1 L110-Ywy2 L124-Wkb5 L138-Fey1 L97-Ywy2 L111-Pvv1 L125-Vsz0 L98-Ywy2 L112-Izr1 L126-Hov1 
 L193-Ywy2 L194-Mty2 L190-Ywy2 L186-Ywy2 L171-Ywy2 L163-Ywy2 L155-Ywy2 L156-Ywy2 L146-Ywy2 L157-Gwz7 L147-Ywy2 L158-Xtq6 L136-Ywy2 L148-Scx6 L137-Ywy2 L149-Fbq9 L124-Ywy2 L138-Wkb5 L111-Ywy2 L125-Pvv1 L112-Ywy2 L126-Izr1 
 L194-Ywy2 L157-Ywy2 L158-Ywy2 L148-Ywy2 L149-Ywy2 L138-Ywy2 L125-Ywy2 L126-Ywy2 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

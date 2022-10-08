@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 346
 #Here is the number of lines required: 51
 ##start
@@ -6265,3 +6266,4 @@ L342-Mzs8 L344-Yeu7 L345-Cpt8 L346-N__9 L336-Mzs8 L340-Vyf1 L343-Yte1 L332-Mzs8 
 L344-Mzs8 L345-Yeu7 L346-Cpt8 L340-Mzs8 L343-Vyf1 L337-Mzs8 L341-Ou_1 L333-Mzs8 L338-Wzl6 L316-Mzs8 L325-Wq_8 L317-Mzs8 L326-Uga4 L318-Mzs8 L327-Vov3 L334-T_e7 L309-Mzs8 L319-Ygt6 L328-Ffi4 L310-Mzs8 L320-Ovs9 L329-Kyn4 L289-Mzs8 L300-D_m7 L311-Nwt8 L279-Mzs8 L290-K_e7 L301-Qbz0 L233-Mzs8 L245-Sry2 L257-Yoh7 L195-Mzs8 L208-Tym3 L221-Ara0 
 L345-Mzs8 L346-Yeu7 L343-Mzs8 L341-Mzs8 L338-Mzs8 L325-Mzs8 L326-Mzs8 L327-Mzs8 L334-Vov3 L319-Mzs8 L328-Ygt6 L320-Mzs8 L329-Ovs9 L300-Mzs8 L311-D_m7 L290-Mzs8 L301-K_e7 L245-Mzs8 L257-Sry2 L208-Mzs8 L221-Tym3 
 L346-Mzs8 L334-Mzs8 L328-Mzs8 L329-Mzs8 L311-Mzs8 L301-Mzs8 L257-Mzs8 L221-Mzs8 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

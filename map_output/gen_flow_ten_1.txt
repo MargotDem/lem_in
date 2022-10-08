@@ -1,3 +1,4 @@
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.
 13
 #Here is the number of lines required: 30
 ##start
@@ -1176,3 +1177,4 @@ L1-Kja4 L5-Qux5 L9-Emn5 L12-Vki1 L2-Kja4 L6-Mwj5 L10-Qfi4 L13-Ays4 L3-Nnt8 L7-E_
 L5-Kja4 L9-Qux5 L12-Emn5 L6-Kja4 L10-Mwj5 L13-Qfi4 L3-Kja4 L7-Nnt8 L11-E__7 L4-Vq_4 L8-Srz3 
 L9-Kja4 L12-Qux5 L10-Kja4 L13-Mwj5 L7-Kja4 L11-Nnt8 L4-Kja4 L8-Vq_4 
 L12-Kja4 L13-Kja4 L11-Kja4 L8-Kja4 
+Target process is an ancestor and permitting live process for ancestors so not generating a corpse to save resources by default.

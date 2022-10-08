@@ -33,6 +33,7 @@ void	exit_solver(t_vector *vector, t_data *data)
 		free_vect(&vector);
 	if (data)
 		data = data_cleaner(data);
-	system("leaks lem-in > leaks.txt");
+	system("leaks lem-in > exit_s_leaks.txt");
+	system("leaks lem-in > exit_leaks.txt");
 	exit(EXIT_FAILURE);
 }
