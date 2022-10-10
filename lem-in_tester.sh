@@ -3,18 +3,6 @@
 #add system("leaks lem-in >> leaks.txt") before return in main
 #add system("leaks lem-in >> error_leaks.txt") before exit(1)
 
-#./lem-in < test_maps/augment_1.map > /dev/null
-#./lem-in < test_maps/valid_3hash_comment.map > /dev/null
-#./lem-in < test_maps/invalid_end.map > /dev/null 2>&1
-#./lem-in < test_maps/invalid_coord.map > /dev/null 2>&1
-#./lem-in < test_maps/invalid_double_ant_number.map > /dev/null 2>&1
-#./lem-in < test_maps/invalid_double_start.map > /dev/null 2>&1
-#./lem-in < test_maps/invalid_empty_line.map > /dev/null 2>&1
-#./lem-in < test_maps/invalid_roomname#.map > /dev/null 2>&1
-#./lem-in < test_maps/invalid_room_name_with_dash.map > /dev/null 2>&1
-#./lem-in < test_maps/invalid_room_name_L.map > /dev/null 2>&1
-# wait
-
 noir='\e[0;30m'
 gris='\e[1;30m'
 rougefonce='\e[0;31m'
@@ -44,13 +32,11 @@ declare -a your_line
 declare -a ref_line
 declare -a ref_leaks
 declare -a diff_arr
+declare -a time_arr
 
 clean () {
-    if [ -e $pwd/leaks ];then
-        rm -rf $pwd/leaks
-    fi
-    if [ -e $pwd/map_output ];then
-        rm -rf $pwd/map_output
+    if [ -e $pwd/lem-in_test ];then
+        rm -rf $pwd/lem-in_test
     fi
 }
 
@@ -58,29 +44,31 @@ save_leaks () {
     if [ -e $pwd/int_leaks.txt ];then
         int_leaks=$(grep "leaked bytes" $pwd/int_leaks.txt | cut -d ' ' -f 3)
         if [ $int_leaks -ne 0 ]; then
-            mkdir -p $pwd/leaks/int
-            cp $pwd/int_leaks.txt $pwd/leaks/int/$strmap
+            cp $pwd/int_leaks.txt $pwd/lem-in_test/$strmap/mid_leaks.txt
         fi
     fi
     if [ -e $pwd/exit_s_leaks.txt ];then
         exit_solver=$(grep "leaked bytes" $pwd/exit_s_leaks.txt | cut -d ' ' -f 3)
         if [ $exit_solver -ne 0 ]; then
-            mkdir -p $pwd/leaks/exit_solver
-            cp $pwd/exit_p_leaks.txt $pwd/leaks/exit_solver/$strmap
+            cp $pwd/exit_p_leaks.txt $pwd/lem-in_test/$strmap/exit_solver_leaks.txt
         fi
     fi
     if [ -e $pwd/exit_p_leaks.txt ];then
         exit_parsing=$(grep "leaked bytes" $pwd/exit_p_leaks.txt | cut -d ' ' -f 3)
         if [ $exit_parsing -ne 0 ]; then
-            mkdir -p $pwd/leaks/exit_parsing
-            cp $pwd/exit_p_leaks.txt $pwd/leaks/exit_parsing/$strmap
+            cp $pwd/exit_p_leaks.txt $pwd/lem-in_test/$strmap/exit_parsing_leaks.txt
         fi
     fi
 }
 
 set_data_leaks () {
-    process_line=$(grep "leaked bytes" $1)
-    leak=$(grep "leaked bytes" $1 | cut -d ' ' -f 3)
+     if [ -e $1 ];then
+        process_line=$(grep "leaked bytes" $1)
+        leak=$(grep "leaked bytes" $1 | cut -d ' ' -f 3)
+        else
+        process_line="N/A"
+        leak="N/A"
+     fi
 }
 
 save_arr () {
@@ -89,6 +77,7 @@ save_arr () {
     ref_line=( "${ref_line[@]}" "$3" )
     ref_leak=( "${ref_leak[@]}" "$4" )
     diff_arr=( "${diff_arr[@]}" "$5" )
+    time_arr=( "${time_arr[@]}" "$6" )
 }
 
 
@@ -120,38 +109,58 @@ display () {
 }
 
 display_leaks () {
-    printf "We found "
-    if [ "$1" -ne "0" ]; then
-        printf "${rougefonce}${bold}"
-        mkdir -p $pwd/leaks
-        cp $pwd/leaks.txt $pwd/leaks/$strmap
-    else
-        printf "${vertfonce}${bold}"   
-    fi
-    printf "$1${neutre} leaks from your program.\n"
-    printf "\t${italic}$2${neutre}\n\n"
+     if [ -e $3 ];then
+        printf "We found "
+        if [ "$1" -ne "0" ]; then
+            printf "${rougefonce}${bold}"
+            cp $pwd/leaks.txt $pwd/lem-in_test/$strmap/leaks.txt
+        else
+            printf "${vertfonce}${bold}"   
+        fi
+        printf "$1${neutre} leaks from your program.\n"
+        printf "\t${italic}$2${neutre}\n\n"
+        else
+        printf "Leaks: N/A.\nYou need to insert at your exit point the command:\n${italic}system(\"leaks exec > leaks.txt\")\n"
+     fi
 }
+
+display_time () {
+    printf "It took ${italic}${bleuclair}${time}${neutre} to find a solution.\n"
+}
+
+save_time () {
+    if [ -e $pwd/lem-in_test/$strmap/ref_time.txt ];then
+        time=$(grep "user" $pwd/lem-in_test/$strmap/ref_time.txt | cut -c6-)
+        else
+        time="N/A"
+    fi
+}
+
 clean
 
-mkdir -p $pwd/map_output
+mkdir -p $pwd/lem-in_test
+mkdir -p $pwd/lem-in_test/time
 
 for MAP in $(find ./test_maps -type f);
 do
     result=$(grep ".txt" <<< "$MAP")
     if [ -n "$result" ]; then
         strmap=$(echo $result | rev | cut -d'/' -f 1| rev)
-        ./lem-in < $MAP &> $pwd/map_output/$strmap
+        mkdir -p $pwd/lem-in_test/$strmap
+        ./lem-in < $MAP &> $pwd/lem-in_test/$strmap/out_put.txt
+        foo=$( { time ./lem-in < $MAP &> /dev/null 2> /dev/null ; } 2>$pwd/lem-in_test/$strmap/ref_time.txt )
+        save_time $strmap
         save_leaks
-        error=$(grep -i "ERROR" $pwd/map_output/$strmap)
+        error=$(grep -i "ERROR" $pwd/lem-in_test/$strmap/out_put.txt)
         if [ $error ]; then
             set_data_leaks $pwd/exit_leaks.txt
-            save_arr "$strmap" "Error" "Error" $leak "0"
+            save_arr "$strmap" "Error" "Error" $leak "0" "$time"
             if [ "$1" = '-v' ]; then
                 display_error "$strmap"
-                display_leaks $leak "$process_line"
+                display_leaks $leak "$process_line" $pwd/exit_leaks.txt
             fi
         else
-            set_data_line "$pwd/map_output/$strmap"
+            set_data_line "$pwd/lem-in_test/$strmap/out_put.txt"
             if [[ $line_required ]]; then
                 if (( $line_required == $line_founded ));then
                     diff=0
@@ -169,9 +178,10 @@ do
             set_data_leaks $pwd/leaks.txt
             if [ "$1" = '-v' ]; then
                 display $strmap $line_founded $line_required
-                display_leaks $leak "$process_line"
+                display_time "$time"
+                display_leaks $leak "$process_line" $pwd/leaks.txt
             fi
-            save_arr "$strmap" "$line_founded" "$line_required" $leak $diff
+            save_arr "$strmap" "$line_founded" "$line_required" $leak $diff $time
         fi
     fi
 done
@@ -219,6 +229,14 @@ while [ "$strsize" -lt "8" ];do
     strsize=$(( $strsize + 1 ))
 done
 
+option="TIME"
+printf "| ${bold}${option}"
+strsize=${#option}
+while [ "$strsize" -lt "10" ];do
+    printf " "
+    strsize=$(( $strsize + 1 ))
+done
+
 option="RESULTS"
 printf "| ${bold}${option}"
 strsize=${#option}
@@ -230,7 +248,7 @@ printf "|${neutre}\n"
 
 while [ "$i" -lt "$size" ]
 do
-printf "| ${map[i]}"
+printf "| ${bold}${map[i]}${neutre}"
 strsize=${#map[i]}
 while [ "$strsize" -lt "40" ];do
     printf " "
@@ -276,9 +294,19 @@ while [ "$strsize" -lt "8" ];do
     printf " "
     strsize=$(( $strsize + 1 ))
 done
+
+printf "| ${italic}${time_arr[i]}${neutre}"
+strsize=${#time_arr[i]}
+while [ "$strsize" -lt "10" ];do
+    printf " "
+    strsize=$(( $strsize + 1 ))
+done
+
 if [ "${diff_arr[i]}" -le "5" ]; then
     if [ "${ref_leak[i]}" -eq "0" ]; then
         ret="SUCCESS"
+        else
+        ret="FAIL"
     fi
 else
     ret="FAIL"

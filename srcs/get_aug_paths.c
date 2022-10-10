@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:21:36 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/10/07 11:11:54 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:34:37 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_vector	*handle_links(t_room *node, t_room *graph, char **start_and_end, \
 	return (NULL);
 }
 
-int		get_aug_path(t_room *graph, char **start_and_end, \
+int	get_aug_path(t_room *graph, char **start_and_end, \
 	t_vector **to_be_visited, t_vector **path)
 {
 	int			i;

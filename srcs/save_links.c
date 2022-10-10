@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:56:55 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/07 13:25:17 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:29:44 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	check_link_name(char *line, t_data *data)
 
 	room_1 = NULL;
 	room_2 = NULL;
-	i = 0;
-	while (line[i] != '\0')
+	i = -1;
+	while (line[++i] != '\0')
 	{
 		if (line[i] == '-')
 		{
@@ -47,14 +47,11 @@ static int	check_link_name(char *line, t_data *data)
 				ft_strdel(&room_1);
 				room_2 = ft_strdup(&line[i + 1]);
 				if (match(room_2, data))
-				{
-					ft_strdel(&room_2);
-					return (clean2str(room_1, room_2, 'n'), i);
-				}
+					return (ft_strdel(&room_2), i);
+				ft_strdel(&room_2);
 			}
-			clean2str(room_1, room_2, 'n');
+			ft_strdel(&room_1);
 		}
-		i++;
 	}
 	return (-1);
 }
@@ -78,14 +75,11 @@ void	save_links(char *line, t_data **data, t_room **rooms)
 	if (!link_1 || !link_2)
 	{
 		clean2str(link_1, link_2, 'n');
-		panic("In save_data.c: save_linker");
 		exit_parsing(line, *rooms, *data);
 	}
 	from = search_for(link_1, *data);
 	to = search_for(link_2, *data);
 	clean2str(link_1, link_2, 'n');
-	if (!from || !to)
-		exit_parsing(line, *rooms, *data);
-	if (!insert_links(from, to))
+	if (!from || !to || !insert_links(from, to))
 		exit_parsing(line, *rooms, *data);
 }

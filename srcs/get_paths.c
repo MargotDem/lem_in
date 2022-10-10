@@ -6,15 +6,15 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:33:04 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/10/07 11:33:14 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:35:01 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		create_path_node(t_path_node **path_node, t_room *node)
+int	create_path_node(t_path_node **path_node, t_room *node)
 {
-	(*path_node) = (t_path_node *)/*handle_null*/(malloc(sizeof(t_path_node)));
+	(*path_node) = (t_path_node *)(malloc(sizeof(t_path_node)));
 	if (!(*path_node))
 		return (ERROR);
 	(*path_node)->next = NULL;

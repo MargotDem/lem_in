@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:54:25 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/07 10:15:41 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:37:05 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_room	**re_alloc(t_room **links, t_room *to, unsigned long size_list)
 	x = 0;
 	dst = (t_room **)malloc(sizeof(t_room *) * size_list + sizeof(t_room *));
 	if (!dst)
-		return(panic("In malloc_handler: brealloc"), NULL);
+		return (panic("In malloc_handler: brealloc"), NULL);
 	while (x < size_list)
 	{
 		dst[x] = links[x];
@@ -79,11 +79,3 @@ t_room	**re_alloc(t_room **links, t_room *to, unsigned long size_list)
 	links = NULL;
 	return (dst);
 }
-
-// void	create_links(t_room **room)
-// {
-// 	(*room)->links = (t_room **)malloc(sizeof(t_room *));
-// 	if (!(*room)->links)
-// 		panic("In malloc_handler: create_links");
-// 	(*room)->links[0] = NULL;
-// }

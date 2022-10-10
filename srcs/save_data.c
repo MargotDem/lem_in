@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:02:18 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/07 09:57:20 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:08:14 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,27 @@ static int	save_start_end(t_data **data, char letter, char *line)
 	return (1);
 }
 
-void	save_command(char *line, t_data **data, t_room **rooms)
+static t_room	*create_command(char *line, char letter, \
+				t_room *rooms, t_data *data)
 {
 	t_room	*element;
+	t_room	*temp;
+
+	element = new_node(line, letter);
+	temp = push_front(rooms, element);
+	if (!temp)
+	{
+		element = clean_list(element);
+		return (NULL);
+	}
+	rooms = temp;
+	data->size_list += 1;
+	return (rooms);
+}
+
+void	save_command(char *line, t_data **data, t_room **rooms)
+{
+	t_room	*temp;
 	char	letter;
 	char	*map;
 	int		index;
@@ -69,19 +87,13 @@ void	save_command(char *line, t_data **data, t_room **rooms)
 		get_line(&map[index], &line, *data);
 		if (type_of_line(line, *data) != 0)
 			exit_parsing(line, *rooms, *data);
-		element = new_node(line, letter);
-		*rooms = push_front(*rooms, element);
-		if (!*rooms)
-		{
-			ft_strdel(&element->name);
-			free(element);
-			element = NULL;
+		temp = create_command(line, letter, *rooms, *data);
+		if (!temp)
 			exit_parsing(line, *rooms, *data);
-		}
-		(*data)->size_list += 1;
+		*rooms = temp;
 		if ((*data)->start_room_name || (*data)->end_room_name)
 			clean2str((*data)->start_room_name, (*data)->end_room_name, letter);
-		if(!save_start_end(data, letter, line))
+		if (!save_start_end(data, letter, line))
 			exit_parsing(line, *rooms, *data);
 		(*data)->section_rooms = ACTIVATE;
 		ft_strdel(&line);
