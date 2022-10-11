@@ -12,9 +12,10 @@
 
 #include "lem_in.h"
 
-int		get_room_color(t_mlx_win *mlx_win, char *name)
+int	get_room_color(t_mlx_win *mlx_win, char *name)
 {
-	if (strings_match(name, mlx_win->start) || strings_match(name, mlx_win->end))
+	if (strings_match(name, mlx_win->start) || \
+		strings_match(name, mlx_win->end))
 		return (0x826cd4);
 	return (mlx_win->room_color);
 }

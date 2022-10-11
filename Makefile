@@ -21,11 +21,11 @@ CCFLAGS	=	-Werror -Wextra -Wall
 #INCLUDE
 INCL_LFT	= -I ./libft/
 INCL_PARS	= -I ./includes/
-# INCL_MLX	= -I/usr/local/include
+INCL_MLX	= -I/usr/local/include
 
 #LIBRAIRIE
 LIB		= -L ./libft/ -lft
-# MLX		= -L /usr/local/lib -lmlx
+MLX		= -L /usr/local/lib -lmlx
 
 #CLEAN & FCLEAN
 RM_DIR	=	rm -rf
@@ -60,12 +60,15 @@ FILES = 	main.c \
 			find_best_solution.c \
 			vector_utils.c \
 			handle_start_to_end_path.c \
-			# viz_draw_rooms.c \
+			viz_draw_rooms.c \
 			visualizer.c \
 			viz_init.c \
 			viz_draw_line.c \
+			edmond_karp.c \
+			viz_draw_ant.c \
+			viz_handle_key.c \
 
-# FRAMEWORKS = -framework OpenGL -framework Appkit
+FRAMEWORKS = -framework OpenGL -framework Appkit
 
 #OBJECT FILES
 OBJ_DIR			=	./objectFiles/

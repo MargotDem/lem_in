@@ -22,6 +22,14 @@ int	create_path_node(t_path_node **path_node, t_room *node)
 	return (OK);
 }
 
+static void	lst_add(t_paths **paths, t_paths *path_el)
+{
+	if (!(*paths))
+		(*paths) = path_el;
+	else
+		lst_add_in_order(paths, path_el);
+}
+
 int	get_path(t_room *node, t_paths **paths, t_room *graph, t_room *end)
 {
 	t_paths			*path_el;
@@ -47,10 +55,7 @@ int	get_path(t_room *node, t_paths **paths, t_room *graph, t_room *end)
 		return (ERROR);
 	push_front_node(&(path_el->path), path_node);
 	path_el->path_size = path_size;
-	if (!(*paths))
-		(*paths) = path_el;
-	else
-		lst_add_in_order(paths, path_el);
+	lst_add(paths, path_el);
 	return (OK);
 }
 

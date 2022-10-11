@@ -12,42 +12,9 @@
 
 #include "lem_in.h"
 
-void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
-	char **start_and_end, t_vector *all_paths_combos)
-{
-	t_vector	*path;
-	t_vector	*to_be_visited;
-	int			i;
-	int			ret;
-
-	while (1)
-	{
-		ret = get_aug_path(graph, start_and_end, &to_be_visited, &path);
-		if (ret < 1)
-		{
-			if (!ret)
-				exit_solver(all_paths_combos, data);
-			free_to_be_visited(&to_be_visited);
-			break ;
-		}
-		i = path->counter - 1;
-		while (i > 0)
-		{
-			if (((t_room *)(path->arr[i - 1]))->reverse == path->arr[i])
-				((t_room *)(path->arr[i - 1]))->reverse = NULL;
-			else
-				((t_room *)(path->arr[i]))->reverse = path->arr[i - 1];
-			i--;
-		}
-		get_paths(all_paths_combos, graph, data);
-		free_to_be_visited(&to_be_visited);
-	}
-}
-
 void	display_options(t_data *data, t_room *graph, \
-	t_paths *solution)
+	t_paths *solution, t_vector *all_paths_combos)
 {
-	(void)graph;
 	if (data->print_paths)
 	{
 		ft_putstr("\n********************\n\n");
@@ -57,8 +24,8 @@ void	display_options(t_data *data, t_room *graph, \
 		ft_putnbr((int)(get_nb_turns(solution)));
 		ft_putstr("\n\n");
 	}
-	// if (data->visual)
-		// visualizer(graph, data, solution);
+	if (data->visual)
+		visualizer(graph, data, solution, all_paths_combos);
 }
 
 void	solve(t_room *graph, t_data *data)
@@ -80,8 +47,8 @@ void	solve(t_room *graph, t_data *data)
 	{
 		if (!data->no_map)
 			write(1, data->map, data->index_line);
-		display_result(solution, nb_ants);
-		display_options(data, graph, solution);
+		display_result(solution, nb_ants, all_paths_combos, data);
+		display_options(data, graph, solution, all_paths_combos);
 	}
 	else
 		exit_solver(all_paths_combos, data);

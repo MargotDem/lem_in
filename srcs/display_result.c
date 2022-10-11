@@ -29,7 +29,8 @@ char	*get_room_name(t_paths *path_ptr, int room_nb)
 	return (path->node->name);
 }
 
-void	initialize_ants_positions(t_paths *paths)
+void	initialize_ants_positions(t_paths *paths, \
+	t_vector *all_paths_combos, t_data *data)
 {
 	size_t	i;
 
@@ -37,8 +38,10 @@ void	initialize_ants_positions(t_paths *paths)
 	{
 		if (!paths->ants)
 		{
-			paths->ants = (t_ant *)/*handle_null*/(malloc(sizeof(t_ant) * \
+			paths->ants = (t_ant *)(malloc(sizeof(t_ant) * \
 				paths->nb_ants));
+			if (!paths->ants)
+				exit_solver(all_paths_combos, data);
 		}
 		i = 0;
 		while (i < paths->nb_ants)
@@ -113,12 +116,13 @@ void	handle_ants(t_paths *path_el, size_t *movement)
 	}
 }
 
-void	display_result(t_paths *paths, size_t nb_ants)
+void	display_result(t_paths *paths, size_t nb_ants, \
+	t_vector *all_paths_combos, t_data *data)
 {
 	t_paths			*paths_ptr;
 	size_t			movement;
 
-	initialize_ants_positions(paths);
+	initialize_ants_positions(paths, all_paths_combos, data);
 	initialize_ants_numbers(paths, nb_ants);
 	ft_putstr("\n");
 	while (1)

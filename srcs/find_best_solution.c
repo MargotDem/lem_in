@@ -56,7 +56,7 @@ int	find_best_solution(t_paths **solution, \
 
 	all_paths_combos = (t_paths **)(all_paths_combos_struct->arr);
 	if (!all_paths_combos[0])
-		return (0);
+		return (ERROR);
 	distribute_ants(all_paths_combos[0], nb_ants);
 	shortest_nb_turns = get_nb_turns(all_paths_combos[0]);
 	*solution = all_paths_combos[0];
@@ -72,5 +72,5 @@ int	find_best_solution(t_paths **solution, \
 		}
 		k++;
 	}
-	return (1);
+	return (OK);
 }
