@@ -28,7 +28,7 @@ void	set_reverse_edges(t_vector *path)
 }
 
 void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
-	char **start_and_end, t_vector *all_paths_combos)
+	t_vector *all_paths_combos)
 {
 	t_vector	*path;
 	t_vector	*to_be_visited;
@@ -36,7 +36,7 @@ void	edmond_karp_with_a_twist(t_room *graph, t_data *data, \
 
 	while (1)
 	{
-		ret = get_aug_path(graph, start_and_end, &to_be_visited, &path);
+		ret = get_aug_path(graph, data, &to_be_visited, &path);
 		if (ret < 1)
 		{
 			if (!ret)

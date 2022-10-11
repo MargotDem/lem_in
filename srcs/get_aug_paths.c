@@ -53,7 +53,7 @@ int	init_to_be_visited(t_vector **to_be_visited, t_room *graph)
 }
 
 void	decide_if_visit(t_room *node, t_room *prev_node, \
-	t_vector *to_be_visited, char **start_and_end)
+	t_vector *to_be_visited, t_data *data)
 {
 	if (prev_node->reverse && \
 		((t_room *)(prev_node->history->arr[prev_node->history->counter - \
@@ -64,12 +64,12 @@ void	decide_if_visit(t_room *node, t_room *prev_node, \
 	}
 	else if (\
 		(!node->to_be_visited && node->reverse != prev_node && \
-			!strings_match(node->name, start_and_end[1])) \
+			!strings_match(node->name, data->end_room_name)) \
 		|| (node->to_be_visited && prev_node->reverse == node))
 		add_node_to_be_visited(node, prev_node, to_be_visited);
 }
 
-t_vector	*handle_links(t_room *node, t_room *graph, char **start_and_end, \
+t_vector	*handle_links(t_room *node, t_room *graph, t_data *data, \
 	t_vector *to_be_visited)
 {
 	t_room			**links;
@@ -84,7 +84,7 @@ t_vector	*handle_links(t_room *node, t_room *graph, char **start_and_end, \
 			j++;
 			continue ;
 		}
-		if (strings_match(links[j]->name, start_and_end[1]) \
+		if (strings_match(links[j]->name, data->end_room_name) \
 			&& node->reverse == NULL)
 		{
 			push_to_vect(node->history, node);
@@ -92,13 +92,13 @@ t_vector	*handle_links(t_room *node, t_room *graph, char **start_and_end, \
 			reset_to_be_visited(to_be_visited);
 			return (node->history);
 		}
-		decide_if_visit(links[j], node, to_be_visited, start_and_end);
+		decide_if_visit(links[j], node, to_be_visited, data);
 		j++;
 	}
 	return (NULL);
 }
 
-int	get_aug_path(t_room *graph, char **start_and_end, \
+int	get_aug_path(t_room *graph, t_data *data, \
 	t_vector **to_be_visited, t_vector **path)
 {
 	int			i;
@@ -110,7 +110,7 @@ int	get_aug_path(t_room *graph, char **start_and_end, \
 	while (i < (int)(*to_be_visited)->counter)
 	{
 		node = (*to_be_visited)->arr[i];
-		*path = handle_links(node, graph, start_and_end, *to_be_visited);
+		*path = handle_links(node, graph, data, *to_be_visited);
 		if (*path)
 			return (OK);
 		i++;

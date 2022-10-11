@@ -31,17 +31,14 @@ void	display_options(t_data *data, t_room *graph, \
 void	solve(t_room *graph, t_data *data)
 {
 	size_t				nb_ants;
-	char				*start_and_end[2];
 	t_vector			*all_paths_combos;
 	t_paths				*solution;
 
 	nb_ants = data->ants;
-	start_and_end[0] = data->start_room_name;
-	start_and_end[1] = data->end_room_name;
 	if (!init_vect(&all_paths_combos, 30))
 		exit_solver(all_paths_combos, data);
 	handle_start_to_end_path(graph, data, all_paths_combos);
-	edmond_karp_with_a_twist(graph, data, start_and_end, all_paths_combos);
+	edmond_karp_with_a_twist(graph, data, all_paths_combos);
 	handle_start_to_end_path2(graph, data, all_paths_combos);
 	if (find_best_solution(&solution, all_paths_combos, nb_ants))
 	{

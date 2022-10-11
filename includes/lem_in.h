@@ -99,8 +99,8 @@ int			create_path_node(t_path_node **path_node, t_room *node);
 
 // Solving functions
 void		edmond_karp_with_a_twist(t_room *graph, t_data *data, \
-	char **start_and_end, t_vector *all_paths_combos);
-int			get_aug_path(t_room *graph, char **start_and_end, \
+	t_vector *all_paths_combos);
+int			get_aug_path(t_room *graph, t_data *data, \
 	t_vector **to_be_visited, t_vector **path);
 void		get_paths(t_vector *all_paths_combos, \
 	t_room *graph, t_data *data);
