@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:07:41 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 13:55:37 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:25:42 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	links_already_exist(t_room *room_1, t_room *room_2)
 	return (FALSE);
 }
 
-void	create_link(t_room *room_1, t_room *room_2)
+int	create_link(t_room *room_1, t_room *room_2)
 {
 	if (room_1->links[0] == NULL)
 	{
@@ -40,13 +40,19 @@ void	create_link(t_room *room_1, t_room *room_2)
 		room_1->links = re_alloc(room_1->links, room_2, room_1->total_links);
 		room_1->total_links += 1;
 	}
+	if (!room_1->links)
+		return (ERROR);
+	return (TRUE);
 }
 
-void	insert_links(t_room *from, t_room *to)
+int	insert_links(t_room *from, t_room *to)
 {
 	if (!links_already_exist(from, to))
 	{
-		create_link(to, from);
-		create_link(from, to);
+		if (!create_link(to, from))
+			return (ERROR);
+		if (!create_link(from, to))
+			return (ERROR);
 	}
+	return (TRUE);
 }

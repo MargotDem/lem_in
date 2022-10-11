@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paths_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:35:31 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/08/05 08:59:22 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:37:27 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ t_paths	*create_path_el(void)
 {
 	t_paths	*path_el;
 
-	path_el = (t_paths *)handle_null(malloc(sizeof(t_paths)));
+	path_el = (t_paths *)(malloc(sizeof(t_paths)));
+	if (!path_el)
+		return (NULL);
 	ft_bzero((void *)path_el, sizeof(t_paths));
 	return (path_el);
 }

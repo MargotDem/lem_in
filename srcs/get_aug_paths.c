@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_aug_paths.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-maul <mde-maul@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:21:36 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/08/01 18:21:37 by mde-maul         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:34:37 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ void	reset_to_be_visited(t_vector *to_be_visited)
 	}
 }
 
-void	init_to_be_visited(t_vector **to_be_visited, t_room *graph)
+int	init_to_be_visited(t_vector **to_be_visited, t_room *graph)
 {
 	unsigned int	i;
 	t_room			*node;
 
 	i = 0;
-	init_vect(to_be_visited, 2000);
+	if (!init_vect(to_be_visited, 2000))
+		return (ERROR);
 	while (i < graph->total_links)
 	{
 		node = graph->links[i];
@@ -42,11 +43,13 @@ void	init_to_be_visited(t_vector **to_be_visited, t_room *graph)
 			push_to_vect(*to_be_visited, node);
 			if (node->history)
 				free_vect(&(node->history));
-			init_vect(&(node->history), 20);
+			if (!init_vect(&(node->history), 20))
+				return (ERROR);
 			push_to_vect(node->history, graph);
 		}
 		i++;
 	}
+	return (OK);
 }
 
 void	decide_if_visit(t_room *node, t_room *prev_node, \
@@ -95,22 +98,22 @@ t_vector	*handle_links(t_room *node, t_room *graph, char **start_and_end, \
 	return (NULL);
 }
 
-t_vector	*get_aug_path(t_room *graph, char **start_and_end, \
-	t_vector **to_be_visited)
+int	get_aug_path(t_room *graph, char **start_and_end, \
+	t_vector **to_be_visited, t_vector **path)
 {
 	int			i;
-	t_vector	*path;
 	t_room		*node;
 
-	init_to_be_visited(to_be_visited, graph);
+	if (!init_to_be_visited(to_be_visited, graph))
+		return (ERROR);
 	i = 0;
 	while (i < (int)(*to_be_visited)->counter)
 	{
 		node = (*to_be_visited)->arr[i];
-		path = handle_links(node, graph, start_and_end, *to_be_visited);
-		if (path)
-			return (path);
+		*path = handle_links(node, graph, start_and_end, *to_be_visited);
+		if (*path)
+			return (OK);
 		i++;
 	}
-	return (NULL);
+	return (-1);
 }

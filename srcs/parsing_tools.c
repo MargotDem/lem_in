@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:08:55 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 13:44:37 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:54:34 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*save_name(char *line)
 		i++;
 	name = ft_strsub(line, 0, i);
 	if (!name)
-		panic("In tools.c: save_name");
+		return (panic("In tools.c: save_name"), NULL);
 	return (name);
 }
 

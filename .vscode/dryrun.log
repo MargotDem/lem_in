@@ -1,8 +1,7 @@
 make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/briffard/Desktop/lem-in'
+make: Entering directory `/Users/flagada/Desktop/lem-in'
 make -sC ./libft/ 
  
-gcc -Werror -Wextra -Wall -o lem-in ./objectFiles/main.o ./objectFiles/malloc_handler.o ./objectFiles/free_handler.o ./objectFiles/init_value.o ./objectFiles/save_links.o ./objectFiles/mapreader.o ./objectFiles/mapreader_tools.o ./objectFiles/get_ants.o ./objectFiles/parsing_tools.o ./objectFiles/exit_parsing.o ./objectFiles/save_data.o ./objectFiles/save_data_tools.o ./objectFiles/hashtable_main.o ./objectFiles/hashtable_malloc.o ./objectFiles/print_man.o ./objectFiles/add_node_to_be_visited.o ./objectFiles/display_result.o ./objectFiles/get_aug_paths.o ./objectFiles/get_paths.o ./objectFiles/handle_error.o ./objectFiles/history_utils.o ./objectFiles/list_utils.o ./objectFiles/paths_utils.o ./objectFiles/solve.o ./objectFiles/utils.o ./objectFiles/visualizer.o ./objectFiles/free_handler_solve.o ./objectFiles/find_best_solution.o ./objectFiles/vector_utils.o -L ./libft/ -lft -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit
-echo "lem-in has been created"
-make: Leaving directory `/Users/briffard/Desktop/lem-in'
+gcc -Werror -Wextra -Wall -o lem-in ./objectFiles/main.o ./objectFiles/malloc_handler.o ./objectFiles/free_handler.o ./objectFiles/init_value.o ./objectFiles/save_links.o ./objectFiles/mapreader.o ./objectFiles/mapreader_tools.o ./objectFiles/get_ants.o ./objectFiles/parsing_tools.o ./objectFiles/exit_parsing.o ./objectFiles/save_data.o ./objectFiles/save_data_tools.o ./objectFiles/hashtable_main.o ./objectFiles/hashtable_malloc.o ./objectFiles/print_man.o ./objectFiles/add_node_to_be_visited.o ./objectFiles/display_result.o ./objectFiles/get_aug_paths.o ./objectFiles/get_paths.o ./objectFiles/handle_error.o ./objectFiles/history_utils.o ./objectFiles/list_utils.o ./objectFiles/paths_utils.o ./objectFiles/solve.o ./objectFiles/utils.o ./objectFiles/free_handler_solve.o ./objectFiles/find_best_solution.o ./objectFiles/vector_utils.o ./objectFiles/handle_start_to_end_path.o -L ./libft/ -lft  
+make: Leaving directory `/Users/flagada/Desktop/lem-in'
  

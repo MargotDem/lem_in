@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:02:34 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 11:12:25 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:12:17 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_room	*set_copy(t_room *dst, t_room *source)
 {
 	dst->name = ft_strdup(source->name);
 	if (!dst->name)
-		panic("In hashtable_malloc: set_copy: dst->name");
+		return (panic("In hashtable_malloc: set_copy: dst->name"), NULL);
 	dst->abscissa = source->abscissa;
 	dst->ordinate = source->ordinate;
 	dst->end = source->end;
@@ -29,7 +29,7 @@ static t_room	*set_copy(t_room *dst, t_room *source)
 	dst->history = NULL;
 	dst->links = (t_room **)malloc(sizeof(t_room *));
 	if (!dst->links)
-		panic("In hashtable_malloc: set_copy: dst->links");
+		return (panic("In hashtable_malloc: set_copy: dst->links"), NULL);
 	dst->reverse = NULL;
 	dst->to_be_visited = 0;
 	dst->history = NULL;
@@ -42,7 +42,9 @@ t_room	*cpy_room(t_room *room)
 
 	element = (t_room *)malloc(sizeof(t_room));
 	if (!element)
-		panic("In hashtable_malloc: cpy_room");
+		return (panic("In hashtable_malloc: cpy_room"), NULL);
 	element = set_copy(element, room);
+	if (!element)
+		return (NULL);
 	return (element);
 }

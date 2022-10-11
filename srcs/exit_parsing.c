@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:37:11 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 13:24:14 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:54:24 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ void	exit_parsing(char *line, t_room *rooms, t_data *data)
 			rooms = clean_list(rooms);
 	handle_error();
 	data = data_cleaner(data);
+	system("leaks lem-in > exit_p_leaks.txt");
+	system("leaks lem-in > exit_leaks.txt");
 	exit(EXIT_FAILURE);
 }
 
 void	panic(char *message)
 {
 	perror(message);
-	exit(EXIT_FAILURE);
 }

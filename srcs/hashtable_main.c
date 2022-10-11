@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:48:41 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 13:24:14 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:12:47 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_room	*insert_room(t_data **data, t_room *li, int index)
 	t_room	*new;
 
 	new = cpy_room(li);
+	if (!new)
+		exit_parsing(NULL, li, *data);
 	tempo = NULL;
 	temp = (*data)->hashtab[index];
 	if (temp == NULL)
@@ -81,7 +83,8 @@ void	fill_up_hashtable(t_data **data, t_room *li)
 void	hashtable_main(t_data **data, t_room *li)
 {
 	(*data)->hashtable_created = TRUE;
-	create_hashtable(data);
+	if (!create_hashtable(data))
+		exit_parsing(NULL, li, *data);
 	fill_up_hashtable(data, li);
 	while (li != NULL)
 		li = clean_list(li);

@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:21:47 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/10/05 13:15:25 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:33:59 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	initialize_ants_positions(t_paths *paths)
 	{
 		if (!paths->ants)
 		{
-			paths->ants = (t_ant *)handle_null(malloc(sizeof(t_ant) * \
+			paths->ants = (t_ant *)/*handle_null*/(malloc(sizeof(t_ant) * \
 				paths->nb_ants));
 		}
 		i = 0;

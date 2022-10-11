@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 18:27:11 by mde-maul          #+#    #+#             */
-/*   Updated: 2022/10/05 13:45:27 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:54:38 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static int	already_existing_room(t_room *list, t_room *element)
 t_room	*push_front(t_room *list, t_room *element)
 {
 	if (already_existing_room(list, element))
+		return (NULL);
+	if (element == NULL)
 		return (NULL);
 	if (list == NULL)
 		return (element);

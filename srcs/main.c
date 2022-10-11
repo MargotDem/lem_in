@@ -6,7 +6,7 @@
 /*   By: briffard <briffard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:19 by briffard          #+#    #+#             */
-/*   Updated: 2022/10/05 12:55:35 by briffard         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:28:27 by briffard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	check_letter(char letter, t_data *data)
 	if (letter != 'v' && letter != 'm' && letter != 'h' && letter != 'p')
 	{
 		print_usage();
-		free(data);
-		data = NULL;
-		exit(EXIT_FAILURE);
+		exit_parsing(NULL, NULL, data);
 	}
 	else if (letter == 'v')
 		data->visual = TRUE;
@@ -38,15 +36,15 @@ t_data	*check_option(int argc, char *option, t_data *data)
 
 	i = 0;
 	data = create_data();
+	if (!data)
+		exit_parsing(NULL, NULL, data);
 	set_data(data);
 	if (argc == 1)
 		return (data);
 	if (option[0] != '-' || argc > 2)
 	{
 		print_usage();
-		free(data);
-		data = NULL;
-		exit(EXIT_FAILURE);
+		exit_parsing(NULL, NULL, data);
 	}
 	while (option[++i] != '\0')
 	{
@@ -72,11 +70,12 @@ int	main(int argc, char **argv)
 		exit(EXIT_SUCCESS);
 	}
 	mapreader(&rooms, &data);
+	system("leaks lem-in > int_leaks.txt");
 	if (data_is_ok(data))
 		solve(search_for(data->start_room_name, data), data);
 	else
 		handle_error();
 	data = data_cleaner(data);
-	//system("leaks lem-in");
+	system("leaks lem-in > leaks.txt");
 	return (0);
 }

@@ -35,7 +35,7 @@ t_room	*set_room(char *line, char letter, t_room *room)
 {
 	room->name = save_name(line);
 	if (!room->name)
-		panic("In init_value: set_room");
+		return (panic("In init_value: set_room"), NULL);
 	room->start = FALSE;
 	room->end = FALSE;
 	room->abscissa = save_abscissa(line);
