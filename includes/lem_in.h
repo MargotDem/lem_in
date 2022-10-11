@@ -74,6 +74,11 @@ typedef struct s_vector {
 	void	**arr;
 }	t_vector;
 
+typedef struct s_coord {
+	size_t	x;
+	size_t	y;
+}	t_coord;
+
 // Handle error
 void		handle_error(void);
 void		*handle_null(void *param);
@@ -129,6 +134,7 @@ int			get_ant_color(size_t ant_nb);
 void		draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase);
 int			handle_key(int key, void *param);
 void		escape(t_mlx_win *mlx_win);
+void		draw_round(t_mlx_win *mlx_win, int *base_x_y, int r, int color);
 
 // Freeing memory
 void		free_combos(t_vector *all_paths_combos);

@@ -55,6 +55,34 @@ void	color_background(t_mlx_win *mlx_win)
 	}
 }
 
+void	draw_round(t_mlx_win *mlx_win, int *base_x_y, int r, int color)
+{
+	int		x;
+	int		y;
+	float	skrt;
+
+	x = 0;
+	y = 0;
+	while (x <= r)
+	{
+		skrt = ft_sqrt(r * r - x * x);
+		y = (int)skrt;
+		while (y >= 0)
+		{
+			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, \
+				x + base_x_y[0], y + base_x_y[1], color);
+			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, \
+				x + base_x_y[0], -y + base_x_y[1], color);
+			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, \
+				-x + base_x_y[0], y + base_x_y[1], color);
+			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, \
+				-x + base_x_y[0], -y + base_x_y[1], color);
+			y--;
+		}
+		x++;
+	}
+}
+
 void	visualizer(t_room *graph, t_data *data, \
 	t_paths *optimal_paths, t_vector *all_paths_combos)
 {

@@ -12,32 +12,15 @@
 
 #include "lem_in.h"
 
-void	draw_it(t_mlx_win *mlx_win, int ant_size, int color, int *x_y_erase)
+void	draw_it(t_mlx_win *mlx_win, int color, int *x_y_erase)
 {
-	int	x;
-	int	y;
-	int	i;
-	int	j;
 	int	erase;
 
-	x = x_y_erase[0];
-	y = x_y_erase[1];
 	erase = x_y_erase[2];
-	i = y - ant_size;
-	while (i < y + ant_size)
-	{
-		j = x - ant_size;
-		while (j < x + ant_size)
-		{
-			if (erase)
-				mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, j, i, \
-					mlx_win->room_color);
-			else
-				mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, j, i, color);
-			j++;
-		}
-		i++;
-	}	
+	if (erase)
+		draw_round(mlx_win, x_y_erase, 5, mlx_win->room_color);
+	else
+		draw_round(mlx_win, x_y_erase, 5, color);
 }
 
 void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
@@ -61,7 +44,7 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 		x_y_erase[1] = mlx_win->window_length - 60;
 	}
 	x_y_erase[2] = erase;
-	draw_it(mlx_win, ant_size, get_ant_color(ant_nb), x_y_erase);
+	draw_it(mlx_win, get_ant_color(ant_nb), x_y_erase);
 }
 
 void	draw_ants_start(t_paths *paths_ptr, t_mlx_win *mlx_win)
@@ -78,6 +61,7 @@ void	draw_ants_start(t_paths *paths_ptr, t_mlx_win *mlx_win)
 			ant_nb = (paths_ptr->ants)[i].ant_nb;
 			name = get_room_name(paths_ptr, (paths_ptr->ants)[i].room_nb);
 			draw_ant(ant_nb, name, mlx_win, 0);
+			draw_ant(ant_nb, mlx_win->data->end_room_name, mlx_win, 1);
 			i++;
 		}
 		paths_ptr = paths_ptr->next;
