@@ -19,20 +19,20 @@ int	round_point(float x)
 	return ((int)x);
 }
 
-void	draw_steep_line(t_mlx_win *mlx_win, int x_a, int y_a, int x_b, int y_b)
+void	draw_steep_line(t_mlx_win *mlx_win, int *coords_a, int x_b, int y_b)
 {
 	int	x;
 	int	y;
 	int	color;
 
 	color = mlx_win->room_color;
-	x = x_a;
-	y = y_a;
+	x = coords_a[0];
+	y = coords_a[1];
 	while (y < y_b)
 	{
-		x = round_point(x_a + (y - 0.5 - y_a) * \
-			((float)(x_b - x_a) / \
-			(float)(y_b - y_a)));
+		x = round_point(coords_a[0] + (y - 0.5 - coords_a[1]) * \
+			((float)(x_b - coords_a[0]) / \
+			(float)(y_b - coords_a[1])));
 		mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, x, y, color);
 		y++;
 	}
@@ -60,5 +60,5 @@ void	draw_line(t_mlx_win *mlx_win, int *coords_a, int x_b, int y_b)
 		}
 	}
 	else
-		draw_steep_line(mlx_win, coords_a[0], coords_a[1], x_b, y_b);
+		draw_steep_line(mlx_win, coords_a, x_b, y_b);
 }

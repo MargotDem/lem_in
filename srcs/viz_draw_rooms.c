@@ -12,6 +12,13 @@
 
 #include "lem_in.h"
 
+int		get_room_color(t_mlx_win *mlx_win, char *name)
+{
+	if (strings_match(name, mlx_win->start) || strings_match(name, mlx_win->end))
+		return (0x826cd4);
+	return (mlx_win->room_color);
+}
+
 void	draw_room(t_mlx_win *mlx_win, t_room *node)
 {
 	int	x;
@@ -21,9 +28,6 @@ void	draw_room(t_mlx_win *mlx_win, t_room *node)
 	int	room_size;
 
 	room_size = 10;
-	if (strings_match(node->name, mlx_win->start) || \
-		strings_match(node->name, mlx_win->end))
-		room_size = 20;
 	x = node->abscissa * 30 + 40;
 	y = node->ordinate * 30 + 40;
 	i = y - room_size;
@@ -33,7 +37,7 @@ void	draw_room(t_mlx_win *mlx_win, t_room *node)
 		while (j < x + room_size)
 		{
 			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, j, i, \
-				mlx_win->room_color);
+				get_room_color(mlx_win, node->name));
 			j++;
 		}
 		i++;

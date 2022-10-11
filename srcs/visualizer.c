@@ -18,6 +18,24 @@ void	escape(t_mlx_win *mlx_win)
 	exit(0);
 }
 
+int	get_ant_color(size_t ant_nb)
+{
+	int	color;
+	int	red;
+	int	green;
+	int	blue;
+
+	if (ant_nb < 6)
+		ant_nb = ant_nb * 10;
+	red = (ant_nb * ant_nb * 3) % 255;
+	green = (ant_nb * 4 * ant_nb) % 255;
+	blue = (ant_nb * 24) % 255;
+	if (red < 125)
+		red += 80;
+	color = 0x000000 | red << 16 | green << 8 | blue;
+	return (color);
+}
+
 void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 {
 	int	x;
@@ -25,35 +43,26 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 	int	i;
 	int	j;
 	int	ant_size;
-	size_t	scale;
-	size_t	margin;
 	int	color;
-	t_room *node_to_find = NULL;
+	t_room	*node_to_find = NULL;
 
-	scale = mlx_win->scale;
-	margin = mlx_win->margin;
-	if (ant_nb == 1)
-		color = 0x02ebd7;
-	else if (ant_nb == 2)
-		color = 0xeb02c4;
-	else if (ant_nb == 3)
-		color = 0x28e053;
-	else if (ant_nb == 4)
-		color = 0xe1e81a;
-	else if (ant_nb == 5)
-		color = 0xffa200;
-	else if (ant_nb == 6)
-		color = 0xff1e00;
-	else
-		color = 0x0244eb;
+	color = get_ant_color(ant_nb);
 	ant_size = 3;
 	node_to_find = search_for(name, mlx_win->data);
 	if (node_to_find)
 	{
-		x = node_to_find->abscissa * scale + margin;
-		y = node_to_find->ordinate * scale + margin;
-		if (strings_match(name, mlx_win->start) || strings_match(name, mlx_win->end))
-			x += ant_nb * ant_size * 3 - 15;
+		x = node_to_find->abscissa * 30 + 40;
+		y = node_to_find->ordinate * 30 + 40;
+		if (strings_match(name, mlx_win->start))
+		{
+			x = 100 + ant_nb * ant_size * 3 - 15;
+			y = 60;
+		}
+		else if (strings_match(name, mlx_win->end))
+		{
+			x = 100 + ant_nb * ant_size * 3 - 15;
+			y = mlx_win->window_length - 60;
+		}
 		i = y - ant_size;
 		while (i < y + ant_size)
 		{
@@ -76,10 +85,10 @@ void	draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase)
 int	handle_key(int key, void *param)
 {
 	t_mlx_win	*mlx_win;
-	t_paths	*paths_ptr;
-	size_t	i;
-	char	*name;
-	size_t	ant_nb;
+	t_paths		*paths_ptr;
+	size_t		i;
+	char		*name;
+	size_t		ant_nb;
 
 	mlx_win = (t_mlx_win *)param;
 	paths_ptr = mlx_win->optimal_paths;
@@ -161,7 +170,8 @@ void	color_background(t_mlx_win *mlx_win)
 		j = 0;
 		while (j < mlx_win->window_width)
 		{
-			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, (int)j, (int)i, mlx_win->background_color);
+			mlx_pixel_put(mlx_win->mlx_ptr, mlx_win->window, (int)j, \
+				(int)i, mlx_win->background_color);
 			j++;
 		}
 		i++;
