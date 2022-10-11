@@ -12,13 +12,10 @@
 
 #include "lem_in.h"
 
-void	escape(t_mlx_win *mlx_win, t_data *data, t_vector *all_paths_combos)
+void	escape(t_mlx_win *mlx_win)
 {
-	(void)data;
-	(void)all_paths_combos;
 	mlx_destroy_window(mlx_win->mlx_ptr, mlx_win->window);
-	//exit(0);
-	exit_solver(all_paths_combos, data);
+	exit(0);
 }
 
 int	get_ant_color(size_t ant_nb)

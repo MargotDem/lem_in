@@ -96,7 +96,7 @@ int	handle_key(int key, void *param)
 	mlx_win = (t_mlx_win *)param;
 	paths = mlx_win->optimal_paths;
 	if (key == 53)
-		escape(mlx_win, mlx_win->data, mlx_win->all_paths_combos);
+		escape(mlx_win);
 	if (key == 123 && mlx_win->turn_nb > 0)
 		go_back(mlx_win, paths);
 	if (key == 124 && mlx_win->turn_nb < mlx_win->max_turns)
