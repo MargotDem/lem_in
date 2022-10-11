@@ -57,6 +57,7 @@ typedef struct s_mlx_win {
 	t_room	*graph;
 	size_t	nb_ants;
 	t_paths	*optimal_paths;
+	struct s_vector	*all_paths_combos;
 	size_t	turn_nb;
 	size_t	max_turns;
 	size_t	scale;
@@ -128,7 +129,7 @@ void		draw_ants_start(t_paths *paths_ptr, t_mlx_win *mlx_win);
 int			get_ant_color(size_t ant_nb);
 void		draw_ant(size_t ant_nb, char *name, t_mlx_win *mlx_win, int erase);
 int			handle_key(int key, void *param);
-void		escape(t_mlx_win *mlx_win);
+void		escape(t_mlx_win *mlx_win, t_data *data, t_vector *all_paths_combos);
 
 // Freeing memory
 void		free_combos(t_vector *all_paths_combos);
